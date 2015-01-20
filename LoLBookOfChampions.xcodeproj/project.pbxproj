@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A53498801A6DE4AF00F01962 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A534987F1A6DE4AF00F01962 /* main.m */; };
+		A53498831A6DE4AF00F01962 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A53498821A6DE4AF00F01962 /* AppDelegate.m */; };
+		A53498861A6DE4AF00F01962 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A53498851A6DE4AF00F01962 /* ViewController.m */; };
+		A53498891A6DE4AF00F01962 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A53498871A6DE4AF00F01962 /* Main.storyboard */; };
+		A534988B1A6DE4AF00F01962 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A534988A1A6DE4AF00F01962 /* Images.xcassets */; };
+		A534988E1A6DE4AF00F01962 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A534988C1A6DE4AF00F01962 /* LaunchScreen.xib */; };
+		A534989A1A6DE4AF00F01962 /* LoLBookOfChampionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A53498991A6DE4AF00F01962 /* LoLBookOfChampionsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A53498941A6DE4AF00F01962 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A53498721A6DE4AF00F01962 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A53498791A6DE4AF00F01962;
+			remoteInfo = LoLBookOfChampions;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A534987A1A6DE4AF00F01962 /* LoLBookOfChampions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoLBookOfChampions.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A534987E1A6DE4AF00F01962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A534987F1A6DE4AF00F01962 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A53498811A6DE4AF00F01962 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A53498821A6DE4AF00F01962 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A53498841A6DE4AF00F01962 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A53498851A6DE4AF00F01962 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A53498881A6DE4AF00F01962 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A534988A1A6DE4AF00F01962 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A534988D1A6DE4AF00F01962 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A53498931A6DE4AF00F01962 /* LoLBookOfChampionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoLBookOfChampionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A53498981A6DE4AF00F01962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A53498991A6DE4AF00F01962 /* LoLBookOfChampionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoLBookOfChampionsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A53498771A6DE4AF00F01962 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A53498901A6DE4AF00F01962 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A53498711A6DE4AF00F01962 = {
+			isa = PBXGroup;
+			children = (
+				A534987C1A6DE4AF00F01962 /* LoLBookOfChampions */,
+				A53498961A6DE4AF00F01962 /* LoLBookOfChampionsTests */,
+				A534987B1A6DE4AF00F01962 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A534987B1A6DE4AF00F01962 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A534987A1A6DE4AF00F01962 /* LoLBookOfChampions.app */,
+				A53498931A6DE4AF00F01962 /* LoLBookOfChampionsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A534987C1A6DE4AF00F01962 /* LoLBookOfChampions */ = {
+			isa = PBXGroup;
+			children = (
+				A53498811A6DE4AF00F01962 /* AppDelegate.h */,
+				A53498821A6DE4AF00F01962 /* AppDelegate.m */,
+				A53498841A6DE4AF00F01962 /* ViewController.h */,
+				A53498851A6DE4AF00F01962 /* ViewController.m */,
+				A53498871A6DE4AF00F01962 /* Main.storyboard */,
+				A534988A1A6DE4AF00F01962 /* Images.xcassets */,
+				A534988C1A6DE4AF00F01962 /* LaunchScreen.xib */,
+				A534987D1A6DE4AF00F01962 /* Supporting Files */,
+			);
+			path = LoLBookOfChampions;
+			sourceTree = "<group>";
+		};
+		A534987D1A6DE4AF00F01962 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A534987E1A6DE4AF00F01962 /* Info.plist */,
+				A534987F1A6DE4AF00F01962 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A53498961A6DE4AF00F01962 /* LoLBookOfChampionsTests */ = {
+			isa = PBXGroup;
+			children = (
+				A53498991A6DE4AF00F01962 /* LoLBookOfChampionsTests.m */,
+				A53498971A6DE4AF00F01962 /* Supporting Files */,
+			);
+			path = LoLBookOfChampionsTests;
+			sourceTree = "<group>";
+		};
+		A53498971A6DE4AF00F01962 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A53498981A6DE4AF00F01962 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A53498791A6DE4AF00F01962 /* LoLBookOfChampions */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A534989D1A6DE4AF00F01962 /* Build configuration list for PBXNativeTarget "LoLBookOfChampions" */;
+			buildPhases = (
+				A53498761A6DE4AF00F01962 /* Sources */,
+				A53498771A6DE4AF00F01962 /* Frameworks */,
+				A53498781A6DE4AF00F01962 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LoLBookOfChampions;
+			productName = LoLBookOfChampions;
+			productReference = A534987A1A6DE4AF00F01962 /* LoLBookOfChampions.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A53498921A6DE4AF00F01962 /* LoLBookOfChampionsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A53498A01A6DE4AF00F01962 /* Build configuration list for PBXNativeTarget "LoLBookOfChampionsTests" */;
+			buildPhases = (
+				A534988F1A6DE4AF00F01962 /* Sources */,
+				A53498901A6DE4AF00F01962 /* Frameworks */,
+				A53498911A6DE4AF00F01962 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A53498951A6DE4AF00F01962 /* PBXTargetDependency */,
+			);
+			name = LoLBookOfChampionsTests;
+			productName = LoLBookOfChampionsTests;
+			productReference = A53498931A6DE4AF00F01962 /* LoLBookOfChampionsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A53498721A6DE4AF00F01962 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = nimbleNoggin.io;
+				TargetAttributes = {
+					A53498791A6DE4AF00F01962 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					A53498921A6DE4AF00F01962 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = A53498791A6DE4AF00F01962;
+					};
+				};
+			};
+			buildConfigurationList = A53498751A6DE4AF00F01962 /* Build configuration list for PBXProject "LoLBookOfChampions" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A53498711A6DE4AF00F01962;
+			productRefGroup = A534987B1A6DE4AF00F01962 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A53498791A6DE4AF00F01962 /* LoLBookOfChampions */,
+				A53498921A6DE4AF00F01962 /* LoLBookOfChampionsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A53498781A6DE4AF00F01962 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A53498891A6DE4AF00F01962 /* Main.storyboard in Resources */,
+				A534988E1A6DE4AF00F01962 /* LaunchScreen.xib in Resources */,
+				A534988B1A6DE4AF00F01962 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A53498911A6DE4AF00F01962 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A53498761A6DE4AF00F01962 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A53498861A6DE4AF00F01962 /* ViewController.m in Sources */,
+				A53498831A6DE4AF00F01962 /* AppDelegate.m in Sources */,
+				A53498801A6DE4AF00F01962 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A534988F1A6DE4AF00F01962 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A534989A1A6DE4AF00F01962 /* LoLBookOfChampionsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A53498951A6DE4AF00F01962 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A53498791A6DE4AF00F01962 /* LoLBookOfChampions */;
+			targetProxy = A53498941A6DE4AF00F01962 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A53498871A6DE4AF00F01962 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A53498881A6DE4AF00F01962 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A534988C1A6DE4AF00F01962 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A534988D1A6DE4AF00F01962 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A534989B1A6DE4AF00F01962 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A534989C1A6DE4AF00F01962 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A534989E1A6DE4AF00F01962 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LoLBookOfChampions/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A534989F1A6DE4AF00F01962 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LoLBookOfChampions/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A53498A11A6DE4AF00F01962 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LoLBookOfChampionsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LoLBookOfChampions.app/LoLBookOfChampions";
+			};
+			name = Debug;
+		};
+		A53498A21A6DE4AF00F01962 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LoLBookOfChampionsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LoLBookOfChampions.app/LoLBookOfChampions";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A53498751A6DE4AF00F01962 /* Build configuration list for PBXProject "LoLBookOfChampions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A534989B1A6DE4AF00F01962 /* Debug */,
+				A534989C1A6DE4AF00F01962 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A534989D1A6DE4AF00F01962 /* Build configuration list for PBXNativeTarget "LoLBookOfChampions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A534989E1A6DE4AF00F01962 /* Debug */,
+				A534989F1A6DE4AF00F01962 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A53498A01A6DE4AF00F01962 /* Build configuration list for PBXNativeTarget "LoLBookOfChampionsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A53498A11A6DE4AF00F01962 /* Debug */,
+				A53498A21A6DE4AF00F01962 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A53498721A6DE4AF00F01962 /* Project object */;
+}
