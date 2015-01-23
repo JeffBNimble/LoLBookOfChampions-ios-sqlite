@@ -43,5 +43,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>TyphoonInitialAssemblies</key>
+	<array>
+		<string>NIOApplicationAssembly</string>
+		<string>NIOCoreComponents</string>
+	</array>
 </dict>
 </plist>
