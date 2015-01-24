@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@class GetRealmTask;
 
+@interface ViewController : UIViewController
+@property (strong, nonatomic) GetRealmTask *getRealmTask;
 
 @end
 

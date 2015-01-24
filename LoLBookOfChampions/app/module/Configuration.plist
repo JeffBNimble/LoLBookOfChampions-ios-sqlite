@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+    <dict>
+            <key>api.key</key>
+            <string>b0984714-2747-48eb-8ea7-761af99a8a5f</string>
+            <key>global.endpoint</key>
+            <string>NSURL(https://global.api.pvp.net)</string>
+            <key>lol.region</key>
+            <string>na</string>
+            <key>static.data.api.version</key>
+            <string>v1.2</string>
+    </dict>
 </plist>

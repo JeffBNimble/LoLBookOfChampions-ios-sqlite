@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54C18155957E839D52DC58FF /* GetRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18E8A49E0AAF5850F32BA /* GetRealmTask.m */; };
 		54C182456B27506FFA0F5B94 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C180FF3832C859CD2FAFB5 /* LaunchScreen.xib */; };
 		54C18664B75D1219636199E6 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C180AFD6A5576F23FD3500 /* Configuration.plist */; };
+		54C18705C57EB4E70E95009A /* GetRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18E8A49E0AAF5850F32BA /* GetRealmTask.m */; };
 		54C18AC1F2CDEC0841922D98 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18618DF1D60BEEC0AE5CE /* ViewController.m */; };
 		54C18B3CBCE6CB29622E18A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C183394FC80D4AD0EDF82D /* Main.storyboard */; };
 		54C18BEE9A3A956432CD64C5 /* NIOApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18FBCC5876D90DE4A00ED /* NIOApplicationAssembly.m */; };
 		54C18C0572036D346EE0961B /* NIOApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18FBCC5876D90DE4A00ED /* NIOApplicationAssembly.m */; };
-		54C18EBDF15B87916D6B87CD /* NIOCoreComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1834F049057B47D542752 /* NIOCoreComponents.m */; };
-		54C18EE62665104A30C17AB4 /* NIOCoreComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1834F049057B47D542752 /* NIOCoreComponents.m */; };
+		54C18C19883944246AF83503 /* NIOLoLApiRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C189C982857F358A5B7596 /* NIOLoLApiRequestOperationManager.m */; };
+		54C18E26A7E0E20210E11583 /* NIOLoLApiRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C189C982857F358A5B7596 /* NIOLoLApiRequestOperationManager.m */; };
+		54C18EBDF15B87916D6B87CD /* NIODataDragonComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1834F049057B47D542752 /* NIODataDragonComponents.m */; };
+		54C18EE62665104A30C17AB4 /* NIODataDragonComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1834F049057B47D542752 /* NIODataDragonComponents.m */; };
 		54C18FCA66E7675C919683F1 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C180AFD6A5576F23FD3500 /* Configuration.plist */; };
 		A53498801A6DE4AF00F01962 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A534987F1A6DE4AF00F01962 /* main.m */; };
 		A53498831A6DE4AF00F01962 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A53498821A6DE4AF00F01962 /* AppDelegate.m */; };
@@ -36,12 +40,18 @@
 /* Begin PBXFileReference section */
 		54C180AFD6A5576F23FD3500 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Configuration.plist; sourceTree = "<group>"; };
 		54C181E809DB9653B4CC5997 /* NIOApplicationAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOApplicationAssembly.h; sourceTree = "<group>"; };
-		54C1834F049057B47D542752 /* NIOCoreComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOCoreComponents.m; sourceTree = "<group>"; };
+		54C1834F049057B47D542752 /* NIODataDragonComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonComponents.m; sourceTree = "<group>"; };
 		54C18618DF1D60BEEC0AE5CE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		54C186E76A31C91325193E09 /* LoLApiConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoLApiConstants.h; sourceTree = "<group>"; };
 		54C187F2770FC3C94523134E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LoLBookOfChampions/Base.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
+		54C18941726EDF135EFA47E9 /* LoLBookOfChampions.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoLBookOfChampions.pch; sourceTree = "<group>"; };
+		54C189C982857F358A5B7596 /* NIOLoLApiRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOLoLApiRequestOperationManager.m; sourceTree = "<group>"; };
+		54C18ACABB30093827CB347C /* GetRealmTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetRealmTask.h; sourceTree = "<group>"; };
 		54C18ACEDA81BDE845F46444 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		54C18B6FE0C8B5FAB3DA2F60 /* NIOCoreComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOCoreComponents.h; sourceTree = "<group>"; };
+		54C18B6FE0C8B5FAB3DA2F60 /* NIODataDragonComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODataDragonComponents.h; sourceTree = "<group>"; };
 		54C18B7FB2AF491E95FA18FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LoLBookOfChampions/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		54C18BF8B3CCC30EA1C7806B /* NIOLoLApiRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOLoLApiRequestOperationManager.h; sourceTree = "<group>"; };
+		54C18E8A49E0AAF5850F32BA /* GetRealmTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetRealmTask.m; sourceTree = "<group>"; };
 		54C18FBCC5876D90DE4A00ED /* NIOApplicationAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOApplicationAssembly.m; sourceTree = "<group>"; };
 		681805B2EA598DD9E960A06A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		87BCF1F3F307D5BB4A469EF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -85,6 +95,15 @@
 			path = app;
 			sourceTree = "<group>";
 		};
+		54C1884344EB60BA02866924 /* remote */ = {
+			isa = PBXGroup;
+			children = (
+				54C189C982857F358A5B7596 /* NIOLoLApiRequestOperationManager.m */,
+				54C18BF8B3CCC30EA1C7806B /* NIOLoLApiRequestOperationManager.h */,
+			);
+			path = remote;
+			sourceTree = "<group>";
+		};
 		54C188B57C58CE6A22D3116C /* module */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +112,24 @@
 				54C181E809DB9653B4CC5997 /* NIOApplicationAssembly.h */,
 			);
 			path = module;
+			sourceTree = "<group>";
+		};
+		54C189DDAF759CA211960A99 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				54C1884344EB60BA02866924 /* remote */,
+				54C186E76A31C91325193E09 /* LoLApiConstants.h */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		54C18BDD1CC51D8EA3374A95 /* task */ = {
+			isa = PBXGroup;
+			children = (
+				54C18E8A49E0AAF5850F32BA /* GetRealmTask.m */,
+				54C18ACABB30093827CB347C /* GetRealmTask.h */,
+			);
+			path = task;
 			sourceTree = "<group>";
 		};
 		54C18CDC482A2F1BD75A76E4 /* xib */ = {
@@ -117,18 +154,20 @@
 		54C18E99F4A74DF10538B716 /* module */ = {
 			isa = PBXGroup;
 			children = (
-				54C1834F049057B47D542752 /* NIOCoreComponents.m */,
-				54C18B6FE0C8B5FAB3DA2F60 /* NIOCoreComponents.h */,
+				54C1834F049057B47D542752 /* NIODataDragonComponents.m */,
+				54C18B6FE0C8B5FAB3DA2F60 /* NIODataDragonComponents.h */,
 			);
 			path = module;
 			sourceTree = "<group>";
 		};
-		54C18E9BE5D7098845774649 /* core */ = {
+		54C18E9BE5D7098845774649 /* dataDragon */ = {
 			isa = PBXGroup;
 			children = (
 				54C18E99F4A74DF10538B716 /* module */,
+				54C189DDAF759CA211960A99 /* service */,
+				54C18BDD1CC51D8EA3374A95 /* task */,
 			);
-			path = core;
+			path = dataDragon;
 			sourceTree = "<group>";
 		};
 		6001458C8500CC900829372C /* Frameworks */ = {
@@ -166,7 +205,7 @@
 				A53498821A6DE4AF00F01962 /* AppDelegate.m */,
 				A534988A1A6DE4AF00F01962 /* Images.xcassets */,
 				A534987D1A6DE4AF00F01962 /* Supporting Files */,
-				54C18E9BE5D7098845774649 /* core */,
+				54C18E9BE5D7098845774649 /* dataDragon */,
 				54C1848D982995DA94A1E755 /* app */,
 			);
 			path = LoLBookOfChampions;
@@ -177,6 +216,7 @@
 			children = (
 				A534987E1A6DE4AF00F01962 /* Info.plist */,
 				A534987F1A6DE4AF00F01962 /* main.m */,
+				54C18941726EDF135EFA47E9 /* LoLBookOfChampions.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -348,7 +388,9 @@
 				A53498801A6DE4AF00F01962 /* main.m in Sources */,
 				54C18AC1F2CDEC0841922D98 /* ViewController.m in Sources */,
 				54C18BEE9A3A956432CD64C5 /* NIOApplicationAssembly.m in Sources */,
-				54C18EBDF15B87916D6B87CD /* NIOCoreComponents.m in Sources */,
+				54C18EBDF15B87916D6B87CD /* NIODataDragonComponents.m in Sources */,
+				54C18C19883944246AF83503 /* NIOLoLApiRequestOperationManager.m in Sources */,
+				54C18705C57EB4E70E95009A /* GetRealmTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +400,9 @@
 			files = (
 				A534989A1A6DE4AF00F01962 /* LoLBookOfChampionsTests.m in Sources */,
 				54C18C0572036D346EE0961B /* NIOApplicationAssembly.m in Sources */,
-				54C18EE62665104A30C17AB4 /* NIOCoreComponents.m in Sources */,
+				54C18EE62665104A30C17AB4 /* NIODataDragonComponents.m in Sources */,
+				54C18E26A7E0E20210E11583 /* NIOLoLApiRequestOperationManager.m in Sources */,
+				54C18155957E839D52DC58FF /* GetRealmTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +459,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -456,6 +502,8 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -476,6 +524,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = LoLBookOfChampions/LoLBookOfChampions.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = LoLBookOfChampions/Info.plist;
@@ -493,6 +543,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = LoLBookOfChampions/LoLBookOfChampions.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = LoLBookOfChampions/Info.plist;
