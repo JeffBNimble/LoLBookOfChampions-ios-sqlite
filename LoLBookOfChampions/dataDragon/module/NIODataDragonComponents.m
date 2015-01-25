@@ -5,14 +5,51 @@
 // Copyright (c) 2015 Riot Games. All rights reserved.
 //
 
-
+#import <FMDB/FMDatabase.h>
 #import "NIODataDragonComponents.h"
 #import "NIOLoLApiRequestOperationManager.h"
 #import "GetRealmTask.h"
+#import "NIODataDragonSyncService.h"
+#import "ContentProvider.h"
+#import "NIODataDragonContentProvider.h"
 #import <Typhoon/Typhoon.h>
 
 
 @implementation NIODataDragonComponents
+-(id)config {
+	return [TyphoonDefinition configDefinitionWithName:@"DataDragonConfiguration.plist"];
+}
+
+-(FMDatabase *)database {
+	return [TyphoonDefinition withClass:[FMDatabase class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithPath:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:TyphoonConfig(@"database.name")];
+		}];
+
+		definition.scope = TyphoonScopeSingleton;
+	}];
+}
+-(id <ContentProvider>)dataDragonContentProvider {
+	return [TyphoonDefinition withClass:[NIODataDragonContentProvider class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.database];
+		}];
+
+		definition.scope = TyphoonScopeSingleton;
+	}];
+}
+
+-(NIODataDragonSyncService *)dataDragonSyncService {
+	return [TyphoonDefinition withClass:[NIODataDragonSyncService class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithContentProvider:withGetRealmTask:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.dataDragonContentProvider];
+			[initializer injectParameterWith:self.getRealmTask];
+		}];
+
+		definition.scope = TyphoonScopeWeakSingleton;
+	}];
+}
+
 -(GetRealmTask *)getRealmTask {
 	return [TyphoonDefinition withClass:[GetRealmTask class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(initWithHTTPRequestOperationManager:) parameters:^(TyphoonMethod *initializer) {

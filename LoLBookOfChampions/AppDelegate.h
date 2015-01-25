@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class NIODataDragonSyncService;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) NSString *authorName;
+@property (strong, nonatomic) NIODataDragonSyncService *dataDragonSyncService;
 
 
 @end
