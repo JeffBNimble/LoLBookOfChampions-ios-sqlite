@@ -7,16 +7,17 @@
 
 
 #import "NIODataDragonContentProvider.h"
+#import "NIODataDragonSqliteOpenHelper.h"
 
 @interface NIODataDragonContentProvider ()
-@property (strong, nonatomic) FMDatabase *database;
+@property (strong, nonatomic) NIODataDragonSqliteOpenHelper *databaseHelper;
 @end
 
 @implementation NIODataDragonContentProvider
--(instancetype)initWithDatabase:(FMDatabase *)database {
+-(instancetype)initWithDatabaseName:(NSString *)databaseName withVersion:(NSInteger)version {
 	self = [super init];
 	if ( self ) {
-		self.database = database;
+		self.databaseHelper = [[NIODataDragonSqliteOpenHelper alloc] initWithName:databaseName withVersion:version];
 	}
 
 	return self;

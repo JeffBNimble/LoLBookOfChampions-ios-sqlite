@@ -20,19 +20,11 @@
 	return [TyphoonDefinition configDefinitionWithName:@"DataDragonConfiguration.plist"];
 }
 
--(FMDatabase *)database {
-	return [TyphoonDefinition withClass:[FMDatabase class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithPath:) parameters:^(TyphoonMethod *initializer) {
-			[initializer injectParameterWith:TyphoonConfig(@"database.name")];
-		}];
-
-		definition.scope = TyphoonScopeSingleton;
-	}];
-}
 -(id <ContentProvider>)dataDragonContentProvider {
 	return [TyphoonDefinition withClass:[NIODataDragonContentProvider class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
-			[initializer injectParameterWith:self.database];
+		[definition useInitializer:@selector(initWithDatabaseName:withVersion:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:TyphoonConfig(@"database.name")];
+			[initializer injectParameterWith:TyphoonConfig(@"database.version")];
 		}];
 
 		definition.scope = TyphoonScopeSingleton;

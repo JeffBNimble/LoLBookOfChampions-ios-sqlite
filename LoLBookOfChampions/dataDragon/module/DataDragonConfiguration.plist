@@ -4,5 +4,7 @@
     <dict>
         <key>database.name</key>
         <string>/data/dataDragon.sqlite3</string>
+        <key>database.version</key>
+        <integer>1</integer>
     </dict>
 </plist>
