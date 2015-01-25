@@ -38,6 +38,7 @@
 				 withGroupBy:(NSString *)groupBy
 				  withHaving:(NSString *)having
 					withSort:(NSString *)sort {
+	self.databaseHelper.database;
 	return nil;
 }
 

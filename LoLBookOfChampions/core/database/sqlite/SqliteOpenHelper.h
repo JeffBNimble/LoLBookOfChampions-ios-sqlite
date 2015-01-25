@@ -15,6 +15,7 @@
 -(void)close;
 -(void)onConfigure:(FMDatabase *)database;
 -(void)onCreate:(FMDatabase *)database;
+-(void)onDowngrade:(FMDatabase *)database fromOldVersion:(NSInteger)oldVersion toNewVersion:(NSInteger)newVersion;
 -(void)onOpen:(FMDatabase *)database;
--(void)onUpgrade:(FMDatabase *)database;
+-(void)onUpgrade:(FMDatabase *)database fromOldVersion:(NSInteger)oldVersion toNewVersion:(NSInteger)newVersion;
 @end

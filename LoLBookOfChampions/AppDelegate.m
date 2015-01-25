@@ -46,6 +46,7 @@
 
 -(void)initializeApplication {
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [self.dataDragonSyncService sync];
 }
 
 @end

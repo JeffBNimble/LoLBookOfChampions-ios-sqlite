@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54C180338C638E709239D65D /* DataDragonContract.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C183FE48BA6ADAE6C68720 /* DataDragonContract.m */; };
 		54C180D0846FCBF169140582 /* NIODataDragonSyncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18B9F5EA016A6113F0DCA /* NIODataDragonSyncService.m */; };
 		54C18155957E839D52DC58FF /* GetRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18E8A49E0AAF5850F32BA /* GetRealmTask.m */; };
 		54C181F2305B029F61116386 /* DataDragonConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C18733CF17CC948606FE53 /* DataDragonConfiguration.plist */; };
 		54C182456B27506FFA0F5B94 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C180FF3832C859CD2FAFB5 /* LaunchScreen.xib */; };
+		54C1827F96DBC3B72D077EB9 /* DataDragonContract.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C183FE48BA6ADAE6C68720 /* DataDragonContract.m */; };
 		54C182F0A0EB620BB1E9AAA9 /* SqliteOpenHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18AEB1FE1F73C0D993612 /* SqliteOpenHelper.m */; };
 		54C18456D5F47290CA0C0FC5 /* NIODataDragonContentProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C183D2723AE54B89AD2017 /* NIODataDragonContentProvider.m */; };
 		54C1850066BCE8F4040ECBBF /* NIODataDragonSqliteOpenHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18559632B3A6EE5844B6F /* NIODataDragonSqliteOpenHelper.m */; };
@@ -52,9 +54,11 @@
 /* Begin PBXFileReference section */
 		54C180AFD6A5576F23FD3500 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Configuration.plist; sourceTree = "<group>"; };
 		54C181E809DB9653B4CC5997 /* NIOApplicationAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOApplicationAssembly.h; sourceTree = "<group>"; };
+		54C1828E7250D2F99ECD3CBF /* DataDragonContract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataDragonContract.h; sourceTree = "<group>"; };
 		54C183258C1F5D36E93F993B /* SqliteOpenHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteOpenHelper.h; sourceTree = "<group>"; };
 		54C1834F049057B47D542752 /* NIODataDragonComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonComponents.m; sourceTree = "<group>"; };
 		54C183D2723AE54B89AD2017 /* NIODataDragonContentProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonContentProvider.m; sourceTree = "<group>"; };
+		54C183FE48BA6ADAE6C68720 /* DataDragonContract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataDragonContract.m; sourceTree = "<group>"; };
 		54C184226D3D0F2433FB98B0 /* NIODataDragonContentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODataDragonContentProvider.h; sourceTree = "<group>"; };
 		54C18559632B3A6EE5844B6F /* NIODataDragonSqliteOpenHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonSqliteOpenHelper.m; sourceTree = "<group>"; };
 		54C185A34C2C5CE846592EB7 /* NIODataDragonSqliteOpenHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODataDragonSqliteOpenHelper.h; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 				54C184226D3D0F2433FB98B0 /* NIODataDragonContentProvider.h */,
 				54C18559632B3A6EE5844B6F /* NIODataDragonSqliteOpenHelper.m */,
 				54C185A34C2C5CE846592EB7 /* NIODataDragonSqliteOpenHelper.h */,
+				54C183FE48BA6ADAE6C68720 /* DataDragonContract.m */,
+				54C1828E7250D2F99ECD3CBF /* DataDragonContract.h */,
 			);
 			path = content;
 			sourceTree = "<group>";
@@ -490,6 +496,7 @@
 				54C18456D5F47290CA0C0FC5 /* NIODataDragonContentProvider.m in Sources */,
 				54C18C9C4ACE223F8D893246 /* SqliteOpenHelper.m in Sources */,
 				54C18BEE6E1714C84273E655 /* NIODataDragonSqliteOpenHelper.m in Sources */,
+				54C180338C638E709239D65D /* DataDragonContract.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +514,7 @@
 				54C18A43444E25E82C12159E /* NIODataDragonContentProvider.m in Sources */,
 				54C182F0A0EB620BB1E9AAA9 /* SqliteOpenHelper.m in Sources */,
 				54C1850066BCE8F4040ECBBF /* NIODataDragonSqliteOpenHelper.m in Sources */,
+				54C1827F96DBC3B72D077EB9 /* DataDragonContract.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +677,8 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = LoLBookOfChampions/LoLBookOfChampions.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -689,6 +699,8 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = LoLBookOfChampions/LoLBookOfChampions.pch;
 				INFOPLIST_FILE = LoLBookOfChampionsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

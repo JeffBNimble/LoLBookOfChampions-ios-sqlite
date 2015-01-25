@@ -14,7 +14,7 @@
 @property (strong, nonatomic) id<ContentProvider> contentProvider;
 @property (retain, nonatomic) dispatch_queue_t dispatchQueue;
 @property (strong, nonatomic) GetRealmTask *getRealmTask;
-@property (strong, nonatomic) BFExecutor *taskExcecutor;
+@property (strong, nonatomic) BFExecutor *taskExecutor;
 @end
 
 @implementation NIODataDragonSyncService
@@ -25,7 +25,7 @@
 		self.contentProvider = contentProvider;
 		self.getRealmTask = getRealmTask;
 		self.dispatchQueue = dispatch_queue_create(object_getClassName(self), DISPATCH_QUEUE_SERIAL);
-		self.taskExcecutor = [BFExecutor executorWithDispatchQueue:self.dispatchQueue];
+		self.taskExecutor = [BFExecutor executorWithDispatchQueue:self.dispatchQueue];
 	}
 
 	return self;
@@ -33,7 +33,13 @@
 }
 
 -(void)sync {
-
+	[self.contentProvider queryWithUri:nil
+						withProjection:nil
+						 withSelection:nil
+					 withSelectionArgs:nil
+						   withGroupBy:nil
+							withHaving:nil
+							  withSort:nil];
 }
 
 @end
