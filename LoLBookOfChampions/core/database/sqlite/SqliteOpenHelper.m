@@ -42,7 +42,6 @@
 		[_database beginTransaction];
 
 		[self onConfigure:_database];
-		[self onOpen:_database];
 
 		NSInteger currentDatabaseVersion = [self getCurrentDatabaseVersion:_database];
 
@@ -61,6 +60,8 @@
 		if ( currentDatabaseVersion != self.databaseVersion ) {
 			[self setCurrentDatabaseVersion:_database withVersion:self.databaseVersion];
 		}
+
+		[self onOpen:_database];
 
 		[_database commit];
 	}
