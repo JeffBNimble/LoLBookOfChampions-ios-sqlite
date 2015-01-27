@@ -7,10 +7,12 @@
 
 
 @interface DataDragonContract : NSObject
++(NSURL *)CONTENT_URI;
 @end
 
 @interface Realm : NSObject
 +(NSString *)DB_TABLE;
++(NSURL *)URI;
 @end
 
 @interface RealmColumns : NSObject

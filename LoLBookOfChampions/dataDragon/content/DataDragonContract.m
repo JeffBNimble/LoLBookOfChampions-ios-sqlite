@@ -8,14 +8,32 @@
 
 #import "DataDragonContract.h"
 
-
 @implementation DataDragonContract
++(NSURL *)CONTENT_URI {
+	static NSURL *contentUri;
+	if ( !contentUri ) {
+		contentUri = [NSURL URLWithString:@"content://io.nimblenoggin.datadragon"];
+	}
+
+	return contentUri;
+}
+
 @end
 
 @implementation Realm
 +(NSString *)DB_TABLE {
 	return @"realm";
 }
+
++(NSURL *)URI {
+	static NSURL *uri;
+	if ( !uri ) {
+		uri = [[DataDragonContract CONTENT_URI] URLByAppendingPathComponent:@"realm"];
+	}
+
+	return uri;
+}
+
 @end
 
 @implementation RealmColumns
