@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1429AD66-091E-4C65-8948-E7843198B60E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LoLBookOfChampions</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>ADEB7435B147861A32A83C0B17F89187BAF4A040</key>
+		<string>github.com:JeffBNimble/LoLBookOfChampions-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>LoLBookOfChampions.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>ADEB7435B147861A32A83C0B17F89187BAF4A040</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:JeffBNimble/LoLBookOfChampions-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>ADEB7435B147861A32A83C0B17F89187BAF4A040</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ADEB7435B147861A32A83C0B17F89187BAF4A040</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LoLBookOfChampions_ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
