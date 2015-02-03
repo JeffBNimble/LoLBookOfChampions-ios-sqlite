@@ -6,7 +6,7 @@
 #import <FMDB/FMDB.h>
 #import <Foundation/Foundation.h>
 
-@protocol ContentProvider <NSObject>
+@protocol NIOContentProvider <NSObject>
 -(NSInteger)deleteWithUri:(NSURL *)uri
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs;

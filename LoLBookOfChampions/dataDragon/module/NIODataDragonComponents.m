@@ -10,7 +10,7 @@
 #import "NIOLoLApiRequestOperationManager.h"
 #import "GetRealmTask.h"
 #import "NIODataDragonSyncService.h"
-#import "ContentProvider.h"
+#import "NIOContentProvider.h"
 #import "NIODataDragonContentProvider.h"
 #import <Typhoon/Typhoon.h>
 
@@ -20,7 +20,7 @@
 	return [TyphoonDefinition configDefinitionWithName:@"DataDragonConfiguration.plist"];
 }
 
--(id <ContentProvider>)dataDragonContentProvider {
+-(id <NIOContentProvider>)dataDragonContentProvider {
 	return [TyphoonDefinition withClass:[NIODataDragonContentProvider class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(initWithDatabaseName:withVersion:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:TyphoonConfig(@"database.name")];
@@ -54,8 +54,10 @@
 
 -(NIOLoLApiRequestOperationManager *)lolStaticDataApiRequestOperationManager {
 	return [TyphoonDefinition withClass:[NIOLoLApiRequestOperationManager class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithBaseURL:apiKey:region:apiVersion:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithBaseURL:sessionConfiguration:completionQueue:apiKey:region:apiVersion:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:TyphoonConfig(@"global.endpoint")];
+			[initializer injectParameterWith:[NSURLSessionConfiguration defaultSessionConfiguration]];
+			[initializer injectParameterWith:dispatch_queue_create("io.nimblenoggin.lol.staticdata", DISPATCH_QUEUE_CONCURRENT)];
 			[initializer injectParameterWith:TyphoonConfig(@"api.key")];
 			[initializer injectParameterWith:TyphoonConfig(@"lol.region")];
 			[initializer injectParameterWith:TyphoonConfig(@"static.data.api.version")];

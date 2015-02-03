@@ -8,17 +8,17 @@
 #import <Bolts/BFExecutor.h>
 #import "NIODataDragonSyncService.h"
 #import "GetRealmTask.h"
-#import "ContentProvider.h"
+#import "NIOContentProvider.h"
 
 @interface NIODataDragonSyncService ()
-@property (strong, nonatomic) id<ContentProvider> contentProvider;
+@property (strong, nonatomic) id<NIOContentProvider> contentProvider;
 @property (retain, nonatomic) dispatch_queue_t dispatchQueue;
 @property (strong, nonatomic) GetRealmTask *getRealmTask;
 @property (strong, nonatomic) BFExecutor *taskExecutor;
 @end
 
 @implementation NIODataDragonSyncService
--(instancetype)initWithContentProvider:(id<ContentProvider>)contentProvider
+-(instancetype)initWithContentProvider:(id<NIOContentProvider>)contentProvider
 					  withGetRealmTask:(GetRealmTask *)getRealmTask {
 	self = [super init];
 	if ( self ) {

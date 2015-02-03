@@ -17,23 +17,26 @@
 
 @implementation NIOLoLApiRequestOperationManager
 -(instancetype)initWithBaseURL:(NSURL *)baseUrl
+		  sessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration
+			   completionQueue:(dispatch_queue_t)completionQueue
 						apiKey:(NSString *)apiKey
 						region:(NSString *)region
 					apiVersion:(NSString *)apiVersion {
-	self = [super initWithBaseURL:baseUrl];
+	self = [super initWithBaseURL:baseUrl sessionConfiguration:sessionConfiguration];
 	if ( self ) {
 		self.apiKey = apiKey;
 		self.apiVersion = apiVersion;
 		self.region = region;
+		self.completionQueue = completionQueue;
 	}
 
 	return self;
 }
 
--(AFHTTPRequestOperation *)GET:(NSString *)URLString
+-(NSURLSessionDataTask *)GET:(NSString *)URLString
 					parameters:(id)parameters
-					   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-					   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+					   success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+					   failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
 
 	return [super GET:[self absoluteURLStringWith:URLString]
 		   parameters:[self addLoLParameters:parameters]

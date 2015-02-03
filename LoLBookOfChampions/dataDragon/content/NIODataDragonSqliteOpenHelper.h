@@ -4,9 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SqliteOpenHelper.h"
+#import "NIOSqliteOpenHelper.h"
 
 
-@interface NIODataDragonSqliteOpenHelper : SqliteOpenHelper
+@interface NIODataDragonSqliteOpenHelper : NIOSqliteOpenHelper
 -(instancetype)initWithName:(NSString *)name withVersion:(NSInteger)version;
 @end

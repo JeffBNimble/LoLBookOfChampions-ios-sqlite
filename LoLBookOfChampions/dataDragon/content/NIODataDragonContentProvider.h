@@ -4,9 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ContentProvider.h"
+#import "NIOContentProvider.h"
 
 
-@interface NIODataDragonContentProvider : NSObject<ContentProvider>
+@interface NIODataDragonContentProvider : NSObject<NIOContentProvider>
 -(instancetype)initWithDatabaseName:(NSString *)databaseName withVersion:(NSInteger)version;
 @end

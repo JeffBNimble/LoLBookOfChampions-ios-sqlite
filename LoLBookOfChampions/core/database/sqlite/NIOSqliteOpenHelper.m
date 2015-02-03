@@ -1,20 +1,20 @@
 //
-// SqliteOpenHelper / LoLBookOfChampions
+// NIOSqliteOpenHelper / LoLBookOfChampions
 //
 // Created by Jeff Roberts on 1/24/15.
 // Copyright (c) 2015 Riot Games. All rights reserved.
 //
 
 #import <FMDB/FMDatabase.h>
-#import "SqliteOpenHelper.h"
+#import "NIOSqliteOpenHelper.h"
 
-@interface SqliteOpenHelper ()
+@interface NIOSqliteOpenHelper ()
 @property (strong, nonatomic) FMDatabase *database;
 @property (strong, nonatomic) NSString *databaseName;
 @property (assign, nonatomic) NSInteger databaseVersion;
 @end
 
-@implementation SqliteOpenHelper
+@implementation NIOSqliteOpenHelper
 -(instancetype)initWithName:(NSString *)name withVersion:(NSInteger)version {
 	self = [super init];
 	if ( self ) {

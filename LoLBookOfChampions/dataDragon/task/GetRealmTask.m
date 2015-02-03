@@ -35,10 +35,10 @@
 
 	[self.apiRequestOperationManager GET:[NSString stringWithFormat:GET_REALM_PATH_FORMAT, PLACEHOLDER_REGION, PLACEHOLDER_API_VERSION]
 							  parameters:nil
-								 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+								 success:^(NSURLSessionDataTask *sessionDataTask, id responseObject) {
 									 [future setResult:responseObject];
 								 }
-								 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+								 failure:^(NSURLSessionDataTask *sessionDataTask, NSError *error) {
 									 [future setError:error];
 								 }];
 

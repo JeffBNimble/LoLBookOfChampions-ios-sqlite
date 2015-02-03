@@ -6,5 +6,9 @@
 #import <Foundation/Foundation.h>
 
 
+#define NO_MATCH	-1
+
 @interface NIOUriMatcher : NSObject
+-(instancetype)initWith:(NSInteger)root;
+-(NSInteger)match:(NSURL *)url;
 @end

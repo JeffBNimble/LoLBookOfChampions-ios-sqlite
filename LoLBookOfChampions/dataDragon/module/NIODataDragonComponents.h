@@ -9,11 +9,11 @@
 @class NIOLoLApiRequestOperationManager;
 @class GetRealmTask;
 @class NIODataDragonSyncService;
-@protocol ContentProvider;
+@protocol NIOContentProvider;
 
 @interface NIODataDragonComponents : TyphoonAssembly
 -(GetRealmTask *)getRealmTask;
--(id<ContentProvider>)dataDragonContentProvider;
+-(id<NIOContentProvider>)dataDragonContentProvider;
 -(NIODataDragonSyncService *)dataDragonSyncService;
 -(NIOLoLApiRequestOperationManager *)lolStaticDataApiRequestOperationManager;
 @end

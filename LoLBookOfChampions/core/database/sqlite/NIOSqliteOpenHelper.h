@@ -7,7 +7,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SqliteOpenHelper : NSObject
+@interface NIOSqliteOpenHelper : NSObject
 @property (strong, nonatomic, readonly) FMDatabase *database;
 @property (strong, nonatomic, readonly) NSString *databaseName;
 
