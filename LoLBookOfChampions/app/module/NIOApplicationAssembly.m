@@ -9,9 +9,9 @@
 #import "AppDelegate.h"
 #import "NIOApplicationAssembly.h"
 #import "NIODataDragonComponents.h"
-#import "TyphoonDefinition+Infrastructure.h"
 #import "ViewController.h"
-
+#import "NIOContentResolver.h"
+#import <Typhoon/Typhoon.h>
 
 @implementation NIOApplicationAssembly
 -(AppDelegate *)appDelegate {
@@ -23,6 +23,21 @@
 
 -(id)config {
 	return [TyphoonDefinition configDefinitionWithName:@"Configuration.plist"];
+}
+
+-(NIOContentResolver *)contentResolver {
+    return [TyphoonDefinition withClass:[NIOContentResolver class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithContentAuthorityBase:withRegistrations:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:[self.mainBundle bundleIdentifier]];
+            [initializer injectParameterWith:TyphoonConfig(@"content_registrations")];
+        }];
+
+        definition.scope = TyphoonScopeSingleton;
+    }];
+}
+
+-(NSBundle *)mainBundle {
+    return [NSBundle mainBundle];
 }
 
 -(UIWindow *)mainWindow {
@@ -37,7 +52,6 @@
 	return [TyphoonDefinition withClass:[ViewController class] configuration:^(TyphoonDefinition *definition) {
 		[definition injectProperty:@selector(getRealmTask) with:self.dataDragonComponents.getRealmTask];
 	}];
-
 }
 
 

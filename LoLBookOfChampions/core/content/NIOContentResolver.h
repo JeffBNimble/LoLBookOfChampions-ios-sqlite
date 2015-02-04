@@ -10,7 +10,7 @@
 
 
 @interface NIOContentResolver : NSObject<NIOContentProvider>
--(instancetype)init;
+-(instancetype)initWithContentAuthorityBase:(NSString *)contentAuthorityBase withRegistrations:(NSDictionary *)registrations;
 -(id<NIOContentProvider>)getContentProviderForAuthorityURL:(NSURL *)authorityUrl;
 -(void)notifyChange:(NSURL *)contentUrl;
 -(void)registerContentObserverWithContentURL:(NSURL *)contentUrl

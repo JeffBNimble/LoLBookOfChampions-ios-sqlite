@@ -7,8 +7,35 @@
 
 
 #import "NIOContentResolver.h"
-#import "NIOContentObserver.h"
 
+@interface NIOContentResolver()
+@property (strong, nonatomic) NSMutableDictionary *activeContentProviderRegistry;
+@property (strong, nonatomic) NSString *contentAuthorityBase;
+@property (strong, nonatomic) NSDictionary *contentRegistrations;
+@end
 
 @implementation NIOContentResolver
+- (instancetype)initWithContentAuthorityBase:(NSString *)contentAuthorityBase withRegistrations:(NSDictionary *)registrations {
+    self = [super init];
+    if ( self ) {
+        self.contentAuthorityBase = contentAuthorityBase;
+        self.contentRegistrations = registrations;
+        self.activeContentProviderRegistry = [NSMutableDictionary new];
+        [self initialize];
+    }
+
+    return self;
+}
+
+-(void)initialize {
+    [self initializeRegistrations];
+}
+
+-(void)initializeRegistrations {
+    for ( NSString *contentProviderContentBase in self.contentRegistrations.allKeys ) {
+        NSString *newKey = [NSString stringWithFormat:@"content://%@/%@", self.contentAuthorityBase, self.contentRegistrations[contentProviderContentBase]];
+        [self.activeContentProviderRegistry setObject:[NSNull null] forKey:newKey];
+    }
+}
+
 @end

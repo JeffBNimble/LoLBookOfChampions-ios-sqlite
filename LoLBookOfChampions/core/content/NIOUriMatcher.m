@@ -30,17 +30,55 @@
 	NSString *host = urlComponents.host;
 	NSString *path = urlComponents.path;
 	NSArray *pathComponents = path ? [path pathComponents] : @[];
-	NSMutableArray *allComponents = [@[scheme, host, path] mutableCopy];
+	NSMutableArray *allComponents = [@[scheme, host] mutableCopy];
 	[allComponents addObjectsFromArray:pathComponents];
 
-	id node = self.matchTree;
+	NSMutableDictionary *node = self.matchTree;
 	for ( NSString *urlComponent in allComponents ) {
-		node = [self appendURLComponent:(NSString *)urlComponent withNode:node];
+        if ( [urlComponent isEqualToString:@"/"] ) continue;
+		node = [self appendURLComponent:urlComponent withNode:node];
 	}
 
-	if ( node && [node isMemberOfClass:[NSMutableDictionary class]]) {
-		NSMutableDictionary *terminalNode = (NSMutableDictionary *)node;
+	if ( node ) {
+        node[@""] = @(code);
 	}
 }
+
+-(NSMutableDictionary *)appendURLComponent:(NSString *)urlComponent withNode:(NSMutableDictionary *)node {
+    NSMutableDictionary *childNode = node[urlComponent];
+    if ( !childNode ) {
+        childNode = [NSMutableDictionary new];
+        node[urlComponent] = childNode;
+    }
+    return childNode;
+}
+
+- (NSMutableDictionary *)getMatchingNode:(NSString *)urlComponent withNode:(NSDictionary *)node {
+    NSDictionary *matchingNode =  (NSDictionary *)node[urlComponent];
+    if ( matchingNode ) return matchingNode;
+
+    return node[@"*"];
+}
+
+- (NSInteger)match:(NSURL *)url {
+    NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url
+                                                resolvingAgainstBaseURL:NO];
+    NSString *scheme = urlComponents.scheme;
+    NSString *host = urlComponents.host;
+    NSString *path = urlComponents.path;
+    NSArray *pathComponents = path ? [path pathComponents] : @[];
+    NSMutableArray *allComponents = [@[scheme, host] mutableCopy];
+    [allComponents addObjectsFromArray:pathComponents];
+
+    NSDictionary *node = self.matchTree;
+
+    for ( NSString *urlComponent in allComponents ) {
+        if ( [urlComponent isEqualToString:@"/"] ) continue;
+        node = [self getMatchingNode:urlComponent withNode:node];
+    }
+
+    return node ? [(NSNumber *) node[@""] integerValue] : NO_MATCH;
+}
+
 
 @end

@@ -8,9 +8,11 @@
 
 #import "NIODataDragonContentProvider.h"
 #import "NIODataDragonSqliteOpenHelper.h"
+#import "NIOUriMatcher.h"
 
 @interface NIODataDragonContentProvider ()
 @property (strong, nonatomic) NIODataDragonSqliteOpenHelper *databaseHelper;
+@property (strong, nonatomic) NIOUriMatcher *urlMatcher;
 @end
 
 @implementation NIODataDragonContentProvider
@@ -18,7 +20,14 @@
 	self = [super init];
 	if ( self ) {
 		self.databaseHelper = [[NIODataDragonSqliteOpenHelper alloc] initWithName:databaseName withVersion:version];
-	}
+        self.urlMatcher = [[NIOUriMatcher alloc] initWith:NO_MATCH];
+        [self.urlMatcher addURL:[NSURL URLWithString:@"content://io.nimblenoggin.lolbookofchampions/datadragon/champion"] withMatchCode:1];
+        [self.urlMatcher addURL:[NSURL URLWithString:@"content://io.nimblenoggin.lolbookofchampions/datadragon/map"] withMatchCode:2];
+        NSURL *matchingURL =  [NSURL URLWithString:@"content://io.nimblenoggin.lolbookofchampions/datadragon/champion"];
+        NSURL *noMatchURL = [NSURL URLWithString:@"content://io.nimblenoggin.lolbookofchampions/datadragons/whatever"] ;
+        NSLog(@"Matches %@? %@", matchingURL, [self.urlMatcher match:matchingURL] >= 0 ? @"Yes" : @"No");
+        NSLog(@"Matches %@? %@", noMatchURL, [self.urlMatcher match:noMatchURL] >= 0 ? @"Yes" : @"No");
+    }
 
 	return self;
 }
