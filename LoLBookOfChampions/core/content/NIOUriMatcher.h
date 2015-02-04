@@ -10,5 +10,6 @@
 
 @interface NIOUriMatcher : NSObject
 -(instancetype)initWith:(NSInteger)root;
+-(void)addURL:(NSURL *)url withMatchCode:(NSInteger)code;
 -(NSInteger)match:(NSURL *)url;
 @end
