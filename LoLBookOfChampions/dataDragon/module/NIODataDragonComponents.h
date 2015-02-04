@@ -12,6 +12,7 @@
 @protocol NIOContentProvider;
 
 @interface NIODataDragonComponents : TyphoonAssembly
+
 -(GetRealmTask *)getRealmTask;
 -(id<NIOContentProvider>)dataDragonContentProvider;
 -(NIODataDragonSyncService *)dataDragonSyncService;

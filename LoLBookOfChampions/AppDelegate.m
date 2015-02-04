@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NIODataDragonSyncService.h"
+#import "NIOContentResolver.h"
 
 
 @interface AppDelegate ()

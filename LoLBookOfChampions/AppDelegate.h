@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class NIODataDragonSyncService;
+@class NIOContentResolver;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NIODataDragonSyncService *dataDragonSyncService;
+@property (strong, nonatomic) NIOContentResolver *contentResolver;
 
 
 @end

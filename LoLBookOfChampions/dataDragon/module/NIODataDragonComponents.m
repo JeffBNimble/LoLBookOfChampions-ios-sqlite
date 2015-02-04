@@ -12,10 +12,12 @@
 #import "NIODataDragonSyncService.h"
 #import "NIOContentProvider.h"
 #import "NIODataDragonContentProvider.h"
+#import "DataDragonContract.h"
 #import <Typhoon/Typhoon.h>
 
 
 @implementation NIODataDragonComponents
+
 -(id)config {
 	return [TyphoonDefinition configDefinitionWithName:@"DataDragonConfiguration.plist"];
 }

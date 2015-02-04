@@ -9,10 +9,16 @@
 #import "DataDragonContract.h"
 
 @implementation DataDragonContract
+
+static NSString *contentAuthorityBase;
++(void)contentAuthorityBase:(NSString *)contentAuthority {
+	contentAuthorityBase = contentAuthority;
+}
+
 +(NSURL *)CONTENT_URI {
 	static NSURL *contentUri;
 	if ( !contentUri ) {
-		contentUri = [NSURL URLWithString:@"content://io.nimblenoggin.datadragon"];
+		contentUri = [NSURL URLWithString:[NSString stringWithFormat:@"%@.datadragon", contentAuthorityBase]];
 	}
 
 	return contentUri;

@@ -33,7 +33,7 @@
 
 -(void)initializeRegistrations {
     for ( NSString *contentProviderContentBase in self.contentRegistrations.allKeys ) {
-        NSString *newKey = [NSString stringWithFormat:@"content://%@/%@", self.contentAuthorityBase, self.contentRegistrations[contentProviderContentBase]];
+        NSString *newKey = [NSString stringWithFormat:@"content://%@/%@", self.contentAuthorityBase, contentProviderContentBase];
         [self.activeContentProviderRegistry setObject:[NSNull null] forKey:newKey];
     }
 }

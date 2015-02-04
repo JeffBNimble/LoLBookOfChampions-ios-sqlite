@@ -399,8 +399,9 @@
 		A53498721A6DE4AF00F01962 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = NIO;
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = nimbleNoggin.io;
+				ORGANIZATIONNAME = io.nimblenoggin;
 				TargetAttributes = {
 					A53498791A6DE4AF00F01962 = {
 						CreatedOnToolsVersion = 6.1.1;

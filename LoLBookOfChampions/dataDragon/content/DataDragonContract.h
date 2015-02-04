@@ -7,6 +7,7 @@
 
 
 @interface DataDragonContract : NSObject
++(void)contentAuthorityBase:(NSString *)contentAuthorityBase;
 +(NSURL *)CONTENT_URI;
 @end
 
