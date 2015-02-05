@@ -10,10 +10,12 @@
 @class NIODataDragonComponents;
 @class AppDelegate;
 @class ViewController;
+@class NIOCoreComponents;
 
 
 @interface NIOApplicationAssembly : TyphoonAssembly
 
+@property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
 @property (nonatomic, strong, readonly) NIODataDragonComponents *dataDragonComponents;
 
 -(AppDelegate *)appDelegate;

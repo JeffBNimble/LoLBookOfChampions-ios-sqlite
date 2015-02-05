@@ -11,6 +11,7 @@
 #import "NIODataDragonComponents.h"
 #import "ViewController.h"
 #import "NIOContentResolver.h"
+#import "NIOCoreComponents.h"
 #import <Typhoon/Typhoon.h>
 
 @implementation NIOApplicationAssembly
@@ -18,27 +19,12 @@
 	return [TyphoonDefinition withClass:[AppDelegate class] configuration:^(TyphoonDefinition *definition) {
 		[definition injectProperty:@selector(window) with:self.mainWindow];
 		[definition injectProperty:@selector(dataDragonSyncService) with:self.dataDragonComponents.dataDragonSyncService];
-		[definition injectProperty:@selector(contentResolver) with:self.contentResolver];
+		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
 	}];
 }
 
 -(id)config {
 	return [TyphoonDefinition configDefinitionWithName:@"Configuration.plist"];
-}
-
--(NIOContentResolver *)contentResolver {
-    return [TyphoonDefinition withClass:[NIOContentResolver class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithContentAuthorityBase:withRegistrations:) parameters:^(TyphoonMethod *initializer) {
-            [initializer injectParameterWith:[self.mainBundle bundleIdentifier]];
-            [initializer injectParameterWith:TyphoonConfig(@"content_registrations")];
-        }];
-
-        definition.scope = TyphoonScopeSingleton;
-    }];
-}
-
--(NSBundle *)mainBundle {
-    return [NSBundle mainBundle];
 }
 
 -(UIWindow *)mainWindow {

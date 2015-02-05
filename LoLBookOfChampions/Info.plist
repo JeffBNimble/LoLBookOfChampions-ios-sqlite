@@ -26,6 +26,7 @@
 	<key>TyphoonInitialAssemblies</key>
 	<array>
 		<string>NIOApplicationAssembly</string>
+		<string>NIOCoreComponents</string>
 		<string>NIODataDragonComponents</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

@@ -10,8 +10,10 @@
 @class GetRealmTask;
 @class NIODataDragonSyncService;
 @protocol NIOContentProvider;
+@class NIOCoreComponents;
 
 @interface NIODataDragonComponents : TyphoonAssembly
+@property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
 
 -(GetRealmTask *)getRealmTask;
 -(id<NIOContentProvider>)dataDragonContentProvider;

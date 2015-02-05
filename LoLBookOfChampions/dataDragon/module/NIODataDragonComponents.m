@@ -5,14 +5,12 @@
 // Copyright (c) 2015 Riot Games. All rights reserved.
 //
 
-#import <FMDB/FMDatabase.h>
 #import "NIODataDragonComponents.h"
 #import "NIOLoLApiRequestOperationManager.h"
 #import "GetRealmTask.h"
 #import "NIODataDragonSyncService.h"
 #import "NIOContentProvider.h"
 #import "NIODataDragonContentProvider.h"
-#import "DataDragonContract.h"
 #import <Typhoon/Typhoon.h>
 
 
