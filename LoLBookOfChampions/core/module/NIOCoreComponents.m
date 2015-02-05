@@ -16,6 +16,12 @@
 	return [TyphoonDefinition withFactory:self.mainBundle selector:@selector(bundleIdentifier)];
 }
 
+-(DDAbstractLogger *)consoleLogger {
+	return [TyphoonDefinition withClass:[DDTTYLogger class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(sharedInstance)];
+	}];
+}
+
 -(NIOContentResolver *)contentResolver {
 	return [TyphoonDefinition withClass:[NIOContentResolver class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(initWithContentAuthorityBase:withRegistrations:) parameters:^(TyphoonMethod *initializer) {

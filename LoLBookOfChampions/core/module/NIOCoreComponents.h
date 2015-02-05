@@ -10,6 +10,7 @@
 
 
 @interface NIOCoreComponents : TyphoonAssembly
+-(DDAbstractLogger *)consoleLogger;
 -(NIOContentResolver *)contentResolver;
 -(NSBundle *)mainBundle;
 -(NSNotificationCenter *)notificationCenter;

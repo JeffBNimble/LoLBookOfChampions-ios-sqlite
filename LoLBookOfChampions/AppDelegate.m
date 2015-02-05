@@ -20,6 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self initializeApplication];
+	DDLogVerbose(@"Application did finish launching");
     return YES;
 }
 
@@ -35,10 +36,15 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+	DDLogVerbose(@"Application will enter foreground");
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+	DDLogVerbose(@"Application did become active");
+	[self.notificationCenter postNotificationName:<#(NSString *)aName#>
+										   object:<#(id)anObject#>
+										 userInfo:<#(NSDictionary *)aUserInfo#>];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -46,7 +52,10 @@
 }
 
 -(void)initializeApplication {
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+	for ( DDAbstractLogger *logger in self.loggers ) {
+		[DDLog addLogger:logger];
+	}
+
     [self.dataDragonSyncService sync];
 }
 
