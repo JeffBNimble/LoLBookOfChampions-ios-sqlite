@@ -12,5 +12,6 @@
 @interface NIOCoreComponents : TyphoonAssembly
 -(NIOContentResolver *)contentResolver;
 -(NSBundle *)mainBundle;
+-(NSNotificationCenter *)notificationCenter;
 
 @end

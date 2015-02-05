@@ -13,9 +13,10 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) NIODataDragonSyncService *dataDragonSyncService;
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
+@property (strong, nonatomic) NIODataDragonSyncService *dataDragonSyncService;
+@property (strong, nonatomic) NSNotificationCenter *notificationCenter;
+@property (strong, nonatomic) UIWindow *window;
 
 
 @end
