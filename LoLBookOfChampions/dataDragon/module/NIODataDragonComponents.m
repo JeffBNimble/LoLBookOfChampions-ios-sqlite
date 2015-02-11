@@ -11,6 +11,7 @@
 #import "NIODataDragonSyncService.h"
 #import "NIOContentProvider.h"
 #import "NIODataDragonContentProvider.h"
+#import "NIOCoreComponents.h"
 #import <Typhoon/Typhoon.h>
 
 
@@ -22,9 +23,8 @@
 
 -(id <NIOContentProvider>)dataDragonContentProvider {
 	return [TyphoonDefinition withClass:[NIODataDragonContentProvider class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithDatabaseName:withVersion:) parameters:^(TyphoonMethod *initializer) {
-			[initializer injectParameterWith:TyphoonConfig(@"database.name")];
-			[initializer injectParameterWith:TyphoonConfig(@"database.version")];
+		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.coreComponents.contentResolver];
 		}];
 
 		definition.scope = TyphoonScopeSingleton;
@@ -33,8 +33,8 @@
 
 -(NIODataDragonSyncService *)dataDragonSyncService {
 	return [TyphoonDefinition withClass:[NIODataDragonSyncService class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithContentProvider:withGetRealmTask:) parameters:^(TyphoonMethod *initializer) {
-			[initializer injectParameterWith:self.dataDragonContentProvider];
+		[definition useInitializer:@selector(initWithContentResolver:withGetRealmTask:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.coreComponents.contentResolver];
 			[initializer injectParameterWith:self.getRealmTask];
 		}];
 

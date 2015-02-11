@@ -5,8 +5,11 @@
 
 #import <Foundation/Foundation.h>
 #import "NIOContentProvider.h"
+#import "NIOBaseContentProvider.h"
+
+@class NIOContentResolver;
 
 
-@interface NIODataDragonContentProvider : NSObject<NIOContentProvider>
--(instancetype)initWithDatabaseName:(NSString *)databaseName withVersion:(NSInteger)version;
+@interface NIODataDragonContentProvider : NIOBaseContentProvider
+-(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver NS_DESIGNATED_INITIALIZER;
 @end

@@ -34,8 +34,58 @@
 -(void)initializeRegistrations {
     for ( NSString *contentProviderContentBase in self.contentRegistrations.allKeys ) {
         NSString *newKey = [NSString stringWithFormat:@"content://%@/%@", self.contentAuthorityBase, contentProviderContentBase];
-        [self.activeContentProviderRegistry setObject:[NSNull null] forKey:newKey];
+        self.activeContentProviderRegistry[newKey] = [NSNull null];
     }
 }
+
+-(id <NIOContentProvider>)getContentProviderForAuthorityURL:(NSURL *)authorityUrl {
+	return nil;
+}
+
+-(void)notifyChange:(NSURL *)contentUrl {
+
+}
+
+-(void)registerContentObserverWithContentURL:(NSURL *)contentUrl
+					withNotifyForDescendents:(bool)notifyForDescendents
+						 withContentObserver:(id <NIOContentObserver>)contentObserver {
+
+}
+
+-(void)registerContentProviderWithAuthorityURL:(NSURL *)authorityUrl
+						   withContentProvider:(id <NIOContentProvider>)contentProvider {
+
+}
+
+-(void)unregisterContentObserver:(id <NIOContentObserver>)contentObserver {
+
+}
+
+-(void)unregisterContentProvider:(id <NIOContentProvider>)contentProvider {
+
+}
+
+-(NSInteger)deleteWithUri:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+	return 0;
+}
+
+-(NSURL *)insertWithUri:(NSURL *)uri withValues:(NSDictionary *)values {
+	return nil;
+}
+
+-(FMResultSet *)queryWithUri:(NSURL *)uri
+			  withProjection:(NSArray *)projection
+			   withSelection:(NSString *)selection
+		   withSelectionArgs:(NSArray *)selectionArgs
+				 withGroupBy:(NSString *)groupBy
+				  withHaving:(NSString *)having
+					withSort:(NSString *)sort {
+	return nil;
+}
+
+-(NSInteger)updateWithUri:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+	return 0;
+}
+
 
 @end

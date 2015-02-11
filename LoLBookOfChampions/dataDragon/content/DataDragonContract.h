@@ -9,6 +9,7 @@
 @interface DataDragonContract : NSObject
 +(void)contentAuthorityBase:(NSString *)contentAuthorityBase;
 +(NSURL *)CONTENT_URI;
++(NSString *)DB_NAME;
 @end
 
 @interface Realm : NSObject

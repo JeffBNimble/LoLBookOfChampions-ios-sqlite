@@ -9,17 +9,21 @@
 #import "NIODataDragonContentProvider.h"
 #import "NIODataDragonSqliteOpenHelper.h"
 #import "NIOUriMatcher.h"
+#import "NIOContentResolver.h"
+#import "DataDragonContract.h"
 
 @interface NIODataDragonContentProvider ()
 @property (strong, nonatomic) NIODataDragonSqliteOpenHelper *databaseHelper;
 @property (strong, nonatomic) NIOUriMatcher *urlMatcher;
+@property (assign, nonatomic) NSInteger databaseVersion;
 @end
 
 @implementation NIODataDragonContentProvider
--(instancetype)initWithDatabaseName:(NSString *)databaseName withVersion:(NSInteger)version {
-	self = [super init];
+-(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver {
+	self = [super initWithContentResolver:contentResolver];
 	if ( self ) {
-		self.databaseHelper = [[NIODataDragonSqliteOpenHelper alloc] initWithName:databaseName withVersion:version];
+		self.databaseVersion = 1;
+		self.databaseHelper = [[NIODataDragonSqliteOpenHelper alloc] initWithName:[DataDragonContract DB_NAME] withVersion:self.databaseVersion];
         self.urlMatcher = [[NIOUriMatcher alloc] initWith:NO_MATCH];
         [self.urlMatcher addURL:[NSURL URLWithString:@"content://io.nimblenoggin.lolbookofchampions/datadragon/champion"] withMatchCode:1];
         [self.urlMatcher addURL:[NSURL URLWithString:@"content://io.nimblenoggin.lolbookofchampions/datadragon/map"] withMatchCode:2];

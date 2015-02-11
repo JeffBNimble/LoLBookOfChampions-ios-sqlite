@@ -24,6 +24,15 @@ static NSString *contentAuthorityBase;
 	return contentUri;
 }
 
++(NSString *)DB_NAME {
+	static NSString *databaseName;
+	if ( !databaseName ) {
+		databaseName = @"dataDragon.sqlite3";
+	}
+
+	return databaseName;
+}
+
 @end
 
 @implementation Realm
