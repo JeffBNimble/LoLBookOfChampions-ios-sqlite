@@ -10,6 +10,7 @@
 #import "GetRealmTask.h"
 #import "NIOContentProvider.h"
 #import "NIOContentResolver.h"
+#import "DataDragonContract.h"
 
 @interface NIODataDragonSyncService ()
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
@@ -34,7 +35,7 @@
 }
 
 -(void)sync {
-	[self.contentResolver queryWithUri:nil
+	[self.contentResolver queryWithURL:[Realm URI]
 						withProjection:nil
 						 withSelection:nil
 					 withSelectionArgs:nil

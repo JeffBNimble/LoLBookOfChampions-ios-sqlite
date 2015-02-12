@@ -10,7 +10,8 @@
 
 
 @interface NIOBaseContentProvider : NSObject<NIOContentProvider>
-@property (readonly, nonatomic) NIOContentResolver *contentResolver;
+@property (strong, nonatomic) NIOContentResolver *contentResolver;
 
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver NS_DESIGNATED_INITIALIZER;
+-(instancetype)init NS_DESIGNATED_INITIALIZER;
+-(void)onCreate;
 @end

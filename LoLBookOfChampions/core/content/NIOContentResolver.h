@@ -11,13 +11,10 @@
 
 @interface NIOContentResolver : NSObject<NIOContentProvider>
 -(instancetype)initWithContentAuthorityBase:(NSString *)contentAuthorityBase withRegistrations:(NSDictionary *)registrations;
--(id<NIOContentProvider>)getContentProviderForAuthorityURL:(NSURL *)authorityUrl;
+-(id<NIOContentProvider>)getContentProviderForContentURL:(NSURL *)contentURL;
 -(void)notifyChange:(NSURL *)contentUrl;
 -(void)registerContentObserverWithContentURL:(NSURL *)contentUrl
 					withNotifyForDescendents:(bool)notifyForDescendents
 						 withContentObserver:(id<NIOContentObserver>)contentObserver;
--(void)registerContentProviderWithAuthorityURL:(NSURL *)authorityUrl
-						   withContentProvider:(id<NIOContentProvider>)contentProvider;
 -(void)unregisterContentObserver:(id<NIOContentObserver>)contentObserver;
--(void)unregisterContentProvider:(id<NIOContentProvider>)contentProvider;
 @end

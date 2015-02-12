@@ -9,7 +9,6 @@
 #import "NIODataDragonContentProvider.h"
 #import "NIODataDragonSqliteOpenHelper.h"
 #import "NIOUriMatcher.h"
-#import "NIOContentResolver.h"
 #import "DataDragonContract.h"
 
 @interface NIODataDragonContentProvider ()
@@ -19,8 +18,8 @@
 @end
 
 @implementation NIODataDragonContentProvider
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver {
-	self = [super initWithContentResolver:contentResolver];
+-(instancetype)init {
+	self = [super init];
 	if ( self ) {
 		self.databaseVersion = 1;
 		self.databaseHelper = [[NIODataDragonSqliteOpenHelper alloc] initWithName:[DataDragonContract DB_NAME] withVersion:self.databaseVersion];
@@ -36,15 +35,15 @@
 	return self;
 }
 
--(NSInteger)deleteWithUri:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+-(NSInteger)deleteWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	return 0;
 }
 
--(NSURL *)insertWithUri:(NSURL *)uri withValues:(NSDictionary *)values {
+-(NSURL *)insertWithURL:(NSURL *)url withValues:(NSDictionary *)values {
 	return nil;
 }
 
--(FMResultSet *)queryWithUri:(NSURL *)uri
+-(FMResultSet *)queryWithURL:(NSURL *)uri
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
 		   withSelectionArgs:(NSArray *)selectionArgs
@@ -55,7 +54,7 @@
 	return nil;
 }
 
--(NSInteger)updateWithUri:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+-(NSInteger)updateWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	return 0;
 }
 

@@ -18,6 +18,7 @@
 -(AppDelegate *)appDelegate {
 	return [TyphoonDefinition withClass:[AppDelegate class] configuration:^(TyphoonDefinition *definition) {
 		[definition injectProperty:@selector(window) with:self.mainWindow];
+		[definition injectProperty:@selector(bundleIdentifier) with:self.coreComponents.bundleIdentifier];
 		[definition injectProperty:@selector(dataDragonSyncService) with:self.dataDragonComponents.dataDragonSyncService];
 		[definition injectProperty:@selector(loggers) with:@[self.coreComponents.consoleLogger]];
 		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];

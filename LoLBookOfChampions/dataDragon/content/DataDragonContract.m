@@ -8,11 +8,13 @@
 
 #import "DataDragonContract.h"
 
+#define CONTENT_AUTHORITY_URL_STRING(CONTENT_AUTHORITY)		[NSString stringWithFormat:@"content://%@", CONTENT_AUTHORITY]
+
 @implementation DataDragonContract
 
 static NSString *contentAuthorityBase;
 +(void)contentAuthorityBase:(NSString *)contentAuthority {
-	contentAuthorityBase = contentAuthority;
+	contentAuthorityBase = CONTENT_AUTHORITY_URL_STRING(contentAuthority);
 }
 
 +(NSURL *)CONTENT_URI {

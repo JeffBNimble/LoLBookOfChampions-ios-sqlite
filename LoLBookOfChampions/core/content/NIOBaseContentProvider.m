@@ -9,29 +9,28 @@
 #import "NIOBaseContentProvider.h"
 #import "NIOContentResolver.h"
 
-@interface NIOBaseContentProvider ()
-@property (strong, nonatomic) NIOContentResolver *contentResolver;
-@end
-
 @implementation NIOBaseContentProvider
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver {
+-(instancetype)init {
 	self = [super init];
 	if ( self ) {
-		self.contentResolver = contentResolver;
 	}
 
 	return self;
 }
 
--(NSInteger)deleteWithUri:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+-(NSInteger)deleteWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	return 0;
 }
 
--(NSURL *)insertWithUri:(NSURL *)uri withValues:(NSDictionary *)values {
+-(NSURL *)insertWithURL:(NSURL *)url withValues:(NSDictionary *)values {
 	return nil;
 }
 
--(FMResultSet *)queryWithUri:(NSURL *)uri
+-(void)onCreate {
+
+}
+
+-(FMResultSet *)queryWithURL:(NSURL *)url
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
 		   withSelectionArgs:(NSArray *)selectionArgs
@@ -41,7 +40,7 @@
 	return nil;
 }
 
--(NSInteger)updateWithUri:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+-(NSInteger)updateWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	return 0;
 }
 

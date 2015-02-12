@@ -11,5 +11,5 @@
 
 
 @interface NIODataDragonContentProvider : NIOBaseContentProvider
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver NS_DESIGNATED_INITIALIZER;
+-(instancetype)init NS_DESIGNATED_INITIALIZER;
 @end

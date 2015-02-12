@@ -7,19 +7,19 @@
 #import <Foundation/Foundation.h>
 
 @protocol NIOContentProvider <NSObject>
--(NSInteger)deleteWithUri:(NSURL *)uri
+-(NSInteger)deleteWithURL:(NSURL *)url
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs;
--(NSURL *)insertWithUri:(NSURL *)uri
+-(NSURL *)insertWithURL:(NSURL *)url
 			  withValues:(NSDictionary *)values;
--(FMResultSet *)queryWithUri:(NSURL *)uri
+-(FMResultSet *)queryWithURL:(NSURL *)url
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
 		   withSelectionArgs:(NSArray *)selectionArgs
 				 withGroupBy:(NSString *)groupBy
 				  withHaving:(NSString *)having
 					withSort:(NSString *)sort;
--(NSInteger)updateWithUri:(NSURL *)uri
+-(NSInteger)updateWithURL:(NSURL *)url
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs;
 @end

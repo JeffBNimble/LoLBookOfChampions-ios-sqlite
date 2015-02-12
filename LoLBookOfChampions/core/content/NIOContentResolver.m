@@ -7,6 +7,9 @@
 
 
 #import "NIOContentResolver.h"
+#import "NIOBaseContentProvider.h"
+
+#define CONTENT_AUTHORITY(REGISTRATION_PATH)	[NSString stringWithFormat:@"content://%@.%@", self.contentAuthorityBase, REGISTRATION_PATH]
 
 @interface NIOContentResolver()
 @property (strong, nonatomic) NSMutableDictionary *activeContentProviderRegistry;
@@ -32,14 +35,46 @@
 }
 
 -(void)initializeRegistrations {
-    for ( NSString *contentProviderContentBase in self.contentRegistrations.allKeys ) {
-        NSString *newKey = [NSString stringWithFormat:@"content://%@/%@", self.contentAuthorityBase, contentProviderContentBase];
-        self.activeContentProviderRegistry[newKey] = [NSNull null];
+	// Replace the registrations by generating absolute content URL strings
+	NSMutableDictionary *newRegistrations = [NSMutableDictionary new];
+    for ( NSString *registrationPath in self.contentRegistrations.allKeys ) {
+        NSString *newKey = CONTENT_AUTHORITY(registrationPath);
+        newRegistrations[newKey] = self.contentRegistrations[registrationPath];
     }
+
+	self.contentRegistrations = newRegistrations;
 }
 
--(id <NIOContentProvider>)getContentProviderForAuthorityURL:(NSURL *)authorityUrl {
-	return nil;
+-(id <NIOContentProvider>)getContentProviderForContentURL:(NSURL *)contentURL {
+	NSString *contentAuthority = [self getContentAuthorityForContentURL:contentURL];
+	id<NIOContentProvider> activeContentProvider = self.activeContentProviderRegistry[contentAuthority];
+	if ( activeContentProvider == nil ) {
+		NSString *className = self.contentRegistrations[contentAuthority];
+		Class contentProviderClass = className ? NSClassFromString(className) : nil;
+		activeContentProvider = contentProviderClass ? (id<NIOContentProvider>)[contentProviderClass new] : nil;
+		if ( activeContentProvider ) {
+			((NIOBaseContentProvider *)activeContentProvider).contentResolver = self;
+			[((NIOBaseContentProvider *) activeContentProvider) onCreate];
+			self.activeContentProviderRegistry[contentAuthority] = activeContentProvider;
+		}
+	}
+
+	return activeContentProvider;
+}
+
+-(NSString *)getContentAuthorityForContentURL:(NSURL *)contentURL {
+	__weak __block NSString *contentURLString = [contentURL absoluteString];
+	NSArray *registrationURLs = [self.contentRegistrations allKeys];
+	NSIndexSet *indexSet = [registrationURLs indexesOfObjectsPassingTest:^BOOL(NSString *urlString, NSUInteger idx, BOOL *stop) {
+		if ( [contentURLString hasPrefix:urlString] ) {
+			*stop = YES;
+			return YES;
+		}
+
+		return NO;
+	}];
+
+	return indexSet.count > 0 ? registrationURLs[indexSet.firstIndex] : nil;
 }
 
 -(void)notifyChange:(NSURL *)contentUrl {
@@ -52,39 +87,45 @@
 
 }
 
--(void)registerContentProviderWithAuthorityURL:(NSURL *)authorityUrl
-						   withContentProvider:(id <NIOContentProvider>)contentProvider {
-
-}
-
 -(void)unregisterContentObserver:(id <NIOContentObserver>)contentObserver {
 
 }
 
--(void)unregisterContentProvider:(id <NIOContentProvider>)contentProvider {
-
+-(NSInteger)deleteWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+	return [[self getContentProviderForContentURL:url]
+			deleteWithURL:url
+			withSelection:selection
+		withSelectionArgs:selectionArgs];
 }
 
--(NSInteger)deleteWithUri:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
-	return 0;
+-(NSURL *)insertWithURL:(NSURL *)url withValues:(NSDictionary *)values {
+	return [[self getContentProviderForContentURL:url]
+			insertWithURL:url
+			   withValues:values];
 }
 
--(NSURL *)insertWithUri:(NSURL *)uri withValues:(NSDictionary *)values {
-	return nil;
-}
-
--(FMResultSet *)queryWithUri:(NSURL *)uri
+-(FMResultSet *)queryWithURL:(NSURL *)url
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
 		   withSelectionArgs:(NSArray *)selectionArgs
 				 withGroupBy:(NSString *)groupBy
 				  withHaving:(NSString *)having
 					withSort:(NSString *)sort {
-	return nil;
+	return [[self getContentProviderForContentURL:url]
+			queryWithURL:url
+		  withProjection:projection
+		   withSelection:selection
+	   withSelectionArgs:selectionArgs
+			 withGroupBy:groupBy
+			  withHaving:having
+				withSort:sort];
 }
 
--(NSInteger)updateWithUri:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
-	return 0;
+-(NSInteger)updateWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+	return [[self getContentProviderForContentURL:url]
+			updateWithURL:url
+			withSelection:selection
+		withSelectionArgs:selectionArgs];
 }
 
 

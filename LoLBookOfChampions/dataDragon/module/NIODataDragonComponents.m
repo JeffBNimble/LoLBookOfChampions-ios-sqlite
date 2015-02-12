@@ -12,23 +12,15 @@
 #import "NIOContentProvider.h"
 #import "NIODataDragonContentProvider.h"
 #import "NIOCoreComponents.h"
+#import "DataDragonContract.h"
 #import <Typhoon/Typhoon.h>
 
 
 @implementation NIODataDragonComponents
 
 -(id)config {
+	//[DataDragonContract contentAuthorityBase:self.coreComponents.bundleIdentifier];
 	return [TyphoonDefinition configDefinitionWithName:@"DataDragonConfiguration.plist"];
-}
-
--(id <NIOContentProvider>)dataDragonContentProvider {
-	return [TyphoonDefinition withClass:[NIODataDragonContentProvider class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
-			[initializer injectParameterWith:self.coreComponents.contentResolver];
-		}];
-
-		definition.scope = TyphoonScopeSingleton;
-	}];
 }
 
 -(NIODataDragonSyncService *)dataDragonSyncService {

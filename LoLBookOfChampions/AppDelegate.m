@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "NIODataDragonSyncService.h"
 #import "NIOContentResolver.h"
+#import "DataDragonContract.h"
 
 
 @interface AppDelegate ()
@@ -53,7 +54,8 @@
 		[DDLog addLogger:logger];
 	}
 
-    [self.dataDragonSyncService sync];
+	[DataDragonContract contentAuthorityBase:self.bundleIdentifier];
+	[self.dataDragonSyncService sync];
 }
 
 @end

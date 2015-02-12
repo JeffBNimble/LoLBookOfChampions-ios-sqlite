@@ -13,6 +13,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (strong, nonatomic) NSString *bundleIdentifier;
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
 @property (strong, nonatomic) NIODataDragonSyncService *dataDragonSyncService;
 @property (nonatomic, strong) NSArray *loggers;

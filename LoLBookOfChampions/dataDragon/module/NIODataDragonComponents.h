@@ -16,7 +16,6 @@
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
 
 -(GetRealmTask *)getRealmTask;
--(id<NIOContentProvider>)dataDragonContentProvider;
 -(NIODataDragonSyncService *)dataDragonSyncService;
 -(NIOLoLApiRequestOperationManager *)lolStaticDataApiRequestOperationManager;
 @end
