@@ -7,10 +7,13 @@
 #import "NIOContentProvider.h"
 
 @protocol NIOContentObserver;
+@protocol NIOContentProviderFactory;
 
 
 @interface NIOContentResolver : NSObject<NIOContentProvider>
--(instancetype)initWithContentAuthorityBase:(NSString *)contentAuthorityBase withRegistrations:(NSDictionary *)registrations;
+-(instancetype)initWithContentProviderFactory:(id<NIOContentProviderFactory>)factory
+					 withContentAuthorityBase:(NSString *)contentAuthorityBase
+							withRegistrations:(NSDictionary *)registrations NS_DESIGNATED_INITIALIZER;
 -(id<NIOContentProvider>)getContentProviderForContentURL:(NSURL *)contentURL;
 -(void)notifyChange:(NSURL *)contentUrl;
 -(void)registerContentObserverWithContentURL:(NSURL *)contentUrl

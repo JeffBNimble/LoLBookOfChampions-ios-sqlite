@@ -12,9 +12,14 @@
 #import "ViewController.h"
 #import "NIOContentResolver.h"
 #import "NIOCoreComponents.h"
+#import "NIOContentProvider.h"
 #import <Typhoon/Typhoon.h>
 
 @implementation NIOApplicationAssembly
++(void)load {
+	//[self markSelectorReserved:@selector(createContentProviderWithType:)];
+}
+
 -(AppDelegate *)appDelegate {
 	return [TyphoonDefinition withClass:[AppDelegate class] configuration:^(TyphoonDefinition *definition) {
 		[definition injectProperty:@selector(window) with:self.mainWindow];
@@ -27,8 +32,20 @@
 }
 
 -(id)config {
+	[NIOCoreComponents setContentProviderFactory:self];
 	return [TyphoonDefinition configDefinitionWithName:@"Configuration.plist"];
 }
+
+-(id <NIOContentProvider>)createContentProviderWithType:(Class)contentProviderClass {
+	id<NIOContentProvider> contentProvider = [[self asFactory] componentForType:contentProviderClass];
+	contentProvider = contentProvider ? contentProvider :
+					  [[self.dataDragonComponents asFactory] componentForType:contentProviderClass];
+	contentProvider = contentProvider ? contentProvider :
+					  [[self.coreComponents asFactory] componentForType:contentProviderClass];
+
+	return contentProvider;
+}
+
 
 -(UIWindow *)mainWindow {
 	return [TyphoonDefinition withClass:[UIWindow class] configuration:^(TyphoonDefinition *definition) {

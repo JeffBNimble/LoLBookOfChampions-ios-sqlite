@@ -8,19 +8,24 @@
 
 #import "NIOContentResolver.h"
 #import "NIOBaseContentProvider.h"
+#import "NIOCoreComponents.h"
 
 #define CONTENT_AUTHORITY(REGISTRATION_PATH)	[NSString stringWithFormat:@"content://%@.%@", self.contentAuthorityBase, REGISTRATION_PATH]
 
 @interface NIOContentResolver()
 @property (strong, nonatomic) NSMutableDictionary *activeContentProviderRegistry;
 @property (strong, nonatomic) NSString *contentAuthorityBase;
+@property (strong, nonatomic) id<NIOContentProviderFactory> contentProviderFactory;
 @property (strong, nonatomic) NSDictionary *contentRegistrations;
 @end
 
 @implementation NIOContentResolver
-- (instancetype)initWithContentAuthorityBase:(NSString *)contentAuthorityBase withRegistrations:(NSDictionary *)registrations {
+- (instancetype)initWithContentProviderFactory:(id<NIOContentProviderFactory>)factory
+					  withContentAuthorityBase:(NSString *)contentAuthorityBase
+							 withRegistrations:(NSDictionary *)registrations {
     self = [super init];
     if ( self ) {
+		self.contentProviderFactory = factory;
         self.contentAuthorityBase = contentAuthorityBase;
         self.contentRegistrations = registrations;
         self.activeContentProviderRegistry = [NSMutableDictionary new];
@@ -51,7 +56,7 @@
 	if ( activeContentProvider == nil ) {
 		NSString *className = self.contentRegistrations[contentAuthority];
 		Class contentProviderClass = className ? NSClassFromString(className) : nil;
-		activeContentProvider = contentProviderClass ? (id<NIOContentProvider>)[contentProviderClass new] : nil;
+		activeContentProvider = contentProviderClass ? [self.contentProviderFactory createContentProviderWithType:contentProviderClass] : nil;
 		if ( activeContentProvider ) {
 			((NIOBaseContentProvider *)activeContentProvider).contentResolver = self;
 			[((NIOBaseContentProvider *) activeContentProvider) onCreate];

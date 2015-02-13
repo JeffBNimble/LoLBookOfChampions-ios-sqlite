@@ -7,9 +7,14 @@
 #import <Typhoon/TyphoonAssembly.h>
 
 @class NIOContentResolver;
+@protocol NIOContentProvider;
 
+@protocol NIOContentProviderFactory
+-(id<NIOContentProvider>)createContentProviderWithType:(Class)contentProviderClass;
+@end
 
 @interface NIOCoreComponents : TyphoonAssembly
++(void)setContentProviderFactory:(id<NIOContentProviderFactory>)contentProviderFactory;
 -(NSString *)bundleIdentifier;
 -(DDAbstractLogger *)consoleLogger;
 -(NIOContentResolver *)contentResolver;

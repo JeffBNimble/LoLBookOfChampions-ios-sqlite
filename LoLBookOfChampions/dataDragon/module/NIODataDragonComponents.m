@@ -19,7 +19,6 @@
 @implementation NIODataDragonComponents
 
 -(id)config {
-	//[DataDragonContract contentAuthorityBase:self.coreComponents.bundleIdentifier];
 	return [TyphoonDefinition configDefinitionWithName:@"DataDragonConfiguration.plist"];
 }
 

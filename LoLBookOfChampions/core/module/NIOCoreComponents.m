@@ -8,10 +8,23 @@
 
 #import "NIOCoreComponents.h"
 #import "NIOContentResolver.h"
+#import "NIOContentProvider.h"
 #import <Typhoon/Typhoon.h>
 
 
 @implementation NIOCoreComponents
+static id<NIOContentProviderFactory> contentProviderFactory;
+
+
++(id<NIOContentProviderFactory>)getContentProviderFactory {
+	return contentProviderFactory;
+}
++(void)setContentProviderFactory:(id <NIOContentProviderFactory>)factory {
+
+	if ( !contentProviderFactory ) contentProviderFactory = factory;
+}
+
+
 -(NSString *)bundleIdentifier {
 	return [TyphoonDefinition withFactory:self.mainBundle selector:@selector(bundleIdentifier)];
 }
@@ -24,7 +37,8 @@
 
 -(NIOContentResolver *)contentResolver {
 	return [TyphoonDefinition withClass:[NIOContentResolver class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithContentAuthorityBase:withRegistrations:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithContentProviderFactory:withContentAuthorityBase:withRegistrations:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:[NIOCoreComponents getContentProviderFactory]];
 			[initializer injectParameterWith:self.bundleIdentifier];
 			[initializer injectParameterWith:TyphoonConfig(@"content_registrations")];
 		}];

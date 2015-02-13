@@ -6,14 +6,15 @@
 #import <Foundation/Foundation.h>
 #import <Typhoon/TyphoonAssembly.h>
 #import <UIKit/UIKit.h>
+#import "NIOCoreComponents.h"
 
 @class NIODataDragonComponents;
 @class AppDelegate;
 @class ViewController;
 @class NIOCoreComponents;
+@protocol NIOContentProvider;
 
-
-@interface NIOApplicationAssembly : TyphoonAssembly
+@interface NIOApplicationAssembly : TyphoonAssembly <NIOContentProviderFactory>
 
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
 @property (nonatomic, strong, readonly) NIODataDragonComponents *dataDragonComponents;
