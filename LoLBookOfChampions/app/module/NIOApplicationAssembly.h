@@ -14,7 +14,7 @@
 @class NIOCoreComponents;
 @protocol NIOContentProvider;
 
-@interface NIOApplicationAssembly : TyphoonAssembly <NIOContentProviderFactory>
+@interface NIOApplicationAssembly : TyphoonAssembly
 
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
 @property (nonatomic, strong, readonly) NIODataDragonComponents *dataDragonComponents;

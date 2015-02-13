@@ -7,11 +7,14 @@
 #import <Foundation/Foundation.h>
 
 @protocol NIOContentProvider <NSObject>
+
 -(NSInteger)deleteWithURL:(NSURL *)url
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs;
+
 -(NSURL *)insertWithURL:(NSURL *)url
 			  withValues:(NSDictionary *)values;
+
 -(FMResultSet *)queryWithURL:(NSURL *)url
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
@@ -19,6 +22,7 @@
 				 withGroupBy:(NSString *)groupBy
 				  withHaving:(NSString *)having
 					withSort:(NSString *)sort;
+
 -(NSInteger)updateWithURL:(NSURL *)url
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs;
