@@ -37,6 +37,22 @@ static NSString *contentAuthorityBase;
 
 @end
 
+@implementation Champion
++(NSString *)DB_TABLE {
+	return @"champion";
+}
+
++(NSURL *)URI {
+	static NSURL *uri;
+	if ( !uri ) {
+		uri = [[DataDragonContract CONTENT_URI] URLByAppendingPathComponent:@"champion"];
+	}
+
+	return uri;
+}
+
+@end
+
 @implementation Realm
 +(NSString *)DB_TABLE {
 	return @"realm";

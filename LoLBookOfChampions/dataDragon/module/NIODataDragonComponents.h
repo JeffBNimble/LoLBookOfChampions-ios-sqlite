@@ -11,11 +11,13 @@
 @class NIODataDragonSyncService;
 @protocol NIOContentProvider;
 @class NIOCoreComponents;
+@class NIODataDragonContentProvider;
 
 @interface NIODataDragonComponents : TyphoonAssembly
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
 
 -(GetRealmTask *)getRealmTask;
+-(NIODataDragonContentProvider *)dataDragonContentProvider;
 -(NIODataDragonSyncService *)dataDragonSyncService;
 -(NIOLoLApiRequestOperationManager *)lolStaticDataApiRequestOperationManager;
 @end

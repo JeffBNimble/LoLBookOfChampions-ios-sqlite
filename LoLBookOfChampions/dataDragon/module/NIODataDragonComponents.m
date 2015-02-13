@@ -22,6 +22,15 @@
 	return [TyphoonDefinition configDefinitionWithName:@"DataDragonConfiguration.plist"];
 }
 
+-(NIODataDragonContentProvider *)dataDragonContentProvider {
+	return [TyphoonDefinition withClass:[NIODataDragonContentProvider class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(init)];
+
+		definition.scope = TyphoonScopeWeakSingleton;
+	}];
+}
+
+
 -(NIODataDragonSyncService *)dataDragonSyncService {
 	return [TyphoonDefinition withClass:[NIODataDragonSyncService class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(initWithContentResolver:withGetRealmTask:) parameters:^(TyphoonMethod *initializer) {

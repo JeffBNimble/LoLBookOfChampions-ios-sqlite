@@ -9,21 +9,23 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 #import <Typhoon/TyphoonComponentFactory.h>
-#import "ContentProviderFactoryDefaultImpl.h"
+#import "NIOBaseComponentFactory.h"
 #import "NIOContentProvider.h"
 
+@interface NIOBaseComponentFactory ()
+@property (nonatomic, strong) TyphoonComponentFactory *factory;
+@end
 
-@implementation ContentProviderFactoryDefaultImpl
+@implementation NIOBaseComponentFactory
 
 //-------------------------------------------------------------------------------------------
 #pragma mark - Initialization & Destruction
 //-------------------------------------------------------------------------------------------
 
-- (instancetype)initWithFactory:(TyphoonComponentFactory *)factory
-{
+- (instancetype)initWithFactory:(TyphoonComponentFactory *)factory {
     self = [super init];
     if (self) {
-        _factory = factory;
+        self.factory = factory;
     }
 
     return self;
@@ -33,10 +35,6 @@
 #pragma mark - Interface Methods
 //-------------------------------------------------------------------------------------------
 
-- (id<NIOContentProvider>)createContentProviderWithType:(Class)contentProviderClass
-{
-    return [_factory componentForType:contentProviderClass];
-}
 
 
 @end

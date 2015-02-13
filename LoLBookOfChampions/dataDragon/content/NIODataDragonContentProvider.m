@@ -10,6 +10,10 @@
 #import "NIODataDragonSqliteOpenHelper.h"
 #import "NIOUriMatcher.h"
 #import "DataDragonContract.h"
+#import <Bolts/Bolts.h>
+
+#define REALM_URI			1
+#define	CHAMPION_URI		2
 
 @interface NIODataDragonContentProvider ()
 @property (strong, nonatomic) NIODataDragonSqliteOpenHelper *databaseHelper;
@@ -21,15 +25,6 @@
 -(instancetype)init {
 	self = [super init];
 	if ( self ) {
-		self.databaseVersion = 1;
-		self.databaseHelper = [[NIODataDragonSqliteOpenHelper alloc] initWithName:[DataDragonContract DB_NAME] withVersion:self.databaseVersion];
-        self.urlMatcher = [[NIOUriMatcher alloc] initWith:NO_MATCH];
-        [self.urlMatcher addURL:[NSURL URLWithString:@"content://io.nimblenoggin.lolbookofchampions/datadragon/champion"] withMatchCode:1];
-        [self.urlMatcher addURL:[NSURL URLWithString:@"content://io.nimblenoggin.lolbookofchampions/datadragon/map"] withMatchCode:2];
-        NSURL *matchingURL =  [NSURL URLWithString:@"content://io.nimblenoggin.lolbookofchampions/datadragon/champion"];
-        NSURL *noMatchURL = [NSURL URLWithString:@"content://io.nimblenoggin.lolbookofchampions/datadragons/whatever"] ;
-        NSLog(@"Matches %@? %@", matchingURL, [self.urlMatcher match:matchingURL] >= 0 ? @"Yes" : @"No");
-        NSLog(@"Matches %@? %@", noMatchURL, [self.urlMatcher match:noMatchURL] >= 0 ? @"Yes" : @"No");
     }
 
 	return self;
@@ -43,6 +38,16 @@
 	return nil;
 }
 
+-(void)onCreate {
+	[super onCreate];
+
+	self.databaseVersion = 1;
+	self.databaseHelper = [[NIODataDragonSqliteOpenHelper alloc] initWithName:[DataDragonContract DB_NAME] withVersion:self.databaseVersion];
+	self.urlMatcher = [[NIOUriMatcher alloc] initWith:NO_MATCH];
+	[self.urlMatcher addURL:[Realm URI] withMatchCode:REALM_URI];
+	[self.urlMatcher addURL:[Champion URI] withMatchCode:CHAMPION_URI];
+}
+
 -(FMResultSet *)queryWithURL:(NSURL *)uri
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
@@ -50,7 +55,33 @@
 				 withGroupBy:(NSString *)groupBy
 				  withHaving:(NSString *)having
 					withSort:(NSString *)sort {
-	self.databaseHelper.database;
+
+	BFTask *promise;
+	NSInteger matchedURI = [self.urlMatcher match:uri];
+	switch (matchedURI) {
+		case REALM_URI:
+			promise = [self queryRealmWithProjection:projection
+									   withSelection:selection
+								   withSelectionArgs:selectionArgs
+										 withGroupBy:groupBy
+										  withHaving:having
+											withSort:sort];
+			break;
+
+		default:
+			DDLogError(@"Unmatched URI %@", [uri absoluteString]);
+	}
+
+	[promise waitUntilFinished];
+	return [promise result];
+}
+
+-(BFTask *)queryRealmWithProjection:(NSArray *)projection
+					  withSelection:(NSString *)selection
+				  withSelectionArgs:(NSArray *)selectionArgs
+						withGroupBy:(NSString *)groupBy
+						 withHaving:(NSString *)having
+						   withSort:(NSString *)sort {
 	return nil;
 }
 

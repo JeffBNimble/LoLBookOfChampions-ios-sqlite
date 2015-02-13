@@ -13,17 +13,12 @@
 #import "NIOContentResolver.h"
 #import "NIOCoreComponents.h"
 #import "NIOContentProvider.h"
-#import "ContentProviderFactoryDefaultImpl.h"
+#import "NIOBaseComponentFactory.h"
 #import <Typhoon/Typhoon.h>
 
 @implementation NIOApplicationAssembly
-+ (void)load
-{
-    //[self markSelectorReserved:@selector(createContentProviderWithType:)];
-}
 
-- (AppDelegate *)appDelegate
-{
+- (AppDelegate *)appDelegate {
     return [TyphoonDefinition withClass:[AppDelegate class] configuration:^(TyphoonDefinition *definition) {
         [definition injectProperty:@selector(window) with:self.mainWindow];
         [definition injectProperty:@selector(bundleIdentifier) with:self.coreComponents.bundleIdentifier];
@@ -35,13 +30,11 @@
     }];
 }
 
-- (id)config
-{
+- (id)config {
     return [TyphoonDefinition configDefinitionWithName:@"Configuration.plist"];
 }
 
-- (UIWindow *)mainWindow
-{
+- (UIWindow *)mainWindow {
     return [TyphoonDefinition withClass:[UIWindow class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithFrame:) parameters:^(TyphoonMethod *initializer) {
             [initializer injectParameterWith:[NSValue valueWithCGRect:[[UIScreen mainScreen] bounds]]];
@@ -49,8 +42,7 @@
     }];
 }
 
-- (ViewController *)viewController
-{
+- (ViewController *)viewController {
     return [TyphoonDefinition withClass:[ViewController class] configuration:^(TyphoonDefinition *definition) {
         [definition injectProperty:@selector(getRealmTask) with:self.dataDragonComponents.getRealmTask];
     }];

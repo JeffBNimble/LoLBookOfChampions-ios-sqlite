@@ -12,6 +12,11 @@
 +(NSString *)DB_NAME;
 @end
 
+@interface Champion : NSObject
++(NSString *)DB_TABLE;
++(NSURL *)URI;
+@end
+
 @interface Realm : NSObject
 +(NSString *)DB_TABLE;
 +(NSURL *)URI;

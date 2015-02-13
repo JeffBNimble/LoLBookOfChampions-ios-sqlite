@@ -10,18 +10,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
-#import "NIOCoreComponents.h"
-#import "NIOContentProviderFactory.h"
 
 @class TyphoonComponentFactory;
-@protocol NIOContentProvider;
 
 
-@interface ContentProviderFactoryDefaultImpl : NSObject<NIOContentProviderFactory>
+@interface NIOBaseComponentFactory : NSObject
 
 @property (nonatomic, strong, readonly) TyphoonComponentFactory *factory;
 
-- (instancetype)initWithFactory:(TyphoonComponentFactory *)factory;
+- (instancetype)initWithFactory:(TyphoonComponentFactory *)factory NS_DESIGNATED_INITIALIZER;
 
 
 @end

@@ -9,30 +9,25 @@
 #import "NIOCoreComponents.h"
 #import "NIOContentResolver.h"
 #import "NIOContentProvider.h"
-#import "ContentProviderFactoryDefaultImpl.h"
+#import "NIOBaseComponentFactory.h"
 #import "NIOContentProviderFactory.h"
+#import "NIOTyphoonContentProviderFactory.h"
 #import <Typhoon/Typhoon.h>
 
 
 @implementation NIOCoreComponents
 
-static id<NIOContentProviderFactory> contentProviderFactory;
-
-
-- (NSString *)bundleIdentifier
-{
+- (NSString *)bundleIdentifier {
     return [TyphoonDefinition withFactory:self.mainBundle selector:@selector(bundleIdentifier)];
 }
 
-- (DDAbstractLogger *)consoleLogger
-{
+- (DDAbstractLogger *)consoleLogger {
     return [TyphoonDefinition withClass:[DDTTYLogger class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(sharedInstance)];
     }];
 }
 
-- (NIOContentResolver *)contentResolver
-{
+- (NIOContentResolver *)contentResolver {
     return [TyphoonDefinition withClass:[NIOContentResolver class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithContentProviderFactory:withContentAuthorityBase:withRegistrations:)
             parameters:^(TyphoonMethod *initializer) {
@@ -45,23 +40,20 @@ static id<NIOContentProviderFactory> contentProviderFactory;
     }];
 }
 
-- (NSBundle *)mainBundle
-{
+- (NSBundle *)mainBundle {
     return [TyphoonDefinition withClass:[NSBundle class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(mainBundle)];
     }];
 }
 
-- (NSNotificationCenter *)notificationCenter
-{
+- (NSNotificationCenter *)notificationCenter {
     return [TyphoonDefinition withClass:[NSNotificationCenter class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(defaultCenter)];
     }];
 }
 
-- (id<NIOContentProviderFactory>)contentProviderFactory
-{
-    return [TyphoonDefinition withClass:[ContentProviderFactoryDefaultImpl class]
+- (id<NIOContentProviderFactory>)contentProviderFactory {
+    return [TyphoonDefinition withClass:[NIOTyphoonContentProviderFactory class]
         configuration:^(TyphoonDefinition *definition) {
             [definition useInitializer:@selector(initWithFactory:) parameters:^(TyphoonMethod *initializer) {
                 [initializer injectParameterWith:self];
