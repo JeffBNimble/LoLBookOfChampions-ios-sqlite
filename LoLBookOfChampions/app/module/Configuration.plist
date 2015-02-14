@@ -10,7 +10,7 @@
             <string>na</string>
             <key>static.data.api.version</key>
             <string>v1.2</string>
-            <key>content_registrations</key>
+            <key>content.registrations</key>
             <dict>
                 <key>datadragon</key>
                 <string>NIODataDragonContentProvider</string>

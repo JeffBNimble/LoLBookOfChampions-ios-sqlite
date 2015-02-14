@@ -33,7 +33,7 @@
             parameters:^(TyphoonMethod *initializer) {
                 [initializer injectParameterWith:[_coreComponents contentProviderFactory]];
                 [initializer injectParameterWith:self.bundleIdentifier];
-                [initializer injectParameterWith:TyphoonConfig(@"content_registrations")];
+                [initializer injectParameterWith:TyphoonConfig(@"content.registrations")];
             }];
 
         definition.scope = TyphoonScopeSingleton;
