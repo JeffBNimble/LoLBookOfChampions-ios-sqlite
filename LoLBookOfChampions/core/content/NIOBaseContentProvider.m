@@ -18,11 +18,16 @@
 	return self;
 }
 
--(NSInteger)deleteWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+-(NSInteger)deleteWithURL:(NSURL *)url
+			withSelection:(NSString *)selection
+		withSelectionArgs:(NSArray *)selectionArgs
+				withError:(NSError **)error {
 	return 0;
 }
 
--(NSURL *)insertWithURL:(NSURL *)url withValues:(NSDictionary *)values {
+-(NSURL *)insertWithURL:(NSURL *)url
+			 withValues:(NSDictionary *)values
+			  withError:(NSError **)error {
 	return nil;
 }
 
@@ -36,11 +41,15 @@
 		   withSelectionArgs:(NSArray *)selectionArgs
 				 withGroupBy:(NSString *)groupBy
 				  withHaving:(NSString *)having
-					withSort:(NSString *)sort {
+					withSort:(NSString *)sort
+				   withError:(NSError **)error {
 	return nil;
 }
 
--(NSInteger)updateWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+-(NSInteger)updateWithURL:(NSURL *)url
+			withSelection:(NSString *)selection
+		withSelectionArgs:(NSArray *)selectionArgs
+				withError:(NSError **)error {
 	return 0;
 }
 

@@ -11,10 +11,12 @@
 
 -(NSInteger)deleteWithURL:(NSURL *)url
 			withSelection:(NSString *)selection
-		withSelectionArgs:(NSArray *)selectionArgs;
+		withSelectionArgs:(NSArray *)selectionArgs
+				withError:(NSError **)error;
 
 -(NSURL *)insertWithURL:(NSURL *)url
-			  withValues:(NSDictionary *)values;
+			  withValues:(NSDictionary *)values
+			  withError:(NSError **)error;
 
 -(FMResultSet *)queryWithURL:(NSURL *)url
 			  withProjection:(NSArray *)projection
@@ -22,9 +24,11 @@
 		   withSelectionArgs:(NSArray *)selectionArgs
 				 withGroupBy:(NSString *)groupBy
 				  withHaving:(NSString *)having
-					withSort:(NSString *)sort;
+					withSort:(NSString *)sort
+				   withError:(NSError **)error;
 
 -(NSInteger)updateWithURL:(NSURL *)url
 			withSelection:(NSString *)selection
-		withSelectionArgs:(NSArray *)selectionArgs;
+		withSelectionArgs:(NSArray *)selectionArgs
+				withError:(NSError **)error;
 @end

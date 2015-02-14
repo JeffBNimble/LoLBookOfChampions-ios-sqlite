@@ -30,11 +30,17 @@
 	return self;
 }
 
--(NSInteger)deleteWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+-(NSInteger)deleteWithURL:(NSURL *)url
+			withSelection:(NSString *)selection
+		withSelectionArgs:(NSArray *)selectionArgs
+				withError:(NSError **)error {
+	*error = [NSError errorWithDomain:@"content.provider.datadragon" code:27 userInfo:nil];
 	return 0;
 }
 
--(NSURL *)insertWithURL:(NSURL *)url withValues:(NSDictionary *)values {
+-(NSURL *)insertWithURL:(NSURL *)url
+			 withValues:(NSDictionary *)values
+			  withError:(NSError **)error {
 	return nil;
 }
 
@@ -54,7 +60,8 @@
 		   withSelectionArgs:(NSArray *)selectionArgs
 				 withGroupBy:(NSString *)groupBy
 				  withHaving:(NSString *)having
-					withSort:(NSString *)sort {
+					withSort:(NSString *)sort
+				   withError:(NSError **)error {
 
 	BFTask *promise;
 	NSInteger matchedURI = [self.urlMatcher match:uri];
@@ -69,11 +76,20 @@
 			break;
 
 		default:
+			promise = [BFTask taskWithError:[NSError errorWithDomain:@"content.provider.datadragon"
+																code:99
+															userInfo:nil]];
 			DDLogError(@"Unmatched URI %@", [uri absoluteString]);
 	}
 
 	[promise waitUntilFinished];
-	return [promise result];
+
+	if ( promise.error ) {
+		*error = promise.error;
+		return nil;
+	} else {
+		return promise.result;
+	}
 }
 
 -(BFTask *)queryRealmWithProjection:(NSArray *)projection
@@ -85,7 +101,10 @@
 	return nil;
 }
 
--(NSInteger)updateWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+-(NSInteger)updateWithURL:(NSURL *)url
+			withSelection:(NSString *)selection
+		withSelectionArgs:(NSArray *)selectionArgs
+				withError:(NSError **)error {
 	return 27;
 }
 

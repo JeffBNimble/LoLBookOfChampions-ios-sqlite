@@ -107,11 +107,13 @@
 
 -(BFTask *)deleteWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
+		NSError *error;
 		NSInteger deleteCount = [[self getContentProviderForContentURL:url]
 				deleteWithURL:url
 				withSelection:selection
-			withSelectionArgs:selectionArgs];
-		return @(deleteCount);
+			withSelectionArgs:selectionArgs
+					withError:&error];
+		return error ? error : @(deleteCount);
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
 		return task.error ? task.error : task.result;
 	}];
@@ -119,31 +121,37 @@
 
 -(BFTask *)insertWithURL:(NSURL *)url withValues:(NSDictionary *)values {
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
-		return [[self getContentProviderForContentURL:url]
+		NSError *error;
+		NSURL *insertedURI = [[self getContentProviderForContentURL:url]
 				insertWithURL:url
-				   withValues:values];
+				   withValues:values
+					withError:&error];
+		return error ? error : insertedURI;
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
 		return task.error ? task.error : task.result;
 	}];
 }
 
 -(BFTask *)queryWithURL:(NSURL *)url
-			  withProjection:(NSArray *)projection
-			   withSelection:(NSString *)selection
-		   withSelectionArgs:(NSArray *)selectionArgs
-				 withGroupBy:(NSString *)groupBy
-				  withHaving:(NSString *)having
-					withSort:(NSString *)sort {
+		 withProjection:(NSArray *)projection
+		  withSelection:(NSString *)selection
+	  withSelectionArgs:(NSArray *)selectionArgs
+			withGroupBy:(NSString *)groupBy
+			 withHaving:(NSString *)having
+			   withSort:(NSString *)sort {
 
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
-		return [[self getContentProviderForContentURL:url]
+		NSError *error;
+		FMResultSet *cursor = [[self getContentProviderForContentURL:url]
 				queryWithURL:url
 			  withProjection:projection
 			   withSelection:selection
 		   withSelectionArgs:selectionArgs
 				 withGroupBy:groupBy
 				  withHaving:having
-					withSort:sort];
+					withSort:sort
+				   withError:&error];
+		return error ? error : cursor;
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
 		return task.error ? task.error : task.result;
 	}];
@@ -151,11 +159,13 @@
 
 -(BFTask *)updateWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
+		NSError *error;
 		NSInteger updateCount = [[self getContentProviderForContentURL:url]
 				updateWithURL:url
 				withSelection:selection
-			withSelectionArgs:selectionArgs];
-		return @(updateCount);
+			withSelectionArgs:selectionArgs
+		withError:&error];
+		return error ? error : @(updateCount);
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
 		return task.error ? task.error : task.result;
 	}];

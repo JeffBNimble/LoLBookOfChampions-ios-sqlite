@@ -44,12 +44,24 @@
 //							  withSort:nil];
 
 	dispatch_async(self.dispatchQueue, ^{
-		[[self.contentResolver updateWithURL:[Realm URI]
-							   withSelection:nil
-						   withSelectionArgs:nil]
+		[[[self.contentResolver updateWithURL:[Realm URI]
+								withSelection:nil
+							withSelectionArgs:nil]
 				continueWithBlock:^id(BFTask *task) {
 					DDLogInfo(@"Updated %@ realms", task.result);
-					return nil;
+					return [self.contentResolver queryWithURL:[Champion URI]
+											   withProjection:nil
+												withSelection:nil
+											withSelectionArgs:nil
+												  withGroupBy:nil
+												   withHaving:nil
+													 withSort:nil];
+				}]
+				continueWithBlock:^id(BFTask *task) {
+					if ( task.error ) {
+						DDLogError(@"BOOM!!!! %d", task.error.code);
+					}
+ 					return nil;
 				}];
 	});
 
