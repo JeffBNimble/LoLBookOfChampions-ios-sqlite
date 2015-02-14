@@ -14,7 +14,6 @@
 #import "NIOTyphoonContentProviderFactory.h"
 #import <Typhoon/Typhoon.h>
 
-
 @implementation NIOCoreComponents
 
 - (NSString *)bundleIdentifier {
@@ -27,13 +26,24 @@
     }];
 }
 
+- (id<NIOContentProviderFactory>)contentProviderFactory {
+	return [TyphoonDefinition withClass:[NIOTyphoonContentProviderFactory class]
+						  configuration:^(TyphoonDefinition *definition) {
+							  [definition useInitializer:@selector(initWithFactory:) parameters:^(TyphoonMethod *initializer) {
+								  [initializer injectParameterWith:self];
+							  }];
+						  }];
+}
+
 - (NIOContentResolver *)contentResolver {
     return [TyphoonDefinition withClass:[NIOContentResolver class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithContentProviderFactory:withContentAuthorityBase:withRegistrations:)
+        [definition useInitializer:@selector(initWithContentProviderFactory:withContentAuthorityBase:withRegistrations:withExecutionQueue:withCompletionQueue:)
             parameters:^(TyphoonMethod *initializer) {
-                [initializer injectParameterWith:[_coreComponents contentProviderFactory]];
+                [initializer injectParameterWith:[self.coreComponents contentProviderFactory]];
                 [initializer injectParameterWith:self.bundleIdentifier];
                 [initializer injectParameterWith:TyphoonConfig(@"content.registrations")];
+				[initializer injectParameterWith:dispatch_queue_create("io.nimblenoggin.content.execution", DISPATCH_QUEUE_SERIAL)];
+				[initializer injectParameterWith:dispatch_queue_create("io.nimblenoggin.content.completion", DISPATCH_QUEUE_SERIAL)];
             }];
 
         definition.scope = TyphoonScopeSingleton;
@@ -51,15 +61,4 @@
         [definition useInitializer:@selector(defaultCenter)];
     }];
 }
-
-- (id<NIOContentProviderFactory>)contentProviderFactory {
-    return [TyphoonDefinition withClass:[NIOTyphoonContentProviderFactory class]
-        configuration:^(TyphoonDefinition *definition) {
-            [definition useInitializer:@selector(initWithFactory:) parameters:^(TyphoonMethod *initializer) {
-                [initializer injectParameterWith:self];
-            }];
-        }];
-}
-
-
 @end

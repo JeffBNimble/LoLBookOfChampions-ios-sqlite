@@ -5,7 +5,7 @@
 // Copyright (c) 2015 Riot Games. All rights reserved.
 //
 
-#import <Bolts/BFExecutor.h>
+#import <Bolts/Bolts.h>
 #import "NIODataDragonSyncService.h"
 #import "GetRealmTask.h"
 #import "NIOContentProvider.h"
@@ -35,13 +35,25 @@
 }
 
 -(void)sync {
-	[self.contentResolver queryWithURL:[Realm URI]
-						withProjection:nil
-						 withSelection:nil
-					 withSelectionArgs:nil
-						   withGroupBy:nil
-							withHaving:nil
-							  withSort:nil];
+//	[self.contentResolver queryWithURL:[Realm URI]
+//						withProjection:nil
+//						 withSelection:nil
+//					 withSelectionArgs:nil
+//						   withGroupBy:nil
+//							withHaving:nil
+//							  withSort:nil];
+
+	dispatch_async(self.dispatchQueue, ^{
+		[[self.contentResolver updateWithURL:[Realm URI]
+							   withSelection:nil
+						   withSelectionArgs:nil]
+				continueWithBlock:^id(BFTask *task) {
+					DDLogInfo(@"Updated %@ realms", task.result);
+					return nil;
+				}];
+	});
+
+
 }
 
 @end

@@ -4,6 +4,7 @@
 //
 
 #import <FMDB/FMDB.h>
+#import <Bolts/Bolts.h>
 #import <Foundation/Foundation.h>
 
 @protocol NIOContentProvider <NSObject>

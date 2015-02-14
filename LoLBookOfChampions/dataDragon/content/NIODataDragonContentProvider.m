@@ -86,7 +86,7 @@
 }
 
 -(NSInteger)updateWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
-	return 0;
+	return 27;
 }
 
 @end
