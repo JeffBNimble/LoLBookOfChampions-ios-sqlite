@@ -8,8 +8,9 @@
 #import "NIOBaseContentProvider.h"
 
 @class NIOContentResolver;
+@protocol NIOTaskFactory;
 
 
 @interface NIODataDragonContentProvider : NIOBaseContentProvider
--(instancetype)init NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithTaskFactory:(id<NIOTaskFactory>)taskFactory NS_DESIGNATED_INITIALIZER;
 @end

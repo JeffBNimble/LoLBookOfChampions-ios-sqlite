@@ -4,12 +4,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NIOTask.h"
 
 @class BFTask;
 @class NIOLoLApiRequestOperationManager;
 
 
-@interface GetRealmTask : NSObject
+@interface GetRealmTask : NSObject<NIOTask>
 -(instancetype)initWithHTTPRequestOperationManager:(NIOLoLApiRequestOperationManager *)apiRequestOperationManager;
--(BFTask *)runAsync;
 @end

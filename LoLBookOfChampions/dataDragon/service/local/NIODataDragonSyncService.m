@@ -11,21 +11,22 @@
 #import "NIOContentProvider.h"
 #import "NIOContentResolver.h"
 #import "DataDragonContract.h"
+#import "NIOTaskFactory.h"
 
 @interface NIODataDragonSyncService ()
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
 @property (retain, nonatomic) dispatch_queue_t dispatchQueue;
-@property (strong, nonatomic) GetRealmTask *getRealmTask;
+@property (strong, nonatomic) id<NIOTaskFactory> taskFactory;
 @property (strong, nonatomic) BFExecutor *taskExecutor;
 @end
 
 @implementation NIODataDragonSyncService
 -(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver
-					  withGetRealmTask:(GetRealmTask *)getRealmTask {
+					   withTaskFactory:(id<NIOTaskFactory>)taskFactory {
 	self = [super init];
 	if ( self ) {
 		self.contentResolver = contentResolver;
-		self.getRealmTask = getRealmTask;
+		self.taskFactory = taskFactory;
 		self.dispatchQueue = dispatch_queue_create(object_getClassName(self), DISPATCH_QUEUE_SERIAL);
 		self.taskExecutor = [BFExecutor executorWithDispatchQueue:self.dispatchQueue];
 	}

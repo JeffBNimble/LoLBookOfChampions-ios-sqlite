@@ -33,9 +33,9 @@
 
 -(NIODataDragonSyncService *)dataDragonSyncService {
 	return [TyphoonDefinition withClass:[NIODataDragonSyncService class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithContentResolver:withGetRealmTask:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithContentResolver:withTaskFactory:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.coreComponents.contentResolver];
-			[initializer injectParameterWith:self.getRealmTask];
+			[initializer injectParameterWith:self.coreComponents.taskFactory];
 		}];
 
 		definition.scope = TyphoonScopeWeakSingleton;

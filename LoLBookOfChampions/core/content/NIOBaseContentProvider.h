@@ -8,7 +8,6 @@
 
 @class NIOContentResolver;
 
-
 @interface NIOBaseContentProvider : NSObject<NIOContentProvider>
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
 

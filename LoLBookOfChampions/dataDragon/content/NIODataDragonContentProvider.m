@@ -10,6 +10,7 @@
 #import "NIODataDragonSqliteOpenHelper.h"
 #import "NIOUriMatcher.h"
 #import "DataDragonContract.h"
+#import "NIOTaskFactory.h"
 #import <Bolts/Bolts.h>
 
 #define REALM_URI			1
@@ -17,14 +18,16 @@
 
 @interface NIODataDragonContentProvider ()
 @property (strong, nonatomic) NIODataDragonSqliteOpenHelper *databaseHelper;
-@property (strong, nonatomic) NIOUriMatcher *urlMatcher;
 @property (assign, nonatomic) NSInteger databaseVersion;
+@property (strong, nonatomic) id<NIOTaskFactory> taskFactory;
+@property (strong, nonatomic) NIOUriMatcher *urlMatcher;
 @end
 
 @implementation NIODataDragonContentProvider
--(instancetype)init {
+-(instancetype)initWithTaskFactory:(id<NIOTaskFactory>)taskFactory {
 	self = [super init];
 	if ( self ) {
+		self.taskFactory = taskFactory;
     }
 
 	return self;

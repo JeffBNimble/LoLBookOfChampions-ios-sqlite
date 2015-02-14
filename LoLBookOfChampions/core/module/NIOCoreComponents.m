@@ -8,10 +8,11 @@
 
 #import "NIOCoreComponents.h"
 #import "NIOContentResolver.h"
-#import "NIOContentProvider.h"
 #import "NIOBaseComponentFactory.h"
 #import "NIOContentProviderFactory.h"
 #import "NIOTyphoonContentProviderFactory.h"
+#import "NIOTaskFactory.h"
+#import "NIOTyphoonTaskFactory.h"
 #import <Typhoon/Typhoon.h>
 
 @implementation NIOCoreComponents
@@ -61,4 +62,14 @@
         [definition useInitializer:@selector(defaultCenter)];
     }];
 }
+
+-(id <NIOTaskFactory>)taskFactory {
+	return [TyphoonDefinition withClass:[NIOTyphoonTaskFactory class]
+						  configuration:^(TyphoonDefinition *definition) {
+							  [definition useInitializer:@selector(initWithFactory:) parameters:^(TyphoonMethod *initializer) {
+								  [initializer injectParameterWith:self];
+							  }];
+						  }];
+}
+
 @end

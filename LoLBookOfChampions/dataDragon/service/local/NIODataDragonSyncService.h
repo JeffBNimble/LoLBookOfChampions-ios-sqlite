@@ -5,13 +5,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class GetRealmTask;
 @class NIOContentResolver;
-
+@protocol NIOTaskFactory;
 
 @interface NIODataDragonSyncService : NSObject
 -(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver
-					  withGetRealmTask:(GetRealmTask *)getRealmTask;
+					   withTaskFactory:(id <NIOTaskFactory>)taskFactory;
 -(void)resync;
 -(void)sync;
 @end

@@ -8,6 +8,7 @@
 
 #import "NIOBaseContentProvider.h"
 #import "NIOContentResolver.h"
+#import "NIOTaskFactory.h"
 
 @implementation NIOBaseContentProvider
 -(instancetype)init {

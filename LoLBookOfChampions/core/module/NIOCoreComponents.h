@@ -9,22 +9,19 @@
 @class NIOContentResolver;
 @protocol NIOContentProvider;
 @protocol NIOContentProviderFactory;
+@protocol NIOTaskFactory;
 
 
 @interface NIOCoreComponents : TyphoonAssembly
 
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
 
-- (NSString *)bundleIdentifier;
-
-- (DDAbstractLogger *)consoleLogger;
-
-- (NIOContentResolver *)contentResolver;
-
-- (NSBundle *)mainBundle;
-
-- (NSNotificationCenter *)notificationCenter;
-
-- (id<NIOContentProviderFactory>)contentProviderFactory;
+-(NSString *)bundleIdentifier;
+-(DDAbstractLogger *)consoleLogger;
+-(id<NIOContentProviderFactory>)contentProviderFactory;
+-(NIOContentResolver *)contentResolver;
+-(NSBundle *)mainBundle;
+-(NSNotificationCenter *)notificationCenter;
+-(id<NIOTaskFactory>)taskFactory;
 
 @end
