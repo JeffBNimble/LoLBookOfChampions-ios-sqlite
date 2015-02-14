@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Typhoon/TyphoonAssembly.h>
+#import <FMDB/FMDB.h>
 
 @class NIOLoLApiRequestOperationManager;
 @class GetRealmTask;
@@ -12,12 +13,17 @@
 @protocol NIOContentProvider;
 @class NIOCoreComponents;
 @class NIODataDragonContentProvider;
+@class NIODataDragonSqliteOpenHelper;
+@class NIOQueryRealmsTask;
 
 @interface NIODataDragonComponents : TyphoonAssembly
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
 
 -(GetRealmTask *)getRealmTask;
 -(NIODataDragonContentProvider *)dataDragonContentProvider;
+-(FMDatabase *)dataDragonSqliteDatabase;
+-(NIODataDragonSqliteOpenHelper *)dataDragonSqliteOpenHelper;
 -(NIODataDragonSyncService *)dataDragonSyncService;
 -(NIOLoLApiRequestOperationManager *)lolStaticDataApiRequestOperationManager;
+-(NIOQueryRealmsTask *)queryRealmsTask;
 @end

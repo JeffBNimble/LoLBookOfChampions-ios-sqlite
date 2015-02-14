@@ -13,6 +13,8 @@
 #import "NIODataDragonContentProvider.h"
 #import "NIOCoreComponents.h"
 #import "DataDragonContract.h"
+#import "NIODataDragonSqliteOpenHelper.h"
+#import "NIOQueryRealmsTask.h"
 #import <Typhoon/Typhoon.h>
 
 
@@ -24,9 +26,27 @@
 
 -(NIODataDragonContentProvider *)dataDragonContentProvider {
 	return [TyphoonDefinition withClass:[NIODataDragonContentProvider class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(init)];
+		[definition useInitializer:@selector(initWithTaskFactory:withSqliteOpenHelper:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.coreComponents.taskFactory];
+			[initializer injectParameterWith:self.dataDragonSqliteOpenHelper];
+		}];
 
 		definition.scope = TyphoonScopeWeakSingleton;
+	}];
+}
+
+-(FMDatabase *)dataDragonSqliteDatabase {
+	return [TyphoonDefinition withFactory:self.dataDragonSqliteOpenHelper selector:@selector(database)];
+}
+
+-(NIODataDragonSqliteOpenHelper *)dataDragonSqliteOpenHelper {
+	return [TyphoonDefinition withClass:[NIODataDragonSqliteOpenHelper class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithName:withVersion:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:TyphoonConfig(@"database.name")];
+			[initializer injectParameterWith:TyphoonConfig(@"database.version")];
+		}];
+
+		definition.scope = TyphoonScopeLazySingleton;
 	}];
 }
 
@@ -66,5 +86,16 @@
 		definition.scope = TyphoonScopeWeakSingleton;
 	}];
 }
+
+-(NIOQueryRealmsTask *)queryRealmsTask {
+	return [TyphoonDefinition withClass:[NIOQueryRealmsTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
 
 @end

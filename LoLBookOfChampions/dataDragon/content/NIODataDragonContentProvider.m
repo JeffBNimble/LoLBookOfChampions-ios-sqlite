@@ -11,6 +11,7 @@
 #import "NIOUriMatcher.h"
 #import "DataDragonContract.h"
 #import "NIOTaskFactory.h"
+#import "NIOQueryRealmsTask.h"
 #import <Bolts/Bolts.h>
 
 #define REALM_URI			1
@@ -24,10 +25,12 @@
 @end
 
 @implementation NIODataDragonContentProvider
--(instancetype)initWithTaskFactory:(id<NIOTaskFactory>)taskFactory {
+-(instancetype)initWithTaskFactory:(id<NIOTaskFactory>)taskFactory
+			  withSqliteOpenHelper:(NIODataDragonSqliteOpenHelper *)sqliteOpenHelper {
 	self = [super init];
 	if ( self ) {
 		self.taskFactory = taskFactory;
+		self.databaseHelper = sqliteOpenHelper;
     }
 
 	return self;
@@ -50,8 +53,6 @@
 -(void)onCreate {
 	[super onCreate];
 
-	self.databaseVersion = 1;
-	self.databaseHelper = [[NIODataDragonSqliteOpenHelper alloc] initWithName:[DataDragonContract DB_NAME] withVersion:self.databaseVersion];
 	self.urlMatcher = [[NIOUriMatcher alloc] initWith:NO_MATCH];
 	[self.urlMatcher addURL:[Realm URI] withMatchCode:REALM_URI];
 	[self.urlMatcher addURL:[Champion URI] withMatchCode:CHAMPION_URI];
@@ -101,7 +102,7 @@
 						withGroupBy:(NSString *)groupBy
 						 withHaving:(NSString *)having
 						   withSort:(NSString *)sort {
-	return nil;
+	return [[self.taskFactory createTaskWithType:[NIOQueryRealmsTask class]] runAsync];
 }
 
 -(NSInteger)updateWithURL:(NSURL *)url

@@ -113,9 +113,9 @@
 				withSelection:selection
 			withSelectionArgs:selectionArgs
 					withError:&error];
-		return error ? error : @(deleteCount);
+		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:@(deleteCount)];
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
-		return task.error ? task.error : task.result;
+		return task;
 	}];
 }
 
@@ -126,9 +126,9 @@
 				insertWithURL:url
 				   withValues:values
 					withError:&error];
-		return error ? error : insertedURI;
+		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:insertedURI];
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
-		return task.error ? task.error : task.result;
+		return task;
 	}];
 }
 
@@ -151,9 +151,9 @@
 				  withHaving:having
 					withSort:sort
 				   withError:&error];
-		return error ? error : cursor;
+		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:cursor];
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
-		return task.error ? task.error : task.result;
+		return task;
 	}];
 }
 
@@ -165,9 +165,10 @@
 				withSelection:selection
 			withSelectionArgs:selectionArgs
 		withError:&error];
-		return error ? error : @(updateCount);
+		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:@(updateCount)];
+
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
-		return task.error ? task.error : task.result;
+		return task;
 	}];
 }
 

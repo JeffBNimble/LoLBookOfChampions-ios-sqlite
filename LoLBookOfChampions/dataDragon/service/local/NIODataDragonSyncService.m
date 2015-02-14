@@ -44,15 +44,17 @@
 //							withHaving:nil
 //							  withSort:nil];
 
-	dispatch_async(self.dispatchQueue, ^{
-		[[[self.contentResolver updateWithURL:[Realm URI]
+	[BFTask taskFromExecutor:self.taskExecutor withBlock:^id {
+		dispatch_queue_t queue = dispatch_get_current_queue();
+		DDLogDebug(@"Syncing on queue %@", queue.description);
+		[[[[self.contentResolver updateWithURL:[Realm URI]
 								withSelection:nil
 							withSelectionArgs:nil]
 				continueWithBlock:^id(BFTask *task) {
 					DDLogInfo(@"Updated %@ realms", task.result);
-					return [self.contentResolver queryWithURL:[Champion URI]
+					return [self.contentResolver queryWithURL:[Realm URI]
 											   withProjection:nil
-												withSelection:nil
+							 					withSelection:nil
 											withSelectionArgs:nil
 												  withGroupBy:nil
 												   withHaving:nil
@@ -61,12 +63,19 @@
 				continueWithBlock:^id(BFTask *task) {
 					if ( task.error ) {
 						DDLogError(@"BOOM!!!! %d", task.error.code);
+					} else {
+						FMResultSet *cursor = task.result;
+						DDLogInfo(@"Found %d columns in realms", cursor.columnCount);
+						[cursor close];
 					}
- 					return nil;
+					return nil;
+				}]
+				continueWithBlock:^id(BFTask *task) {
+					DDLogInfo(@"Data Dragon Sync complete");
+					return nil;
 				}];
-	});
-
-
+		return nil;
+	}];
 }
 
 @end

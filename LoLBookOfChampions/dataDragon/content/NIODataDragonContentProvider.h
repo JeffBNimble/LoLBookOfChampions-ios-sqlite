@@ -9,8 +9,10 @@
 
 @class NIOContentResolver;
 @protocol NIOTaskFactory;
+@class NIODataDragonSqliteOpenHelper;
 
 
 @interface NIODataDragonContentProvider : NIOBaseContentProvider
--(instancetype)initWithTaskFactory:(id<NIOTaskFactory>)taskFactory NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithTaskFactory:(id<NIOTaskFactory>)taskFactory
+			  withSqliteOpenHelper:(NIODataDragonSqliteOpenHelper *)sqliteOpenHelper NS_DESIGNATED_INITIALIZER;
 @end

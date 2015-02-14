@@ -14,7 +14,7 @@
 -(instancetype)initWithName:(NSString *)name withVersion:(NSInteger)version {
 	self = [super initWithName:name withVersion:version];
 	if ( self ) {
-
+		DDLogInfo(@"Sqlite open helper is here!!!");
 	}
 
 	return self;
