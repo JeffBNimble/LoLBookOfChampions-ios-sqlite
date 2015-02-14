@@ -8,7 +8,7 @@
 
 #import <Bolts/BFTask.h>
 #import <CocoaLumberjack/CocoaLumberjack.h>
-#import "GetRealmTask.h"
+#import "NIOGetRealmTask.h"
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -17,7 +17,7 @@
 
 @implementation ViewController
 
--(void)setGetRealmTask:(GetRealmTask *)getRealmTask {
+-(void)setGetRealmTask:(NIOGetRealmTask *)getRealmTask {
     _getRealmTask = getRealmTask;
 }
 

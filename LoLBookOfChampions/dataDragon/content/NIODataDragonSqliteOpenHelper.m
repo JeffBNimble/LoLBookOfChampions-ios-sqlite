@@ -7,14 +7,13 @@
 
 
 #import "NIODataDragonSqliteOpenHelper.h"
-#import "DataDragonContract.h"
+#import "NIODataDragonContract.h"
 
 
 @implementation NIODataDragonSqliteOpenHelper
 -(instancetype)initWithName:(NSString *)name withVersion:(NSInteger)version {
 	self = [super initWithName:name withVersion:version];
 	if ( self ) {
-		DDLogInfo(@"Sqlite open helper is here!!!");
 	}
 
 	return self;

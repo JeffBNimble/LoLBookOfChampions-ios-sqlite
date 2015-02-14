@@ -7,12 +7,12 @@
 
 #import "NIODataDragonComponents.h"
 #import "NIOLoLApiRequestOperationManager.h"
-#import "GetRealmTask.h"
+#import "NIOGetRealmTask.h"
 #import "NIODataDragonSyncService.h"
 #import "NIOContentProvider.h"
 #import "NIODataDragonContentProvider.h"
 #import "NIOCoreComponents.h"
-#import "DataDragonContract.h"
+#import "NIODataDragonContract.h"
 #import "NIODataDragonSqliteOpenHelper.h"
 #import "NIOQueryRealmsTask.h"
 #import <Typhoon/Typhoon.h>
@@ -62,8 +62,8 @@
 	}];
 }
 
--(GetRealmTask *)getRealmTask {
-	return [TyphoonDefinition withClass:[GetRealmTask class] configuration:^(TyphoonDefinition *definition) {
+-(NIOGetRealmTask *)getRealmTask {
+	return [TyphoonDefinition withClass:[NIOGetRealmTask class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(initWithHTTPRequestOperationManager:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.lolStaticDataApiRequestOperationManager];
 		}];

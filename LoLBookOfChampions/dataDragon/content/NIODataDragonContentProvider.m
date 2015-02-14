@@ -9,7 +9,7 @@
 #import "NIODataDragonContentProvider.h"
 #import "NIODataDragonSqliteOpenHelper.h"
 #import "NIOUriMatcher.h"
-#import "DataDragonContract.h"
+#import "NIODataDragonContract.h"
 #import "NIOTaskFactory.h"
 #import "NIOQueryRealmsTask.h"
 #import <Bolts/Bolts.h>

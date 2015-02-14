@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface DataDragonContract : NSObject
+@interface NIODataDragonContract : NSObject
 +(void)contentAuthorityBase:(NSString *)contentAuthorityBase;
 +(NSURL *)CONTENT_URI;
 +(NSString *)DB_NAME;

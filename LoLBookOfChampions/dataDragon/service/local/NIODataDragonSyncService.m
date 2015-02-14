@@ -7,10 +7,10 @@
 
 #import <Bolts/Bolts.h>
 #import "NIODataDragonSyncService.h"
-#import "GetRealmTask.h"
+#import "NIOGetRealmTask.h"
 #import "NIOContentProvider.h"
 #import "NIOContentResolver.h"
-#import "DataDragonContract.h"
+#import "NIODataDragonContract.h"
 #import "NIOTaskFactory.h"
 
 @interface NIODataDragonSyncService ()

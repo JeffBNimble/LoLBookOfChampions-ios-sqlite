@@ -10,6 +10,6 @@
 @class NIOLoLApiRequestOperationManager;
 
 
-@interface GetRealmTask : NSObject<NIOTask>
+@interface NIOGetRealmTask : NSObject<NIOTask>
 -(instancetype)initWithHTTPRequestOperationManager:(NIOLoLApiRequestOperationManager *)apiRequestOperationManager;
 @end

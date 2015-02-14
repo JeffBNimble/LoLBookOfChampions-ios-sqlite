@@ -1,5 +1,5 @@
 //
-// GetRealmTask / LoLBookOfChampions
+// NIOGetRealmTask / LoLBookOfChampions
 //
 // Created by Jeff Roberts on 1/23/15.
 // Copyright (c) 2015 Riot Games. All rights reserved.
@@ -9,17 +9,17 @@
 #import "AFHTTPRequestOperation.h"
 #import <Bolts/BFTask.h>
 #import <Bolts/BFTaskCompletionSource.h>
-#import "GetRealmTask.h"
+#import "NIOGetRealmTask.h"
 #import "LoLApiConstants.h"
 #import "NIOLoLApiRequestOperationManager.h"
 
 #define GET_REALM_PATH_FORMAT	@"/api/lol/static-data/%@/%@/realm"
 
-@interface GetRealmTask ()
+@interface NIOGetRealmTask ()
 @property (strong, nonatomic) NIOLoLApiRequestOperationManager *apiRequestOperationManager;
 @end
 
-@implementation GetRealmTask
+@implementation NIOGetRealmTask
 -(instancetype)initWithHTTPRequestOperationManager:(NIOLoLApiRequestOperationManager *)apiRequestOperationManager {
 	self = [super init];
 	if ( self ) {

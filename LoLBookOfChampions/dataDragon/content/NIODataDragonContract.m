@@ -1,16 +1,16 @@
 //
-// DataDragonContract / LoLBookOfChampions
+// NIODataDragonContract / LoLBookOfChampions
 //
 // Created by Jeff Roberts on 1/25/15.
 // Copyright (c) 2015 Riot Games. All rights reserved.
 //
 
 
-#import "DataDragonContract.h"
+#import "NIODataDragonContract.h"
 
 #define CONTENT_AUTHORITY_URL_STRING(CONTENT_AUTHORITY)		[NSString stringWithFormat:@"content://%@", CONTENT_AUTHORITY]
 
-@implementation DataDragonContract
+@implementation NIODataDragonContract
 
 static NSString *contentAuthorityBase;
 +(void)contentAuthorityBase:(NSString *)contentAuthority {
@@ -45,7 +45,7 @@ static NSString *contentAuthorityBase;
 +(NSURL *)URI {
 	static NSURL *uri;
 	if ( !uri ) {
-		uri = [[DataDragonContract CONTENT_URI] URLByAppendingPathComponent:@"champion"];
+		uri = [[NIODataDragonContract CONTENT_URI] URLByAppendingPathComponent:@"champion"];
 	}
 
 	return uri;
@@ -61,7 +61,7 @@ static NSString *contentAuthorityBase;
 +(NSURL *)URI {
 	static NSURL *uri;
 	if ( !uri ) {
-		uri = [[DataDragonContract CONTENT_URI] URLByAppendingPathComponent:@"realm"];
+		uri = [[NIODataDragonContract CONTENT_URI] URLByAppendingPathComponent:@"realm"];
 	}
 
 	return uri;

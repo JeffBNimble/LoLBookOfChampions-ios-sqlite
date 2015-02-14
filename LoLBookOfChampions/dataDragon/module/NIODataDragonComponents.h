@@ -8,7 +8,7 @@
 #import <FMDB/FMDB.h>
 
 @class NIOLoLApiRequestOperationManager;
-@class GetRealmTask;
+@class NIOGetRealmTask;
 @class NIODataDragonSyncService;
 @protocol NIOContentProvider;
 @class NIOCoreComponents;
@@ -19,7 +19,7 @@
 @interface NIODataDragonComponents : TyphoonAssembly
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
 
--(GetRealmTask *)getRealmTask;
+-(NIOGetRealmTask *)getRealmTask;
 -(NIODataDragonContentProvider *)dataDragonContentProvider;
 -(FMDatabase *)dataDragonSqliteDatabase;
 -(NIODataDragonSqliteOpenHelper *)dataDragonSqliteOpenHelper;
