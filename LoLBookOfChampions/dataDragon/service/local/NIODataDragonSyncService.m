@@ -53,7 +53,7 @@
 				continueWithBlock:^id(BFTask *task) {
 					DDLogInfo(@"Updated %@ realms", task.result);
 					return [self.contentResolver queryWithURL:[Realm URI]
-											   withProjection:nil
+											   withProjection:@[[RealmColumns COL_REALM_VERSION]]
 							 					withSelection:nil
 											withSelectionArgs:nil
 												  withGroupBy:nil

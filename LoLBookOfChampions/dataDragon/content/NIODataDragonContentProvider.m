@@ -102,7 +102,15 @@
 						withGroupBy:(NSString *)groupBy
 						 withHaving:(NSString *)having
 						   withSort:(NSString *)sort {
-	return [[self.taskFactory createTaskWithType:[NIOQueryRealmsTask class]] runAsync];
+	NIOQueryRealmsTask *queryTask = [self.taskFactory createTaskWithType:[NIOQueryRealmsTask class]];
+	queryTask.projection = projection;
+	queryTask.selection = selection;
+	queryTask.selectionArgs = selectionArgs;
+	queryTask.groupBy = groupBy;
+	queryTask.having = having;
+	queryTask.sort = sort;
+
+	return [queryTask runAsync];
 }
 
 -(NSInteger)updateWithURL:(NSURL *)url

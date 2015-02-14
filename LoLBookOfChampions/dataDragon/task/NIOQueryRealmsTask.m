@@ -7,24 +7,21 @@
 
 
 #import "NIOQueryRealmsTask.h"
-
-@interface NIOQueryRealmsTask ()
-@property (strong, nonatomic) FMDatabase *database;
-@end
+#import "NIODataDragonContract.h"
 
 @implementation NIOQueryRealmsTask
 -(instancetype)initWithDatabase:(FMDatabase *)database {
-	self = [super init];
+	self = [super initWithDatabase:database];
 	if ( self ) {
-		self.database = database;
+		self.table = [Realm DB_TABLE];
 	}
 
 	return self;
 }
 
 -(BFTask *)runAsync {
-	FMResultSet *resultSet = [self.database executeQuery:@"select count(*) as row_count from realm"];
-	return [BFTask taskWithResult:resultSet];
+	FMResultSet *cursor = [self executeQuery];
+	return cursor ? [BFTask taskWithResult:cursor] : [BFTask taskWithError:self.database.lastError];
 }
 
 @end
