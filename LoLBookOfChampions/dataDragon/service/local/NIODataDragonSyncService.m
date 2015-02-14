@@ -41,7 +41,6 @@
 	NSString *localDataDragonVersion;
 	if ( [cursor next] ) {
 		localDataDragonVersion = [cursor stringForColumn:[RealmColumns COL_REALM_VERSION]];
-		DDLogInfo(@"Found local Data Dragon version %@", localDataDragonVersion);
 	} else {
 		DDLogInfo(@"No local Data Dragon version found");
 		localDataDragonVersion = [@(NSNotFound) stringValue];
@@ -53,7 +52,9 @@
 }
 
 -(void)resync {
-	[[[BFTask taskFromExecutor:self.taskExecutor withBlock:^id {
+	DDLogInfo(@"Resyncing remote data dragon data with local database");
+
+	[[[[BFTask taskFromExecutor:self.taskExecutor withBlock:^id {
 		return [[self.taskFactory createTaskWithType:[NIOClearLocalDataDragonDataTask class]] runAsync];
 	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
 		if ( task.error ) {
@@ -71,10 +72,18 @@
 		NSDictionary *realmResponse = task.result;
 		NSString *remoteDataDragonVersion = realmResponse[@"v"];
 		DDLogInfo(@"Found remote data dragon version %@", remoteDataDragonVersion);
+		self.localDataDragonVersion = remoteDataDragonVersion;
 
 		NIOInsertDataDragonRealmTask *insertDataDragonRealmTask = [self.taskFactory createTaskWithType:[NIOInsertDataDragonRealmTask class]];
 		insertDataDragonRealmTask.remoteDataDragonRealmData = realmResponse;
 		return [insertDataDragonRealmTask runAsync];
+	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
+		if ( task.error ) {
+			DDLogError(@"An error occurred attempting to resync the remote data dragon data with the local database: %@", task.error);
+		} else {
+			DDLogInfo(@"Resync of remote data dragon data with the local database has completed successfully");
+		}
+		return nil;
 	}];
 }
 
@@ -82,13 +91,13 @@
 	self.localDataDragonVersion = nil;
 
 	[BFTask taskFromExecutor:self.taskExecutor withBlock:^id {
-		[[[self.contentResolver queryWithURL:[Realm URI]
-							  withProjection:@[[RealmColumns COL_REALM_VERSION]]
-							   withSelection:nil
-						   withSelectionArgs:nil
-								 withGroupBy:nil
-								  withHaving:nil
-									withSort:nil]
+		[[[[self.contentResolver queryWithURL:[Realm URI]
+							   withProjection:@[[RealmColumns COL_REALM_VERSION]]
+								withSelection:nil
+							withSelectionArgs:nil
+								  withGroupBy:nil
+								   withHaving:nil
+									 withSort:nil]
 				continueWithBlock:^id(BFTask *task) {
 					if ( task.error ) {
 						DDLogError(@"An error occurred retrieving the local data dragon realm info: %@", task.error);
@@ -97,19 +106,34 @@
 						return [BFTask taskWithResult:[self getLocalDataDragonVersion:task.result]];
 					}
 				}] continueWithBlock:^id(BFTask *task) {
-			if ( !task.error ) {
-				NSString *localDataDragonVersion = task.result;
-				if ( [[@(NSNotFound) stringValue] isEqualToString:localDataDragonVersion] ) {
-					[self resync];
-					return nil;
-				}
+					if ( task.error ) {
+						return task;
+					} else {
+						NSString *localDataDragonVersion = task.result;
+						if ( [[@(NSNotFound) stringValue] isEqualToString:localDataDragonVersion] ) {
+							[self resync];
+							return nil;
+						}
 
-				DDLogInfo(@"Found local data dragon version %@", localDataDragonVersion);
-				self.localDataDragonVersion = localDataDragonVersion;
-				return [[self.taskFactory createTaskWithType:[NIOGetRealmTask class]] runAsync];
-			}
-			return nil;
-		}];
+						DDLogInfo(@"Found local data dragon version %@", localDataDragonVersion);
+						self.localDataDragonVersion = localDataDragonVersion;
+						return [[self.taskFactory createTaskWithType:[NIOGetRealmTask class]] runAsync];
+					}
+				}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
+					if ( !task.error ) {
+						NSDictionary *remoteDataDragonRealmData = task.result;
+						NSString *remoteDataDragonVersion = remoteDataDragonRealmData[@"v"];
+						DDLogInfo(@"Found remote data dragon version %@", remoteDataDragonVersion);
+
+						if ( [self.localDataDragonVersion isEqualToString:remoteDataDragonVersion] ) {
+							DDLogInfo(@"Local data dragon version is the latest available");
+						} else {
+							[self resync];
+						}
+					}
+
+					return nil;
+				}];
 		return nil;
 	}];
 }
