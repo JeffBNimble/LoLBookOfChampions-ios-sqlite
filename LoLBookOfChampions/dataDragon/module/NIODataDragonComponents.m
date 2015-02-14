@@ -15,6 +15,10 @@
 #import "NIODataDragonContract.h"
 #import "NIODataDragonSqliteOpenHelper.h"
 #import "NIOQueryRealmsTask.h"
+#import "NIODeleteRealmsTask.h"
+#import "NIOClearLocalDataDragonDataTask.h"
+#import "NIOInsertRealmTask.h"
+#import "NIOInsertDataDragonRealmTask.h"
 #import <Typhoon/Typhoon.h>
 
 
@@ -22,6 +26,16 @@
 
 -(id)config {
 	return [TyphoonDefinition configDefinitionWithName:@"DataDragonConfiguration.plist"];
+}
+
+-(NIOClearLocalDataDragonDataTask *)clearLocalDataDragonDataTask {
+	return [TyphoonDefinition withClass:[NIOClearLocalDataDragonDataTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.coreComponents.contentResolver];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
 }
 
 -(NIODataDragonContentProvider *)dataDragonContentProvider {
@@ -62,10 +76,40 @@
 	}];
 }
 
+-(NIODeleteRealmsTask *)deleteRealmsTask {
+	return [TyphoonDefinition withClass:[NIODeleteRealmsTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
 -(NIOGetRealmTask *)getRealmTask {
 	return [TyphoonDefinition withClass:[NIOGetRealmTask class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(initWithHTTPRequestOperationManager:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.lolStaticDataApiRequestOperationManager];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
+-(NIOInsertDataDragonRealmTask *)insertDataDragonRealmTask {
+	return [TyphoonDefinition withClass:[NIOInsertDataDragonRealmTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.coreComponents.contentResolver];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
+-(NIOInsertRealmTask *)insertRealmTask {
+	return [TyphoonDefinition withClass:[NIOInsertRealmTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
 		}];
 
 		definition.scope = TyphoonScopePrototype;

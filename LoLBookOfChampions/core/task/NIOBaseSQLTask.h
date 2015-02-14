@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import <FMDB/FMDB.h>
+#import <Bolts/Bolts.h>
 
 #define SELECT				@"SELECT "
 #define DELETE				@"DELETE "
@@ -22,6 +23,11 @@
 @property (strong, nonatomic) NSString *selection;
 @property (strong, nonatomic) NSArray *selectionArgs;
 @property (strong, nonatomic) NSString *table;
+@property (strong, nonatomic) NSDictionary *values;
 
 -(instancetype)initWithDatabase:(FMDatabase *)database NS_DESIGNATED_INITIALIZER;
+
+-(BFTask *)asUpdateResult:(NSInteger)rowsUpdated;
+-(NSInteger)executeDelete;
+-(NSInteger)executeInsert;
 @end

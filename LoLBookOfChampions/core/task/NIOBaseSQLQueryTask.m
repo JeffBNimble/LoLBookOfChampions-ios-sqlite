@@ -19,6 +19,14 @@
 	return self;
 }
 
+-(BFTask *)asQueryResult:(FMResultSet *)queryResultSet {
+	return queryResultSet ? [BFTask taskWithResult:queryResultSet] : [BFTask taskWithError:self.database.lastError];
+}
+
+-(NSString *)createProjection:(NSArray *)projection {
+	return projection && projection.count ? [projection componentsJoinedByString:@","] : PROJECTION_ALL;
+}
+
 -(FMResultSet *)executeQuery {
 	NSMutableString *sqlStatement = [NSMutableString new];
 	[sqlStatement appendString:SELECT];
@@ -50,10 +58,4 @@
 									   withArgumentsInArray:self.selectionArgs] :
 		   [self.database executeQuery:sqlStatement];
 }
-
--(NSString *)createProjection:(NSArray *)projection {
-	return projection && projection.count ? [projection componentsJoinedByString:@","] : PROJECTION_ALL;
-}
-
-
 @end

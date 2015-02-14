@@ -12,6 +12,8 @@
 #import "NIODataDragonContract.h"
 #import "NIOTaskFactory.h"
 #import "NIOQueryRealmsTask.h"
+#import "NIODeleteRealmsTask.h"
+#import "NIOInsertRealmTask.h"
 #import <Bolts/Bolts.h>
 
 #define REALM_URI			1
@@ -36,18 +38,72 @@
 	return self;
 }
 
--(NSInteger)deleteWithURL:(NSURL *)url
+-(BFTask *)deleteRealmWithSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+	NIODeleteRealmsTask *deleteRealmsTask = [self.taskFactory createTaskWithType:[NIODeleteRealmsTask class]];
+	deleteRealmsTask.selection = selection;
+	deleteRealmsTask.selectionArgs = selectionArgs;
+	return [deleteRealmsTask runAsync];
+}
+
+-(NSInteger)deleteWithURL:(NSURL *)uri
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs
 				withError:(NSError **)error {
-	*error = [NSError errorWithDomain:@"content.provider.datadragon" code:27 userInfo:nil];
-	return 0;
+	BFTask *promise;
+	NSInteger matchedURI = [self.urlMatcher match:uri];
+	switch (matchedURI) {
+		case REALM_URI:
+			promise = [self deleteRealmWithSelection:selection withSelectionArgs:selectionArgs];
+			break;
+
+		default:
+			promise = [BFTask taskWithError:[NSError errorWithDomain:@"content.provider.datadragon"
+																code:99
+															userInfo:nil]];
+			DDLogError(@"Unmatched URI %@", [uri absoluteString]);
+	}
+
+	[promise waitUntilFinished];
+
+	if ( promise.error ) {
+		*error = promise.error;
+		return -1;
+	} else {
+		return [((NSNumber *) promise.result) integerValue];
+	}
 }
 
--(NSURL *)insertWithURL:(NSURL *)url
+-(BFTask *)insertRealmWithValues:(NSDictionary *)values {
+	NIOInsertRealmTask *insertRealmTask = [self.taskFactory createTaskWithType:[NIOInsertRealmTask class]];
+	insertRealmTask.values = values;
+	return [insertRealmTask runAsync];
+}
+
+-(NSURL *)insertWithURL:(NSURL *)uri
 			 withValues:(NSDictionary *)values
 			  withError:(NSError **)error {
-	return nil;
+	BFTask *promise;
+	NSInteger matchedURI = [self.urlMatcher match:uri];
+	switch (matchedURI) {
+		case REALM_URI:
+			promise = [self insertRealmWithValues:values];
+			break;
+
+		default:
+			promise = [BFTask taskWithError:[NSError errorWithDomain:@"content.provider.datadragon"
+																code:99
+															userInfo:nil]];
+			DDLogError(@"Unmatched URI %@", [uri absoluteString]);
+	}
+
+	[promise waitUntilFinished];
+
+	if ( promise.error ) {
+		*error = promise.error;
+		return nil;
+	} else {
+		return uri;
+	}
 }
 
 -(void)onCreate {

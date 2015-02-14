@@ -15,15 +15,23 @@
 @class NIODataDragonContentProvider;
 @class NIODataDragonSqliteOpenHelper;
 @class NIOQueryRealmsTask;
+@class NIODeleteRealmsTask;
+@class NIOClearLocalDataDragonDataTask;
+@class NIOInsertRealmTask;
+@class NIOInsertDataDragonRealmTask;
 
 @interface NIODataDragonComponents : TyphoonAssembly
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
 
--(NIOGetRealmTask *)getRealmTask;
+-(NIOClearLocalDataDragonDataTask *)clearLocalDataDragonDataTask;
 -(NIODataDragonContentProvider *)dataDragonContentProvider;
 -(FMDatabase *)dataDragonSqliteDatabase;
 -(NIODataDragonSqliteOpenHelper *)dataDragonSqliteOpenHelper;
 -(NIODataDragonSyncService *)dataDragonSyncService;
+-(NIODeleteRealmsTask *)deleteRealmsTask;
+-(NIOGetRealmTask *)getRealmTask;
+-(NIOInsertDataDragonRealmTask *)insertDataDragonRealmTask;
+-(NIOInsertRealmTask *)insertRealmTask;
 -(NIOLoLApiRequestOperationManager *)lolStaticDataApiRequestOperationManager;
 -(NIOQueryRealmsTask *)queryRealmsTask;
 @end

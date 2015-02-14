@@ -31,18 +31,18 @@
 
 -(BFTask *)runAsync {
 
-	BFTaskCompletionSource *future = [BFTaskCompletionSource taskCompletionSource];
+	BFTaskCompletionSource *promise = [BFTaskCompletionSource taskCompletionSource];
 
 	[self.apiRequestOperationManager GET:[NSString stringWithFormat:GET_REALM_PATH_FORMAT, PLACEHOLDER_REGION, PLACEHOLDER_API_VERSION]
 							  parameters:nil
 								 success:^(NSURLSessionDataTask *sessionDataTask, id responseObject) {
-									 [future setResult:responseObject];
+									 [promise setResult:responseObject];
 								 }
 								 failure:^(NSURLSessionDataTask *sessionDataTask, NSError *error) {
-									 [future setError:error];
+									 [promise setError:error];
 								 }];
 
-	return future.task;
+	return promise.task;
 }
 
 @end

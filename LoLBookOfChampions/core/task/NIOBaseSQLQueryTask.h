@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NIOBaseSQLTask.h"
+#import <Bolts/Bolts.h>
 
 
 @interface NIOBaseSQLQueryTask : NIOBaseSQLTask
@@ -14,6 +15,8 @@
 @property (strong, nonatomic) NSString *sort;
 
 -(instancetype)initWithDatabase:(FMDatabase *)database NS_DESIGNATED_INITIALIZER;
+
+-(BFTask *)asQueryResult:(FMResultSet *)queryResultSet;
 -(FMResultSet *)executeQuery;
 
 @end
