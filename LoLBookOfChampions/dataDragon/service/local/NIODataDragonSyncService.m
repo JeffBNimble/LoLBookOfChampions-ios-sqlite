@@ -14,8 +14,11 @@
 #import "NIOTaskFactory.h"
 #import "NIOClearLocalDataDragonDataTask.h"
 #import "NIOInsertDataDragonRealmTask.h"
+#import "NIOGetChampionStaticDataTask.h"
+#import "NIOInsertDataDragonChampionDataTask.h"
 
 @interface NIODataDragonSyncService ()
+@property (strong, nonatomic) NSString *dataDragonCDN;
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
 @property (strong, nonatomic) NSString *localDataDragonVersion;
 @property (retain, nonatomic) dispatch_queue_t taskExecutionQueue;
@@ -37,6 +40,10 @@
 	return self;
 }
 
+-(BFTask *)getChampionStaticData {
+	return [[self.taskFactory createTaskWithType:[NIOGetChampionStaticDataTask class]] runAsync];
+}
+
 -(NSString *)getLocalDataDragonVersion:(FMResultSet *)cursor {
 	NSString *localDataDragonVersion;
 	if ( [cursor next] ) {
@@ -51,10 +58,30 @@
 	return localDataDragonVersion;
 }
 
+-(BFTask *)insertChampionStaticDataWithRemoteChampionData:(NSDictionary *)championResponse {
+	NIOInsertDataDragonChampionDataTask *insertChampionDataTask = [self.taskFactory createTaskWithType:[NIOInsertDataDragonChampionDataTask class]];
+	insertChampionDataTask.remoteDataDragonChampionData = championResponse;
+	insertChampionDataTask.dataDragonCDN = [NSURL URLWithString:self.dataDragonCDN];
+	insertChampionDataTask.dataDragonRealmVersion = self.localDataDragonVersion;
+
+	return [insertChampionDataTask runAsync];
+}
+
+-(BFTask *)insertRealmWithRemoteRealmData:(NSDictionary *)realmResponse {
+	NSString *remoteDataDragonVersion = realmResponse[@"v"];
+	DDLogInfo(@"Found remote data dragon version %@", remoteDataDragonVersion);
+	self.localDataDragonVersion = remoteDataDragonVersion;
+	self.dataDragonCDN = realmResponse[@"cdn"];
+
+	NIOInsertDataDragonRealmTask *insertDataDragonRealmTask = [self.taskFactory createTaskWithType:[NIOInsertDataDragonRealmTask class]];
+	insertDataDragonRealmTask.remoteDataDragonRealmData = realmResponse;
+	return [insertDataDragonRealmTask runAsync];
+}
+
 -(void)resync {
 	DDLogInfo(@"Resyncing remote data dragon data with local database");
 
-	[[[[BFTask taskFromExecutor:self.taskExecutor withBlock:^id {
+	[[[[[[BFTask taskFromExecutor:self.taskExecutor withBlock:^id {
 		return [[self.taskFactory createTaskWithType:[NIOClearLocalDataDragonDataTask class]] runAsync];
 	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
 		if ( task.error ) {
@@ -69,14 +96,11 @@
 			return nil;
 		}
 
-		NSDictionary *realmResponse = task.result;
-		NSString *remoteDataDragonVersion = realmResponse[@"v"];
-		DDLogInfo(@"Found remote data dragon version %@", remoteDataDragonVersion);
-		self.localDataDragonVersion = remoteDataDragonVersion;
-
-		NIOInsertDataDragonRealmTask *insertDataDragonRealmTask = [self.taskFactory createTaskWithType:[NIOInsertDataDragonRealmTask class]];
-		insertDataDragonRealmTask.remoteDataDragonRealmData = realmResponse;
-		return [insertDataDragonRealmTask runAsync];
+		return [self insertRealmWithRemoteRealmData:task.result];
+	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
+		return [self getChampionStaticData];
+	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
+		return task.error ? task : [self insertChampionStaticDataWithRemoteChampionData:task.result];
 	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
 		if ( task.error ) {
 			DDLogError(@"An error occurred attempting to resync the remote data dragon data with the local database: %@", task.error);

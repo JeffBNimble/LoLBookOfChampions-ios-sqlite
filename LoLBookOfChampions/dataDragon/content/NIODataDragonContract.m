@@ -100,6 +100,10 @@ static NSString *contentAuthorityBase;
 	return [ChampionColumns COL_ID];
 }
 
++(NSString *)COL_ID {
+	return @"skin_id";
+}
+
 +(NSString *)COL_LOADING_IMAGE_URL {
 	return @"loading_image_url";
 }

@@ -33,6 +33,7 @@
 
 @interface ChampionSkinColumns : NSObject
 +(NSString *)COL_CHAMPION_ID;
++(NSString *)COL_ID;
 +(NSString *)COL_LOADING_IMAGE_URL;
 +(NSString *)COL_NAME;
 +(NSString *)COL_SKIN_NUMBER;

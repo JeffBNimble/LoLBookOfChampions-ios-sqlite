@@ -50,6 +50,7 @@
 	NSString *sql = @"CREATE TABLE %@ "
 			"(%@ INTEGER NOT NULL, "
 			"%@ INTEGER NOT NULL, "
+			"%@ INTEGER NOT NULL, "
 			"%@ TEXT NOT NULL, "
 			"%@ TEXT NOT NULL, "
 			"%@ TEXT NOT NULL, "
@@ -58,6 +59,7 @@
 
 	[database executeUpdate:[NSString stringWithFormat:sql,
 													   [ChampionSkin DB_TABLE],
+													   [ChampionSkinColumns COL_ID],
 													   [ChampionSkinColumns COL_CHAMPION_ID],
 													   [ChampionSkinColumns COL_SKIN_NUMBER],
 													   [ChampionSkinColumns COL_NAME],

@@ -24,6 +24,8 @@
 #import "NIODeleteChampionSkinTask.h"
 #import "NIOInsertChampionTask.h"
 #import "NIOInsertChampionSkinTask.h"
+#import "NIODataDragonCDNRequestOperationManager.h"
+#import "NIOInsertDataDragonChampionDataTask.h"
 #import <Typhoon/Typhoon.h>
 
 
@@ -40,6 +42,17 @@
 		}];
 
 		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
+-(NIODataDragonCDNRequestOperationManager *)dataDragonCDNRequestOperationManager {
+	return [TyphoonDefinition withClass:[NIODataDragonCDNRequestOperationManager class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithSessionConfiguration:completionQueue:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:[NSURLSessionConfiguration defaultSessionConfiguration]];
+			[initializer injectParameterWith:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)];
+		}];
+
+		definition.scope = TyphoonScopeWeakSingleton;
 	}];
 }
 
@@ -133,8 +146,8 @@
 
 -(NIOInsertChampionTask *)insertChampionTask {
 	return [TyphoonDefinition withClass:[NIOInsertChampionTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
-			[initializer injectParameterWith:self.coreComponents.contentResolver];
+		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
 		}];
 
 		definition.scope = TyphoonScopePrototype;
@@ -143,6 +156,16 @@
 
 -(NIOInsertChampionSkinTask *)insertChampionSkinTask {
 	return [TyphoonDefinition withClass:[NIOInsertChampionSkinTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
+-(NIOInsertDataDragonChampionDataTask *)insertDataDragonChampionDataTask {
+	return [TyphoonDefinition withClass:[NIOInsertDataDragonChampionDataTask class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.coreComponents.contentResolver];
 		}];
@@ -176,7 +199,7 @@
 		[definition useInitializer:@selector(initWithBaseURL:sessionConfiguration:completionQueue:apiKey:region:apiVersion:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:TyphoonConfig(@"global.endpoint")];
 			[initializer injectParameterWith:[NSURLSessionConfiguration defaultSessionConfiguration]];
-			[initializer injectParameterWith:dispatch_queue_create("io.nimblenoggin.lol.staticdata", DISPATCH_QUEUE_CONCURRENT)];
+			[initializer injectParameterWith:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)];
 			[initializer injectParameterWith:TyphoonConfig(@"api.key")];
 			[initializer injectParameterWith:TyphoonConfig(@"lol.region")];
 			[initializer injectParameterWith:TyphoonConfig(@"static.data.api.version")];
