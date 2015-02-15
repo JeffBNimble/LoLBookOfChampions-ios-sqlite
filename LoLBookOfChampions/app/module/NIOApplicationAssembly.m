@@ -44,7 +44,7 @@
 
 - (ViewController *)viewController {
     return [TyphoonDefinition withClass:[ViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectProperty:@selector(getRealmTask) with:self.dataDragonComponents.getRealmTask];
+        [definition injectProperty:@selector(getChampionStaticDataTask) with:self.dataDragonComponents.getChampionStaticDataTask];
     }];
 }
 

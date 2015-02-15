@@ -19,6 +19,7 @@
 @class NIOClearLocalDataDragonDataTask;
 @class NIOInsertRealmTask;
 @class NIOInsertDataDragonRealmTask;
+@class NIOGetChampionStaticDataTask;
 
 @interface NIODataDragonComponents : TyphoonAssembly
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
@@ -29,6 +30,7 @@
 -(NIODataDragonSqliteOpenHelper *)dataDragonSqliteOpenHelper;
 -(NIODataDragonSyncService *)dataDragonSyncService;
 -(NIODeleteRealmsTask *)deleteRealmsTask;
+-(NIOGetChampionStaticDataTask *)getChampionStaticDataTask;
 -(NIOGetRealmTask *)getRealmTask;
 -(NIOInsertDataDragonRealmTask *)insertDataDragonRealmTask;
 -(NIOInsertRealmTask *)insertRealmTask;

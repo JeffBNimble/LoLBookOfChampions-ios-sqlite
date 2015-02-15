@@ -10,6 +10,7 @@
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import "NIOGetRealmTask.h"
 #import "ViewController.h"
+#import "NIOGetChampionStaticDataTask.h"
 
 @interface ViewController ()
 
@@ -17,14 +18,10 @@
 
 @implementation ViewController
 
--(void)setGetRealmTask:(NIOGetRealmTask *)getRealmTask {
-    _getRealmTask = getRealmTask;
-}
-
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [[self.getRealmTask runAsync] continueWithBlock:^id(BFTask *task) {
+    [[self.getChampionStaticDataTask runAsync] continueWithBlock:^id(BFTask *task) {
         if ( task.error ) {
             DDLogError(@"An error occurred: %@", task.error.description);
         } else {

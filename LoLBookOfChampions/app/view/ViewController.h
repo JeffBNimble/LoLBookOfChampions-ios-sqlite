@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class NIOGetRealmTask;
+@class NIOGetChampionStaticDataTask;
 
 @interface ViewController : UIViewController
-@property (strong, nonatomic) NIOGetRealmTask *getRealmTask;
+@property (strong, nonatomic) NIOGetChampionStaticDataTask *getChampionStaticDataTask;
 
 @end
 

@@ -19,6 +19,7 @@
 #import "NIOClearLocalDataDragonDataTask.h"
 #import "NIOInsertRealmTask.h"
 #import "NIOInsertDataDragonRealmTask.h"
+#import "NIOGetChampionStaticDataTask.h"
 #import <Typhoon/Typhoon.h>
 
 
@@ -80,6 +81,16 @@
 	return [TyphoonDefinition withClass:[NIODeleteRealmsTask class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
+-(NIOGetChampionStaticDataTask *)getChampionStaticDataTask {
+	return [TyphoonDefinition withClass:[NIOGetChampionStaticDataTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithHTTPRequestOperationManager:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.lolStaticDataApiRequestOperationManager];
 		}];
 
 		definition.scope = TyphoonScopePrototype;

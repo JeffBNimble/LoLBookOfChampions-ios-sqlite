@@ -112,24 +112,24 @@
 						NSString *localDataDragonVersion = task.result;
 						if ( [[@(NSNotFound) stringValue] isEqualToString:localDataDragonVersion] ) {
 							[self resync];
-							return nil;
+							return [BFTask taskWithError:[NSError errorWithDomain:@"datadragon.content"
+																			 code:1
+																		 userInfo:nil]];
 						}
 
 						DDLogInfo(@"Found local data dragon version %@", localDataDragonVersion);
 						self.localDataDragonVersion = localDataDragonVersion;
 						return [[self.taskFactory createTaskWithType:[NIOGetRealmTask class]] runAsync];
 					}
-				}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
-					if ( !task.error ) {
-						NSDictionary *remoteDataDragonRealmData = task.result;
-						NSString *remoteDataDragonVersion = remoteDataDragonRealmData[@"v"];
-						DDLogInfo(@"Found remote data dragon version %@", remoteDataDragonVersion);
+				}] continueWithExecutor:self.taskExecutor withSuccessBlock:^id(BFTask *task) {
+					NSDictionary *remoteDataDragonRealmData = task.result;
+					NSString *remoteDataDragonVersion = remoteDataDragonRealmData[@"v"];
+					DDLogInfo(@"Found remote data dragon version %@", remoteDataDragonVersion);
 
-						if ( [self.localDataDragonVersion isEqualToString:remoteDataDragonVersion] ) {
-							DDLogInfo(@"Local data dragon version is the latest available");
-						} else {
-							[self resync];
-						}
+					if ( [self.localDataDragonVersion isEqualToString:remoteDataDragonVersion] ) {
+						DDLogInfo(@"Local data dragon version is the latest available");
+					} else {
+						[self resync];
 					}
 
 					return nil;

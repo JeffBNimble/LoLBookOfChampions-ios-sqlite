@@ -19,6 +19,55 @@
 	return self;
 }
 
+-(void)createChampionTable:(FMDatabase *)database {
+	NSString *sql = @"CREATE TABLE %@ "
+			"(%@ INTEGER NOT NULL PRIMARY KEY, "
+			"%@ TEXT NOT NULL, "
+			"%@ TEXT NOT NULL, "
+			"%@ TEXT NOT NULL, "
+			"%@ TEXT NOT NULL, "
+			"%@ TEXT NOT NULL "
+			") ";
+
+	[database executeUpdate:[NSString stringWithFormat:sql,
+													   [Champion DB_TABLE],
+													   [ChampionColumns COL_ID],
+													   [ChampionColumns COL_NAME],
+													   [ChampionColumns COL_TITLE],
+													   [ChampionColumns COL_BLURB],
+													   [ChampionColumns COL_KEY],
+													   [ChampionColumns COL_IMAGE_URL]
+	]];
+
+	sql = @"CREATE INDEX %@ ON %@ (%@)";
+	[database executeUpdate:[NSString stringWithFormat:sql,
+													   @"champion_idx_01",
+													   [Champion DB_TABLE],
+													   [ChampionColumns COL_NAME]]];
+}
+
+-(void)createChampionSkinTable:(FMDatabase *)database {
+	NSString *sql = @"CREATE TABLE %@ "
+			"(%@ INTEGER NOT NULL, "
+			"%@ INTEGER NOT NULL, "
+			"%@ TEXT NOT NULL, "
+			"%@ TEXT NOT NULL, "
+			"%@ TEXT NOT NULL, "
+			"PRIMARY KEY(%@, %@)"
+			") ";
+
+	[database executeUpdate:[NSString stringWithFormat:sql,
+													   [ChampionSkin DB_TABLE],
+													   [ChampionSkinColumns COL_CHAMPION_ID],
+													   [ChampionSkinColumns COL_SKIN_NUMBER],
+													   [ChampionSkinColumns COL_NAME],
+													   [ChampionSkinColumns COL_SPLASH_IMAGE_URL],
+													   [ChampionSkinColumns COL_LOADING_IMAGE_URL],
+													   [ChampionSkinColumns COL_CHAMPION_ID],
+													   [ChampionSkinColumns COL_SKIN_NUMBER]
+	]];
+}
+
 -(void)createRealmTable:(FMDatabase *)database {
 	NSString *sql = @"CREATE TABLE %@ "
 			"(%@ TEXT NOT NULL, "
@@ -58,6 +107,8 @@
 	[super onCreate:database];
 
 	[self createRealmTable:database];
+	[self createChampionTable:database];
+	[self createChampionSkinTable:database];
 }
 
 -(void)onDowngrade:(FMDatabase *)database fromOldVersion:(NSInteger)oldVersion toNewVersion:(NSInteger)newVersion {
@@ -76,6 +127,8 @@
 	FMDatabase *db = self.database;
 
 	[db executeUpdate:[NSString stringWithFormat:@"DROP TABLE IF EXISTS %@", Realm.DB_TABLE]];
+	[db executeUpdate:[NSString stringWithFormat:@"DROP TABLE IF EXISTS %@", Champion.DB_TABLE]];
+	[db executeUpdate:[NSString stringWithFormat:@"DROP TABLE IF EXISTS %@", ChampionSkin.DB_TABLE]];
 }
 
 

@@ -53,6 +53,71 @@ static NSString *contentAuthorityBase;
 
 @end
 
+@implementation ChampionColumns
++(NSString *)COL_BLURB {
+	return @"blurb";
+}
+
++(NSString *)COL_ID {
+	return @"champion_id";
+}
+
++(NSString *)COL_IMAGE_URL {
+	return @"image_url";
+}
+
++(NSString *)COL_KEY {
+	return @"key";
+}
+
++(NSString *)COL_NAME {
+	return @"name";
+}
+
++(NSString *)COL_TITLE {
+	return @"title";
+}
+@end
+
+@implementation ChampionSkin
++(NSString *)DB_TABLE {
+	return @"champion_skin";
+}
+
++(NSURL *)URI {
+	static NSURL *uri;
+	if ( !uri ) {
+		uri = [[Champion URI] URLByAppendingPathComponent:@"skin"];
+	}
+
+	return uri;
+}
+
+@end
+
+@implementation ChampionSkinColumns
++(NSString *)COL_CHAMPION_ID {
+	return [ChampionColumns COL_ID];
+}
+
++(NSString *)COL_LOADING_IMAGE_URL {
+	return @"loading_image_url";
+}
+
++(NSString *)COL_NAME {
+	return [ChampionColumns COL_NAME];
+}
+
++(NSString *)COL_SKIN_NUMBER {
+	return @"skin_number";
+}
+
++(NSString *)COL_SPLASH_IMAGE_URL {
+	return @"splash_image_url";
+}
+
+@end
+
 @implementation Realm
 +(NSString *)DB_TABLE {
 	return @"realm";

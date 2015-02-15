@@ -17,6 +17,28 @@
 +(NSURL *)URI;
 @end
 
+@interface ChampionColumns : NSObject
++(NSString *)COL_BLURB;
++(NSString *)COL_ID;
++(NSString *)COL_IMAGE_URL;
++(NSString *)COL_KEY;
++(NSString *)COL_NAME;
++(NSString *)COL_TITLE;
+@end
+
+@interface ChampionSkin : NSObject
++(NSString *)DB_TABLE;
++(NSURL *)URI;
+@end
+
+@interface ChampionSkinColumns : NSObject
++(NSString *)COL_CHAMPION_ID;
++(NSString *)COL_LOADING_IMAGE_URL;
++(NSString *)COL_NAME;
++(NSString *)COL_SKIN_NUMBER;
++(NSString *)COL_SPLASH_IMAGE_URL;
+@end
+
 @interface Realm : NSObject
 +(NSString *)DB_TABLE;
 +(NSURL *)URI;

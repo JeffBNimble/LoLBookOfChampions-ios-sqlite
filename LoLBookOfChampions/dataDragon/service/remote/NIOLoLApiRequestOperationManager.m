@@ -51,7 +51,7 @@
 
 -(id)addLoLParameters:(id)parameters {
 	if ( parameters == nil ) parameters = [NSMutableDictionary new];
-	if ( [parameters isMemberOfClass:[NSDictionary class]] ) parameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+	if ( [parameters isKindOfClass:[NSDictionary class]] ) parameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
 
 	parameters[@"api_key"] = self.apiKey;
 
