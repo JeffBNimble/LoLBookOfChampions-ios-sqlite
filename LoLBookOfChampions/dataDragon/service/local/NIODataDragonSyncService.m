@@ -16,6 +16,7 @@
 #import "NIOInsertDataDragonRealmTask.h"
 #import "NIOGetChampionStaticDataTask.h"
 #import "NIOInsertDataDragonChampionDataTask.h"
+#import "NIOCacheChampionImagesTask.h"
 
 @interface NIODataDragonSyncService ()
 @property (strong, nonatomic) NSString *dataDragonCDN;
@@ -38,6 +39,12 @@
 	}
 
 	return self;
+}
+
+-(BFTask *)cacheChampionImagesWithImageURLs:(NSArray *)cacheableImageURLs {
+	NIOCacheChampionImagesTask *cacheTask = [self.taskFactory createTaskWithType:[NIOCacheChampionImagesTask class]];
+	cacheTask.cacheableImageURLs = cacheableImageURLs;
+	return [cacheTask runAsync];
 }
 
 -(BFTask *)getChampionStaticData {
@@ -81,7 +88,7 @@
 -(void)resync {
 	DDLogInfo(@"Resyncing remote data dragon data with local database");
 
-	[[[[[[BFTask taskFromExecutor:self.taskExecutor withBlock:^id {
+	[[[[[[[BFTask taskFromExecutor:self.taskExecutor withBlock:^id {
 		return [[self.taskFactory createTaskWithType:[NIOClearLocalDataDragonDataTask class]] runAsync];
 	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
 		if ( task.error ) {
@@ -102,8 +109,10 @@
 	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
 		return task.error ? task : [self insertChampionStaticDataWithRemoteChampionData:task.result];
 	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
-		if ( task.error ) {
-			DDLogError(@"An error occurred attempting to resync the remote data dragon data with the local database: %@", task.error);
+		return task.error ? task : [self cacheChampionImagesWithImageURLs:task.result];
+	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
+		if ( task.error || task.exception ) {
+			DDLogError(@"An error occurred attempting to resync the remote data dragon data with the local database: %@", task.error ? task.error : task.exception);
 		} else {
 			DDLogInfo(@"Resync of remote data dragon data with the local database has completed successfully");
 		}

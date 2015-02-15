@@ -26,10 +26,12 @@
 @class NIOInsertChampionSkinTask;
 @class NIODataDragonCDNRequestOperationManager;
 @class NIOInsertDataDragonChampionDataTask;
+@class NIOCacheChampionImagesTask;
 
 @interface NIODataDragonComponents : TyphoonAssembly
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
 
+-(NIOCacheChampionImagesTask *)cacheChampionImagesTask;
 -(NIOClearLocalDataDragonDataTask *)clearLocalDataDragonDataTask;
 -(NIODataDragonCDNRequestOperationManager *)dataDragonCDNRequestOperationManager;
 -(NIODataDragonContentProvider *)dataDragonContentProvider;

@@ -12,6 +12,7 @@
 
 @interface NIOInsertDataDragonChampionDataTask ()
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
+@property (strong, nonatomic) NSMutableArray *imageURLs;
 @end
 
 @implementation NIOInsertDataDragonChampionDataTask
@@ -19,13 +20,16 @@
 	self = [super init];
 	if ( self ) {
 		self.contentResolver = contentResolver;
+		self.imageURLs = [[NSMutableArray alloc] initWithCapacity:2000];
 	}
 
 	return self;
 }
 
 -(NSDictionary *)championInsertValuesFrom:(NSDictionary *)championData {
-	NSURL *imageURL = [self.dataDragonCDN URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/img/champion/%@", self.dataDragonRealmVersion, championData[@"name"]]];
+	NSURL *imageURL = [self.dataDragonCDN URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/img/champion/%@.png", self.dataDragonRealmVersion, championData[@"key"]]];
+	NSString *imageURLString = [imageURL absoluteString];
+	[self.imageURLs addObject:imageURLString];
 
 	NSMutableDictionary *values = [NSMutableDictionary new];
 	values[[ChampionColumns COL_ID]] = championData[@"id"];
@@ -33,25 +37,30 @@
 	values[[ChampionColumns COL_KEY]] = championData[@"key"];
 	values[[ChampionColumns COL_BLURB]] = championData[@"blurb"];
 	values[[ChampionColumns COL_TITLE]] = championData[@"title"];
-	values[[ChampionColumns COL_IMAGE_URL]] = [imageURL absoluteString];
+	values[[ChampionColumns COL_IMAGE_URL]] = imageURLString;
 
 	return values;
 }
 
 -(NSDictionary *)championSkinInsertValuesFrom:(NSDictionary *)championSkinData
 							   withChampionId:(NSNumber *)championId
-							 withChampionName:(NSString *)championName {
+							 withChampionName:(NSString *)championKey {
 	NSNumber *skinNumber = championSkinData[@"num"];
-	NSURL *splashImageURL = [self.dataDragonCDN URLByAppendingPathComponent:[NSString stringWithFormat:@"img/champion/splash/%@_%@", championName, skinNumber]];
-	NSURL *loadingImageURL = [self.dataDragonCDN URLByAppendingPathComponent:[NSString stringWithFormat:@"img/champion/loading/%@_%@", championName, skinNumber]];
+	NSURL *splashImageURL = [self.dataDragonCDN URLByAppendingPathComponent:[NSString stringWithFormat:@"img/champion/splash/%@_%@.jpg", championKey, skinNumber]];
+	NSString *splashImageURLString = [splashImageURL absoluteString];
+	NSURL *loadingImageURL = [self.dataDragonCDN URLByAppendingPathComponent:[NSString stringWithFormat:@"img/champion/loading/%@_%@.jpg", championKey, skinNumber]];
+	NSString *loadingImageURLString = [loadingImageURL absoluteString];
+
+	[self.imageURLs addObject:splashImageURLString];
+	[self.imageURLs addObject:loadingImageURLString];
 
 	NSMutableDictionary *values = [NSMutableDictionary new];
 	values[[ChampionSkinColumns COL_ID]] = championSkinData[@"id"];
 	values[[ChampionSkinColumns COL_CHAMPION_ID]] = championId;
 	values[[ChampionSkinColumns COL_SKIN_NUMBER]] = skinNumber;
 	values[[ChampionSkinColumns COL_NAME]] = championSkinData[@"name"];
-	values[[ChampionSkinColumns COL_SPLASH_IMAGE_URL]] = [splashImageURL absoluteString];
-	values[[ChampionSkinColumns COL_LOADING_IMAGE_URL]] = [loadingImageURL absoluteString];
+	values[[ChampionSkinColumns COL_SPLASH_IMAGE_URL]] = splashImageURLString;
+	values[[ChampionSkinColumns COL_LOADING_IMAGE_URL]] = loadingImageURLString;
 
 	return values;
 }
@@ -62,25 +71,25 @@
 	for ( NSString *key in [allChampionData allKeys] ) {
 		NSDictionary *championData = allChampionData[key];
 		NSNumber *championId = championData[@"id"];
-		NSString *championName = championData[@"name"];
+		NSString *championKey = championData[@"key"];
 		NSDictionary *championSkinsData = championData[@"skins"];
 
-		DDLogVerbose(@"Inserting champion info for %@", championName);
+		DDLogVerbose(@"Inserting champion info for %@", championKey);
 		[[self.contentResolver insertWithURL:[Champion URI]
 								  withValues:[self championInsertValuesFrom:championData]]
 				waitUntilFinished];
 
 		for ( NSDictionary *championSkinData in championSkinsData ) {
-			DDLogVerbose(@"Inserting champion skin %@ for %@", championSkinData[@"name"], championName);
+			DDLogVerbose(@"Inserting champion skin %@ for %@", championSkinData[@"name"], championKey);
 			[[self.contentResolver insertWithURL:[ChampionSkin URI]
 									  withValues:[self championSkinInsertValuesFrom:championSkinData
 																	 withChampionId:championId
-																   withChampionName:championName]]
+																   withChampionName:championKey]]
 					waitUntilFinished];
 		}
 	}
 
-	return [BFTask taskWithResult:@(allChampionData.count)];
+	return [BFTask taskWithResult:self.imageURLs];
 }
 
 @end

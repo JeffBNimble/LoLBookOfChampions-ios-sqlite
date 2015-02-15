@@ -26,6 +26,7 @@
 #import "NIOInsertChampionSkinTask.h"
 #import "NIODataDragonCDNRequestOperationManager.h"
 #import "NIOInsertDataDragonChampionDataTask.h"
+#import "NIOCacheChampionImagesTask.h"
 #import <Typhoon/Typhoon.h>
 
 
@@ -34,6 +35,17 @@
 -(id)config {
 	return [TyphoonDefinition configDefinitionWithName:@"DataDragonConfiguration.plist"];
 }
+
+-(NIOCacheChampionImagesTask *)cacheChampionImagesTask {
+	return [TyphoonDefinition withClass:[NIOCacheChampionImagesTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithRequestOperationManager:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.dataDragonCDNRequestOperationManager];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
 
 -(NIOClearLocalDataDragonDataTask *)clearLocalDataDragonDataTask {
 	return [TyphoonDefinition withClass:[NIOClearLocalDataDragonDataTask class] configuration:^(TyphoonDefinition *definition) {
