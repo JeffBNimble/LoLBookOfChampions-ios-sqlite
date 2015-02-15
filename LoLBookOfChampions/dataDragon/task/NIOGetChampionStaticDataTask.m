@@ -30,7 +30,7 @@
 	BFTaskCompletionSource *promise = [BFTaskCompletionSource taskCompletionSource];
 
 	[self.apiRequestOperationManager GET:[NSString stringWithFormat:GET_CHAMPION_PATH_FORMAT, PLACEHOLDER_REGION, PLACEHOLDER_API_VERSION]
-							  parameters:@{@"champData":@"blurb,image,skins"}
+							  parameters:@{@"champData":@"blurb,skins"}
 								 success:^(NSURLSessionDataTask *sessionDataTask, id responseObject) {
 									 [promise setResult:responseObject];
 								 }

@@ -16,6 +16,8 @@
 #import "NIOInsertRealmTask.h"
 #import "NIODeleteChampionSkinTask.h"
 #import "NIODeleteChampionTask.h"
+#import "NIOInsertChampionTask.h"
+#import "NIOInsertChampionSkinTask.h"
 #import <Bolts/Bolts.h>
 
 #define REALM_URI			1
@@ -98,6 +100,18 @@
 	}
 }
 
+-(BFTask *)insertChampionWithValues:(NSDictionary *)values {
+	NIOInsertChampionTask *insertChampionTask = [self.taskFactory createTaskWithType:[NIOInsertChampionTask class]];
+	insertChampionTask.values = values;
+	return [insertChampionTask runAsync];
+}
+
+-(BFTask *)insertChampionSkinWithValues:(NSDictionary *)values {
+	NIOInsertChampionSkinTask *insertChampionSkinTask = [self.taskFactory createTaskWithType:[NIOInsertChampionSkinTask class]];
+	insertChampionSkinTask.values = values;
+	return [insertChampionSkinTask runAsync];
+}
+
 -(BFTask *)insertRealmWithValues:(NSDictionary *)values {
 	NIOInsertRealmTask *insertRealmTask = [self.taskFactory createTaskWithType:[NIOInsertRealmTask class]];
 	insertRealmTask.values = values;
@@ -112,6 +126,14 @@
 	switch (matchedURI) {
 		case REALM_URI:
 			promise = [self insertRealmWithValues:values];
+			break;
+
+		case CHAMPIONS_URI:
+			promise = [self insertChampionWithValues:values];
+			break;
+
+		case CHAMPION_SKINS_URI:
+			promise = [self insertChampionSkinWithValues:values];
 			break;
 
 		default:

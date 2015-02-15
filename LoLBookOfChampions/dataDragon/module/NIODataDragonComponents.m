@@ -22,6 +22,8 @@
 #import "NIOGetChampionStaticDataTask.h"
 #import "NIODeleteChampionTask.h"
 #import "NIODeleteChampionSkinTask.h"
+#import "NIOInsertChampionTask.h"
+#import "NIOInsertChampionSkinTask.h"
 #import <Typhoon/Typhoon.h>
 
 
@@ -123,6 +125,26 @@
 	return [TyphoonDefinition withClass:[NIOGetRealmTask class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(initWithHTTPRequestOperationManager:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.lolStaticDataApiRequestOperationManager];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
+-(NIOInsertChampionTask *)insertChampionTask {
+	return [TyphoonDefinition withClass:[NIOInsertChampionTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.coreComponents.contentResolver];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
+-(NIOInsertChampionSkinTask *)insertChampionSkinTask {
+	return [TyphoonDefinition withClass:[NIOInsertChampionSkinTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.coreComponents.contentResolver];
 		}];
 
 		definition.scope = TyphoonScopePrototype;

@@ -22,6 +22,8 @@
 @class NIOGetChampionStaticDataTask;
 @class NIODeleteChampionTask;
 @class NIODeleteChampionSkinTask;
+@class NIOInsertChampionTask;
+@class NIOInsertChampionSkinTask;
 
 @interface NIODataDragonComponents : TyphoonAssembly
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
@@ -36,6 +38,8 @@
 -(NIODeleteRealmTask *)deleteRealmsTask;
 -(NIOGetChampionStaticDataTask *)getChampionStaticDataTask;
 -(NIOGetRealmTask *)getRealmTask;
+-(NIOInsertChampionTask *)insertChampionTask;
+-(NIOInsertChampionSkinTask *)insertChampionSkinTask;
 -(NIOInsertDataDragonRealmTask *)insertDataDragonRealmTask;
 -(NIOInsertRealmTask *)insertRealmTask;
 -(NIOLoLApiRequestOperationManager *)lolStaticDataApiRequestOperationManager;

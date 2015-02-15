@@ -1,16 +1,16 @@
 //
-// NIODeleteChampionSkinTask / LoLBookOfChampions
+// NIOInsertChampionSkinTask / LoLBookOfChampions
 //
 // Created by Jeff Roberts on 2/15/15.
 // Copyright (c) 2015 Riot Games. All rights reserved.
 //
 
 
-#import "NIODeleteChampionSkinTask.h"
+#import "NIOInsertChampionSkinTask.h"
 #import "NIODataDragonContract.h"
 
 
-@implementation NIODeleteChampionSkinTask
+@implementation NIOInsertChampionSkinTask
 -(instancetype)initWithDatabase:(FMDatabase *)database {
 	self = [super initWithDatabase:database];
 	if ( self ) {
@@ -21,7 +21,7 @@
 }
 
 -(BFTask *)runAsync {
-	return [self asUpdateResult:[self executeDelete]];
+	return [self asUpdateResult:[self executeInsert]];
 }
 
 @end
