@@ -12,12 +12,15 @@
 #import "NIODataDragonContract.h"
 #import "NIOTaskFactory.h"
 #import "NIOQueryRealmsTask.h"
-#import "NIODeleteRealmsTask.h"
+#import "NIODeleteRealmTask.h"
 #import "NIOInsertRealmTask.h"
+#import "NIODeleteChampionSkinTask.h"
+#import "NIODeleteChampionTask.h"
 #import <Bolts/Bolts.h>
 
 #define REALM_URI			1
-#define	CHAMPION_URI		2
+#define	CHAMPIONS_URI		2
+#define	CHAMPION_SKINS_URI	3
 
 @interface NIODataDragonContentProvider ()
 @property (strong, nonatomic) NIODataDragonSqliteOpenHelper *databaseHelper;
@@ -38,8 +41,22 @@
 	return self;
 }
 
+-(BFTask *)deleteChampionWithSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+	NIODeleteChampionTask *deleteChampionTask = [self.taskFactory createTaskWithType:[NIODeleteChampionTask class]];
+	deleteChampionTask.selection = selection;
+	deleteChampionTask.selectionArgs = selectionArgs;
+	return [deleteChampionTask runAsync];
+}
+
+-(BFTask *)deleteChampionSkinWithSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+	NIODeleteChampionSkinTask *deleteChampionSkinTask = [self.taskFactory createTaskWithType:[NIODeleteChampionSkinTask class]];
+	deleteChampionSkinTask.selection = selection;
+	deleteChampionSkinTask.selectionArgs = selectionArgs;
+	return [deleteChampionSkinTask runAsync];
+}
+
 -(BFTask *)deleteRealmWithSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
-	NIODeleteRealmsTask *deleteRealmsTask = [self.taskFactory createTaskWithType:[NIODeleteRealmsTask class]];
+	NIODeleteRealmTask *deleteRealmsTask = [self.taskFactory createTaskWithType:[NIODeleteRealmTask class]];
 	deleteRealmsTask.selection = selection;
 	deleteRealmsTask.selectionArgs = selectionArgs;
 	return [deleteRealmsTask runAsync];
@@ -54,6 +71,14 @@
 	switch (matchedURI) {
 		case REALM_URI:
 			promise = [self deleteRealmWithSelection:selection withSelectionArgs:selectionArgs];
+			break;
+
+		case CHAMPIONS_URI:
+			promise = [self deleteChampionWithSelection:selection withSelectionArgs:selectionArgs];
+			break;
+
+		case CHAMPION_SKINS_URI:
+			promise = [self deleteChampionSkinWithSelection:selection withSelectionArgs:selectionArgs];
 			break;
 
 		default:
@@ -111,7 +136,8 @@
 
 	self.urlMatcher = [[NIOUriMatcher alloc] initWith:NO_MATCH];
 	[self.urlMatcher addURL:[Realm URI] withMatchCode:REALM_URI];
-	[self.urlMatcher addURL:[Champion URI] withMatchCode:CHAMPION_URI];
+	[self.urlMatcher addURL:[Champion URI] withMatchCode:CHAMPIONS_URI];
+	[self.urlMatcher addURL:[ChampionSkin URI] withMatchCode:CHAMPION_SKINS_URI];
 }
 
 -(FMResultSet *)queryWithURL:(NSURL *)uri
@@ -167,13 +193,6 @@
 	queryTask.sort = sort;
 
 	return [queryTask runAsync];
-}
-
--(NSInteger)updateWithURL:(NSURL *)url
-			withSelection:(NSString *)selection
-		withSelectionArgs:(NSArray *)selectionArgs
-				withError:(NSError **)error {
-	return 27;
 }
 
 @end

@@ -1,16 +1,16 @@
 //
-// NIODeleteRealmsTask / LoLBookOfChampions
+// NIODeleteRealmTask / LoLBookOfChampions
 //
 // Created by Jeff Roberts on 2/14/15.
 // Copyright (c) 2015 Riot Games. All rights reserved.
 //
 
 #import <Bolts/Bolts.h>
-#import "NIODeleteRealmsTask.h"
+#import "NIODeleteRealmTask.h"
 #import "NIODataDragonContract.h"
 
 
-@implementation NIODeleteRealmsTask
+@implementation NIODeleteRealmTask
 -(instancetype)initWithDatabase:(FMDatabase *)database {
 	self = [super initWithDatabase:database];
 	if ( self ) {

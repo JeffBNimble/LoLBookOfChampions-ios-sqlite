@@ -15,11 +15,13 @@
 #import "NIODataDragonContract.h"
 #import "NIODataDragonSqliteOpenHelper.h"
 #import "NIOQueryRealmsTask.h"
-#import "NIODeleteRealmsTask.h"
+#import "NIODeleteRealmTask.h"
 #import "NIOClearLocalDataDragonDataTask.h"
 #import "NIOInsertRealmTask.h"
 #import "NIOInsertDataDragonRealmTask.h"
 #import "NIOGetChampionStaticDataTask.h"
+#import "NIODeleteChampionTask.h"
+#import "NIODeleteChampionSkinTask.h"
 #import <Typhoon/Typhoon.h>
 
 
@@ -77,8 +79,28 @@
 	}];
 }
 
--(NIODeleteRealmsTask *)deleteRealmsTask {
-	return [TyphoonDefinition withClass:[NIODeleteRealmsTask class] configuration:^(TyphoonDefinition *definition) {
+-(NIODeleteChampionTask *)deleteChampionTask {
+	return [TyphoonDefinition withClass:[NIODeleteChampionTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
+-(NIODeleteChampionSkinTask *)deleteChampionSkinTask {
+	return [TyphoonDefinition withClass:[NIODeleteChampionSkinTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
+-(NIODeleteRealmTask *)deleteRealmsTask {
+	return [TyphoonDefinition withClass:[NIODeleteRealmTask class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
 		}];

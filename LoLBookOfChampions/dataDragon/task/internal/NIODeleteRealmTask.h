@@ -8,6 +8,6 @@
 #import "NIOTask.h"
 
 
-@interface NIODeleteRealmsTask : NIOBaseSQLTask<NIOTask>
+@interface NIODeleteRealmTask : NIOBaseSQLTask<NIOTask>
 -(instancetype)initWithDatabase:(FMDatabase *)database;
 @end
