@@ -11,6 +11,6 @@
 @interface NIOBaseContentProvider : NSObject<NIOContentProvider>
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
 
--(instancetype)init NS_DESIGNATED_INITIALIZER;
+-(instancetype)init;
 -(void)onCreate;
 @end

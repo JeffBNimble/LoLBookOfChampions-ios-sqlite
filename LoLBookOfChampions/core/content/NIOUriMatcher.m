@@ -54,7 +54,7 @@
 }
 
 - (NSMutableDictionary *)getMatchingNode:(NSString *)urlComponent withNode:(NSDictionary *)node {
-    NSDictionary *matchingNode =  (NSDictionary *)node[urlComponent];
+    NSMutableDictionary *matchingNode =  (NSMutableDictionary *)node[urlComponent];
     if ( matchingNode ) return matchingNode;
 
     return node[@"*"];
