@@ -148,6 +148,7 @@
 		54C18909EC43EB81309CB431 /* NIOCacheChampionImagesTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOCacheChampionImagesTask.m; sourceTree = "<group>"; };
 		54C18932F5AF46DE61EDACA3 /* NIOUriMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOUriMatcher.m; sourceTree = "<group>"; };
 		54C18941726EDF135EFA47E9 /* LoLBookOfChampions.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoLBookOfChampions.pch; sourceTree = "<group>"; };
+		54C1896C61A1170A71753A81 /* NIOCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOCursor.h; sourceTree = "<group>"; };
 		54C189C982857F358A5B7596 /* NIOLoLApiRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOLoLApiRequestOperationManager.m; sourceTree = "<group>"; };
 		54C18A35CCB2C62773747B8D /* NIOInsertDataDragonChampionDataTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOInsertDataDragonChampionDataTask.m; sourceTree = "<group>"; };
 		54C18A84A6E54F99C9A6F004 /* NIOInsertRealmTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOInsertRealmTask.h; sourceTree = "<group>"; };
@@ -253,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				54C18F6E082B1ADCAFBAAAFF /* sqlite */,
+				54C1896C61A1170A71753A81 /* NIOCursor.h */,
 			);
 			path = database;
 			sourceTree = "<group>";
