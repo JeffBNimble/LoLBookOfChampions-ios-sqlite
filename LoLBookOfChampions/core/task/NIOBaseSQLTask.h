@@ -8,6 +8,7 @@
 #import <Bolts/Bolts.h>
 
 #define SELECT				@"SELECT "
+#define COUNT				@"count(*)"
 #define DELETE				@"DELETE "
 #define FROM				@" FROM "
 #define GROUP_BY			@" GROUP BY "

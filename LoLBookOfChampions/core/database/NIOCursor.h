@@ -30,7 +30,7 @@
 -(BOOL)move:(int)offset;
 -(BOOL)moveToFirst;
 -(BOOL)moveToLast;
--(BOOL)moveToPosition:(uint)position;
+-(BOOL)moveToPosition:(int)position;
 -(BOOL)next;
 -(BOOL)previous;
 -(NSUInteger)rowCount;

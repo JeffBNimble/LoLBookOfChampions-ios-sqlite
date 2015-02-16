@@ -142,7 +142,7 @@
 
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
 		NSError *error;
-		FMResultSet *cursor = [[self getContentProviderForContentURL:url]
+		id<NIOCursor> cursor = [[self getContentProviderForContentURL:url]
 				queryWithURL:url
 			  withProjection:projection
 			   withSelection:selection

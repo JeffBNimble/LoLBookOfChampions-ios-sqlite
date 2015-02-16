@@ -3,9 +3,10 @@
 // Copyright (c) 2015 nimbleNoggin.io. All rights reserved.
 //
 
-#import <FMDB/FMDB.h>
 #import <Bolts/Bolts.h>
 #import <Foundation/Foundation.h>
+
+@protocol NIOCursor;
 
 @protocol NIOContentProvider <NSObject>
 
@@ -18,7 +19,7 @@
 			  withValues:(NSDictionary *)values
 			  withError:(NSError **)error;
 
--(FMResultSet *)queryWithURL:(NSURL *)url
+-(id<NIOCursor>)queryWithURL:(NSURL *)url
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
 		   withSelectionArgs:(NSArray *)selectionArgs

@@ -36,7 +36,7 @@
 
 }
 
--(FMResultSet *)queryWithURL:(NSURL *)url
+-(id<NIOCursor>)queryWithURL:(NSURL *)url
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
 		   withSelectionArgs:(NSArray *)selectionArgs

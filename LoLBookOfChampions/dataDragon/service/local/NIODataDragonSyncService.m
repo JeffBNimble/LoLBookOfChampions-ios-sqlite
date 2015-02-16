@@ -17,6 +17,7 @@
 #import "NIOGetChampionStaticDataTask.h"
 #import "NIOInsertDataDragonChampionDataTask.h"
 #import "NIOCacheChampionImagesTask.h"
+#import "NIOCursor.h"
 
 @interface NIODataDragonSyncService ()
 @property (strong, nonatomic) NSString *dataDragonCDN;
@@ -51,7 +52,7 @@
 	return [[self.taskFactory createTaskWithType:[NIOGetChampionStaticDataTask class]] runAsync];
 }
 
--(NSString *)getLocalDataDragonVersion:(FMResultSet *)cursor {
+-(NSString *)getLocalDataDragonVersion:(id<NIOCursor>)cursor {
 	NSString *localDataDragonVersion;
 	if ( [cursor next] ) {
 		localDataDragonVersion = [cursor stringForColumn:[RealmColumns COL_REALM_VERSION]];

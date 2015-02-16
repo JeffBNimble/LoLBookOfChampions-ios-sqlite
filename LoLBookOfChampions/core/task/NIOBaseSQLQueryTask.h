@@ -7,6 +7,7 @@
 #import "NIOBaseSQLTask.h"
 #import <Bolts/Bolts.h>
 
+@protocol NIOCursor;
 
 @interface NIOBaseSQLQueryTask : NIOBaseSQLTask
 @property (strong, nonatomic) NSString *groupBy;

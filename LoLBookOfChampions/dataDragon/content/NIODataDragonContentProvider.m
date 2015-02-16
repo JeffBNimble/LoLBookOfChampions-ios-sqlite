@@ -163,7 +163,7 @@
 	[self.urlMatcher addURL:[ChampionSkin URI] withMatchCode:CHAMPION_SKINS_URI];
 }
 
--(FMResultSet *)queryWithURL:(NSURL *)uri
+-(id<NIOCursor>)queryWithURL:(NSURL *)uri
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
 		   withSelectionArgs:(NSArray *)selectionArgs

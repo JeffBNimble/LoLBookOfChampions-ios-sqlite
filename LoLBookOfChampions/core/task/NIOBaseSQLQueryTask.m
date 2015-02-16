@@ -7,6 +7,8 @@
 
 
 #import "NIOBaseSQLQueryTask.h"
+#import "NIOCursor.h"
+#import "NIOSqliteCursor.h"
 
 #define PROJECTION_ALL		@"*"
 
@@ -20,17 +22,41 @@
 }
 
 -(BFTask *)asQueryResult:(FMResultSet *)queryResultSet {
-	return queryResultSet ? [BFTask taskWithResult:queryResultSet] : [BFTask taskWithError:self.database.lastError];
+	FMResultSet *countResultSet = [self executeCountQuery];
+	int rowCount = 0;
+	if ( countResultSet ) {
+		if ( [countResultSet next] ) {
+			rowCount = [countResultSet intForColumnIndex:0];
+		}
+		[countResultSet close];
+	}
+
+	return [self asQueryResult:queryResultSet withRowCount:(uint)rowCount];
+}
+
+-(BFTask *)asQueryResult:(FMResultSet *)queryResultSet withRowCount:(uint)rowCount {
+	return queryResultSet ?
+		   [BFTask taskWithResult:[[NIOSqliteCursor alloc] initWithResultSet:queryResultSet withRowCount:rowCount]] :
+		   [BFTask taskWithError:self.database.lastError];
 }
 
 -(NSString *)createProjection:(NSArray *)projection {
 	return projection && projection.count ? [projection componentsJoinedByString:@","] : PROJECTION_ALL;
 }
 
+-(FMResultSet *)executeCountQuery {
+	return [self executeQueryWithProjection:@[COUNT]];
+}
+
 -(FMResultSet *)executeQuery {
+	return [self executeQueryWithProjection:self.projection];
+}
+
+
+-(FMResultSet *)executeQueryWithProjection:(NSArray *)projection {
 	NSMutableString *sqlStatement = [NSMutableString new];
 	[sqlStatement appendString:SELECT];
-	[sqlStatement appendString:[self createProjection:self.projection]];
+	[sqlStatement appendString:[self createProjection:projection]];
 	[sqlStatement appendString:FROM];
 	[sqlStatement appendString:self.table];
 

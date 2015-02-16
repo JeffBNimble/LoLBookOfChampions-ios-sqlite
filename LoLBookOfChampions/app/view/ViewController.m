@@ -12,11 +12,12 @@
 #import "NIODataDragonContract.h"
 #import "NIOChampionCollectionViewCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "NIOCursor.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UICollectionView *championCollectionView;
-@property (strong, nonatomic) FMResultSet *cursor;
+@property (strong, nonatomic) id<NIOCursor> cursor;
 @end
 
 @implementation ViewController
@@ -73,7 +74,7 @@
 				 cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	__block NIOChampionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"championCell"
 																					forIndexPath:indexPath];
-	[self.cursor next];
+	[self.cursor moveToPosition:(uint)indexPath.row];
 	cell.championNameLabel.text = [self.cursor stringForColumn:[ChampionColumns COL_NAME]];
 
 	NSURL *imageURL = [NSURL URLWithString:[self.cursor stringForColumn:[ChampionColumns COL_IMAGE_URL]]];
@@ -92,7 +93,7 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return self.cursor ? 123 : 0;
+	return self.cursor ? self.cursor.rowCount : 0;
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

@@ -9,5 +9,5 @@
 
 
 @interface NIOSqliteCursor : NSObject<NIOCursor>
--(instancetype)initWithResultSet:(FMResultSet *)resultSet andRowCount:(NSUInteger)rowCount NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithResultSet:(FMResultSet *)resultSet withRowCount:(NSUInteger)rowCount NS_DESIGNATED_INITIALIZER;
 @end
