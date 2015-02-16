@@ -22,6 +22,7 @@
 -(double)doubleForColumn:(NSString *)columnName;
 -(double)doubleForColumnIndex:(int)columnIndex;
 -(int)intForColumn:(NSString *)columnName;
+-(int)intForColumnIndex:(int)columnIndex;
 -(long)longForColumn:(NSString *)columnName;
 -(long)longForColumnIndex:(int)columnIndex;
 -(long long int)longLongIntForColumn:(NSString *)columnName;
@@ -29,10 +30,10 @@
 -(BOOL)move:(int)offset;
 -(BOOL)moveToFirst;
 -(BOOL)moveToLast;
--(BOOL)moveToPostion:(uint)position;
+-(BOOL)moveToPosition:(uint)position;
 -(BOOL)next;
 -(BOOL)previous;
--(int)rowCount;
+-(NSUInteger)rowCount;
 -(NSString *)stringForColumn:(NSString *)columnName;
 -(NSString *)stringForColumnIndex:(int)columnIndex;
 -(unsigned long long int)unsignedLongLongIntForColumn:(NSString *)columnName;

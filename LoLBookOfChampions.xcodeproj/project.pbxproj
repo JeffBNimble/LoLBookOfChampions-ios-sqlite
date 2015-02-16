@@ -20,6 +20,7 @@
 		54C182456B27506FFA0F5B94 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C180FF3832C859CD2FAFB5 /* LaunchScreen.xib */; };
 		54C18253770BB56AA1D025AE /* NIOGetChampionStaticDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C187EF8EE04413B297F3B9 /* NIOGetChampionStaticDataTask.m */; };
 		54C1827F96DBC3B72D077EB9 /* NIODataDragonContract.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C183FE48BA6ADAE6C68720 /* NIODataDragonContract.m */; };
+		54C18292E8A58CE283F9C040 /* NIOSqliteCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18CE5C9B22BFB834FDADF /* NIOSqliteCursor.m */; };
 		54C182F0A0EB620BB1E9AAA9 /* NIOSqliteOpenHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18AEB1FE1F73C0D993612 /* NIOSqliteOpenHelper.m */; };
 		54C182FB8272A39309D6D799 /* NIODeleteRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18179A47F2E7874C256B9 /* NIODeleteRealmTask.m */; };
 		54C1832EEE785431D1D0B302 /* NIOTyphoonTaskFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C186FF387D9380964D8149 /* NIOTyphoonTaskFactory.m */; };
@@ -39,6 +40,7 @@
 		54C18604AA60A086284A2B8A /* NIODeleteChampionSkinTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18D84E58F4675EF5D5384 /* NIODeleteChampionSkinTask.m */; };
 		54C18664B75D1219636199E6 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C180AFD6A5576F23FD3500 /* Configuration.plist */; };
 		54C18705C57EB4E70E95009A /* NIOGetRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18E8A49E0AAF5850F32BA /* NIOGetRealmTask.m */; };
+		54C1872E679898ED6BE2B3DA /* NIOSqliteCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18CE5C9B22BFB834FDADF /* NIOSqliteCursor.m */; };
 		54C18768575205469D2BBAB8 /* NIOCacheChampionImagesTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18909EC43EB81309CB431 /* NIOCacheChampionImagesTask.m */; };
 		54C1876FFEE0D3AAB3C8E204 /* NIOClearLocalDataDragonDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18388D1501F9E66AA5BEF /* NIOClearLocalDataDragonDataTask.m */; };
 		54C188552146C904E0246438 /* NIOQueryChampionsTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C181EE9FCDF67D2AF1D8E1 /* NIOQueryChampionsTask.m */; };
@@ -143,6 +145,7 @@
 		54C187D5CE4877E5FAEEA7FD /* NIOInsertRealmTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOInsertRealmTask.m; sourceTree = "<group>"; };
 		54C187EF8EE04413B297F3B9 /* NIOGetChampionStaticDataTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOGetChampionStaticDataTask.m; sourceTree = "<group>"; };
 		54C187F2770FC3C94523134E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LoLBookOfChampions/Base.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
+		54C188A32C2AE8F1F5C97CA5 /* NIOSqliteCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOSqliteCursor.h; sourceTree = "<group>"; };
 		54C188A752F592DAB245357F /* NIOBaseContentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOBaseContentProvider.h; sourceTree = "<group>"; };
 		54C188BDFAD6310ECF273EF2 /* NIODataDragonSyncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODataDragonSyncService.h; sourceTree = "<group>"; };
 		54C18909EC43EB81309CB431 /* NIOCacheChampionImagesTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOCacheChampionImagesTask.m; sourceTree = "<group>"; };
@@ -164,6 +167,7 @@
 		54C18BF8B3CCC30EA1C7806B /* NIOLoLApiRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOLoLApiRequestOperationManager.h; sourceTree = "<group>"; };
 		54C18C1FF54F7107BCE57883 /* NIOInsertDataDragonChampionDataTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOInsertDataDragonChampionDataTask.h; sourceTree = "<group>"; };
 		54C18CC2793AB6AC9A4DE464 /* NIODataDragonCDNRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODataDragonCDNRequestOperationManager.h; sourceTree = "<group>"; };
+		54C18CE5C9B22BFB834FDADF /* NIOSqliteCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOSqliteCursor.m; sourceTree = "<group>"; };
 		54C18CF338758A0EDC8AD223 /* NIOQueryRealmsTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOQueryRealmsTask.m; sourceTree = "<group>"; };
 		54C18D46A78A5224A73B080C /* NIOTyphoonTaskFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOTyphoonTaskFactory.h; sourceTree = "<group>"; };
 		54C18D84E58F4675EF5D5384 /* NIODeleteChampionSkinTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODeleteChampionSkinTask.m; sourceTree = "<group>"; };
@@ -426,6 +430,8 @@
 			children = (
 				54C18AEB1FE1F73C0D993612 /* NIOSqliteOpenHelper.m */,
 				54C183258C1F5D36E93F993B /* NIOSqliteOpenHelper.h */,
+				54C18CE5C9B22BFB834FDADF /* NIOSqliteCursor.m */,
+				54C188A32C2AE8F1F5C97CA5 /* NIOSqliteCursor.h */,
 			);
 			path = sqlite;
 			sourceTree = "<group>";
@@ -684,6 +690,7 @@
 				54C183BADE60EB8750FC3319 /* NIOCacheChampionImagesTask.m in Sources */,
 				54C18A4BE071440563D4E520 /* NIOChampionCollectionViewCell.m in Sources */,
 				54C184B62070ED4872B20C5D /* NIOQueryChampionsTask.m in Sources */,
+				54C1872E679898ED6BE2B3DA /* NIOSqliteCursor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +731,7 @@
 				54C18768575205469D2BBAB8 /* NIOCacheChampionImagesTask.m in Sources */,
 				54C183317D1E3E4A70074C46 /* NIOChampionCollectionViewCell.m in Sources */,
 				54C188552146C904E0246438 /* NIOQueryChampionsTask.m in Sources */,
+				54C18292E8A58CE283F9C040 /* NIOSqliteCursor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
