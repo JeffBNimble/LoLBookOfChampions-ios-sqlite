@@ -18,6 +18,7 @@
 #import "NIODeleteChampionTask.h"
 #import "NIOInsertChampionTask.h"
 #import "NIOInsertChampionSkinTask.h"
+#import "NIOQueryChampionsTask.h"
 #import <Bolts/Bolts.h>
 
 #define REALM_URI			1
@@ -183,6 +184,15 @@
 											withSort:sort];
 			break;
 
+		case CHAMPIONS_URI:
+			promise = [self queryChampionsWithProjection:projection
+										   withSelection:selection
+									   withSelectionArgs:selectionArgs
+											 withGroupBy:groupBy
+											  withHaving:having
+												withSort:sort];
+			break;
+
 		default:
 			promise = [BFTask taskWithError:[NSError errorWithDomain:@"content.provider.datadragon"
 																code:99
@@ -198,6 +208,23 @@
 	} else {
 		return promise.result;
 	}
+}
+
+-(BFTask *)queryChampionsWithProjection:(NSArray *)projection
+					  withSelection:(NSString *)selection
+				  withSelectionArgs:(NSArray *)selectionArgs
+						withGroupBy:(NSString *)groupBy
+						 withHaving:(NSString *)having
+						   withSort:(NSString *)sort {
+	NIOQueryRealmsTask *queryTask = [self.taskFactory createTaskWithType:[NIOQueryChampionsTask class]];
+	queryTask.projection = projection;
+	queryTask.selection = selection;
+	queryTask.selectionArgs = selectionArgs;
+	queryTask.groupBy = groupBy;
+	queryTask.having = having;
+	queryTask.sort = sort;
+
+	return [queryTask runAsync];
 }
 
 -(BFTask *)queryRealmWithProjection:(NSArray *)projection

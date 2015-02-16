@@ -13,17 +13,75 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="du8-zs-fdh">
-                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zAF-Mt-SVJ">
+                                <rect key="frame" x="10" y="10" width="355" height="647"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SFb-w1-3eB">
+                                    <size key="itemSize" width="84" height="124"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="championCell" id="oOv-Fc-kmU" customClass="NIOChampionCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="84" height="124"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b4m-db-vXf" userLabel="Champ Image">
+                                                    <rect key="frame" x="2" y="2" width="80" height="80"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWn-LQ-8js" userLabel="Champ Name">
+                                                    <rect key="frame" x="5" y="99" width="74" height="20"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="b4m-db-vXf" secondAttribute="trailing" constant="2" id="9wg-e4-BTY"/>
+                                            <constraint firstItem="jWn-LQ-8js" firstAttribute="leading" secondItem="oOv-Fc-kmU" secondAttribute="leading" id="Oss-Pm-LnE"/>
+                                            <constraint firstItem="b4m-db-vXf" firstAttribute="leading" secondItem="oOv-Fc-kmU" secondAttribute="leading" constant="2" id="Vvl-Qb-eJc"/>
+                                            <constraint firstAttribute="bottom" secondItem="jWn-LQ-8js" secondAttribute="bottom" constant="5" id="eG4-lq-vfW"/>
+                                            <constraint firstItem="b4m-db-vXf" firstAttribute="top" secondItem="oOv-Fc-kmU" secondAttribute="top" constant="2" id="gNR-RV-KOe"/>
+                                            <constraint firstAttribute="trailing" secondItem="jWn-LQ-8js" secondAttribute="trailing" id="iYZ-49-vOA"/>
+                                            <constraint firstItem="jWn-LQ-8js" firstAttribute="top" relation="greaterThanOrEqual" secondItem="b4m-db-vXf" secondAttribute="bottom" constant="5" id="npG-wW-IWX"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="championImageView" destination="b4m-db-vXf" id="78x-uH-NQe"/>
+                                            <outlet property="championNameLabel" destination="jWn-LQ-8js" id="KjV-bf-fun"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="eGA-t6-U1a"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="2NR-9t-Ebz"/>
+                                </connections>
+                            </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="yEK-CW-hji">
+                                <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zAF-Mt-SVJ" secondAttribute="trailing" constant="10" id="2La-dh-oeD"/>
+                            <constraint firstAttribute="centerY" secondItem="yEK-CW-hji" secondAttribute="centerY" id="BQx-VA-Yej"/>
+                            <constraint firstItem="zAF-Mt-SVJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="IgZ-uf-rxU"/>
+                            <constraint firstItem="zAF-Mt-SVJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="10" id="lIj-ow-Fza"/>
+                            <constraint firstAttribute="bottom" secondItem="zAF-Mt-SVJ" secondAttribute="bottom" constant="10" id="uf8-fq-x79"/>
+                            <constraint firstAttribute="centerX" secondItem="yEK-CW-hji" secondAttribute="centerX" id="zwJ-iW-vr7"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="du8-zs-fdh" id="T6t-YK-rrM"/>
+                        <outlet property="activityIndicatorView" destination="yEK-CW-hji" id="SiB-Uo-xi0"/>
+                        <outlet property="championCollectionView" destination="zAF-Mt-SVJ" id="mMu-Iy-V0C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

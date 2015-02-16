@@ -27,6 +27,7 @@
 @class NIODataDragonCDNRequestOperationManager;
 @class NIOInsertDataDragonChampionDataTask;
 @class NIOCacheChampionImagesTask;
+@class NIOQueryChampionsTask;
 
 @interface NIODataDragonComponents : TyphoonAssembly
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
@@ -49,5 +50,6 @@
 -(NIOInsertDataDragonRealmTask *)insertDataDragonRealmTask;
 -(NIOInsertRealmTask *)insertRealmTask;
 -(NIOLoLApiRequestOperationManager *)lolStaticDataApiRequestOperationManager;
+-(NIOQueryChampionsTask *)queryChampionsTask;
 -(NIOQueryRealmsTask *)queryRealmsTask;
 @end

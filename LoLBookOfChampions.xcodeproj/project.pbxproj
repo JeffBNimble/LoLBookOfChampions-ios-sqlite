@@ -23,6 +23,7 @@
 		54C182F0A0EB620BB1E9AAA9 /* NIOSqliteOpenHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18AEB1FE1F73C0D993612 /* NIOSqliteOpenHelper.m */; };
 		54C182FB8272A39309D6D799 /* NIODeleteRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18179A47F2E7874C256B9 /* NIODeleteRealmTask.m */; };
 		54C1832EEE785431D1D0B302 /* NIOTyphoonTaskFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C186FF387D9380964D8149 /* NIOTyphoonTaskFactory.m */; };
+		54C183317D1E3E4A70074C46 /* NIOChampionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18412AD6D4077FD545010 /* NIOChampionCollectionViewCell.m */; };
 		54C18361789CAB3A15B7042E /* NIOInsertRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C187D5CE4877E5FAEEA7FD /* NIOInsertRealmTask.m */; };
 		54C18372A9E1B6C5ADDB0C9E /* NIODeleteChampionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18323D3846D32FE8C5C69 /* NIODeleteChampionTask.m */; };
 		54C18392FA5022D3FD8B2425 /* NIOInsertDataDragonRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18148204828522103E551 /* NIOInsertDataDragonRealmTask.m */; };
@@ -30,6 +31,7 @@
 		54C183BADE60EB8750FC3319 /* NIOCacheChampionImagesTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18909EC43EB81309CB431 /* NIOCacheChampionImagesTask.m */; };
 		54C18422E97E3B6F8A9D4AFF /* NIODataDragonCDNRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1835FB21EDBC8EAD85F11 /* NIODataDragonCDNRequestOperationManager.m */; };
 		54C18456D5F47290CA0C0FC5 /* NIODataDragonContentProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C183D2723AE54B89AD2017 /* NIODataDragonContentProvider.m */; };
+		54C184B62070ED4872B20C5D /* NIOQueryChampionsTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C181EE9FCDF67D2AF1D8E1 /* NIOQueryChampionsTask.m */; };
 		54C184FF67C79CC4B97F6C91 /* NIOInsertChampionSkinTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18BD7A84774B357340584 /* NIOInsertChampionSkinTask.m */; };
 		54C1850066BCE8F4040ECBBF /* NIODataDragonSqliteOpenHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18559632B3A6EE5844B6F /* NIODataDragonSqliteOpenHelper.m */; };
 		54C18547A1AB46D6361846E2 /* NIOQueryRealmsTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18CF338758A0EDC8AD223 /* NIOQueryRealmsTask.m */; };
@@ -39,6 +41,7 @@
 		54C18705C57EB4E70E95009A /* NIOGetRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18E8A49E0AAF5850F32BA /* NIOGetRealmTask.m */; };
 		54C18768575205469D2BBAB8 /* NIOCacheChampionImagesTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18909EC43EB81309CB431 /* NIOCacheChampionImagesTask.m */; };
 		54C1876FFEE0D3AAB3C8E204 /* NIOClearLocalDataDragonDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18388D1501F9E66AA5BEF /* NIOClearLocalDataDragonDataTask.m */; };
+		54C188552146C904E0246438 /* NIOQueryChampionsTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C181EE9FCDF67D2AF1D8E1 /* NIOQueryChampionsTask.m */; };
 		54C1890395218E724A413A38 /* NIOInsertDataDragonRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18148204828522103E551 /* NIOInsertDataDragonRealmTask.m */; };
 		54C18953E8A3A74913023DDE /* NIOQueryRealmsTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18CF338758A0EDC8AD223 /* NIOQueryRealmsTask.m */; };
 		54C18968E8452E3AA29C4843 /* NIOBaseSQLTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1864C38908E325FE97C42 /* NIOBaseSQLTask.m */; };
@@ -48,6 +51,7 @@
 		54C18A34A20F783BA46A7988 /* NIOBaseContentProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18EA8BD41E455CC7BEACF /* NIOBaseContentProvider.m */; };
 		54C18A369CD93D7B4DAB22C7 /* NIOInsertChampionSkinTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18BD7A84774B357340584 /* NIOInsertChampionSkinTask.m */; };
 		54C18A43444E25E82C12159E /* NIODataDragonContentProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C183D2723AE54B89AD2017 /* NIODataDragonContentProvider.m */; };
+		54C18A4BE071440563D4E520 /* NIOChampionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18412AD6D4077FD545010 /* NIOChampionCollectionViewCell.m */; };
 		54C18A54F48C56B16B77B418 /* NIOInsertDataDragonChampionDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18A35CCB2C62773747B8D /* NIOInsertDataDragonChampionDataTask.m */; };
 		54C18AC1F2CDEC0841922D98 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18618DF1D60BEEC0AE5CE /* ViewController.m */; };
 		54C18AFB1D79EDB8A0BE98BD /* NIODataDragonCDNRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1835FB21EDBC8EAD85F11 /* NIODataDragonCDNRequestOperationManager.m */; };
@@ -105,17 +109,20 @@
 		54C18148204828522103E551 /* NIOInsertDataDragonRealmTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOInsertDataDragonRealmTask.m; sourceTree = "<group>"; };
 		54C18179A47F2E7874C256B9 /* NIODeleteRealmTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODeleteRealmTask.m; sourceTree = "<group>"; };
 		54C181E809DB9653B4CC5997 /* NIOApplicationAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOApplicationAssembly.h; sourceTree = "<group>"; };
+		54C181EE9FCDF67D2AF1D8E1 /* NIOQueryChampionsTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOQueryChampionsTask.m; sourceTree = "<group>"; };
 		54C182535DD2786C52371166 /* NIODeleteRealmTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODeleteRealmTask.h; sourceTree = "<group>"; };
 		54C1828E7250D2F99ECD3CBF /* NIODataDragonContract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODataDragonContract.h; sourceTree = "<group>"; };
 		54C1831BF239916A2360AFDA /* NIOTyphoonContentProviderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOTyphoonContentProviderFactory.h; sourceTree = "<group>"; };
 		54C18323D3846D32FE8C5C69 /* NIODeleteChampionTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODeleteChampionTask.m; sourceTree = "<group>"; };
 		54C183258C1F5D36E93F993B /* NIOSqliteOpenHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOSqliteOpenHelper.h; sourceTree = "<group>"; };
 		54C1834F049057B47D542752 /* NIODataDragonComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonComponents.m; sourceTree = "<group>"; };
+		54C1835FAF659721C49945E6 /* NIOChampionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOChampionCollectionViewCell.h; sourceTree = "<group>"; };
 		54C1835FB21EDBC8EAD85F11 /* NIODataDragonCDNRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonCDNRequestOperationManager.m; sourceTree = "<group>"; };
 		54C18388D1501F9E66AA5BEF /* NIOClearLocalDataDragonDataTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOClearLocalDataDragonDataTask.m; sourceTree = "<group>"; };
 		54C1838B63EE61B049DE4C8B /* NIOInsertChampionTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOInsertChampionTask.h; sourceTree = "<group>"; };
 		54C183D2723AE54B89AD2017 /* NIODataDragonContentProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonContentProvider.m; sourceTree = "<group>"; };
 		54C183FE48BA6ADAE6C68720 /* NIODataDragonContract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonContract.m; sourceTree = "<group>"; };
+		54C18412AD6D4077FD545010 /* NIOChampionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOChampionCollectionViewCell.m; sourceTree = "<group>"; };
 		54C184226D3D0F2433FB98B0 /* NIODataDragonContentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODataDragonContentProvider.h; sourceTree = "<group>"; };
 		54C1846090DDAB28E394EC00 /* NIODeleteChampionTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODeleteChampionTask.h; sourceTree = "<group>"; };
 		54C1850BEEE23545B715CAD5 /* NIOBaseSQLQueryTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOBaseSQLQueryTask.h; sourceTree = "<group>"; };
@@ -129,6 +136,7 @@
 		54C1864C38908E325FE97C42 /* NIOBaseSQLTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOBaseSQLTask.m; sourceTree = "<group>"; };
 		54C186E76A31C91325193E09 /* LoLApiConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoLApiConstants.h; sourceTree = "<group>"; };
 		54C186FF387D9380964D8149 /* NIOTyphoonTaskFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOTyphoonTaskFactory.m; sourceTree = "<group>"; };
+		54C1870B55F1485A568B97F4 /* NIOQueryChampionsTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOQueryChampionsTask.h; sourceTree = "<group>"; };
 		54C18733CF17CC948606FE53 /* DataDragonConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = DataDragonConfiguration.plist; sourceTree = "<group>"; };
 		54C1874772ED6901907C321F /* NIOGetChampionStaticDataTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOGetChampionStaticDataTask.h; sourceTree = "<group>"; };
 		54C187BE7174FE78896E9F5C /* NIOClearLocalDataDragonDataTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOClearLocalDataDragonDataTask.h; sourceTree = "<group>"; };
@@ -354,6 +362,8 @@
 				54C1838B63EE61B049DE4C8B /* NIOInsertChampionTask.h */,
 				54C18BD7A84774B357340584 /* NIOInsertChampionSkinTask.m */,
 				54C18B7B2A7044C00728691B /* NIOInsertChampionSkinTask.h */,
+				54C181EE9FCDF67D2AF1D8E1 /* NIOQueryChampionsTask.m */,
+				54C1870B55F1485A568B97F4 /* NIOQueryChampionsTask.h */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -373,6 +383,8 @@
 				54C18CDC482A2F1BD75A76E4 /* xib */,
 				54C18618DF1D60BEEC0AE5CE /* ViewController.m */,
 				54C18ACEDA81BDE845F46444 /* ViewController.h */,
+				54C18412AD6D4077FD545010 /* NIOChampionCollectionViewCell.m */,
+				54C1835FAF659721C49945E6 /* NIOChampionCollectionViewCell.h */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -668,6 +680,8 @@
 				54C18A54F48C56B16B77B418 /* NIOInsertDataDragonChampionDataTask.m in Sources */,
 				54C18AFB1D79EDB8A0BE98BD /* NIODataDragonCDNRequestOperationManager.m in Sources */,
 				54C183BADE60EB8750FC3319 /* NIOCacheChampionImagesTask.m in Sources */,
+				54C18A4BE071440563D4E520 /* NIOChampionCollectionViewCell.m in Sources */,
+				54C184B62070ED4872B20C5D /* NIOQueryChampionsTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,6 +720,8 @@
 				54C1821F78880725F9EAEE08 /* NIOInsertDataDragonChampionDataTask.m in Sources */,
 				54C18422E97E3B6F8A9D4AFF /* NIODataDragonCDNRequestOperationManager.m in Sources */,
 				54C18768575205469D2BBAB8 /* NIOCacheChampionImagesTask.m in Sources */,
+				54C183317D1E3E4A70074C46 /* NIOChampionCollectionViewCell.m in Sources */,
+				54C188552146C904E0246438 /* NIOQueryChampionsTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

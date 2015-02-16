@@ -10,7 +10,7 @@
 
 @class NIOContentResolver;
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
 @end
 

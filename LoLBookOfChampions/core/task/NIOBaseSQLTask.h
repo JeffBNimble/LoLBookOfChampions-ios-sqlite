@@ -13,7 +13,7 @@
 #define GROUP_BY			@" GROUP BY "
 #define HAVING				@" HAVING "
 #define INSERT_INTO			@"INSERT INTO "
-#define ORDER_BY			@" ORDER BY"
+#define ORDER_BY			@" ORDER BY "
 #define SET					@" SET "
 #define UPDATE				@"UPDATE "
 #define WHERE				@" WHERE "

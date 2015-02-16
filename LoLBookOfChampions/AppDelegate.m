@@ -51,9 +51,9 @@
 }
 
 -(void)initializeApplication {
+	[NIODataDragonContract contentAuthorityBase:self.bundleIdentifier];
 	[self initializeLogger];
 	[self initializeApplicationCache];
-	[NIODataDragonContract contentAuthorityBase:self.bundleIdentifier];
 }
 
 -(void)initializeApplicationCache {

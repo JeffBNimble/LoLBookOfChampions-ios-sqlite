@@ -27,6 +27,7 @@
 #import "NIODataDragonCDNRequestOperationManager.h"
 #import "NIOInsertDataDragonChampionDataTask.h"
 #import "NIOCacheChampionImagesTask.h"
+#import "NIOQueryChampionsTask.h"
 #import <Typhoon/Typhoon.h>
 
 
@@ -218,6 +219,16 @@
 		}];
 
 		definition.scope = TyphoonScopeWeakSingleton;
+	}];
+}
+
+-(NIOQueryChampionsTask *)queryChampionsTask {
+	return [TyphoonDefinition withClass:[NIOQueryChampionsTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
 	}];
 }
 
