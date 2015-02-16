@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	//[self.championCollectionView registerClass:[NIOChampionCollectionViewCell class] forCellWithReuseIdentifier:@"championCell"];
+	self.title = @"League of Legends Champion Browser";
 	[self queryChampions];
 }
 
@@ -102,6 +102,11 @@
 
 
 #pragma mark UICollectionViewDelegate
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	[self.cursor moveToPosition:indexPath.row];
+	DDLogInfo(@"I just tapped %@", [self.cursor stringForColumn:[ChampionColumns COL_NAME]]);
+}
 
 
 @end
