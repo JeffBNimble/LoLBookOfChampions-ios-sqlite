@@ -12,7 +12,9 @@
 
 @interface NIOInsertDataDragonChampionDataTask ()
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
-@property (strong, nonatomic) NSMutableArray *imageURLs;
+@property (strong, nonatomic) NSMutableArray *loadingImageURLs;
+@property (strong, nonatomic) NSMutableArray *splashImageURLs;
+@property (strong, nonatomic) NSMutableArray *squareChampImageURLs;
 @end
 
 @implementation NIOInsertDataDragonChampionDataTask
@@ -20,7 +22,6 @@
 	self = [super init];
 	if ( self ) {
 		self.contentResolver = contentResolver;
-		self.imageURLs = [[NSMutableArray alloc] initWithCapacity:2000];
 	}
 
 	return self;
@@ -29,7 +30,7 @@
 -(NSDictionary *)championInsertValuesFrom:(NSDictionary *)championData {
 	NSURL *imageURL = [self.dataDragonCDN URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/img/champion/%@.png", self.dataDragonRealmVersion, championData[@"key"]]];
 	NSString *imageURLString = [imageURL absoluteString];
-	[self.imageURLs addObject:imageURLString];
+	[self.squareChampImageURLs addObject:imageURLString];
 
 	NSMutableDictionary *values = [NSMutableDictionary new];
 	values[[ChampionColumns COL_ID]] = championData[@"id"];
@@ -51,8 +52,8 @@
 	NSURL *loadingImageURL = [self.dataDragonCDN URLByAppendingPathComponent:[NSString stringWithFormat:@"img/champion/loading/%@_%@.jpg", championKey, skinNumber]];
 	NSString *loadingImageURLString = [loadingImageURL absoluteString];
 
-	[self.imageURLs addObject:splashImageURLString];
-	[self.imageURLs addObject:loadingImageURLString];
+	[self.splashImageURLs addObject:splashImageURLString];
+	[self.loadingImageURLs addObject:loadingImageURLString];
 
 	NSMutableDictionary *values = [NSMutableDictionary new];
 	values[[ChampionSkinColumns COL_ID]] = championSkinData[@"id"];
@@ -67,6 +68,9 @@
 
 -(BFTask *)runAsync {
 	NSDictionary *allChampionData = self.remoteDataDragonChampionData[@"data"];
+	self.squareChampImageURLs = [[NSMutableArray alloc] initWithCapacity:allChampionData.count];
+	self.loadingImageURLs = [[NSMutableArray alloc] initWithCapacity:allChampionData.count * 5]; // Assume an average of 5 skins per champ
+	self.splashImageURLs = [[NSMutableArray alloc] initWithCapacity:allChampionData.count * 5]; // Assume an average of 5 skins per champ
 
 	for ( NSString *key in [allChampionData allKeys] ) {
 		NSDictionary *championData = allChampionData[key];
@@ -89,7 +93,12 @@
 		}
 	}
 
-	return [BFTask taskWithResult:self.imageURLs];
+	NSUInteger imageCount = self.squareChampImageURLs.count + self.loadingImageURLs.count + self.splashImageURLs.count;
+	NSMutableArray *allImageURLs = [[NSMutableArray alloc] initWithCapacity:imageCount];
+	[allImageURLs addObjectsFromArray:self.squareChampImageURLs]; // Cache the square images first
+	[allImageURLs addObjectsFromArray:self.loadingImageURLs]; // Cache the loading images next
+	[allImageURLs addObjectsFromArray:self.splashImageURLs]; // Cache the splash images last
+	return [BFTask taskWithResult:allImageURLs];
 }
 
 @end

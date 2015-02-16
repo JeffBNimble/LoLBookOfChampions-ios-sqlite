@@ -9,6 +9,8 @@
 #import "NIOCacheChampionImagesTask.h"
 #import <AFNetworking/AFNetworking.h>
 
+#define IMAGES_PER_BATCH		100
+
 @interface NIOCacheChampionImagesTask ()
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 @end
@@ -25,14 +27,14 @@
 }
 
 -(BFTask *)runAsync {
-	NSMutableArray *tasks = [[NSMutableArray alloc] initWithCapacity:self.cacheableImageURLs.count];
+	DDLogVerbose(@"Caching %d champion, loading and splash images", self.cacheableImageURLs.count);
+	BFTask *promise;
+	NSMutableArray *tasks = [[NSMutableArray alloc] initWithCapacity:IMAGES_PER_BATCH];
+	int batchCount = (int) self.cacheableImageURLs.count / IMAGES_PER_BATCH;
+	batchCount = batchCount % IMAGES_PER_BATCH > 0 ? batchCount + 1 : batchCount;
+	int cachedCountThisBatch = 0, cachedCountTotal = 0;
 
-	int requestCount = 0;
 	for ( NSString *urlString in self.cacheableImageURLs ) {
-		requestCount++;
-		if ( requestCount % 400 == 0) {
-			[NSThread sleepForTimeInterval:5];
-		}
 		DDLogVerbose(@"Caching image for %@", urlString);
 		__block BFTaskCompletionSource *completionSource = [BFTaskCompletionSource taskCompletionSource];
 		BFTask *cacheTask = completionSource.task;
@@ -45,9 +47,21 @@
 						 failure:^(NSURLSessionDataTask *task, NSError *error) {
 							[completionSource setError:error];
 						 }];
-	};
+		cachedCountThisBatch++;
+		cachedCountTotal++;
 
-	return [BFTask taskForCompletionOfAllTasks:tasks];
+		if ( cachedCountThisBatch == IMAGES_PER_BATCH || cachedCountTotal == self.cacheableImageURLs.count ) {
+			promise = [BFTask taskForCompletionOfAllTasks:tasks];
+			[promise waitUntilFinished];
+			[tasks removeAllObjects];
+			batchCount++;
+			cachedCountThisBatch = 0;
+		}
+
+	};
+	DDLogVerbose(@"Cached %d champion, loading and splash images", cachedCountTotal);
+
+	return promise;
 }
 
 @end

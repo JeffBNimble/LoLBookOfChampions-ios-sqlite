@@ -10,32 +10,24 @@
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import "NIOGetRealmTask.h"
 #import "ViewController.h"
+#import "NIOContentResolver.h"
 #import "NIOGetChampionStaticDataTask.h"
 
 @interface ViewController ()
-
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation ViewController
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
-    [[self.getChampionStaticDataTask runAsync] continueWithBlock:^id(BFTask *task) {
-        if ( task.error ) {
-            DDLogError(@"An error occurred: %@", task.error.description);
-        } else {
-            DDLogVerbose(@"%@", task.result);
-        }
-
-        return nil;
-    }];
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [self.activityIndicator startAnimating];
 }
 
 - (void)didReceiveMemoryWarning {

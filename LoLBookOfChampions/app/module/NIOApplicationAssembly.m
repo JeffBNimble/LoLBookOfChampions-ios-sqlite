@@ -22,8 +22,7 @@
     return [TyphoonDefinition withClass:[AppDelegate class] configuration:^(TyphoonDefinition *definition) {
         [definition injectProperty:@selector(window) with:self.mainWindow];
         [definition injectProperty:@selector(bundleIdentifier) with:self.coreComponents.bundleIdentifier];
-        [definition injectProperty:@selector(dataDragonSyncService)
-            with:self.dataDragonComponents.dataDragonSyncService];
+        [definition injectProperty:@selector(dataDragonSyncService) with:self.dataDragonComponents.dataDragonSyncService];
         [definition injectProperty:@selector(loggers) with:@[self.coreComponents.consoleLogger]];
         [definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
         [definition injectProperty:@selector(notificationCenter) with:self.coreComponents.notificationCenter];
@@ -44,7 +43,7 @@
 
 - (ViewController *)viewController {
     return [TyphoonDefinition withClass:[ViewController class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectProperty:@selector(getChampionStaticDataTask) with:self.dataDragonComponents.getChampionStaticDataTask];
+		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
     }];
 }
 

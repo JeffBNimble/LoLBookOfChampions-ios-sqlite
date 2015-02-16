@@ -43,6 +43,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 	DDLogVerbose(@"Application did become active");
+	[self.dataDragonSyncService sync];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -50,19 +51,24 @@
 }
 
 -(void)initializeApplication {
-	for ( DDAbstractLogger *logger in self.loggers ) {
-		[DDLog addLogger:logger];
-	}
+	[self initializeLogger];
+	[self initializeApplicationCache];
+	[NIODataDragonContract contentAuthorityBase:self.bundleIdentifier];
+}
 
+-(void)initializeApplicationCache {
 	NSURLCache *sharedCache = [[NSURLCache alloc]
 			initWithMemoryCapacity:2 * 1024 * 1024
 					  diskCapacity:100 * 1024 * 1024
 						  diskPath:nil];
 
 	[NSURLCache setSharedURLCache:sharedCache];
+}
 
-	[NIODataDragonContract contentAuthorityBase:self.bundleIdentifier];
-	[self.dataDragonSyncService sync];
+-(void)initializeLogger {
+	for ( DDAbstractLogger *logger in self.loggers ) {
+		[DDLog addLogger:logger];
+	}
 }
 
 @end

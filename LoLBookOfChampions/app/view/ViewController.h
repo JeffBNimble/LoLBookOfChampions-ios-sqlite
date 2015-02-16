@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class NIOGetChampionStaticDataTask;
+@class NIOContentResolver;
 
 @interface ViewController : UIViewController
-@property (strong, nonatomic) NIOGetChampionStaticDataTask *getChampionStaticDataTask;
-
+@property (strong, nonatomic) NIOContentResolver *contentResolver;
 @end
 
