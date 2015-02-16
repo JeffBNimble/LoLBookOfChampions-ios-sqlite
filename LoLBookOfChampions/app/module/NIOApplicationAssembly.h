@@ -10,7 +10,7 @@
 
 @class NIODataDragonComponents;
 @class AppDelegate;
-@class ViewController;
+@class ChampionCollectionViewController;
 @class NIOCoreComponents;
 @protocol NIOContentProvider;
 
@@ -21,6 +21,6 @@
 
 -(AppDelegate *)appDelegate;
 -(UIWindow *)mainWindow;
--(ViewController *)viewController;
+-(ChampionCollectionViewController *)viewController;
 
 @end

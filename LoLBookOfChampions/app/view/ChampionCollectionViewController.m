@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  ChampionCollectionViewController.m
 //  LoLBookOfChampions
 //
 //  Created by Jeff Roberts on 1/19/15.
@@ -7,20 +7,20 @@
 //
 
 #import <Bolts/BFTask.h>
-#import "ViewController.h"
+#import "ChampionCollectionViewController.h"
 #import "NIOContentResolver.h"
 #import "NIODataDragonContract.h"
 #import "NIOChampionCollectionViewCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "NIOCursor.h"
 
-@interface ViewController ()
+@interface ChampionCollectionViewController ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UICollectionView *championCollectionView;
 @property (strong, nonatomic) id<NIOCursor> cursor;
 @end
 
-@implementation ViewController
+@implementation ChampionCollectionViewController
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -44,7 +44,7 @@
 -(void)queryChampions {
 	[self.activityIndicatorView setHidden:NO];
 	[self.activityIndicatorView startAnimating];
-	__weak ViewController *weakSelf = self;
+	__weak ChampionCollectionViewController *weakSelf = self;
 	[[self.contentResolver queryWithURL:[Champion URI]
 						 withProjection:[self buildProjection]
 						  withSelection:nil

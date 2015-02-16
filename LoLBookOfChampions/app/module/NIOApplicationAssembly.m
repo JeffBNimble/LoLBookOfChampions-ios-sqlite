@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "NIOApplicationAssembly.h"
 #import "NIODataDragonComponents.h"
-#import "ViewController.h"
+#import "ChampionCollectionViewController.h"
 #import "NIOContentResolver.h"
 #import "NIOCoreComponents.h"
 #import "NIOContentProvider.h"
@@ -41,8 +41,8 @@
     }];
 }
 
-- (ViewController *)viewController {
-    return [TyphoonDefinition withClass:[ViewController class] configuration:^(TyphoonDefinition *definition) {
+- (ChampionCollectionViewController *)viewController {
+    return [TyphoonDefinition withClass:[ChampionCollectionViewController class] configuration:^(TyphoonDefinition *definition) {
 		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
     }];
 }
