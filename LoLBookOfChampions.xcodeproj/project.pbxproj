@@ -87,6 +87,10 @@
 		54C18F84D8CD82CFCF02AA91 /* NIODeleteChampionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18323D3846D32FE8C5C69 /* NIODeleteChampionTask.m */; };
 		54C18F8DB8F17E3836FB2BF9 /* NIOQueryChampionSkinsTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18179F1A7799B2795F998 /* NIOQueryChampionSkinsTask.m */; };
 		54C18FCA66E7675C919683F1 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C180AFD6A5576F23FD3500 /* Configuration.plist */; };
+		A5314E7A1A936593007AEEE7 /* magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5314E781A936593007AEEE7 /* magic.sks */; };
+		A5314E7B1A936593007AEEE7 /* magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5314E781A936593007AEEE7 /* magic.sks */; };
+		A5314E7C1A936593007AEEE7 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A5314E791A936593007AEEE7 /* spark.png */; };
+		A5314E7D1A936593007AEEE7 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A5314E791A936593007AEEE7 /* spark.png */; };
 		A53498801A6DE4AF00F01962 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A534987F1A6DE4AF00F01962 /* main.m */; };
 		A53498831A6DE4AF00F01962 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A53498821A6DE4AF00F01962 /* AppDelegate.m */; };
 		A534988B1A6DE4AF00F01962 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A534988A1A6DE4AF00F01962 /* Images.xcassets */; };
@@ -195,6 +199,8 @@
 		54C18FF7F424D47242276475 /* NIOContentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOContentProvider.h; sourceTree = "<group>"; };
 		681805B2EA598DD9E960A06A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		87BCF1F3F307D5BB4A469EF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A5314E781A936593007AEEE7 /* magic.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magic.sks; sourceTree = "<group>"; };
+		A5314E791A936593007AEEE7 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		A534987A1A6DE4AF00F01962 /* LoLBookOfChampions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoLBookOfChampions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A534987E1A6DE4AF00F01962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A534987F1A6DE4AF00F01962 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -462,6 +468,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A5314E771A936593007AEEE7 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				A5314E781A936593007AEEE7 /* magic.sks */,
+				A5314E791A936593007AEEE7 /* spark.png */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		A53498711A6DE4AF00F01962 = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +507,7 @@
 				54C18E9BE5D7098845774649 /* dataDragon */,
 				54C1848D982995DA94A1E755 /* app */,
 				54C180A7119D66D0D1AAF446 /* core */,
+				A5314E771A936593007AEEE7 /* resources */,
 			);
 			path = LoLBookOfChampions;
 			sourceTree = "<group>";
@@ -618,6 +634,8 @@
 				A534988B1A6DE4AF00F01962 /* Images.xcassets in Resources */,
 				54C182456B27506FFA0F5B94 /* LaunchScreen.xib in Resources */,
 				54C18B3CBCE6CB29622E18A5 /* Main.storyboard in Resources */,
+				A5314E7C1A936593007AEEE7 /* spark.png in Resources */,
+				A5314E7A1A936593007AEEE7 /* magic.sks in Resources */,
 				54C18FCA66E7675C919683F1 /* Configuration.plist in Resources */,
 				54C181F2305B029F61116386 /* DataDragonConfiguration.plist in Resources */,
 			);
@@ -627,6 +645,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5314E7B1A936593007AEEE7 /* magic.sks in Resources */,
+				A5314E7D1A936593007AEEE7 /* spark.png in Resources */,
 				54C18664B75D1219636199E6 /* Configuration.plist in Resources */,
 				54C18DB5ECBE7BC9AB14FC1E /* DataDragonConfiguration.plist in Resources */,
 			);

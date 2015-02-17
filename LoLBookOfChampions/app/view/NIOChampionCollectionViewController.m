@@ -7,6 +7,7 @@
 //
 
 #import <Bolts/BFTask.h>
+#import <SpriteKit/SpriteKit.h>
 #import "NIOChampionCollectionViewController.h"
 #import "NIOContentResolver.h"
 #import "NIODataDragonContract.h"
@@ -19,13 +20,41 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UICollectionView *championCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
+
 @property (strong, nonatomic) id<NIOCursor> cursor;
+@property (strong, nonatomic) NSArray *magicColors;
+@property (strong, nonatomic) SKEmitterNode *magic;
+@property (weak, nonatomic) SKView *magicView;
+
 @end
 
 @implementation NIOChampionCollectionViewController
 
+-(void)assignRandomMagicEmitterColor {
+	int colorIndex = rand() % 3; // Generate a random index between 0 and 3
+	self.magic.particleColor = self.magicColors[(uint)colorIndex];
+}
+
 -(NSArray *)buildProjection {
 	return @[[ChampionColumns COL_NAME], [ChampionColumns COL_IMAGE_URL], [ChampionColumns COL_ID], [ChampionColumns COL_TITLE]];
+}
+
+-(void)configureMagicParticleScene {
+	CGRect frame = self.view.frame;
+	SKView *magicParticleView = [[SKView alloc] initWithFrame:frame];
+	SKScene *scene = [SKScene sceneWithSize:frame.size];
+	scene.scaleMode = SKSceneScaleModeAspectFill;
+	scene.backgroundColor = [UIColor blackColor];
+
+	self.magic = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"magic" ofType:@"sks"]];
+	[self assignRandomMagicEmitterColor];
+	self.magic.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+	[scene addChild:self.magic];
+	[magicParticleView presentScene:scene];
+
+	self.magicView = magicParticleView;
+	[self.view addSubview:magicParticleView];
+	[self.view sendSubviewToBack:magicParticleView];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -89,6 +118,7 @@
 		[self.contentResolver registerContentObserverWithContentURI:[Champion URI]
 										   withNotifyForDescendents:YES
 												withContentObserver:self];
+		[self assignRandomMagicEmitterColor];
 	} else {
 		[self.contentResolver unregisterContentObserver:self];
 	}
@@ -96,6 +126,8 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.magicColors = @[[UIColor blueColor], [UIColor greenColor], [UIColor redColor]];
+	[self configureMagicParticleScene];
 	self.title = @"LoL Champion Browser";
 	self.navigationController.delegate = self;
 	[self queryChampions];
