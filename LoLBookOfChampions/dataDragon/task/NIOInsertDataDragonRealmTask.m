@@ -44,7 +44,8 @@
 }
 
 -(BFTask *)runAsync {
-	return [self.contentResolver insertWithURL:[Realm URI] withValues:[self convertRemoteDataDragonRealmDataToInsertValues]];
+	return [self.contentResolver insertWithURI:[Realm URI]
+									withValues:[self convertRemoteDataDragonRealmDataToInsertValues]];
 }
 
 @end

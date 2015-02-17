@@ -26,18 +26,18 @@
 
 -(BFTask *)runAsync {
 	DDLogVerbose(@"Deleting Data Dragon realm");
-	return [[[self.contentResolver deleteWithURL:[Realm URI]
+	return [[[self.contentResolver deleteWithURI:[Realm URI]
 								   withSelection:nil
 							   withSelectionArgs:nil]
 			continueWithBlock:^id(BFTask *task) {
 				DDLogVerbose(@"Deleting Data Dragon champion data");
-				return [self.contentResolver deleteWithURL:[Champion URI]
+				return [self.contentResolver deleteWithURI:[Champion URI]
 											 withSelection:nil
 										 withSelectionArgs:nil];
 			}]
 			continueWithBlock:^id(BFTask *task) {
 				DDLogVerbose(@"Deleting Data Dragon champion skin data");
-				return [self.contentResolver deleteWithURL:[ChampionSkin URI]
+				return [self.contentResolver deleteWithURI:[ChampionSkin URI]
 											 withSelection:nil
 										 withSelectionArgs:nil];
 			}];

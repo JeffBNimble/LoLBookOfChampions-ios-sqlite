@@ -125,7 +125,7 @@
 	self.localDataDragonVersion = nil;
 
 	[BFTask taskFromExecutor:self.taskExecutor withBlock:^id {
-		[[[[self.contentResolver queryWithURL:[Realm URI]
+		[[[[self.contentResolver queryWithURI:[Realm URI]
 							   withProjection:@[[RealmColumns COL_REALM_VERSION]]
 								withSelection:nil
 							withSelectionArgs:nil

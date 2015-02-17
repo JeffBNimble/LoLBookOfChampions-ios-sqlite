@@ -19,14 +19,14 @@
 	return self;
 }
 
--(NSInteger)deleteWithURL:(NSURL *)url
+-(NSInteger)deleteWithURI:(NSURL *)uri
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs
 				withError:(NSError **)error {
 	return 0;
 }
 
--(NSURL *)insertWithURL:(NSURL *)url
+-(NSURL *)insertWithURI:(NSURL *)uri
 			 withValues:(NSDictionary *)values
 			  withError:(NSError **)error {
 	return nil;
@@ -36,7 +36,7 @@
 
 }
 
--(id<NIOCursor>)queryWithURL:(NSURL *)url
+-(id<NIOCursor>)queryWithURI:(NSURL *)uri
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
 		   withSelectionArgs:(NSArray *)selectionArgs
@@ -47,7 +47,7 @@
 	return nil;
 }
 
--(NSInteger)updateWithURL:(NSURL *)url
+-(NSInteger)updateWithURI:(NSURL *)uri
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs
 				withError:(NSError **)error {

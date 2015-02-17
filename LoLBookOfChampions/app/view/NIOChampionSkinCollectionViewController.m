@@ -80,13 +80,16 @@
 
 -(void)queryChampionSkins {
 	__weak NIOChampionSkinCollectionViewController *weakSelf = self;
-	[[self.contentResolver queryWithURL:[ChampionSkin URI]
+	[[self.contentResolver queryWithURI:[ChampionSkin URI]
 						 withProjection:[self buildProjection]
 						  withSelection:[self buildSelection]
 					  withSelectionArgs:[self buildSelectionArgs]
 							withGroupBy:nil
 							 withHaving:nil
-							   withSort:[@[[ChampionSkinColumns COL_ID], [ChampionSkinColumns COL_SKIN_NUMBER]] componentsJoinedByString:@","]]
+							   withSort:[@[
+									   [ChampionSkinColumns COL_ID],
+									   [ChampionSkinColumns COL_SKIN_NUMBER]
+							   ] componentsJoinedByString:@","]]
 			continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
 
 		if ( task.error || task.exception ) {

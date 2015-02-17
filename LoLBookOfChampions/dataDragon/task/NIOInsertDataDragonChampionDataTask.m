@@ -79,13 +79,13 @@
 		NSDictionary *championSkinsData = championData[@"skins"];
 
 		DDLogVerbose(@"Inserting champion info for %@", championKey);
-		[[self.contentResolver insertWithURL:[Champion URI]
+		[[self.contentResolver insertWithURI:[Champion URI]
 								  withValues:[self championInsertValuesFrom:championData]]
 				waitUntilFinished];
 
 		for ( NSDictionary *championSkinData in championSkinsData ) {
 			DDLogVerbose(@"Inserting champion skin %@ for %@", championSkinData[@"name"], championKey);
-			[[self.contentResolver insertWithURL:[ChampionSkin URI]
+			[[self.contentResolver insertWithURI:[ChampionSkin URI]
 									  withValues:[self championSkinInsertValuesFrom:championSkinData
 																	 withChampionId:championId
 																   withChampionName:championKey]]

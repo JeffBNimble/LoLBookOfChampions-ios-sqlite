@@ -10,16 +10,16 @@
 
 @protocol NIOContentProvider <NSObject>
 
--(NSInteger)deleteWithURL:(NSURL *)url
+-(NSInteger)deleteWithURI:(NSURL *)uri
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs
 				withError:(NSError **)error;
 
--(NSURL *)insertWithURL:(NSURL *)url
-			  withValues:(NSDictionary *)values
+-(NSURL *)insertWithURI:(NSURL *)uri
+			 withValues:(NSDictionary *)values
 			  withError:(NSError **)error;
 
--(id<NIOCursor>)queryWithURL:(NSURL *)url
+-(id<NIOCursor>)queryWithURI:(NSURL *)uri
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
 		   withSelectionArgs:(NSArray *)selectionArgs
@@ -28,7 +28,7 @@
 					withSort:(NSString *)sort
 				   withError:(NSError **)error;
 
--(NSInteger)updateWithURL:(NSURL *)url
+-(NSInteger)updateWithURI:(NSURL *)uri
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs
 				withError:(NSError **)error;

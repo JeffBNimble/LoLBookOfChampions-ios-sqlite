@@ -45,7 +45,7 @@
 -(void)queryChampions {
 	[self.activityIndicatorView startAnimating];
 	__weak NIOChampionCollectionViewController *weakSelf = self;
-	[[self.contentResolver queryWithURL:[Champion URI]
+	[[self.contentResolver queryWithURI:[Champion URI]
 						 withProjection:[self buildProjection]
 						  withSelection:nil
 					  withSelectionArgs:nil

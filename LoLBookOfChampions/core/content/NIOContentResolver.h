@@ -17,18 +17,18 @@
 						   withExecutionQueue:(dispatch_queue_t)executionQueue
 						  withCompletionQueue:(dispatch_queue_t)completionQueue NS_DESIGNATED_INITIALIZER;
 
--(BFTask *)deleteWithURL:(NSURL *)url
+-(BFTask *)deleteWithURI:(NSURL *)uri
 		   withSelection:(NSString *)selection
 	   withSelectionArgs:(NSArray *)selectionArgs;
 
--(id <NIOContentProvider>)getContentProviderForContentURL:(NSURL *)contentURL;
+-(id <NIOContentProvider>)getContentProviderForContentURI:(NSURL *)contentURI;
 
--(BFTask *)insertWithURL:(NSURL *)url
+-(BFTask *)insertWithURI:(NSURL *)uri
 			  withValues:(NSDictionary *)values;
 
--(void)notifyChange:(NSURL *)contentUrl;
+-(void)notifyChange:(NSURL *)contentUri;
 
--(BFTask *)queryWithURL:(NSURL *)url
+-(BFTask *)queryWithURI:(NSURL *)uri
 		 withProjection:(NSArray *)projection
 		  withSelection:(NSString *)selection
 	  withSelectionArgs:(NSArray *)selectionArgs
@@ -36,13 +36,13 @@
 			 withHaving:(NSString *)having
 			   withSort:(NSString *)sort;
 
--(void)registerContentObserverWithContentURL:(NSURL *)contentUrl
+-(void)registerContentObserverWithContentURI:(NSURL *)contentUri
 					withNotifyForDescendents:(bool)notifyForDescendents
 						 withContentObserver:(id <NIOContentObserver>)contentObserver;
 
 -(void)unregisterContentObserver:(id <NIOContentObserver>)contentObserver;
 
--(BFTask *)updateWithURL:(NSURL *)url
+-(BFTask *)updateWithURI:(NSURL *)uri
 		   withSelection:(NSString *)selection
 	   withSelectionArgs:(NSArray *)selectionArgs;
 @end

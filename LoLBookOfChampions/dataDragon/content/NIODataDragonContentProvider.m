@@ -66,7 +66,7 @@
 	return [deleteRealmsTask runAsync];
 }
 
--(NSInteger)deleteWithURL:(NSURL *)uri
+-(NSInteger)deleteWithURI:(NSURL *)uri
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs
 				withError:(NSError **)error {
@@ -120,7 +120,7 @@
 	return [insertRealmTask runAsync];
 }
 
--(NSURL *)insertWithURL:(NSURL *)uri
+-(NSURL *)insertWithURI:(NSURL *)uri
 			 withValues:(NSDictionary *)values
 			  withError:(NSError **)error {
 	BFTask *promise;
@@ -164,7 +164,7 @@
 	[self.urlMatcher addURL:[ChampionSkin URI] withMatchCode:CHAMPION_SKINS_URI];
 }
 
--(id<NIOCursor>)queryWithURL:(NSURL *)uri
+-(id<NIOCursor>)queryWithURI:(NSURL *)uri
 			  withProjection:(NSArray *)projection
 			   withSelection:(NSString *)selection
 		   withSelectionArgs:(NSArray *)selectionArgs

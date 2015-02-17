@@ -57,8 +57,8 @@
 	self.contentRegistrations = newRegistrations;
 }
 
--(id <NIOContentProvider>)getContentProviderForContentURL:(NSURL *)contentURL {
-	NSString *contentAuthority = [self getContentAuthorityForContentURL:contentURL];
+-(id <NIOContentProvider>)getContentProviderForContentURI:(NSURL *)contentURI {
+	NSString *contentAuthority = [self getContentAuthorityForContentURI:contentURI];
 	id <NIOContentProvider> activeContentProvider = self.activeContentProviderRegistry[contentAuthority];
 	if ( activeContentProvider == nil ) {
 		NSString *className = self.contentRegistrations[contentAuthority];
@@ -76,11 +76,11 @@
 	return activeContentProvider;
 }
 
--(NSString *)getContentAuthorityForContentURL:(NSURL *)contentURL {
-	__weak __block NSString *contentURLString = [contentURL absoluteString];
-	NSArray *registrationURLs = [self.contentRegistrations allKeys];
-	NSIndexSet *indexSet = [registrationURLs indexesOfObjectsPassingTest:^BOOL(NSString *urlString, NSUInteger idx, BOOL *stop) {
-		if ( [contentURLString hasPrefix:urlString] ) {
+-(NSString *)getContentAuthorityForContentURI:(NSURL *)contentURI {
+	__weak __block NSString *contentURIString = [contentURI absoluteString];
+	NSArray *registrationURIs = [self.contentRegistrations allKeys];
+	NSIndexSet *indexSet = [registrationURIs indexesOfObjectsPassingTest:^BOOL(NSString *urlString, NSUInteger idx, BOOL *stop) {
+		if ( [contentURIString hasPrefix:urlString] ) {
 			*stop = YES;
 			return YES;
 		}
@@ -88,14 +88,14 @@
 		return NO;
 	}];
 
-	return indexSet.count > 0 ? registrationURLs[indexSet.firstIndex] : nil;
+	return indexSet.count > 0 ? registrationURIs[indexSet.firstIndex] : nil;
 }
 
--(void)notifyChange:(NSURL *)contentUrl {
+-(void)notifyChange:(NSURL *)contentUri {
 
 }
 
--(void)registerContentObserverWithContentURL:(NSURL *)contentUrl
+-(void)registerContentObserverWithContentURI:(NSURL *)contentUri
 					withNotifyForDescendents:(bool)notifyForDescendents
 						 withContentObserver:(id <NIOContentObserver>)contentObserver {
 
@@ -105,11 +105,11 @@
 
 }
 
--(BFTask *)deleteWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+-(BFTask *)deleteWithURI:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
 		NSError *error;
-		NSInteger deleteCount = [[self getContentProviderForContentURL:url]
-				deleteWithURL:url
+		NSInteger deleteCount = [[self getContentProviderForContentURI:uri]
+				deleteWithURI:uri
 				withSelection:selection
 			withSelectionArgs:selectionArgs
 					withError:&error];
@@ -119,11 +119,11 @@
 	}];
 }
 
--(BFTask *)insertWithURL:(NSURL *)url withValues:(NSDictionary *)values {
+-(BFTask *)insertWithURI:(NSURL *)uri withValues:(NSDictionary *)values {
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
 		NSError *error;
-		NSURL *insertedURI = [[self getContentProviderForContentURL:url]
-				insertWithURL:url
+		NSURL *insertedURI = [[self getContentProviderForContentURI:uri]
+				insertWithURI:uri
 				   withValues:values
 					withError:&error];
 		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:insertedURI];
@@ -132,7 +132,7 @@
 	}];
 }
 
--(BFTask *)queryWithURL:(NSURL *)url
+-(BFTask *)queryWithURI:(NSURL *)uri
 		 withProjection:(NSArray *)projection
 		  withSelection:(NSString *)selection
 	  withSelectionArgs:(NSArray *)selectionArgs
@@ -142,8 +142,8 @@
 
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
 		NSError *error;
-		id<NIOCursor> cursor = [[self getContentProviderForContentURL:url]
-				queryWithURL:url
+		id<NIOCursor> cursor = [[self getContentProviderForContentURI:uri]
+				queryWithURI:uri
 			  withProjection:projection
 			   withSelection:selection
 		   withSelectionArgs:selectionArgs
@@ -157,14 +157,14 @@
 	}];
 }
 
--(BFTask *)updateWithURL:(NSURL *)url withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+-(BFTask *)updateWithURI:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
 		NSError *error;
-		NSInteger updateCount = [[self getContentProviderForContentURL:url]
-				updateWithURL:url
+		NSInteger updateCount = [[self getContentProviderForContentURI:uri]
+				updateWithURI:uri
 				withSelection:selection
 			withSelectionArgs:selectionArgs
-		withError:&error];
+					withError:&error];
 		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:@(updateCount)];
 
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
