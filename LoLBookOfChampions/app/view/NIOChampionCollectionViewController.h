@@ -14,5 +14,6 @@
 @interface NIOChampionCollectionViewController : UIViewController<UICollectionViewDelegate,
 		UICollectionViewDataSource, NIOContentObserver, UINavigationControllerDelegate>
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
+@property (strong, nonatomic) NSBundle *mainBundle;
 @end
 

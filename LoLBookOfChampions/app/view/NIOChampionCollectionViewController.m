@@ -22,8 +22,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 
 @property (strong, nonatomic) id<NIOCursor> cursor;
-@property (strong, nonatomic) NSArray *magicColors;
 @property (strong, nonatomic) SKEmitterNode *magic;
+@property (strong, nonatomic) NSArray *magicColors;
+@property (strong, nonatomic) SKScene *magicScene;
 @property (weak, nonatomic) SKView *magicView;
 
 @end
@@ -39,18 +40,31 @@
 	return @[[ChampionColumns COL_NAME], [ChampionColumns COL_IMAGE_URL], [ChampionColumns COL_ID], [ChampionColumns COL_TITLE]];
 }
 
+-(void)centerEmitterPoint:(BOOL)async {
+	CGRect frame = self.view.frame;
+	__weak NIOChampionCollectionViewController *weakSelf = self;
+	if ( async ) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if ( weakSelf ) {
+				weakSelf.magic.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+			}
+		});
+	} else {
+		self.magic.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+	}
+}
+
 -(void)configureMagicParticleScene {
 	CGRect frame = self.view.frame;
 	SKView *magicParticleView = [[SKView alloc] initWithFrame:frame];
-	SKScene *scene = [SKScene sceneWithSize:frame.size];
-	scene.scaleMode = SKSceneScaleModeAspectFill;
-	scene.backgroundColor = [UIColor blackColor];
+	self.magicScene = [SKScene sceneWithSize:frame.size];
+	self.magicScene.scaleMode = SKSceneScaleModeAspectFill;
+	self.magicScene.backgroundColor = [UIColor blackColor];
 
-	self.magic = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"magic" ofType:@"sks"]];
+	self.magic = [NSKeyedUnarchiver unarchiveObjectWithFile:[self.mainBundle pathForResource:@"magic" ofType:@"sks"]];
 	[self assignRandomMagicEmitterColor];
-	self.magic.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
-	[scene addChild:self.magic];
-	[magicParticleView presentScene:scene];
+	[self centerEmitterPoint:NO];
+	[self.magicScene addChild:self.magic];
 
 	self.magicView = magicParticleView;
 	[self.view addSubview:magicParticleView];
@@ -119,8 +133,10 @@
 										   withNotifyForDescendents:YES
 												withContentObserver:self];
 		[self assignRandomMagicEmitterColor];
+		[self.magicView presentScene:self.magicScene];
 	} else {
 		[self.contentResolver unregisterContentObserver:self];
+		[self.magicView presentScene:nil];
 	}
 }
 
@@ -131,6 +147,12 @@
 	self.title = @"LoL Champion Browser";
 	self.navigationController.delegate = self;
 	[self queryChampions];
+}
+
+-(void)viewWillTransitionToSize:(CGSize)size
+	  withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+	[self centerEmitterPoint:YES];
 }
 
 #pragma mark UICollectionViewDataSource

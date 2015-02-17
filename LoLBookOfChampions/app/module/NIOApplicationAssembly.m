@@ -37,6 +37,7 @@
 - (NIOChampionCollectionViewController *)championViewController {
 	return [TyphoonDefinition withClass:[NIOChampionCollectionViewController class] configuration:^(TyphoonDefinition *definition) {
 		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
+		[definition injectProperty:@selector(mainBundle) with:self.coreComponents.mainBundle];
 	}];
 }
 
