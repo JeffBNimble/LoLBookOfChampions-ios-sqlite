@@ -10,9 +10,10 @@
 
 @class NIODataDragonComponents;
 @class AppDelegate;
-@class ChampionCollectionViewController;
+@class NIOChampionCollectionViewController;
 @class NIOCoreComponents;
 @protocol NIOContentProvider;
+@class NIOChampionSkinCollectionViewController;
 
 @interface NIOApplicationAssembly : TyphoonAssembly
 
@@ -20,7 +21,8 @@
 @property (nonatomic, strong, readonly) NIODataDragonComponents *dataDragonComponents;
 
 -(AppDelegate *)appDelegate;
+-(NIOChampionCollectionViewController *)championViewController;
+-(NIOChampionSkinCollectionViewController *)championSkinViewController;
 -(UIWindow *)mainWindow;
--(ChampionCollectionViewController *)viewController;
 
 @end

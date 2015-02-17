@@ -1,5 +1,5 @@
 //
-//  ChampionCollectionViewController.m
+//  NIOChampionCollectionViewController.m
 //  LoLBookOfChampions
 //
 //  Created by Jeff Roberts on 1/19/15.
@@ -7,20 +7,21 @@
 //
 
 #import <Bolts/BFTask.h>
-#import "ChampionCollectionViewController.h"
+#import "NIOChampionCollectionViewController.h"
 #import "NIOContentResolver.h"
 #import "NIODataDragonContract.h"
 #import "NIOChampionCollectionViewCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "NIOCursor.h"
+#import "NIOChampionSkinCollectionViewController.h"
 
-@interface ChampionCollectionViewController ()
+@interface NIOChampionCollectionViewController ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UICollectionView *championCollectionView;
 @property (strong, nonatomic) id<NIOCursor> cursor;
 @end
 
-@implementation ChampionCollectionViewController
+@implementation NIOChampionCollectionViewController
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -38,13 +39,12 @@
 }
 
 -(NSArray *)buildProjection {
-	return @[[ChampionColumns COL_NAME], [ChampionColumns COL_IMAGE_URL], [ChampionColumns COL_TITLE]];
+	return @[[ChampionColumns COL_NAME], [ChampionColumns COL_IMAGE_URL], [ChampionColumns COL_ID], [ChampionColumns COL_TITLE]];
 }
 
 -(void)queryChampions {
-	[self.activityIndicatorView setHidden:NO];
 	[self.activityIndicatorView startAnimating];
-	__weak ChampionCollectionViewController *weakSelf = self;
+	__weak NIOChampionCollectionViewController *weakSelf = self;
 	[[self.contentResolver queryWithURL:[Champion URI]
 						 withProjection:[self buildProjection]
 						  withSelection:nil
@@ -66,6 +66,19 @@
 		}
 		return nil;
 	}];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	[super prepareForSegue:segue sender:sender];
+
+	if ( [segue.identifier isEqualToString:@"showChampionSkins"] ) {
+		NSIndexPath *indexPath = [self.championCollectionView indexPathForCell:sender];
+		[self.cursor moveToPosition:indexPath.row];
+		NIOChampionSkinCollectionViewController *vc = (NIOChampionSkinCollectionViewController *)segue.destinationViewController;
+		vc.championId = (uint) [self.cursor intForColumn:[ChampionColumns COL_ID]];
+		vc.championName = [self.cursor stringForColumn:[ChampionColumns COL_NAME]];
+		vc.championTitle = [self.cursor stringForColumn:[ChampionColumns COL_TITLE]];
+	}
 }
 
 #pragma mark UICollectionViewDataSource
@@ -99,14 +112,4 @@
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 	return self.cursor ? 1 : 0;
 }
-
-
-#pragma mark UICollectionViewDelegate
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	[self.cursor moveToPosition:indexPath.row];
-	DDLogInfo(@"I just tapped %@", [self.cursor stringForColumn:[ChampionColumns COL_NAME]]);
-}
-
-
 @end

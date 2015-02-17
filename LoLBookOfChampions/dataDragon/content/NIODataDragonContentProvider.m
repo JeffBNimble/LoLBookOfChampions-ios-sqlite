@@ -19,6 +19,7 @@
 #import "NIOInsertChampionTask.h"
 #import "NIOInsertChampionSkinTask.h"
 #import "NIOQueryChampionsTask.h"
+#import "NIOQueryChampionSkinsTask.h"
 #import <Bolts/Bolts.h>
 
 #define REALM_URI			1
@@ -193,6 +194,15 @@
 												withSort:sort];
 			break;
 
+		case CHAMPION_SKINS_URI:
+			promise = [self queryChampionSkinsWithProjection:projection
+										   withSelection:selection
+									   withSelectionArgs:selectionArgs
+											 withGroupBy:groupBy
+											  withHaving:having
+												withSort:sort];
+			break;
+
 		default:
 			promise = [BFTask taskWithError:[NSError errorWithDomain:@"content.provider.datadragon"
 																code:99
@@ -216,7 +226,24 @@
 						withGroupBy:(NSString *)groupBy
 						 withHaving:(NSString *)having
 						   withSort:(NSString *)sort {
-	NIOQueryRealmsTask *queryTask = [self.taskFactory createTaskWithType:[NIOQueryChampionsTask class]];
+	NIOQueryChampionsTask *queryTask = [self.taskFactory createTaskWithType:[NIOQueryChampionsTask class]];
+	queryTask.projection = projection;
+	queryTask.selection = selection;
+	queryTask.selectionArgs = selectionArgs;
+	queryTask.groupBy = groupBy;
+	queryTask.having = having;
+	queryTask.sort = sort;
+
+	return [queryTask runAsync];
+}
+
+-(BFTask *)queryChampionSkinsWithProjection:(NSArray *)projection
+						  withSelection:(NSString *)selection
+					  withSelectionArgs:(NSArray *)selectionArgs
+							withGroupBy:(NSString *)groupBy
+							 withHaving:(NSString *)having
+							   withSort:(NSString *)sort {
+	NIOQueryChampionSkinsTask *queryTask = [self.taskFactory createTaskWithType:[NIOQueryChampionSkinsTask class]];
 	queryTask.projection = projection;
 	queryTask.selection = selection;
 	queryTask.selectionArgs = selectionArgs;

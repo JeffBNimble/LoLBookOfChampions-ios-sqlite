@@ -28,6 +28,7 @@
 #import "NIOInsertDataDragonChampionDataTask.h"
 #import "NIOCacheChampionImagesTask.h"
 #import "NIOQueryChampionsTask.h"
+#import "NIOQueryChampionSkinsTask.h"
 #import <Typhoon/Typhoon.h>
 
 
@@ -224,6 +225,16 @@
 
 -(NIOQueryChampionsTask *)queryChampionsTask {
 	return [TyphoonDefinition withClass:[NIOQueryChampionsTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
+-(NIOQueryChampionSkinsTask *)queryChampionSkinsTask {
+	return [TyphoonDefinition withClass:[NIOQueryChampionSkinsTask class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
 		}];

@@ -1,5 +1,5 @@
 //
-//  ChampionCollectionViewController.h
+//  NIOChampionCollectionViewController.h
 //  LoLBookOfChampions
 //
 //  Created by Jeff Roberts on 1/19/15.
@@ -10,7 +10,7 @@
 
 @class NIOContentResolver;
 
-@interface ChampionCollectionViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface NIOChampionCollectionViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
 @end
 

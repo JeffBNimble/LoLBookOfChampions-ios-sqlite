@@ -27,7 +27,7 @@
         <!--Champion Collection View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ChampionCollectionViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="NIOChampionCollectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -77,6 +77,7 @@
                                         <connections>
                                             <outlet property="championImageView" destination="b4m-db-vXf" id="78x-uH-NQe"/>
                                             <outlet property="championNameLabel" destination="jWn-LQ-8js" id="KjV-bf-fun"/>
+                                            <segue destination="s8e-z1-4kB" kind="show" identifier="showChampionSkins" id="IOe-N2-k9r"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -109,6 +110,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="159.5" y="478.5"/>
+        </scene>
+        <!--Champion Skin Collection View Controller-->
+        <scene sceneID="3hR-9B-7kT">
+            <objects>
+                <collectionViewController id="s8e-z1-4kB" customClass="NIOChampionSkinCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="Ujj-b3-eKa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Yo3-Fk-g6m">
+                            <size key="itemSize" width="375" height="667"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="championSkinCell" id="9fp-u4-YKY" customClass="NIOChampionSkinCollectionViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hQE-ZU-J3A" userLabel="Champion Skin Image View">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="hQE-ZU-J3A" secondAttribute="trailing" id="Phz-8j-pMB"/>
+                                    <constraint firstItem="hQE-ZU-J3A" firstAttribute="top" secondItem="9fp-u4-YKY" secondAttribute="top" id="ix6-07-hSu"/>
+                                    <constraint firstItem="hQE-ZU-J3A" firstAttribute="leading" secondItem="9fp-u4-YKY" secondAttribute="leading" id="poO-2A-7MB"/>
+                                    <constraint firstAttribute="bottom" secondItem="hQE-ZU-J3A" secondAttribute="bottom" id="qjP-6I-qat"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="skinImageView" destination="hQE-ZU-J3A" id="Id6-Mh-Wtf"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="s8e-z1-4kB" id="GtZ-si-cfo"/>
+                            <outlet property="delegate" destination="s8e-z1-4kB" id="321-s8-3KM"/>
+                        </connections>
+                    </collectionView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nkU-UA-nfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="659.5" y="478.5"/>
         </scene>
     </scenes>
 </document>

@@ -9,11 +9,12 @@
 #import "AppDelegate.h"
 #import "NIOApplicationAssembly.h"
 #import "NIODataDragonComponents.h"
-#import "ChampionCollectionViewController.h"
+#import "NIOChampionCollectionViewController.h"
 #import "NIOContentResolver.h"
 #import "NIOCoreComponents.h"
 #import "NIOContentProvider.h"
 #import "NIOBaseComponentFactory.h"
+#import "NIOChampionSkinCollectionViewController.h"
 #import <Typhoon/Typhoon.h>
 
 @implementation NIOApplicationAssembly
@@ -33,6 +34,18 @@
     return [TyphoonDefinition configDefinitionWithName:@"Configuration.plist"];
 }
 
+- (NIOChampionCollectionViewController *)championViewController {
+	return [TyphoonDefinition withClass:[NIOChampionCollectionViewController class] configuration:^(TyphoonDefinition *definition) {
+		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
+	}];
+}
+
+- (NIOChampionSkinCollectionViewController *)championSkinViewController {
+	return [TyphoonDefinition withClass:[NIOChampionSkinCollectionViewController class] configuration:^(TyphoonDefinition *definition) {
+		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
+	}];
+}
+
 - (UIWindow *)mainWindow {
     return [TyphoonDefinition withClass:[UIWindow class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(initWithFrame:) parameters:^(TyphoonMethod *initializer) {
@@ -40,12 +53,5 @@
         }];
     }];
 }
-
-- (ChampionCollectionViewController *)viewController {
-    return [TyphoonDefinition withClass:[ChampionCollectionViewController class] configuration:^(TyphoonDefinition *definition) {
-		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
-    }];
-}
-
 
 @end
