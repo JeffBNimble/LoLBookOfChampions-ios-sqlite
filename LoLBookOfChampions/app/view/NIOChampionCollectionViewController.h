@@ -11,7 +11,8 @@
 
 @class NIOContentResolver;
 
-@interface NIOChampionCollectionViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource, NIOContentObserver>
+@interface NIOChampionCollectionViewController : UIViewController<UICollectionViewDelegate,
+		UICollectionViewDataSource, NIOContentObserver, UINavigationControllerDelegate>
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
 @end
 

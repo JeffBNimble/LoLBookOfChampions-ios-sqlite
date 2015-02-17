@@ -24,37 +24,21 @@
 
 @implementation NIOChampionCollectionViewController
 
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	self.title = @"LoL Champion Browser";
-	[self queryChampions];
-}
-
--(void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-
-	[self.contentResolver registerContentObserverWithContentURI:[Champion URI]
-									   withNotifyForDescendents:YES
-											withContentObserver:self];
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	[self.contentResolver unregisterContentObserver:self];
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(NSArray *)buildProjection {
 	return @[[ChampionColumns COL_NAME], [ChampionColumns COL_IMAGE_URL], [ChampionColumns COL_ID], [ChampionColumns COL_TITLE]];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	[super prepareForSegue:segue sender:sender];
+
+	if ( [segue.identifier isEqualToString:@"showChampionSkins"] ) {
+		NSIndexPath *indexPath = [self.championCollectionView indexPathForCell:sender];
+		[self.cursor moveToPosition:indexPath.row];
+		NIOChampionSkinCollectionViewController *vc = (NIOChampionSkinCollectionViewController *)segue.destinationViewController;
+		vc.championId = (uint) [self.cursor intForColumn:[ChampionColumns COL_ID]];
+		vc.championName = [self.cursor stringForColumn:[ChampionColumns COL_NAME]];
+		vc.championTitle = [self.cursor stringForColumn:[ChampionColumns COL_TITLE]];
+	}
 }
 
 -(void)queryChampions {
@@ -95,17 +79,26 @@
 	}];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	[super prepareForSegue:segue sender:sender];
+#pragma mark UINavigationControllerDelegate methods
 
-	if ( [segue.identifier isEqualToString:@"showChampionSkins"] ) {
-		NSIndexPath *indexPath = [self.championCollectionView indexPathForCell:sender];
-		[self.cursor moveToPosition:indexPath.row];
-		NIOChampionSkinCollectionViewController *vc = (NIOChampionSkinCollectionViewController *)segue.destinationViewController;
-		vc.championId = (uint) [self.cursor intForColumn:[ChampionColumns COL_ID]];
-		vc.championName = [self.cursor stringForColumn:[ChampionColumns COL_NAME]];
-		vc.championTitle = [self.cursor stringForColumn:[ChampionColumns COL_TITLE]];
+-(void)navigationController:(UINavigationController *)navigationController
+	 willShowViewController:(UIViewController *)viewController
+				   animated:(BOOL)animated {
+
+	if ( viewController == self ) {
+		[self.contentResolver registerContentObserverWithContentURI:[Champion URI]
+										   withNotifyForDescendents:YES
+												withContentObserver:self];
+	} else {
+		[self.contentResolver unregisterContentObserver:self];
 	}
+}
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	self.title = @"LoL Champion Browser";
+	self.navigationController.delegate = self;
+	[self queryChampions];
 }
 
 #pragma mark UICollectionViewDataSource
