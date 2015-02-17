@@ -26,6 +26,7 @@
 @property (strong, nonatomic) NSArray *magicColors;
 @property (strong, nonatomic) SKScene *magicScene;
 @property (weak, nonatomic) SKView *magicView;
+@property (assign, nonatomic) BOOL presentNewMagicScene;
 
 @end
 
@@ -40,37 +41,15 @@
 	return @[[ChampionColumns COL_NAME], [ChampionColumns COL_IMAGE_URL], [ChampionColumns COL_ID], [ChampionColumns COL_TITLE]];
 }
 
--(void)centerEmitterPoint:(BOOL)async {
-	__block CGRect frame = self.view.frame;
-	__weak NIOChampionCollectionViewController *weakSelf = self;
-	if ( async ) {
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-			if ( weakSelf ) {
-				weakSelf.magic.position = CGPointMake(CGRectGetMidX(weakSelf.view.frame), CGRectGetMidY(weakSelf.view.frame));
-				[weakSelf.magicScene setSize:weakSelf.view.frame.size];
-			}
-		});
-	} else {
-		self.magic.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
-		[self.magicScene setSize:frame.size];
-	}
-}
-
--(void)configureMagicParticleScene {
+-(void)configureMagicParticleView {
 	CGRect frame = self.view.frame;
 	SKView *magicParticleView = [[SKView alloc] initWithFrame:frame];
-	self.magicScene = [SKScene sceneWithSize:frame.size];
-	self.magicScene.scaleMode = SKSceneScaleModeAspectFill;
-	self.magicScene.backgroundColor = [UIColor blackColor];
 
 	self.magic = [NSKeyedUnarchiver unarchiveObjectWithFile:[self.mainBundle pathForResource:@"magic" ofType:@"sks"]];
-	[self assignRandomMagicEmitterColor];
-	[self centerEmitterPoint:NO];
-	[self.magicScene addChild:self.magic];
-
 	self.magicView = magicParticleView;
 	[self.view addSubview:magicParticleView];
 	[self.view sendSubviewToBack:magicParticleView];
+	self.presentNewMagicScene = YES;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -84,6 +63,20 @@
 		vc.championName = [self.cursor stringForColumn:[ChampionColumns COL_NAME]];
 		vc.championTitle = [self.cursor stringForColumn:[ChampionColumns COL_TITLE]];
 	}
+}
+
+-(void)presentMagicParticleScene {
+	CGRect frame = self.view.frame;
+	self.magicView.frame = self.view.frame;
+	self.magicScene = [SKScene sceneWithSize:frame.size];
+	self.magicScene.scaleMode = SKSceneScaleModeAspectFill;
+	self.magicScene.backgroundColor = [UIColor blackColor];
+
+	[self assignRandomMagicEmitterColor];
+	self.magic.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+	[self.magic removeFromParent];
+	[self.magicScene addChild:self.magic];
+	[self.magicView presentScene:self.magicScene];
 }
 
 -(void)queryChampions {
@@ -124,6 +117,29 @@
 	}];
 }
 
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	self.magicColors = @[[UIColor blueColor], [UIColor greenColor], [UIColor redColor]];
+	[self configureMagicParticleView];
+	self.title = @"LoL Champion Browser";
+	self.navigationController.delegate = self;
+	[self queryChampions];
+}
+
+-(void)viewWillTransitionToSize:(CGSize)size
+	  withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+	self.presentNewMagicScene = YES;
+}
+
+-(void)viewWillLayoutSubviews {
+	[super viewWillLayoutSubviews];
+	if ( self.presentNewMagicScene ) {
+		[self presentMagicParticleScene];
+		self.presentNewMagicScene = NO;
+	}
+}
+
 #pragma mark UINavigationControllerDelegate methods
 
 -(void)navigationController:(UINavigationController *)navigationController
@@ -135,26 +151,11 @@
 										   withNotifyForDescendents:YES
 												withContentObserver:self];
 		[self assignRandomMagicEmitterColor];
-		[self.magicView presentScene:self.magicScene];
+		self.presentNewMagicScene = YES;
 	} else {
 		[self.contentResolver unregisterContentObserver:self];
 		[self.magicView presentScene:nil];
 	}
-}
-
-- (void)viewDidLoad {
-	[super viewDidLoad];
-	self.magicColors = @[[UIColor blueColor], [UIColor greenColor], [UIColor redColor]];
-	[self configureMagicParticleScene];
-	self.title = @"LoL Champion Browser";
-	self.navigationController.delegate = self;
-	[self queryChampions];
-}
-
--(void)viewWillTransitionToSize:(CGSize)size
-	  withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
-	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-	[self centerEmitterPoint:YES];
 }
 
 #pragma mark UICollectionViewDataSource
