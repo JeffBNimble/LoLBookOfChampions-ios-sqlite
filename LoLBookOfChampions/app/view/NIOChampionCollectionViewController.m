@@ -41,16 +41,18 @@
 }
 
 -(void)centerEmitterPoint:(BOOL)async {
-	CGRect frame = self.view.frame;
+	__block CGRect frame = self.view.frame;
 	__weak NIOChampionCollectionViewController *weakSelf = self;
 	if ( async ) {
-		dispatch_async(dispatch_get_main_queue(), ^{
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
 			if ( weakSelf ) {
-				weakSelf.magic.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+				weakSelf.magic.position = CGPointMake(CGRectGetMidX(weakSelf.view.frame), CGRectGetMidY(weakSelf.view.frame));
+				[weakSelf.magicScene setSize:weakSelf.view.frame.size];
 			}
 		});
 	} else {
 		self.magic.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+		[self.magicScene setSize:frame.size];
 	}
 }
 
