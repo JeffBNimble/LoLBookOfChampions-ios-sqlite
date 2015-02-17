@@ -10,4 +10,9 @@
 
 
 @implementation NIOChampionSkinCollectionViewCell
+-(void)prepareForReuse {
+	[super prepareForReuse];
+	self.skinImageView.image = nil;
+}
+
 @end

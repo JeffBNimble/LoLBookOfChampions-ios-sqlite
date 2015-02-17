@@ -39,12 +39,17 @@
 	  withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
 	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 	[self.collectionViewLayout invalidateLayout];
+
+	__weak NIOChampionSkinCollectionViewController *weakSelf = self;
 	dispatch_async(dispatch_get_main_queue(), ^{
-		NSArray *indexPaths = [self.collectionView indexPathsForVisibleItems];
-		[self.collectionView reloadItemsAtIndexPaths:indexPaths];
-		[self.collectionView scrollToItemAtIndexPath:[indexPaths firstObject]
-									atScrollPosition:UICollectionViewScrollPositionTop
-											animated:YES];
+		if ( weakSelf ) {
+			[weakSelf clearImages];
+			NSArray *indexPaths = [weakSelf.collectionView indexPathsForVisibleItems];
+			[weakSelf.collectionView reloadItemsAtIndexPaths:indexPaths];
+			[weakSelf.collectionView scrollToItemAtIndexPath:[indexPaths firstObject]
+											atScrollPosition:UICollectionViewScrollPositionTop
+													animated:YES];
+		}
 
 	});
 }
@@ -59,6 +64,18 @@
 
 -(NSArray *)buildSelectionArgs {
 	return @[@(self.championId)];
+}
+
+-(void)clearImages {
+	NSArray *visibleCells = [self.collectionView visibleCells];
+	for ( NIOChampionSkinCollectionViewCell *cell in visibleCells ) {
+		cell.skinImageView.image = nil;
+	}
+}
+
+-(BOOL)isLandscapeOrientation {
+	CGSize viewSize = self.view.frame.size;
+	return viewSize.width > viewSize.height;
 }
 
 -(void)queryChampionSkins {
@@ -93,7 +110,7 @@
 																							forIndexPath:indexPath];
 	[self.cursor moveToPosition:(uint)indexPath.row];
 
-	NSString *urlString = UIDeviceOrientationIsLandscape(self.interfaceOrientation) ? [ChampionSkinColumns COL_SPLASH_IMAGE_URL] : [ChampionSkinColumns COL_LOADING_IMAGE_URL];
+	NSString *urlString = [self isLandscapeOrientation] ? [ChampionSkinColumns COL_SPLASH_IMAGE_URL] : [ChampionSkinColumns COL_LOADING_IMAGE_URL];
 	NSURL *imageURL = [NSURL URLWithString:[self.cursor stringForColumn:urlString]];
 	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageURL];
 
