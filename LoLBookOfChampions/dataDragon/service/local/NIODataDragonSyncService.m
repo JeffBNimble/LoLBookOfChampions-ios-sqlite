@@ -110,7 +110,12 @@
 	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
 		return task.error ? task : [self insertChampionStaticDataWithRemoteChampionData:task.result];
 	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
-		return task.error ? task : [self cacheChampionImagesWithImageURLs:task.result];
+		if ( task.error || task.exception ) {
+			return task;
+		}
+		[self.contentResolver notifyChange:[Champion URI]];
+
+		return [self cacheChampionImagesWithImageURLs:task.result];
 	}] continueWithExecutor:self.taskExecutor withBlock:^id(BFTask *task) {
 		if ( task.error || task.exception ) {
 			DDLogError(@"An error occurred attempting to resync the remote data dragon data with the local database: %@", task.error ? task.error : task.exception);

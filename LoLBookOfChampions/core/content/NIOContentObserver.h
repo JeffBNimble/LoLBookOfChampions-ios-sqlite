@@ -6,5 +6,5 @@
 #import <Foundation/Foundation.h>
 
 @protocol NIOContentObserver <NSObject>
--(void)onUpdate:(NSURL *)contentUrl;
+-(void)onUpdate:(NSURL *)contentUri;
 @end

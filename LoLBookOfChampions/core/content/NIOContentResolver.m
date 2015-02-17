@@ -9,13 +9,43 @@
 #import "NIOContentResolver.h"
 #import "NIOBaseContentProvider.h"
 #import "NIOContentProviderFactory.h"
+#import "NIOContentObserver.h"
 #import <Bolts/Bolts.h>
 
 #define CONTENT_AUTHORITY(REGISTRATION_PATH)    [NSString stringWithFormat:@"content://%@.%@", self.contentAuthorityBase, REGISTRATION_PATH]
 
+@interface ContentObserverRegistration : NSObject
+@property (strong, nonatomic) id<NIOContentObserver>contentObserver;
+@property (strong, nonatomic) NSURL *contentURI;
+@property (assign, nonatomic) BOOL notifyForDescendents;
+
+-(instancetype)init;
+@end
+
+@implementation ContentObserverRegistration
+-(instancetype)init {
+	self = [super init];
+	if ( self ) {}
+	return self;
+}
+
+-(BOOL)isEqual:(id)other {
+	if ( other == self )
+		return YES;
+	if ( !other || ![[other class] isEqual:[self class]] )
+		return NO;
+
+	ContentObserverRegistration *otherRegistration = (ContentObserverRegistration *)other;
+	return [self.contentURI isEqual:otherRegistration.contentURI];
+}
+
+@end
+
+
 @interface NIOContentResolver ()
 @property (strong, nonatomic) NSMutableDictionary *activeContentProviderRegistry;
 @property (strong, nonatomic) NSString *contentAuthorityBase;
+@property (strong, nonatomic) NSMutableDictionary *contentObservers;
 @property (strong, nonatomic) id <NIOContentProviderFactory> contentProviderFactory;
 @property (strong, nonatomic) NSDictionary *contentRegistrations;
 @property (strong, nonatomic) BFExecutor *executionExecutor;
@@ -36,6 +66,7 @@
 		self.activeContentProviderRegistry = [NSMutableDictionary new];
 		self.executionExecutor = [BFExecutor executorWithDispatchQueue:executionQueue];
 		self.completionExecutor = [BFExecutor executorWithDispatchQueue:completionQueue];
+		self.contentObservers = [NSMutableDictionary new];
 		[self initialize];
 	}
 
@@ -91,18 +122,47 @@
 	return indexSet.count > 0 ? registrationURIs[indexSet.firstIndex] : nil;
 }
 
--(void)notifyChange:(NSURL *)contentUri {
+-(void)notifyChange:(NSURL *)contentURI {
+	__weak NIOContentResolver *weakSelf = self;
+	[self.completionExecutor execute:^{
+		NSString *contentURIString = [contentURI absoluteString];
+		for ( NSString *key in weakSelf.contentObservers.allKeys ) {
+			NSArray *registrations = weakSelf.contentObservers[key];
 
+			for ( ContentObserverRegistration *registration in registrations ) {
+				BOOL shouldNotify = [[registration.contentURI absoluteString] isEqual:contentURIString] ||
+						(registration.notifyForDescendents && [contentURIString hasPrefix:[registration.contentURI absoluteString]]);
+				if ( shouldNotify ) {
+					[registration.contentObserver onUpdate:contentURI];
+				}
+			}
+		}
+	}];
 }
 
 -(void)registerContentObserverWithContentURI:(NSURL *)contentUri
 					withNotifyForDescendents:(bool)notifyForDescendents
 						 withContentObserver:(id <NIOContentObserver>)contentObserver {
+	NSString *key = NSStringFromClass([contentObserver class]);
+	NSMutableArray *registrations = self.contentObservers[key];
+	if ( !registrations ) {
+		registrations = [NSMutableArray new];
+		self.contentObservers[key] = registrations;
+	}
 
+	ContentObserverRegistration *registration = [ContentObserverRegistration new];
+	registration.contentObserver = contentObserver;
+	registration.contentURI = contentUri;
+	registration.notifyForDescendents = notifyForDescendents;
+
+	if ( ![registrations containsObject:registration] ) {
+		[registrations addObject:registration];
+	}
 }
 
 -(void)unregisterContentObserver:(id <NIOContentObserver>)contentObserver {
-
+	NSString *key = NSStringFromClass([contentObserver class]);
+	[self.contentObservers removeObjectForKey:key];
 }
 
 -(BFTask *)deleteWithURI:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {

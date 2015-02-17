@@ -18,6 +18,7 @@
 @interface NIOChampionCollectionViewController ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UICollectionView *championCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 @property (strong, nonatomic) id<NIOCursor> cursor;
 @end
 
@@ -32,6 +33,20 @@
 	self.title = @"League of Legends Champion Browser";
 	[self queryChampions];
 }
+
+-(void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+
+	[self.contentResolver registerContentObserverWithContentURI:[Champion URI]
+									   withNotifyForDescendents:YES
+											withContentObserver:self];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	[self.contentResolver unregisterContentObserver:self];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -53,16 +68,28 @@
 							 withHaving:nil
 							   withSort:[ChampionColumns COL_NAME]]
 			continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
-		if ( weakSelf ) [weakSelf.activityIndicatorView stopAnimating];
+		if ( weakSelf ) {
+			[weakSelf.activityIndicatorView stopAnimating];
+			[weakSelf.loadingLabel setHidden:YES];
+		}
 
 		if ( task.error || task.exception ) {
 			DDLogError(@"An error occurred querying champions: %@", task.error ? task.error : task.exception);
 		} else {
 			if ( weakSelf ) {
-				weakSelf.cursor = task.result;
-				[weakSelf.championCollectionView reloadData];
+				id<NIOCursor> championCursor = task.result;
+				if ( championCursor.rowCount > 0 ) {
+					weakSelf.cursor = championCursor;
+					[weakSelf.championCollectionView reloadData];
+				} else {
+					[weakSelf.activityIndicatorView startAnimating];
+					[weakSelf.loadingLabel setAlpha:0.0f];
+					[weakSelf.loadingLabel setHidden:NO];
+					[UIView animateWithDuration:2.0f animations:^{
+						[weakSelf.loadingLabel setAlpha:1.0f];
+					}];
+				}
 			}
-
 		}
 		return nil;
 	}];
@@ -112,4 +139,14 @@
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 	return self.cursor ? 1 : 0;
 }
+
+#pragma mark NIOContentObserver methods
+
+-(void)onUpdate:(NSURL *)contentUri {
+	__weak NIOChampionCollectionViewController *weakSelf = self;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		if ( weakSelf ) [weakSelf queryChampions];
+	});
+}
+
 @end

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NIOContentObserver.h"
 
 @class NIOContentResolver;
 
-@interface NIOChampionCollectionViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface NIOChampionCollectionViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource, NIOContentObserver>
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
 @end
 
