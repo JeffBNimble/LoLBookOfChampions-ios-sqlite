@@ -8,7 +8,6 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>io.nimblenoggin.lolbookofchampions</string>
-	<!-- <string>lol$(PRODUCT_NAME:rfc1034identifier)</string> -->
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
