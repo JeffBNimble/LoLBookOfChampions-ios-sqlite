@@ -34,27 +34,22 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
-  - SDWebImage (3.7.1):
-    - SDWebImage/Core (= 3.7.1)
-  - SDWebImage/Core (3.7.1)
-  - Typhoon (3.0.0):
-    - Typhoon/no-arc (= 3.0.0)
-  - Typhoon/no-arc (3.0.0)
+  - Typhoon (3.0.1):
+    - Typhoon/no-arc (= 3.0.1)
+  - Typhoon/no-arc (3.0.1)
 
 DEPENDENCIES:
   - AFNetworking (= 2.5.1)
   - Bolts (= 1.1.3)
   - CocoaLumberjack (= 2.0.0-rc)
   - FMDB (= 2.5)
-  - SDWebImage (= 3.7.1)
-  - Typhoon (= 3.0.0)
+  - Typhoon (= 3.0.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   CocoaLumberjack: 6186e27827fc574b50b16c10102fcc591437f06c
   FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  Typhoon: 9f4d2beda8c3ec6d36b1dfe15acf481ebc941b74
+  Typhoon: 825ec92176814a9f456979ef226c9d027d236dc1
 
 COCOAPODS: 0.35.0

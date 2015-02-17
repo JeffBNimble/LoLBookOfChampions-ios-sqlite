@@ -5,8 +5,7 @@ pod 'AFNetworking', '2.5.1'
 pod 'Bolts', '1.1.3'
 pod 'CocoaLumberjack', '2.0.0-rc'
 pod 'FMDB', '2.5'
-pod 'SDWebImage', '3.7.1'
-pod 'Typhoon', '3.0.0'
+pod 'Typhoon', '3.0.1'
 
 target 'LoLBookOfChampions' do
 
