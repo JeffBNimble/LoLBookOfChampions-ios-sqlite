@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.title = @"League of Legends Champion Browser";
+	self.title = @"LoL Champion Browser";
 	[self queryChampions];
 }
 
