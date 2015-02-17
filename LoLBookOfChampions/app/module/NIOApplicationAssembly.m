@@ -38,12 +38,19 @@
 	return [TyphoonDefinition withClass:[NIOChampionCollectionViewController class] configuration:^(TyphoonDefinition *definition) {
 		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
 		[definition injectProperty:@selector(mainBundle) with:self.coreComponents.mainBundle];
+		[definition injectProperty:@selector(currentDevice) with:self.currentDevice];
 	}];
 }
 
 - (NIOChampionSkinCollectionViewController *)championSkinViewController {
 	return [TyphoonDefinition withClass:[NIOChampionSkinCollectionViewController class] configuration:^(TyphoonDefinition *definition) {
 		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
+	}];
+}
+
+-(UIDevice *)currentDevice {
+	return [TyphoonDefinition withClass:[UIDevice class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(currentDevice)];
 	}];
 }
 

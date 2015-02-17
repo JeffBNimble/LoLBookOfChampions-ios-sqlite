@@ -192,6 +192,16 @@
 	return self.cursor ? 1 : 0;
 }
 
+#pragma mark UICollectionViewDelegateFlowLayout methods
+
+-(CGSize)collectionView:(UICollectionView *)collectionView
+				 layout:(UICollectionViewLayout *)collectionViewLayout
+ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+	CGSize size = self.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone ? CGSizeMake(84, 124) : CGSizeMake(124, 164);
+	return size;
+}
+
+
 #pragma mark NIOContentObserver methods
 
 -(void)onUpdate:(NSURL *)contentUri {

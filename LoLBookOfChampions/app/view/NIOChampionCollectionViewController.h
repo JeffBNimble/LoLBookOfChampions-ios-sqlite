@@ -12,8 +12,9 @@
 @class NIOContentResolver;
 
 @interface NIOChampionCollectionViewController : UIViewController<UICollectionViewDelegate,
-		UICollectionViewDataSource, NIOContentObserver, UINavigationControllerDelegate>
+		UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NIOContentObserver, UINavigationControllerDelegate>
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
+@property (strong, nonatomic) UIDevice *currentDevice;
 @property (strong, nonatomic) NSBundle *mainBundle;
 @end
 

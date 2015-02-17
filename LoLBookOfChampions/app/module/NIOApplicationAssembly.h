@@ -22,6 +22,7 @@
 
 -(AppDelegate *)appDelegate;
 -(NIOChampionCollectionViewController *)championViewController;
+-(UIDevice *)currentDevice;
 -(NIOChampionSkinCollectionViewController *)championSkinViewController;
 -(UIWindow *)mainWindow;
 
