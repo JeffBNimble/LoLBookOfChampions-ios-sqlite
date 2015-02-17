@@ -146,6 +146,8 @@
 	 willShowViewController:(UIViewController *)viewController
 				   animated:(BOOL)animated {
 
+	[self.championCollectionView.collectionViewLayout invalidateLayout];
+
 	if ( viewController == self ) {
 		[self.contentResolver registerContentObserverWithContentURI:[Champion URI]
 										   withNotifyForDescendents:YES

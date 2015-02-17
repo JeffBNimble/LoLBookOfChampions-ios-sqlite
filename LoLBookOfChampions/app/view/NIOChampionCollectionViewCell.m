@@ -14,5 +14,10 @@
 @end
 
 @implementation NIOChampionCollectionViewCell
+-(void)prepareForReuse {
+	[super prepareForReuse];
+	self.championImageView.image = nil;
+}
+
 
 @end
