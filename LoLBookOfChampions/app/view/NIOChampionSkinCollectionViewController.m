@@ -18,41 +18,6 @@
 @end
 
 @implementation NIOChampionSkinCollectionViewController
--(void)viewDidLoad {
-	[super viewDidLoad];
-	self.title = [NSString stringWithFormat:@"%@, %@", self.championName, self.championTitle];
-	[self queryChampionSkins];
-}
-
--(void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-	if ( self.cursor ) {
-		[self.cursor close];
-		self.cursor = nil;
-		self.championName = nil;
-		self.championId = 0;
-		self.championTitle = nil;
-	}
-}
-
--(void)viewWillTransitionToSize:(CGSize)size
-	  withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
-	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-	[self.collectionViewLayout invalidateLayout];
-
-	__weak NIOChampionSkinCollectionViewController *weakSelf = self;
-	dispatch_async(dispatch_get_main_queue(), ^{
-		if ( weakSelf ) {
-			[weakSelf clearImages];
-			NSArray *indexPaths = [weakSelf.collectionView indexPathsForVisibleItems];
-			[weakSelf.collectionView reloadItemsAtIndexPaths:indexPaths];
-			[weakSelf.collectionView scrollToItemAtIndexPath:[indexPaths firstObject]
-											atScrollPosition:UICollectionViewScrollPositionTop
-													animated:YES];
-		}
-
-	});
-}
 
 -(NSArray *)buildProjection {
 	return @[[ChampionSkinColumns COL_NAME], [ChampionSkinColumns COL_LOADING_IMAGE_URL], [ChampionSkinColumns COL_SPLASH_IMAGE_URL]];
@@ -105,6 +70,42 @@
 	}];
 }
 
+-(void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	if ( self.cursor ) {
+		[self.cursor close];
+		self.cursor = nil;
+		self.championName = nil;
+		self.championId = 0;
+		self.championTitle = nil;
+	}
+}
+
+-(void)viewDidLoad {
+	[super viewDidLoad];
+	self.title = [NSString stringWithFormat:@"%@, %@", self.championName, self.championTitle];
+	[self queryChampionSkins];
+}
+
+-(void)viewWillTransitionToSize:(CGSize)size
+	  withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+	[self.collectionViewLayout invalidateLayout];
+
+	__weak NIOChampionSkinCollectionViewController *weakSelf = self;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		if ( weakSelf ) {
+			[weakSelf clearImages];
+			NSArray *indexPaths = [weakSelf.collectionView indexPathsForVisibleItems];
+			[weakSelf.collectionView reloadItemsAtIndexPaths:indexPaths];
+			[weakSelf.collectionView scrollToItemAtIndexPath:[indexPaths firstObject]
+											atScrollPosition:UICollectionViewScrollPositionTop
+													animated:YES];
+		}
+
+	});
+}
+
 #pragma mark UICollectionViewDataSource delegate methods
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -134,6 +135,8 @@
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 	return self.cursor ? 1 : 0;
 }
+
+#pragma mark UICollectionViewFlowLayoutDelegate methods
 
 -(CGSize)collectionView:(UICollectionView *)collectionView
 				 layout:(UICollectionViewLayout *)collectionViewLayout
