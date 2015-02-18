@@ -13,12 +13,12 @@ The application has only two screens:
 ##Champions
 A UICollectionViewController-based screen which shows a list of champions for the latest released version of League of Legends
 
-![Champions Screen][https://raw.github.com/JeffBNimble/LoLBookOfChampions-ios/master/documentation/championScreenshot.jpg]
+![Champions Screen](documentation/championScreenshot.jpg)
 
 ##Champion Skins
 A UICollectionViewController-based screen which shows a list of skins for the selected champion. If you switch between portrait and landscape orientations, the images show the loading skin image (portrait) and the splash screen skin image (landscape)
 
-![Champion Skins Screen][https://raw.github.com/JeffBNimble/LoLBookOfChampions-ios/master/documentation/championSkinScreenshot.jpg]
+![Champion Skins Screen](documentation/championSkinScreenshot.jpg)
 
 #Goals
 * Build an iOS application using a best of breed tech stack (more on this below)
