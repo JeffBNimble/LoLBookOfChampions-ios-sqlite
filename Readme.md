@@ -13,18 +13,18 @@ The application hhas only two screens:
 ##Champions
 A UICollectionViewController-based screen which shows a list of champions for the latest released version of League of Legends
 
-![Champions Screen][documentation/championScreenshot.jpg]
+![Champions Screen][https://raw.github.com/JeffBNimble/LoLBookOfChampions-ios/master/documentation/championScreenshot.jpg]
 
 ##Champion Skins
 A UICollectionViewController-based screen which shows a list of skins for the selected champion. If you switch between portrait and landscape orientations, the images show the loading skin image (portrait) and the splash screen skin image (landscape)
 
-![Champion Skins Screen][documentation/championSkinScreenshot.jpg]
+![Champion Skins Screen][https://raw.github.com/JeffBNimble/LoLBookOfChampions-ios/master/documentation/championSkinScreenshot.jpg]
 
 #Goals
-#Build an iOS application using a best of breed tech stack (more on this below)
-#Try out a compelling mobile application architecture (more on this below)
-#Find a way to somehow use SceneKit
-#Have fun!
+* Build an iOS application using a best of breed tech stack (more on this below)
+* Try out a compelling mobile application architecture (more on this below)
+* Find a way to somehow use SceneKit
+* Have fun!
 
 All of my goals were met. Most of the code was written over a weekend. I plan on continuing to tinker with it, slowly adding more features, but mainly use it as a playground for a tech stack that I'm interested in.
 
@@ -45,4 +45,4 @@ While the application architecture may not be all the novel, it is based upon so
 
 The application is split into three "modules". There is a Typhoon assembly for each. Much of the core is an implementation of some concepts that should be familiar if you are an Android developer, namely [Services](http://developer.android.com/guide/components/services.html) and [Content Providers](http://developer.android.com/guide/topics/providers/content-providers.html). Additionally, I wrote a thin wrapper around the [FMDB FMResultSet class](http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html) that allows for moving forward, backward or to any position within the result set.
 
-I want to give a special shoutout to [Jasper Blues](https://github.com/jasperblues) who is the Project Lead for the [Typhoon Framework](https://github.com/appsquickly/Typhoon) and spent some of his valuable weekend time helping me with Typhoon. 
+I want to give a special shoutout to [Jasper Blues](https://github.com/jasperblues) who is the Project Lead for the [Typhoon Framework](https://github.com/appsquickly/Typhoon) and spent some of his valuable weekend time helping me with Typhoon.
