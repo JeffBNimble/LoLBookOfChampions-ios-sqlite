@@ -3,10 +3,10 @@
 * Open the workspace in either XCode or AppCode, compile and run the app
 
 # Introduction
-LoL Book of Champions is an iOS application that is more a playground for some key tech I wanted to play with than anything else. However, it is a simple League of Legends Champion Browser. It uses the [Riot Games Developer API](http://developer.riotgames.com) to obtain champion data.
+LoL Book of Champions is an iOS application that is more a playground for some key tech I wanted to play with than anything else. However, it is a simple League of Legends Champion Browser. I am fortunate to work at Riot Games and this application also shows off the champion imagery from the talented artists at Riot Games. It uses the [Riot Games Developer API](http://developer.riotgames.com) to obtain champion data.
 
 **NOTE**
-The application uses my personal Riot Games Developer API key to access the service to retrieve champion data. If you do anything more than run the app once to see it, please register for your own key at [](http://developer.riotgames.com). It's free. If you already have a League of Legends account, just login with your LoL credentials to get your key.
+The application uses my personal Riot Games Developer API key to access the service to retrieve champion data. If you do anything more than run the app once to see it, please register for your own key at [http://developer.riotgames.com](http://developer.riotgames.com). It's free. If you already have a League of Legends account, just login with your LoL credentials to get your key.
 
 The application has only two screens:
 
