@@ -67,8 +67,8 @@
                                                         <constraint firstAttribute="width" secondItem="b4m-db-vXf" secondAttribute="height" multiplier="1:1" id="93a-MJ-2t4"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="jWn-LQ-8js" userLabel="Champ Name">
-                                                    <rect key="frame" x="0.0" y="104" width="84" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="jWn-LQ-8js" userLabel="Champ Name">
+                                                    <rect key="frame" x="0.0" y="99" width="84" height="20"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -83,7 +83,6 @@
                                             <constraint firstAttribute="bottom" secondItem="jWn-LQ-8js" secondAttribute="bottom" constant="5" id="eG4-lq-vfW"/>
                                             <constraint firstItem="b4m-db-vXf" firstAttribute="top" secondItem="oOv-Fc-kmU" secondAttribute="top" constant="2" id="gNR-RV-KOe"/>
                                             <constraint firstAttribute="trailing" secondItem="jWn-LQ-8js" secondAttribute="trailing" id="iYZ-49-vOA"/>
-                                            <constraint firstItem="jWn-LQ-8js" firstAttribute="top" relation="greaterThanOrEqual" secondItem="b4m-db-vXf" secondAttribute="bottom" constant="5" id="npG-wW-IWX"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="championImageView" destination="b4m-db-vXf" id="78x-uH-NQe"/>
