@@ -8,7 +8,7 @@ LoL Book of Champions is an iOS application that is more a playground for some k
 **NOTE**
 The application uses my personal Riot Games Developer API key to access the service to retrieve champion data. If you do anything more than run the app once to see it, please register for your own key at [](http://developer.riotgames.com). It's free. If you already have a League of Legends account, just login with your LoL credentials to get your key.
 
-The application hhas only two screens:
+The application has only two screens:
 
 ##Champions
 A UICollectionViewController-based screen which shows a list of champions for the latest released version of League of Legends
