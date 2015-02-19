@@ -10,5 +10,5 @@
 
 
 @interface NIOClearLocalDataDragonDataTask : NSObject<NIOTask>
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver;
+-(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver withSharedURLCache:(NSURLCache *)urlCache;
 @end

@@ -20,8 +20,10 @@
 -(DDAbstractLogger *)consoleLogger;
 -(id<NIOContentProviderFactory>)contentProviderFactory;
 -(NIOContentResolver *)contentResolver;
+-(NSFileManager *)fileManager;
 -(NSBundle *)mainBundle;
 -(NSNotificationCenter *)notificationCenter;
+-(NSURLCache *)sharedURLCache;
 -(id<NIOTaskFactory>)taskFactory;
 
 @end

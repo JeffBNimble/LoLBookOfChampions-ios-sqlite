@@ -91,6 +91,10 @@
 		A5314E7B1A936593007AEEE7 /* magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5314E781A936593007AEEE7 /* magic.sks */; };
 		A5314E7C1A936593007AEEE7 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A5314E791A936593007AEEE7 /* spark.png */; };
 		A5314E7D1A936593007AEEE7 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A5314E791A936593007AEEE7 /* spark.png */; };
+		A5314E881A93E77A007AEEE7 /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5314E871A93E77A007AEEE7 /* spark.sks */; };
+		A5314E891A93E77A007AEEE7 /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5314E871A93E77A007AEEE7 /* spark.sks */; };
+		A5314E8B1A93E7F5007AEEE7 /* smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5314E8A1A93E7F5007AEEE7 /* smoke.sks */; };
+		A5314E8C1A93E7F5007AEEE7 /* smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5314E8A1A93E7F5007AEEE7 /* smoke.sks */; };
 		A53498801A6DE4AF00F01962 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A534987F1A6DE4AF00F01962 /* main.m */; };
 		A53498831A6DE4AF00F01962 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A53498821A6DE4AF00F01962 /* AppDelegate.m */; };
 		A534988B1A6DE4AF00F01962 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A534988A1A6DE4AF00F01962 /* Images.xcassets */; };
@@ -201,6 +205,8 @@
 		87BCF1F3F307D5BB4A469EF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A5314E781A936593007AEEE7 /* magic.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magic.sks; sourceTree = "<group>"; };
 		A5314E791A936593007AEEE7 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		A5314E871A93E77A007AEEE7 /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spark.sks; sourceTree = "<group>"; };
+		A5314E8A1A93E7F5007AEEE7 /* smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smoke.sks; sourceTree = "<group>"; };
 		A534987A1A6DE4AF00F01962 /* LoLBookOfChampions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoLBookOfChampions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A534987E1A6DE4AF00F01962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A534987F1A6DE4AF00F01962 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -473,6 +479,8 @@
 			children = (
 				A5314E781A936593007AEEE7 /* magic.sks */,
 				A5314E791A936593007AEEE7 /* spark.png */,
+				A5314E871A93E77A007AEEE7 /* spark.sks */,
+				A5314E8A1A93E7F5007AEEE7 /* smoke.sks */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -632,6 +640,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A534988B1A6DE4AF00F01962 /* Images.xcassets in Resources */,
+				A5314E8B1A93E7F5007AEEE7 /* smoke.sks in Resources */,
+				A5314E881A93E77A007AEEE7 /* spark.sks in Resources */,
 				54C182456B27506FFA0F5B94 /* LaunchScreen.xib in Resources */,
 				54C18B3CBCE6CB29622E18A5 /* Main.storyboard in Resources */,
 				A5314E7C1A936593007AEEE7 /* spark.png in Resources */,
@@ -646,9 +656,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5314E7B1A936593007AEEE7 /* magic.sks in Resources */,
+				A5314E8C1A93E7F5007AEEE7 /* smoke.sks in Resources */,
 				A5314E7D1A936593007AEEE7 /* spark.png in Resources */,
 				54C18664B75D1219636199E6 /* Configuration.plist in Resources */,
 				54C18DB5ECBE7BC9AB14FC1E /* DataDragonConfiguration.plist in Resources */,
+				A5314E891A93E77A007AEEE7 /* spark.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

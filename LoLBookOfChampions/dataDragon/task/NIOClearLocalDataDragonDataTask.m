@@ -12,19 +12,24 @@
 
 @interface NIOClearLocalDataDragonDataTask ()
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
+@property (strong, nonatomic) NSURLCache *sharedURLCache;
 @end
 
 @implementation NIOClearLocalDataDragonDataTask
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver {
+-(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver withSharedURLCache:(NSURLCache *)sharedURLCache {
 	self = [super init];
 	if ( self ) {
 		self.contentResolver = contentResolver;
+		self.sharedURLCache = sharedURLCache;
 	}
 
 	return self;
 }
 
 -(BFTask *)runAsync {
+	DDLogVerbose(@"Clearing the disk cache");
+	[self.sharedURLCache removeAllCachedResponses];
+
 	DDLogVerbose(@"Deleting Data Dragon realm");
 	return [[[self.contentResolver deleteWithURI:[Realm URI]
 								   withSelection:nil

@@ -51,6 +51,12 @@
     }];
 }
 
+-(NSFileManager *)fileManager {
+	return [TyphoonDefinition withClass:[NSFileManager class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(defaultManager)];
+	}];
+}
+
 - (NSBundle *)mainBundle {
     return [TyphoonDefinition withClass:[NSBundle class] configuration:^(TyphoonDefinition *definition) {
         [definition useInitializer:@selector(mainBundle)];
@@ -62,6 +68,15 @@
         [definition useInitializer:@selector(defaultCenter)];
     }];
 }
+
+-(NSURLCache *)sharedURLCache {
+	return [TyphoonDefinition withClass:[NSURLCache class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(sharedURLCache)];
+
+		definition.scope = TyphoonScopeLazySingleton;
+	}];
+}
+
 
 -(id <NIOTaskFactory>)taskFactory {
 	return [TyphoonDefinition withClass:[NIOTyphoonTaskFactory class]

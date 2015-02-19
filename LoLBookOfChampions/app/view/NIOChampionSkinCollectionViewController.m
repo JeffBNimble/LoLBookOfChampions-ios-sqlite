@@ -116,7 +116,7 @@
 
 	NSString *urlString = [self isLandscapeOrientation] ? [ChampionSkinColumns COL_SPLASH_IMAGE_URL] : [ChampionSkinColumns COL_LOADING_IMAGE_URL];
 	NSURL *imageURL = [NSURL URLWithString:[self.cursor stringForColumn:urlString]];
-	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageURL];
+	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
 
 	[cell.skinImageView setImageWithURLRequest:urlRequest
 								  placeholderImage:nil

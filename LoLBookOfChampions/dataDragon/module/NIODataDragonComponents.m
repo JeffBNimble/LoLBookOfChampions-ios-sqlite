@@ -51,8 +51,9 @@
 
 -(NIOClearLocalDataDragonDataTask *)clearLocalDataDragonDataTask {
 	return [TyphoonDefinition withClass:[NIOClearLocalDataDragonDataTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithContentResolver:withSharedURLCache:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.coreComponents.contentResolver];
+			[initializer injectParameterWith:self.coreComponents.sharedURLCache];
 		}];
 
 		definition.scope = TyphoonScopePrototype;

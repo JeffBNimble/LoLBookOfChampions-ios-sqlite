@@ -9,7 +9,7 @@
 #import "NIOCacheChampionImagesTask.h"
 #import <AFNetworking/AFNetworking.h>
 
-#define IMAGES_PER_BATCH		100
+#define IMAGES_PER_BATCH		25
 
 @interface NIOCacheChampionImagesTask ()
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;

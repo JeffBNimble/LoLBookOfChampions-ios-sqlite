@@ -24,6 +24,7 @@
 -(NIOChampionCollectionViewController *)championViewController;
 -(UIDevice *)currentDevice;
 -(NIOChampionSkinCollectionViewController *)championSkinViewController;
+-(UIScreen *)mainScreen;
 -(UIWindow *)mainWindow;
 
 @end

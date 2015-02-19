@@ -47,6 +47,7 @@
 
 	self.magic = [NSKeyedUnarchiver unarchiveObjectWithFile:[self.mainBundle pathForResource:@"magic" ofType:@"sks"]];
 	self.magicView = magicParticleView;
+	[self.magicView setAsynchronous:YES];
 	[self.view addSubview:magicParticleView];
 	[self.view sendSubviewToBack:magicParticleView];
 	self.presentNewMagicScene = YES;
@@ -143,20 +144,28 @@
 #pragma mark UINavigationControllerDelegate methods
 
 -(void)navigationController:(UINavigationController *)navigationController
-	 willShowViewController:(UIViewController *)viewController
+	  didShowViewController:(UIViewController *)viewController
 				   animated:(BOOL)animated {
 
 	[self.championCollectionView.collectionViewLayout invalidateLayout];
-
 	if ( viewController == self ) {
 		[self.contentResolver registerContentObserverWithContentURI:[Champion URI]
 										   withNotifyForDescendents:YES
 												withContentObserver:self];
+		[self.magicView setPaused:NO];
+	} else {
+		[self.magicView setPaused:YES];
+	}
+}
+
+-(void)navigationController:(UINavigationController *)navigationController
+	  willShowViewController:(UIViewController *)viewController
+				   animated:(BOOL)animated {
+
+	if ( viewController == self ) {
 		[self assignRandomMagicEmitterColor];
-		self.presentNewMagicScene = YES;
 	} else {
 		[self.contentResolver unregisterContentObserver:self];
-		[self.magicView presentScene:nil];
 	}
 }
 
@@ -170,7 +179,7 @@
 	cell.championNameLabel.text = [self.cursor stringForColumn:[ChampionColumns COL_NAME]];
 
 	NSURL *imageURL = [NSURL URLWithString:[self.cursor stringForColumn:[ChampionColumns COL_IMAGE_URL]]];
-	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageURL];
+	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
 
 	[cell.championImageView setImageWithURLRequest:urlRequest
 								  placeholderImage:nil

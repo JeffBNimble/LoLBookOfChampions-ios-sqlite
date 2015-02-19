@@ -21,12 +21,13 @@
 
 - (AppDelegate *)appDelegate {
     return [TyphoonDefinition withClass:[AppDelegate class] configuration:^(TyphoonDefinition *definition) {
-        [definition injectProperty:@selector(window) with:self.mainWindow];
         [definition injectProperty:@selector(bundleIdentifier) with:self.coreComponents.bundleIdentifier];
+        [definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
         [definition injectProperty:@selector(dataDragonSyncService) with:self.dataDragonComponents.dataDragonSyncService];
         [definition injectProperty:@selector(loggers) with:@[self.coreComponents.consoleLogger]];
-        [definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
         [definition injectProperty:@selector(notificationCenter) with:self.coreComponents.notificationCenter];
+		[definition injectProperty:@selector(mainScreen) with:self.mainScreen];
+        [definition injectProperty:@selector(window) with:self.mainWindow];
     }];
 }
 
@@ -51,6 +52,12 @@
 -(UIDevice *)currentDevice {
 	return [TyphoonDefinition withClass:[UIDevice class] configuration:^(TyphoonDefinition *definition) {
 		[definition useInitializer:@selector(currentDevice)];
+	}];
+}
+
+-(UIScreen *)mainScreen {
+	return [TyphoonDefinition withClass:[UIScreen class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(mainScreen)];
 	}];
 }
 
