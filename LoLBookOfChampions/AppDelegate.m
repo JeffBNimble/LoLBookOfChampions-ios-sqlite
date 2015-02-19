@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "NIODataDragonSyncService.h"
-#import "NIOContentResolver.h"
 #import "NIODataDragonContract.h"
 
 
@@ -51,6 +50,7 @@
 }
 
 -(void)initializeApplication {
+	self.window.frame = self.mainScreen.bounds;
 	[NIODataDragonContract contentAuthorityBase:self.bundleIdentifier];
 	[self initializeLogger];
 	[self initializeApplicationCache];
@@ -59,8 +59,8 @@
 -(void)initializeApplicationCache {
 	NSURLCache *sharedCache = [[NSURLCache alloc]
 			initWithMemoryCapacity:2 * 1024 * 1024
-					  diskCapacity:100 * 1024 * 1024
-						  diskPath:nil];
+					  diskCapacity:400 * 1024 * 1024
+						  diskPath:@"champImageCache"];
 
 	[NSURLCache setSharedURLCache:sharedCache];
 }

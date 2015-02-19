@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
 @property (strong, nonatomic) NIODataDragonSyncService *dataDragonSyncService;
 @property (nonatomic, strong) NSArray *loggers;
+@property (strong, nonatomic) UIScreen *mainScreen;
 @property (strong, nonatomic) NSNotificationCenter *notificationCenter;
 @property (strong, nonatomic) UIWindow *window;
 
