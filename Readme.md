@@ -2,6 +2,9 @@
 * Use [CocoaPods](http://www.cocoapods.org), navigate to the project folder containing the podfile and run `pod install`
 * Open the workspace in either XCode or AppCode, compile and run the app
 
+**Warning**
+Please note that running this application on your device will take up approximately 360MB of disk space. The entire set of League of Legends images are cached. You should make sure that you run this application while connected to WiFi or you will use 350MB of data as soon as the app launches.
+
 # Introduction
 LoL Book of Champions is an iOS application that is more a playground for some key tech I wanted to play with than anything else. However, it is a simple League of Legends Champion Browser. I am fortunate to work at Riot Games and this application also shows off the champion imagery from the talented artists at Riot Games. It uses the [Riot Games Developer API](http://developer.riotgames.com) to obtain champion data.
 
