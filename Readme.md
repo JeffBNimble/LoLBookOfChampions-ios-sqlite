@@ -16,7 +16,7 @@ The application has only two screens:
 ##Champions
 A UICollectionViewController-based screen which shows a list of champions for the latest released version of League of Legends
 
-![Champions Screen](documentation/championScreenshot.jpg)
+![Champions Screen](documentation/championPage.gif)
 
 ##Champion Skins
 A UICollectionViewController-based screen which shows a list of skins for the selected champion. If you switch between portrait and landscape orientations, the images show the loading skin image (portrait) and the splash screen skin image (landscape)
