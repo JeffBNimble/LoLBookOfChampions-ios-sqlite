@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "NIODataDragonSyncService.h"
 #import "NIODataDragonContract.h"
+#import "NIOTaskFactory.h"
 
 
 @interface AppDelegate ()

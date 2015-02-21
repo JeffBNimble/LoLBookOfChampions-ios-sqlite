@@ -15,6 +15,7 @@
 #import "NIOContentProvider.h"
 #import "NIOBaseComponentFactory.h"
 #import "NIOChampionSkinCollectionViewController.h"
+#import "NIOQueryTask.h"
 #import <Typhoon/Typhoon.h>
 
 @implementation NIOApplicationAssembly
@@ -40,12 +41,14 @@
 		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
 		[definition injectProperty:@selector(mainBundle) with:self.coreComponents.mainBundle];
 		[definition injectProperty:@selector(currentDevice) with:self.currentDevice];
+		[definition injectProperty:@selector(taskFactory) with:self.coreComponents.taskFactory];
 	}];
 }
 
 - (NIOChampionSkinCollectionViewController *)championSkinViewController {
 	return [TyphoonDefinition withClass:[NIOChampionSkinCollectionViewController class] configuration:^(TyphoonDefinition *definition) {
 		[definition injectProperty:@selector(contentResolver) with:self.coreComponents.contentResolver];
+		[definition injectProperty:@selector(taskFactory) with:self.coreComponents.taskFactory];
 	}];
 }
 
@@ -67,6 +70,16 @@
             [initializer injectParameterWith:[NSValue valueWithCGRect:[[UIScreen mainScreen] bounds]]];
         }];
     }];
+}
+
+- (NIOQueryTask *)queryTask {
+	return [TyphoonDefinition withClass:[NIOQueryTask class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
+			[initializer injectParameterWith:self.coreComponents.contentResolver];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
 }
 
 @end

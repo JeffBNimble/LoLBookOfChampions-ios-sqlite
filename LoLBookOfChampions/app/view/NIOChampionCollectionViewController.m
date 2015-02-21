@@ -15,6 +15,8 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "NIOCursor.h"
 #import "NIOChampionSkinCollectionViewController.h"
+#import "NIOTaskFactory.h"
+#import "NIOQueryTask.h"
 
 @interface NIOChampionCollectionViewController ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
@@ -83,14 +85,11 @@
 -(void)queryChampions {
 	[self.activityIndicatorView startAnimating];
 	__weak NIOChampionCollectionViewController *weakSelf = self;
-	[[self.contentResolver queryWithURI:[Champion URI]
-						 withProjection:[self buildProjection]
-						  withSelection:nil
-					  withSelectionArgs:nil
-							withGroupBy:nil
-							 withHaving:nil
-							   withSort:[ChampionColumns COL_NAME]]
-			continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
+	NIOQueryTask *queryTask = [self.taskFactory createTaskWithType:[NIOQueryTask class]];
+	queryTask.uri = [Champion URI];
+	queryTask.projection = [self buildProjection];
+	queryTask.sort = [ChampionColumns COL_NAME];
+	[[queryTask runAsync] continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
 		if ( weakSelf ) {
 			[weakSelf.activityIndicatorView stopAnimating];
 			[weakSelf.loadingLabel setHidden:YES];

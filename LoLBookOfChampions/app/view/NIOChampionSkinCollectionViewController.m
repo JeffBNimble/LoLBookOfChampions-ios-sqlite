@@ -11,6 +11,8 @@
 #import "NIODataDragonContract.h"
 #import "NIOCursor.h"
 #import "NIOChampionSkinCollectionViewCell.h"
+#import "NIOTaskFactory.h"
+#import "NIOQueryTask.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface NIOChampionSkinCollectionViewController ()
@@ -31,6 +33,13 @@
 	return @[@(self.championId)];
 }
 
+-(NSString *)buildSort {
+	return [@[
+			[ChampionSkinColumns COL_ID],
+			[ChampionSkinColumns COL_SKIN_NUMBER]
+	] componentsJoinedByString:@","];
+}
+
 -(void)clearImages {
 	NSArray *visibleCells = [self.collectionView visibleCells];
 	for ( NIOChampionSkinCollectionViewCell *cell in visibleCells ) {
@@ -45,17 +54,13 @@
 
 -(void)queryChampionSkins {
 	__weak NIOChampionSkinCollectionViewController *weakSelf = self;
-	[[self.contentResolver queryWithURI:[ChampionSkin URI]
-						 withProjection:[self buildProjection]
-						  withSelection:[self buildSelection]
-					  withSelectionArgs:[self buildSelectionArgs]
-							withGroupBy:nil
-							 withHaving:nil
-							   withSort:[@[
-									   [ChampionSkinColumns COL_ID],
-									   [ChampionSkinColumns COL_SKIN_NUMBER]
-							   ] componentsJoinedByString:@","]]
-			continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
+	NIOQueryTask *queryTask = [self.taskFactory createTaskWithType:[NIOQueryTask class]];
+	queryTask.uri = [ChampionSkin URI];
+	queryTask.projection = [self buildProjection];
+	queryTask.selection = [self buildSelection];
+	queryTask.selectionArgs = [self buildSelectionArgs];
+	queryTask.sort = [self buildSort];
+	[[queryTask runAsync] continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
 
 		if ( task.error || task.exception ) {
 			DDLogError(@"An error occurred querying champion skins: %@", task.error ? task.error : task.exception);

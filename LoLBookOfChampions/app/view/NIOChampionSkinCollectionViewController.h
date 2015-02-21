@@ -7,10 +7,12 @@
 #import <UIKit/UIKit.h>
 
 @class NIOContentResolver;
+@protocol NIOTaskFactory;
 
 @interface NIOChampionSkinCollectionViewController : UICollectionViewController<UICollectionViewDelegateFlowLayout>
 @property (assign, nonatomic) NSUInteger championId;
 @property (strong, nonatomic) NSString *championName;
 @property (strong, nonatomic) NSString *championTitle;
 @property (strong, nonatomic) NIOContentResolver *contentResolver;
+@property (strong, nonatomic) id<NIOTaskFactory> taskFactory;
 @end

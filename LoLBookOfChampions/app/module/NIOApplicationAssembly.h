@@ -14,6 +14,7 @@
 @class NIOCoreComponents;
 @protocol NIOContentProvider;
 @class NIOChampionSkinCollectionViewController;
+@class NIOQueryTask;
 
 @interface NIOApplicationAssembly : TyphoonAssembly
 
@@ -26,5 +27,6 @@
 -(NIOChampionSkinCollectionViewController *)championSkinViewController;
 -(UIScreen *)mainScreen;
 -(UIWindow *)mainWindow;
+-(NIOQueryTask *)queryTask;
 
 @end
