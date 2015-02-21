@@ -3,6 +3,7 @@
 * Open the workspace in either XCode or AppCode, compile and run the app
 
 **Warning**
+
 Please note that running this application on your device will take up approximately 360MB of disk space. The entire set of League of Legends images are cached. You should make sure that you run this application while connected to WiFi or you will use 350MB of data as soon as the app launches.
 
 # Introduction
