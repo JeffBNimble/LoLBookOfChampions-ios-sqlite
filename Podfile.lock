@@ -21,19 +21,20 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Bolts (1.1.3)
-  - CocoaLumberjack (2.0.0-rc):
-    - CocoaLumberjack/Default (= 2.0.0-rc)
-    - CocoaLumberjack/Extensions (= 2.0.0-rc)
-  - CocoaLumberjack/Core (2.0.0-rc)
-  - CocoaLumberjack/Default (2.0.0-rc):
+  - CocoaLumberjack (2.0.0-rc2):
+    - CocoaLumberjack/Default (= 2.0.0-rc2)
+    - CocoaLumberjack/Extensions (= 2.0.0-rc2)
+  - CocoaLumberjack/Core (2.0.0-rc2)
+  - CocoaLumberjack/Default (2.0.0-rc2):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.0.0-rc):
+  - CocoaLumberjack/Extensions (2.0.0-rc2):
     - CocoaLumberjack/Default
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
+  - Kiwi (2.3.1)
   - Typhoon (3.0.1):
     - Typhoon/no-arc (= 3.0.1)
   - Typhoon/no-arc (3.0.1)
@@ -41,15 +42,17 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.5.1)
   - Bolts (= 1.1.3)
-  - CocoaLumberjack (= 2.0.0-rc)
+  - CocoaLumberjack (= 2.0.0-rc2)
   - FMDB (= 2.5)
+  - Kiwi (= 2.3.1)
   - Typhoon (= 3.0.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
-  CocoaLumberjack: 6186e27827fc574b50b16c10102fcc591437f06c
+  CocoaLumberjack: 6027cd9a0665203a7df456c526e137f02cd547e1
   FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
+  Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
   Typhoon: 825ec92176814a9f456979ef226c9d027d236dc1
 
 COCOAPODS: 0.35.0
