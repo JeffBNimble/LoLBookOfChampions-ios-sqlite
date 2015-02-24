@@ -32,6 +32,7 @@
 		54C18392FA5022D3FD8B2425 /* NIOInsertDataDragonRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18148204828522103E551 /* NIOInsertDataDragonRealmTask.m */; };
 		54C183AC2775A322F2DEA576 /* NIOBaseComponentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18F6A6D4200670E85069B /* NIOBaseComponentFactory.m */; };
 		54C183BADE60EB8750FC3319 /* NIOCacheChampionImagesTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18909EC43EB81309CB431 /* NIOCacheChampionImagesTask.m */; };
+		54C183C3CA8EACA0691B6000 /* NIOQueryRealmsTaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18B3D3AA1E288C3A80021 /* NIOQueryRealmsTaskTest.m */; };
 		54C18422E97E3B6F8A9D4AFF /* NIODataDragonCDNRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1835FB21EDBC8EAD85F11 /* NIODataDragonCDNRequestOperationManager.m */; };
 		54C18456D5F47290CA0C0FC5 /* NIODataDragonContentProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C183D2723AE54B89AD2017 /* NIODataDragonContentProvider.m */; };
 		54C184B62070ED4872B20C5D /* NIOQueryChampionsTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C181EE9FCDF67D2AF1D8E1 /* NIOQueryChampionsTask.m */; };
@@ -187,6 +188,7 @@
 		54C18ACABB30093827CB347C /* NIOGetRealmTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOGetRealmTask.h; sourceTree = "<group>"; };
 		54C18ACEDA81BDE845F46444 /* NIOChampionCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOChampionCollectionViewController.h; sourceTree = "<group>"; };
 		54C18AEB1FE1F73C0D993612 /* NIOSqliteOpenHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOSqliteOpenHelper.m; sourceTree = "<group>"; };
+		54C18B3D3AA1E288C3A80021 /* NIOQueryRealmsTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOQueryRealmsTaskTest.m; sourceTree = "<group>"; };
 		54C18B6FE0C8B5FAB3DA2F60 /* NIODataDragonComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODataDragonComponents.h; sourceTree = "<group>"; };
 		54C18B7B2A7044C00728691B /* NIOInsertChampionSkinTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOInsertChampionSkinTask.h; sourceTree = "<group>"; };
 		54C18B7FB2AF491E95FA18FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LoLBookOfChampions/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -292,6 +294,14 @@
 			path = core;
 			sourceTree = "<group>";
 		};
+		54C181673C98B0E414370D1F /* dataDragon */ = {
+			isa = PBXGroup;
+			children = (
+				54C18B8FEC995DD6BEA6CFA9 /* task */,
+			);
+			path = dataDragon;
+			sourceTree = "<group>";
+		};
 		54C1836ADA9A247E4C9B5965 /* database */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +356,14 @@
 			path = remote;
 			sourceTree = "<group>";
 		};
+		54C1885169DFCE4B92015FFE /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				54C18B3D3AA1E288C3A80021 /* NIOQueryRealmsTaskTest.m */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
 		54C188B57C58CE6A22D3116C /* module */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +403,14 @@
 				54C18F59443A555F9D028854 /* task */,
 			);
 			path = app;
+			sourceTree = "<group>";
+		};
+		54C18B8FEC995DD6BEA6CFA9 /* task */ = {
+			isa = PBXGroup;
+			children = (
+				54C1885169DFCE4B92015FFE /* internal */,
+			);
+			path = task;
 			sourceTree = "<group>";
 		};
 		54C18BDD1CC51D8EA3374A95 /* task */ = {
@@ -577,6 +603,7 @@
 			children = (
 				A53498971A6DE4AF00F01962 /* Supporting Files */,
 				54C18B18FF51A90AFBD3F9E2 /* app */,
+				54C181673C98B0E414370D1F /* dataDragon */,
 			);
 			path = LoLBookOfChampionsTests;
 			sourceTree = "<group>";
@@ -868,6 +895,7 @@
 				54C18B16084F4388335587AD /* NIOChampionSkinCollectionViewCell.m in Sources */,
 				54C187B3F63DDC35C6B9DF77 /* NIOQueryTask.m in Sources */,
 				54C18B83557B7ECBCA5FDDA9 /* NIOQueryTaskTest.m in Sources */,
+				54C183C3CA8EACA0691B6000 /* NIOQueryRealmsTaskTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
