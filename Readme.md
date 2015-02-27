@@ -39,6 +39,7 @@ All of my goals were met. Most of the code was written over a weekend. I plan on
 * [Bolts Framework](https://github.com/BoltsFramework/Bolts-iOS) : An implementation of [Futures and Promises](http://en.wikipedia.org/wiki/Futures_and_promises)
 * [CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack) : Logging (duh, what else do lumberjacks do?)
 * [SceneKit](https://developer.apple.com/library/ios/documentation/SceneKit/Reference/SceneKit_Framework/) : To add a little ambient magic to the application
+* [Kiwi](https://github.com/kiwi-bdd/Kiwi) : If you write code, you better write tests
 
 # Application Architecture
 While the application architecture may not be all the novel, it is based upon some simple principles:
