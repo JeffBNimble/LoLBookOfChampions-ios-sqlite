@@ -73,6 +73,15 @@
 	return self;
 }
 
+-(NSError *)createNoContentProviderErrorWithUri:(NSURL *)uri {
+	NSString *localizedDescription = [NSString stringWithFormat:@"No matching content provider is registered for content uri %@", [uri absoluteString]];
+	NSError *error = [NSError errorWithDomain:[uri absoluteString]
+										 code:1
+									 userInfo:@{NSLocalizedDescriptionKey:localizedDescription}];
+
+	return error;
+}
+
 -(void)initialize {
 	[self initializeRegistrations];
 }
@@ -168,11 +177,12 @@
 -(BFTask *)deleteWithURI:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
 		NSError *error;
-		NSInteger deleteCount = [[self getContentProviderForContentURI:uri]
-				deleteWithURI:uri
-				withSelection:selection
-			withSelectionArgs:selectionArgs
-					withError:&error];
+		id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
+		if (!contentProvider) return [BFTask taskWithError:[self createNoContentProviderErrorWithUri:uri]];
+		NSInteger deleteCount = [contentProvider deleteWithURI:uri
+												 withSelection:selection
+											 withSelectionArgs:selectionArgs
+													 withError:&error];
 		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:@(deleteCount)];
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
 		return task;
@@ -182,10 +192,11 @@
 -(BFTask *)insertWithURI:(NSURL *)uri withValues:(NSDictionary *)values {
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
 		NSError *error;
-		NSURL *insertedURI = [[self getContentProviderForContentURI:uri]
-				insertWithURI:uri
-				   withValues:values
-					withError:&error];
+		id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
+		if (!contentProvider) return [BFTask taskWithError:[self createNoContentProviderErrorWithUri:uri]];
+		NSURL *insertedURI = [contentProvider insertWithURI:uri
+												 withValues:values
+												  withError:&error];
 		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:insertedURI];
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
 		return task;
@@ -202,7 +213,9 @@
 
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
 		NSError *error;
-		id<NIOCursor> cursor = [[self getContentProviderForContentURI:uri]
+		id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
+		if (!contentProvider) return [BFTask taskWithError:[self createNoContentProviderErrorWithUri:uri]];
+		id <NIOCursor> cursor = [contentProvider
 				queryWithURI:uri
 			  withProjection:projection
 			   withSelection:selection
@@ -220,7 +233,9 @@
 -(BFTask *)updateWithURI:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
 		NSError *error;
-		NSInteger updateCount = [[self getContentProviderForContentURI:uri]
+		id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
+		if (!contentProvider) return [BFTask taskWithError:[self createNoContentProviderErrorWithUri:uri]];
+		NSInteger updateCount = [contentProvider
 				updateWithURI:uri
 				withSelection:selection
 			withSelectionArgs:selectionArgs

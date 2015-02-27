@@ -11,10 +11,10 @@
 		297BBA6453228C606547CA78 /* NIOCoreComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 297BBE81301E5A25BAC865BB /* NIOCoreComponents.m */; };
 		297BBB546DB3A9091B01D462 /* NIOContentResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 297BB67D229858375B1D2080 /* NIOContentResolver.m */; };
 		297BBD699F1ACE06A7A0B83D /* NIOContentResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 297BB67D229858375B1D2080 /* NIOContentResolver.m */; };
-		5091D8848B955E649D781CA0 /* libPods-LoLBookOfChampions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1065DCD4139E60841C1AA4C5 /* libPods-LoLBookOfChampions.a */; };
 		54C180338C638E709239D65D /* NIODataDragonContract.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C183FE48BA6ADAE6C68720 /* NIODataDragonContract.m */; };
 		54C180875038C252FF99E583 /* NIOTyphoonContentProviderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C181479D51560FAEF1C688 /* NIOTyphoonContentProviderFactory.m */; };
 		54C180D0846FCBF169140582 /* NIODataDragonSyncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18B9F5EA016A6113F0DCA /* NIODataDragonSyncService.m */; };
+		54C180FB218E109FC8BC305E /* NIOMockContentObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18863860B3B8FB2ECD9E0 /* NIOMockContentObserver.m */; };
 		54C18155957E839D52DC58FF /* NIOGetRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18E8A49E0AAF5850F32BA /* NIOGetRealmTask.m */; };
 		54C181F0177F64C6144E53B6 /* NIOQueryTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18BD98F28A3DE9AA84D44 /* NIOQueryTask.m */; };
 		54C181F2305B029F61116386 /* DataDragonConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C18733CF17CC948606FE53 /* DataDragonConfiguration.plist */; };
@@ -41,6 +41,7 @@
 		54C18547A1AB46D6361846E2 /* NIOQueryRealmsTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18CF338758A0EDC8AD223 /* NIOQueryRealmsTask.m */; };
 		54C18556E6435E2E0C6D6CB0 /* NIOTyphoonTaskFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C186FF387D9380964D8149 /* NIOTyphoonTaskFactory.m */; };
 		54C18604AA60A086284A2B8A /* NIODeleteChampionSkinTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18D84E58F4675EF5D5384 /* NIODeleteChampionSkinTask.m */; };
+		54C1862F058B50F105808948 /* NIOMockContentProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18EB6638768EEF02A87C3 /* NIOMockContentProvider.m */; };
 		54C18664B75D1219636199E6 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C180AFD6A5576F23FD3500 /* Configuration.plist */; };
 		54C18705C57EB4E70E95009A /* NIOGetRealmTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18E8A49E0AAF5850F32BA /* NIOGetRealmTask.m */; };
 		54C1872E679898ED6BE2B3DA /* NIOSqliteCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18CE5C9B22BFB834FDADF /* NIOSqliteCursor.m */; };
@@ -94,7 +95,8 @@
 		54C18F84D8CD82CFCF02AA91 /* NIODeleteChampionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18323D3846D32FE8C5C69 /* NIODeleteChampionTask.m */; };
 		54C18F8DB8F17E3836FB2BF9 /* NIOQueryChampionSkinsTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18179F1A7799B2795F998 /* NIOQueryChampionSkinsTask.m */; };
 		54C18FCA66E7675C919683F1 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C180AFD6A5576F23FD3500 /* Configuration.plist */; };
-		7866AF491CD0A42D99215134 /* libPods-LoLBookOfChampionsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8FC03228FC204BB3894D6E /* libPods-LoLBookOfChampionsTests.a */; };
+		6E4B9152F1F5047832377DDA /* libPods-LoLBookOfChampions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE552C980BB1A5681278D36 /* libPods-LoLBookOfChampions.a */; };
+		7957CB9FB1242145A3F67B36 /* libPods-LoLBookOfChampionsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3108B2E93F62B96EB37C55F /* libPods-LoLBookOfChampionsTests.a */; };
 		A5314E7A1A936593007AEEE7 /* magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5314E781A936593007AEEE7 /* magic.sks */; };
 		A5314E7B1A936593007AEEE7 /* magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5314E781A936593007AEEE7 /* magic.sks */; };
 		A5314E7C1A936593007AEEE7 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A5314E791A936593007AEEE7 /* spark.png */; };
@@ -106,7 +108,7 @@
 		A53498801A6DE4AF00F01962 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A534987F1A6DE4AF00F01962 /* main.m */; };
 		A53498831A6DE4AF00F01962 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A53498821A6DE4AF00F01962 /* AppDelegate.m */; };
 		A534988B1A6DE4AF00F01962 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A534988A1A6DE4AF00F01962 /* Images.xcassets */; };
-		EE954EE575A67B8A4B61FEC5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F24FD5157C360E0B3F7D2DBF /* libPods.a */; };
+		A5A547871AA01FDC00D772E2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A547861AA01FDC00D772E2 /* SenTestingKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,13 +122,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1065DCD4139E60841C1AA4C5 /* libPods-LoLBookOfChampions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LoLBookOfChampions.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		219CE16B3FACF214FC3C34B6 /* Pods-LoLBookOfChampionsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoLBookOfChampionsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoLBookOfChampionsTests/Pods-LoLBookOfChampionsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		297BB00B66C6D1284FE3EBB3 /* NIOContentResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOContentResolver.h; sourceTree = "<group>"; };
 		297BB30A9A1639C0E4A6FC1A /* NIOContentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOContentObserver.h; sourceTree = "<group>"; };
 		297BB67D229858375B1D2080 /* NIOContentResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOContentResolver.m; sourceTree = "<group>"; };
 		297BBC41A302B026B3634096 /* NIOCoreComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOCoreComponents.h; sourceTree = "<group>"; };
 		297BBE81301E5A25BAC865BB /* NIOCoreComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOCoreComponents.m; sourceTree = "<group>"; };
+		54C180045F72AE7D79244A3B /* NIOMockContentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOMockContentObserver.h; sourceTree = "<group>"; };
 		54C1805DC296ECFA9227E228 /* NIODeleteChampionSkinTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODeleteChampionSkinTask.h; sourceTree = "<group>"; };
 		54C180AF6DA3A78327F60A3B /* NIOInsertDataDragonRealmTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOInsertDataDragonRealmTask.h; sourceTree = "<group>"; };
 		54C180AFD6A5576F23FD3500 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Configuration.plist; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		54C183FE48BA6ADAE6C68720 /* NIODataDragonContract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonContract.m; sourceTree = "<group>"; };
 		54C18412AD6D4077FD545010 /* NIOChampionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOChampionCollectionViewCell.m; sourceTree = "<group>"; };
 		54C184226D3D0F2433FB98B0 /* NIODataDragonContentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODataDragonContentProvider.h; sourceTree = "<group>"; };
+		54C184237AFA45A9B449172D /* NIOMockContentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOMockContentProvider.h; sourceTree = "<group>"; };
 		54C1846090DDAB28E394EC00 /* NIODeleteChampionTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODeleteChampionTask.h; sourceTree = "<group>"; };
 		54C1850BEEE23545B715CAD5 /* NIOBaseSQLQueryTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOBaseSQLQueryTask.h; sourceTree = "<group>"; };
 		54C185537F7ACC51F648AE88 /* NIOTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOTask.h; sourceTree = "<group>"; };
@@ -174,6 +177,7 @@
 		54C187F2770FC3C94523134E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LoLBookOfChampions/Base.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
 		54C188454CF726594912BDE9 /* NIOChampionSkinCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOChampionSkinCollectionViewCell.m; sourceTree = "<group>"; };
 		54C18853EDD9FC8181732CD7 /* NIOQueryChampionSkinsTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOQueryChampionSkinsTask.h; sourceTree = "<group>"; };
+		54C18863860B3B8FB2ECD9E0 /* NIOMockContentObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOMockContentObserver.m; sourceTree = "<group>"; };
 		54C188A32C2AE8F1F5C97CA5 /* NIOSqliteCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOSqliteCursor.h; sourceTree = "<group>"; };
 		54C188A6A80598C806C26F42 /* NIOChampionSkinCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOChampionSkinCollectionViewController.h; sourceTree = "<group>"; };
 		54C188A752F592DAB245357F /* NIOBaseContentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOBaseContentProvider.h; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 		54C18E8180EECF315DDBFBB0 /* NIOInsertChampionTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOInsertChampionTask.m; sourceTree = "<group>"; };
 		54C18E8A49E0AAF5850F32BA /* NIOGetRealmTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOGetRealmTask.m; sourceTree = "<group>"; };
 		54C18EA8BD41E455CC7BEACF /* NIOBaseContentProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOBaseContentProvider.m; sourceTree = "<group>"; };
+		54C18EB6638768EEF02A87C3 /* NIOMockContentProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOMockContentProvider.m; sourceTree = "<group>"; };
 		54C18EE52EA0E544E3AD93DB /* NIOTaskFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOTaskFactory.h; sourceTree = "<group>"; };
 		54C18F43F63359619FCE84F6 /* NIOBaseComponentFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOBaseComponentFactory.h; sourceTree = "<group>"; };
 		54C18F6A6D4200670E85069B /* NIOBaseComponentFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOBaseComponentFactory.m; sourceTree = "<group>"; };
@@ -216,25 +221,22 @@
 		54C18F8983C5A3DFB75CCC89 /* NIOContentProviderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOContentProviderFactory.h; sourceTree = "<group>"; };
 		54C18FBCC5876D90DE4A00ED /* NIOApplicationAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOApplicationAssembly.m; sourceTree = "<group>"; };
 		54C18FF7F424D47242276475 /* NIOContentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOContentProvider.h; sourceTree = "<group>"; };
-		681805B2EA598DD9E960A06A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		87BCF1F3F307D5BB4A469EF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		88441D68F2EB23984CD3264E /* Pods-LoLBookOfChampions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoLBookOfChampions.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoLBookOfChampions/Pods-LoLBookOfChampions.debug.xcconfig"; sourceTree = "<group>"; };
 		94CB013DF3EE35F6BD7FC3EB /* Pods-LoLBookOfChampionsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoLBookOfChampionsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoLBookOfChampionsTests/Pods-LoLBookOfChampionsTests.release.xcconfig"; sourceTree = "<group>"; };
-		9E8FC03228FC204BB3894D6E /* libPods-LoLBookOfChampionsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LoLBookOfChampionsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5314E781A936593007AEEE7 /* magic.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magic.sks; sourceTree = "<group>"; };
 		A5314E791A936593007AEEE7 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		A5314E871A93E77A007AEEE7 /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spark.sks; sourceTree = "<group>"; };
 		A5314E8A1A93E7F5007AEEE7 /* smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smoke.sks; sourceTree = "<group>"; };
-		A534987A1A6DE4AF00F01962 /* LoLBookOfChampions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoLBookOfChampions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A534987E1A6DE4AF00F01962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A534987F1A6DE4AF00F01962 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A53498811A6DE4AF00F01962 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A53498821A6DE4AF00F01962 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A534988A1A6DE4AF00F01962 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A53498931A6DE4AF00F01962 /* LoLBookOfChampionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoLBookOfChampionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53498981A6DE4AF00F01962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5A547861AA01FDC00D772E2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		BEE552C980BB1A5681278D36 /* libPods-LoLBookOfChampions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LoLBookOfChampions.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09B049B32050DBF70F627A7 /* Pods-LoLBookOfChampions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoLBookOfChampions.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoLBookOfChampions/Pods-LoLBookOfChampions.release.xcconfig"; sourceTree = "<group>"; };
-		F24FD5157C360E0B3F7D2DBF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3108B2E93F62B96EB37C55F /* libPods-LoLBookOfChampionsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LoLBookOfChampionsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,8 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE954EE575A67B8A4B61FEC5 /* libPods.a in Frameworks */,
-				5091D8848B955E649D781CA0 /* libPods-LoLBookOfChampions.a in Frameworks */,
+				6E4B9152F1F5047832377DDA /* libPods-LoLBookOfChampions.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +252,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7866AF491CD0A42D99215134 /* libPods-LoLBookOfChampionsTests.a in Frameworks */,
+				A5A547871AA01FDC00D772E2 /* SenTestingKit.framework in Frameworks */,
+				7957CB9FB1242145A3F67B36 /* libPods-LoLBookOfChampionsTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +492,10 @@
 			children = (
 				54C18A4122FC879CBD125A46 /* NIOContentResolverTest.m */,
 				54C18AD81B8D0278B5899AE5 /* NIOUriMatcherTest.m */,
+				54C18EB6638768EEF02A87C3 /* NIOMockContentProvider.m */,
+				54C184237AFA45A9B449172D /* NIOMockContentProvider.h */,
+				54C18863860B3B8FB2ECD9E0 /* NIOMockContentObserver.m */,
+				54C180045F72AE7D79244A3B /* NIOMockContentObserver.h */,
 			);
 			path = context;
 			sourceTree = "<group>";
@@ -572,9 +578,9 @@
 		6001458C8500CC900829372C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F24FD5157C360E0B3F7D2DBF /* libPods.a */,
-				1065DCD4139E60841C1AA4C5 /* libPods-LoLBookOfChampions.a */,
-				9E8FC03228FC204BB3894D6E /* libPods-LoLBookOfChampionsTests.a */,
+				A5A547861AA01FDC00D772E2 /* SenTestingKit.framework */,
+				BEE552C980BB1A5681278D36 /* libPods-LoLBookOfChampions.a */,
+				D3108B2E93F62B96EB37C55F /* libPods-LoLBookOfChampionsTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -604,8 +610,6 @@
 		A534987B1A6DE4AF00F01962 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A534987A1A6DE4AF00F01962 /* LoLBookOfChampions.app */,
-				A53498931A6DE4AF00F01962 /* LoLBookOfChampionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -657,8 +661,6 @@
 		D8BE74048396C9F62E5820EF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				87BCF1F3F307D5BB4A469EF1 /* Pods.debug.xcconfig */,
-				681805B2EA598DD9E960A06A /* Pods.release.xcconfig */,
 				88441D68F2EB23984CD3264E /* Pods-LoLBookOfChampions.debug.xcconfig */,
 				219CE16B3FACF214FC3C34B6 /* Pods-LoLBookOfChampionsTests.debug.xcconfig */,
 				D09B049B32050DBF70F627A7 /* Pods-LoLBookOfChampions.release.xcconfig */,
@@ -686,7 +688,6 @@
 			);
 			name = LoLBookOfChampions;
 			productName = LoLBookOfChampions;
-			productReference = A534987A1A6DE4AF00F01962 /* LoLBookOfChampions.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A53498921A6DE4AF00F01962 /* LoLBookOfChampionsTests */ = {
@@ -706,7 +707,6 @@
 			);
 			name = LoLBookOfChampionsTests;
 			productName = LoLBookOfChampionsTests;
-			productReference = A53498931A6DE4AF00F01962 /* LoLBookOfChampionsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -936,6 +936,8 @@
 				54C183C3CA8EACA0691B6000 /* NIOQueryRealmsTaskTest.m in Sources */,
 				54C18F38EAC2DBABB9A7B838 /* NIOContentResolverTest.m in Sources */,
 				54C18B5969D8BD5CBFF6E97B /* NIOUriMatcherTest.m in Sources */,
+				54C1862F058B50F105808948 /* NIOMockContentProvider.m in Sources */,
+				54C180FB218E109FC8BC305E /* NIOMockContentObserver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1098,6 +1100,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LoLBookOfChampions/LoLBookOfChampions.pch;
@@ -1117,6 +1120,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LoLBookOfChampions/LoLBookOfChampions.pch;
