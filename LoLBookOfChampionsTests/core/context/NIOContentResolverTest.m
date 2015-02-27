@@ -683,6 +683,11 @@ SPEC_BEGIN(ContentResolverSpec)
 					[contentResolver notifyChange:uri];
 					[[expectFutureValue(theValue(mockContentObserver.didReceiveUriUpdateNotification)) shouldEventually] beFalse];
 				});
+
+                it(@"a notification is received on the completion queue", ^{
+                    [contentResolver notifyChange:uri];
+                    [[expectFutureValue(mockContentObserver.completionQueue.description) shouldEventually] equal:completionQueue.description];
+                });
 			});
 
 			context(@"and an observer does want to be notified of descendent changes", ^{
