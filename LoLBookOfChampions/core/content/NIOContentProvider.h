@@ -29,6 +29,7 @@
 				   withError:(NSError **)error;
 
 -(NSInteger)updateWithURI:(NSURL *)uri
+               withValues:(NSDictionary *)values
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs
 				withError:(NSError **)error;

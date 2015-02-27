@@ -131,43 +131,46 @@ SPEC_BEGIN(ContentResolverSpec)
 
 					it(@"it invokes update on the content provider on the execution queue", ^{
 						updateUri = [NSURL URLWithString:[NSString stringWithFormat:@"content://%@.%@/%@", contentAuthorityBase, gameContentPath, @"stats"]];
-						[contentResolver updateWithURI:updateUri withSelection:nil withSelectionArgs:nil];
+						[contentResolver updateWithURI:updateUri withValues:nil withSelection:nil withSelectionArgs:nil];
 						[[expectFutureValue(contentProvider.executionQueue.description) shouldEventually] equal: executionQueue.description];
 					});
 
 					it(@"it invokes update on the content provider registered for that content uri", ^{
-						[[expectFutureValue(mockContentProvider) shouldEventually] receive:@selector(updateWithURI:withSelection:withSelectionArgs:withError:) withArguments:any(), any(), any(), any()];
-						[contentResolver updateWithURI:updateUri withSelection:nil withSelectionArgs:nil];
+						[[expectFutureValue(mockContentProvider) shouldEventually] receive:@selector(updateWithURI:withValues:withSelection:withSelectionArgs:withError:) withArguments:any(), any(), any(), any(), any()];
+						[contentResolver updateWithURI:updateUri withValues:nil withSelection:nil withSelectionArgs:nil];
 					});
 
 					it(@"it passes the correct uri to the registered content provider", ^{
-						[[expectFutureValue(mockContentProvider) shouldEventually] receive:@selector(updateWithURI:withSelection:withSelectionArgs:withError:) withArguments:updateUri, any(), any(), any()];
-						[contentResolver updateWithURI:updateUri withSelection:nil withSelectionArgs:nil];
+						[[expectFutureValue(mockContentProvider) shouldEventually] receive:@selector(updateWithURI:withValues:withSelection:withSelectionArgs:withError:) withArguments:updateUri, any(), any(), any(), any()];
+						[contentResolver updateWithURI:updateUri withValues:nil withSelection:nil withSelectionArgs:nil];
 					});
 
-					pending(@"it passes the correct updateable values to the registered content provider", ^{
+					it(@"it passes the correct updateable values to the registered content provider", ^{
+                        NSDictionary *values = @{@"someColumn":@"someValue"};
+                        [[expectFutureValue(mockContentProvider) shouldEventually] receive:@selector(updateWithURI:withValues:withSelection:withSelectionArgs:withError:) withArguments:any(), values, any(), any(), any()];
+                        [contentResolver updateWithURI:updateUri withValues:values withSelection:nil withSelectionArgs:nil];
 					});
 
 					it(@"it passes the correct selection to the registered content provider", ^{
 						NSString *selection = @"someColumn = ?";
-						[[expectFutureValue(mockContentProvider) shouldEventually] receive:@selector(updateWithURI:withSelection:withSelectionArgs:withError:) withArguments:any(), selection, any(), any()];
-						[contentResolver updateWithURI:updateUri withSelection:selection withSelectionArgs:nil];
+						[[expectFutureValue(mockContentProvider) shouldEventually] receive:@selector(updateWithURI:withValues:withSelection:withSelectionArgs:withError:) withArguments:any(), any(), selection, any(), any()];
+						[contentResolver updateWithURI:updateUri withValues:nil withSelection:selection withSelectionArgs:nil];
 					});
 
 					it(@"it passes the correct selectionArgs to the registered content provider", ^{
 						NSArray *selectionArgs = @[@"someValue"];
-						[[expectFutureValue(mockContentProvider) shouldEventually] receive:@selector(updateWithURI:withSelection:withSelectionArgs:withError:) withArguments:any(), any(), selectionArgs, any()];
-						[contentResolver updateWithURI:updateUri withSelection:nil withSelectionArgs:selectionArgs];
+						[[expectFutureValue(mockContentProvider) shouldEventually] receive:@selector(updateWithURI:withValues:withSelection:withSelectionArgs:withError:) withArguments:any(), any(), any(), selectionArgs, any()];
+						[contentResolver updateWithURI:updateUri withValues:nil withSelection:nil withSelectionArgs:selectionArgs];
 					});
 
 					it(@"it returns a promise with a result", ^{
-						BFTask *promise = [contentResolver updateWithURI:updateUri withSelection:nil withSelectionArgs:nil];
+						BFTask *promise = [contentResolver updateWithURI:updateUri withValues:nil withSelection:nil withSelectionArgs:nil];
 						[[promise shouldNot] beNil];
 						[[expectFutureValue(promise.result) shouldNotEventually] beNil];
 					});
 
 					it(@"it returns a promise on the completion queue", ^{
-						[[[contentResolver updateWithURI:updateUri withSelection:nil withSelectionArgs:nil]
+						[[[contentResolver updateWithURI:updateUri withValues:nil withSelection:nil withSelectionArgs:nil]
 								continueWithBlock:^id(BFTask *task) {
 									NSString *completionQueueName = completionQueue.description;
 									NSString *thisQueueName = dispatch_get_current_queue().description;
@@ -184,7 +187,7 @@ SPEC_BEGIN(ContentResolverSpec)
 					});
 
 					it(@"returns a promise with an error", ^{
-						BFTask *promise = [contentResolver updateWithURI:updateUri withSelection:nil withSelectionArgs:nil];
+						BFTask *promise = [contentResolver updateWithURI:updateUri withValues:nil withSelection:nil withSelectionArgs:nil];
 						[[promise shouldNot] beNil];
 						[[expectFutureValue(promise.error) shouldNotEventually] beNil];
 					});
@@ -576,12 +579,12 @@ SPEC_BEGIN(ContentResolverSpec)
 
 			context(@"and updating content", ^{
 				it(@"it returns a promise containing an error describing an unmatched uri", ^{
-					BFTask *promise = [contentResolver updateWithURI:badUri withSelection:nil withSelectionArgs:nil];
+					BFTask *promise = [contentResolver updateWithURI:badUri withValues:nil withSelection:nil withSelectionArgs:nil];
 					[[expectFutureValue(promise.error) shouldNotEventually] beNil];
 				});
 
 				it(@"it returns a promise on the completion queue", ^{
-					[[[contentResolver updateWithURI:badUri withSelection:nil withSelectionArgs:nil]
+					[[[contentResolver updateWithURI:badUri withValues:nil withSelection:nil withSelectionArgs:nil]
 							continueWithBlock:^id(BFTask *task) {
 								NSString *completionQueueName = completionQueue.description;
 								NSString *thisQueueName = dispatch_get_current_queue().description;

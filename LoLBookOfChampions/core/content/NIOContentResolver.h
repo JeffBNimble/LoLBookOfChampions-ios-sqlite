@@ -43,6 +43,7 @@
 -(void)unregisterContentObserver:(id <NIOContentObserver>)contentObserver;
 
 -(BFTask *)updateWithURI:(NSURL *)uri
+              withValues:(NSDictionary *)values
 		   withSelection:(NSString *)selection
 	   withSelectionArgs:(NSArray *)selectionArgs;
 @end

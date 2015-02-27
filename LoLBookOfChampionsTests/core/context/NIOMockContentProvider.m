@@ -58,6 +58,7 @@
 }
 
 -(NSInteger)updateWithURI:(NSURL *)uri
+               withValues:(NSDictionary *)values
 			withSelection:(NSString *)selection
 		withSelectionArgs:(NSArray *)selectionArgs
 				withError:(NSError **)error {
@@ -66,7 +67,7 @@
 		*error = self.failWithError;
 		return 0;
 	} else {
-		return [super updateWithURI:uri withSelection:selection withSelectionArgs:selectionArgs withError:error];
+		return [super updateWithURI:uri withValues:values withSelection:selection withSelectionArgs:selectionArgs withError:error];
 	}
 }
 

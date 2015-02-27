@@ -230,16 +230,20 @@
 	}];
 }
 
--(BFTask *)updateWithURI:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
+-(BFTask *)updateWithURI:(NSURL *)uri
+              withValues:(NSDictionary *)values
+           withSelection:(NSString *)selection
+       withSelectionArgs:(NSArray *)selectionArgs {
 	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
 		NSError *error;
 		id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
 		if (!contentProvider) return [BFTask taskWithError:[self createNoContentProviderErrorWithUri:uri]];
-		NSInteger updateCount = [contentProvider
-				updateWithURI:uri
-				withSelection:selection
-			withSelectionArgs:selectionArgs
-					withError:&error];
+        NSInteger updateCount = [contentProvider
+                updateWithURI:uri
+                   withValues:values
+                withSelection:selection
+            withSelectionArgs:selectionArgs
+                    withError:&error];
 		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:@(updateCount)];
 
 	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
