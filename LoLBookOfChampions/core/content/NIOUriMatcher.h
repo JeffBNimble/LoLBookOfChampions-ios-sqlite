@@ -6,10 +6,13 @@
 #import <Foundation/Foundation.h>
 
 
-#define NO_MATCH	-1
+#define NO_MATCH			-1
+
+#define ALPHA_WILDCARD		@"*"
+#define NUMERIC_WILDCARD	@"#"
 
 @interface NIOUriMatcher : NSObject
 -(instancetype)initWith:(NSInteger)root;
--(void)addURL:(NSURL *)url withMatchCode:(NSInteger)code;
+-(BOOL)addURI:(NSURL *)uri withMatchCode:(NSInteger)code;
 -(NSInteger)match:(NSURL *)url;
 @end

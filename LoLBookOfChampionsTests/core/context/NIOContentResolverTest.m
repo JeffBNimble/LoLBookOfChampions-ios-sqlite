@@ -15,7 +15,7 @@
 
 
 SPEC_BEGIN(ContentResolverSpec)
-	describe(@"With a content resolver", ^{
+	describe(@"With an NIOContentResolver", ^{
 		__block NSString *dataDragonContentPath;
 		__block NSString *gameContentPath;
 		__block id mockContentProviderFactory;

@@ -159,9 +159,9 @@
 	[super onCreate];
 
 	self.urlMatcher = [[NIOUriMatcher alloc] initWith:NO_MATCH];
-	[self.urlMatcher addURL:[Realm URI] withMatchCode:REALM_URI];
-	[self.urlMatcher addURL:[Champion URI] withMatchCode:CHAMPIONS_URI];
-	[self.urlMatcher addURL:[ChampionSkin URI] withMatchCode:CHAMPION_SKINS_URI];
+	[self.urlMatcher addURI:[Realm URI] withMatchCode:REALM_URI];
+	[self.urlMatcher addURI:[Champion URI] withMatchCode:CHAMPIONS_URI];
+	[self.urlMatcher addURI:[ChampionSkin URI] withMatchCode:CHAMPION_SKINS_URI];
 }
 
 -(id<NIOCursor>)queryWithURI:(NSURL *)uri

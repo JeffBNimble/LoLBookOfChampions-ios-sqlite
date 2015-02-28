@@ -8,6 +8,8 @@
 
 #import "NIOUriMatcher.h"
 
+#define TERMINAL	@"nio.terminal.node"
+
 @interface NIOUriMatcher ()
 @property (nonatomic, strong) NSMutableDictionary *matchTree;
 @end
@@ -17,14 +19,14 @@
 	self = [super init];
 	if ( self ) {
 		self.matchTree = [NSMutableDictionary new];
-		self.matchTree[@""] = @(root);
+		self.matchTree[TERMINAL] = @(root);
 	}
 
 	return self;
 }
 
--(void)addURL:(NSURL *)url withMatchCode:(NSInteger)code {
-	NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url
+-(BOOL)addURI:(NSURL *)uri withMatchCode:(NSInteger)code {
+	NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:uri
 												resolvingAgainstBaseURL:NO];
 	NSString *scheme = urlComponents.scheme;
 	NSString *host = urlComponents.host;
@@ -35,13 +37,17 @@
 
 	NSMutableDictionary *node = self.matchTree;
 	for ( NSString *urlComponent in allComponents ) {
-        if ( [urlComponent isEqualToString:@"/"] ) continue;
-		node = [self appendURLComponent:urlComponent withNode:node];
+		NSString *decodedComponent = [urlComponent stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        if ( [decodedComponent isEqualToString:@"/"] ) continue;
+		node = [self appendURLComponent:decodedComponent withNode:node];
 	}
 
 	if ( node ) {
-        node[@""] = @(code);
+        node[TERMINAL] = @(code);
 	}
+
+	// TODO Return NO if there is already a registered URI at this spot
+	return YES;
 }
 
 -(NSMutableDictionary *)appendURLComponent:(NSString *)urlComponent withNode:(NSMutableDictionary *)node {
@@ -57,7 +63,16 @@
     NSMutableDictionary *matchingNode =  (NSMutableDictionary *)node[urlComponent];
     if ( matchingNode ) return matchingNode;
 
-    return node[@"*"];
+    return [self isNumericURLComponent:urlComponent] ? node[NUMERIC_WILDCARD] : node[ALPHA_WILDCARD];
+}
+
+- (BOOL)isNumericURLComponent:(NSString *)urlComponent {
+	static NSCharacterSet  *alphaSet;
+	if ( alphaSet == nil ) {
+		alphaSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+	}
+
+	 return [urlComponent rangeOfCharacterFromSet:alphaSet].location == NSNotFound;
 }
 
 - (NSInteger)match:(NSURL *)url {
@@ -77,7 +92,7 @@
         node = [self getMatchingNode:urlComponent withNode:node];
     }
 
-    return node ? [(NSNumber *) node[@""] integerValue] : NO_MATCH;
+    return node ? [(NSNumber *) node[TERMINAL] integerValue] : NO_MATCH;
 }
 
 
