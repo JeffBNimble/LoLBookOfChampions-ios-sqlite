@@ -27,25 +27,35 @@
 }
 
 -(BFTask *)runAsync {
-	DDLogVerbose(@"Clearing the disk cache");
-	[self.sharedURLCache removeAllCachedResponses];
+	__block BFTaskCompletionSource *completionSource = [BFTaskCompletionSource taskCompletionSource];
 
-	DDLogVerbose(@"Deleting Data Dragon realm");
-	return [[[self.contentResolver deleteWithURI:[Realm URI]
-								   withSelection:nil
-							   withSelectionArgs:nil]
-			continueWithBlock:^id(BFTask *task) {
-				DDLogVerbose(@"Deleting Data Dragon champion data");
-				return [self.contentResolver deleteWithURI:[Champion URI]
-											 withSelection:nil
-										 withSelectionArgs:nil];
-			}]
-			continueWithBlock:^id(BFTask *task) {
-				DDLogVerbose(@"Deleting Data Dragon champion skin data");
-				return [self.contentResolver deleteWithURI:[ChampionSkin URI]
-											 withSelection:nil
-										 withSelectionArgs:nil];
-			}];
+	[[BFExecutor immediateExecutor] execute:^{
+		DDLogVerbose(@"Clearing the disk cache");
+		[self.sharedURLCache removeAllCachedResponses];
+
+		DDLogVerbose(@"Deleting Data Dragon realm");
+		[[[[self.contentResolver deleteWithURI:[Realm URI]
+								 withSelection:nil
+							 withSelectionArgs:nil]
+				continueWithBlock:^id(BFTask *task) {
+					DDLogVerbose(@"Deleting Data Dragon champion data");
+					return [self.contentResolver deleteWithURI:[Champion URI]
+												 withSelection:nil
+											 withSelectionArgs:nil];
+				}]
+				continueWithBlock:^id(BFTask *task) {
+					DDLogVerbose(@"Deleting Data Dragon champion skin data");
+					return [self.contentResolver deleteWithURI:[ChampionSkin URI]
+												 withSelection:nil
+											 withSelectionArgs:nil];
+				}]
+				continueWithBlock:^id(BFTask *task) {
+					[completionSource setResult:nil];
+					return nil;
+				}];
+	}];
+
+	return completionSource.task;
 }
 
 @end
