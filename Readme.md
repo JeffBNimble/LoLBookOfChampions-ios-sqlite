@@ -46,7 +46,7 @@ While the application architecture may not be all the novel, it is based upon so
 
 * Persist early and often, enabling offline use once all images are cached
 * Stay off of the main thread so the application always remains responsive
-* Code is unit testable (not yet unit tested, though)
+* Code is unit testable (not yet fully unit tested, though some tests exist)
 
 The application is split into three "modules". There is a Typhoon assembly for each. Much of the core is an implementation of some concepts that should be familiar if you are an Android developer, namely [Services](http://developer.android.com/guide/components/services.html) and [Content Providers](http://developer.android.com/guide/topics/providers/content-providers.html). Additionally, I wrote a thin wrapper around the [FMDB FMResultSet class](http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html) that allows for moving forward, backward or to any position within the result set.
 

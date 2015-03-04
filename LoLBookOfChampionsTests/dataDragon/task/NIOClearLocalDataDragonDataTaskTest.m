@@ -53,12 +53,17 @@ SPEC_BEGIN(NIOClearLocalDataDragonDataTaskSpec)
 				[task runAsync];
 			});
 
-			pending(@"it deletes the data dragon champion skin data", ^{
-
+			it(@"it deletes the data dragon champion skin data", ^{
+				[[expectFutureValue(mockContentResolver) shouldEventually]
+						receive:@selector(deleteWithURI:withSelection:withSelectionArgs:)
+				  withArguments:[ChampionSkin URI], any(), any()];
+				[task runAsync];
 			});
 
-			pending(@"it returns a promise", ^{
-
+			it(@"it returns a promise", ^{
+				BFTask *promise = [task runAsync];
+				[promise waitUntilFinished];
+				[[promise shouldNot] beNil];
 			});
 		});
 	});
