@@ -33,7 +33,7 @@ A UICollectionViewController-based screen which shows a list of skins for the se
 All of my goals were met. Most of the code was written over a weekend. I plan on continuing to tinker with it, slowly adding more features, but mainly use it as a playground for a tech stack that I'm interested in.
 
 #Tech Stack (in no particular order)
-* [Typhoon](https://github.com/appsquickly/Typhoon) : A very nice dependency injection library for iOS (Objective-C and Swift)
+* [Typhoon](https://github.com/appsquickly/Typhoon) : A very nice dependency injection library for iOS/OS X (Objective-C and Swift)
 * [FMDB](https://github.com/ccgus/fmdb) : A clean and simple Objective-C wrapper around SQLite
 * [AFNetworking](https://github.com/AFNetworking/AFNetworking) : The defacto standard networking library for iOS
 * [Bolts Framework](https://github.com/BoltsFramework/Bolts-iOS) : An implementation of [Futures and Promises](http://en.wikipedia.org/wiki/Futures_and_promises)
