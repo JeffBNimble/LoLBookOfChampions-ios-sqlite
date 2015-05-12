@@ -231,9 +231,9 @@
 		A5314E8A1A93E7F5007AEEE7 /* smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smoke.sks; sourceTree = "<group>"; };
 		A534987E1A6DE4AF00F01962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A534987F1A6DE4AF00F01962 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A53498811A6DE4AF00F01962 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A53498821A6DE4AF00F01962 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A534988A1A6DE4AF00F01962 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A53498811A6DE4AF00F01962 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
+		A53498821A6DE4AF00F01962 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
+		A534988A1A6DE4AF00F01962 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		A53498981A6DE4AF00F01962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5A547861AA01FDC00D772E2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		BEE552C980BB1A5681278D36 /* libPods-LoLBookOfChampions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LoLBookOfChampions.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,12 +265,12 @@
 		297BB686E12CEE910882D4E2 /* module */ = {
 			isa = PBXGroup;
 			children = (
-				297BBE81301E5A25BAC865BB /* NIOCoreComponents.m */,
-				297BBC41A302B026B3634096 /* NIOCoreComponents.h */,
 				54C18F43F63359619FCE84F6 /* NIOBaseComponentFactory.h */,
 				54C18F6A6D4200670E85069B /* NIOBaseComponentFactory.m */,
-				54C181479D51560FAEF1C688 /* NIOTyphoonContentProviderFactory.m */,
+				297BBC41A302B026B3634096 /* NIOCoreComponents.h */,
+				297BBE81301E5A25BAC865BB /* NIOCoreComponents.m */,
 				54C1831BF239916A2360AFDA /* NIOTyphoonContentProviderFactory.h */,
+				54C181479D51560FAEF1C688 /* NIOTyphoonContentProviderFactory.m */,
 			);
 			path = module;
 			sourceTree = "<group>";
@@ -278,15 +278,15 @@
 		54C1800360B8C42687F329C2 /* content */ = {
 			isa = PBXGroup;
 			children = (
-				54C18FF7F424D47242276475 /* NIOContentProvider.h */,
-				54C18932F5AF46DE61EDACA3 /* NIOUriMatcher.m */,
-				54C18ABADB9957C6EA3F9CFC /* NIOUriMatcher.h */,
-				297BB67D229858375B1D2080 /* NIOContentResolver.m */,
-				297BB00B66C6D1284FE3EBB3 /* NIOContentResolver.h */,
-				297BB30A9A1639C0E4A6FC1A /* NIOContentObserver.h */,
-				54C18EA8BD41E455CC7BEACF /* NIOBaseContentProvider.m */,
 				54C188A752F592DAB245357F /* NIOBaseContentProvider.h */,
+				54C18EA8BD41E455CC7BEACF /* NIOBaseContentProvider.m */,
 				54C18F8983C5A3DFB75CCC89 /* NIOContentProviderFactory.h */,
+				297BB30A9A1639C0E4A6FC1A /* NIOContentObserver.h */,
+				54C18FF7F424D47242276475 /* NIOContentProvider.h */,
+				297BB00B66C6D1284FE3EBB3 /* NIOContentResolver.h */,
+				297BB67D229858375B1D2080 /* NIOContentResolver.m */,
+				54C18ABADB9957C6EA3F9CFC /* NIOUriMatcher.h */,
+				54C18932F5AF46DE61EDACA3 /* NIOUriMatcher.m */,
 			);
 			path = content;
 			sourceTree = "<group>";
@@ -294,10 +294,10 @@
 		54C180A7119D66D0D1AAF446 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				54C184B7C9F43235BAAA0B5F /* task */,
 				54C1800360B8C42687F329C2 /* content */,
 				54C1836ADA9A247E4C9B5965 /* database */,
 				297BB686E12CEE910882D4E2 /* module */,
+				54C184B7C9F43235BAAA0B5F /* task */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -322,8 +322,10 @@
 		54C1848D982995DA94A1E755 /* app */ = {
 			isa = PBXGroup;
 			children = (
-				54C18D6D1934B2FD8E489AB2 /* view */,
+				A53498811A6DE4AF00F01962 /* AppDelegate.h */,
+				A53498821A6DE4AF00F01962 /* AppDelegate.m */,
 				54C188B57C58CE6A22D3116C /* module */,
+				54C18D6D1934B2FD8E489AB2 /* view */,
 				54C186C1AE5EEFD5CE68070A /* task */,
 			);
 			path = app;
@@ -339,14 +341,14 @@
 		54C184B7C9F43235BAAA0B5F /* task */ = {
 			isa = PBXGroup;
 			children = (
-				54C18EE52EA0E544E3AD93DB /* NIOTaskFactory.h */,
-				54C185537F7ACC51F648AE88 /* NIOTask.h */,
-				54C186FF387D9380964D8149 /* NIOTyphoonTaskFactory.m */,
-				54C18D46A78A5224A73B080C /* NIOTyphoonTaskFactory.h */,
-				54C1864C38908E325FE97C42 /* NIOBaseSQLTask.m */,
 				54C185674D276E11348DF4A8 /* NIOBaseSQLTask.h */,
-				54C186347F47A8BCCCBDEB01 /* NIOBaseSQLQueryTask.m */,
+				54C1864C38908E325FE97C42 /* NIOBaseSQLTask.m */,
 				54C1850BEEE23545B715CAD5 /* NIOBaseSQLQueryTask.h */,
+				54C186347F47A8BCCCBDEB01 /* NIOBaseSQLQueryTask.m */,
+				54C185537F7ACC51F648AE88 /* NIOTask.h */,
+				54C18EE52EA0E544E3AD93DB /* NIOTaskFactory.h */,
+				54C18D46A78A5224A73B080C /* NIOTyphoonTaskFactory.h */,
+				54C186FF387D9380964D8149 /* NIOTyphoonTaskFactory.m */,
 			);
 			path = task;
 			sourceTree = "<group>";
@@ -354,8 +356,8 @@
 		54C186C1AE5EEFD5CE68070A /* task */ = {
 			isa = PBXGroup;
 			children = (
-				54C18BD98F28A3DE9AA84D44 /* NIOQueryTask.m */,
 				54C189D30E53F615E26FF366 /* NIOQueryTask.h */,
+				54C18BD98F28A3DE9AA84D44 /* NIOQueryTask.m */,
 			);
 			path = task;
 			sourceTree = "<group>";
@@ -363,10 +365,10 @@
 		54C1884344EB60BA02866924 /* remote */ = {
 			isa = PBXGroup;
 			children = (
-				54C189C982857F358A5B7596 /* NIOLoLApiRequestOperationManager.m */,
-				54C18BF8B3CCC30EA1C7806B /* NIOLoLApiRequestOperationManager.h */,
-				54C1835FB21EDBC8EAD85F11 /* NIODataDragonCDNRequestOperationManager.m */,
 				54C18CC2793AB6AC9A4DE464 /* NIODataDragonCDNRequestOperationManager.h */,
+				54C1835FB21EDBC8EAD85F11 /* NIODataDragonCDNRequestOperationManager.m */,
+				54C18BF8B3CCC30EA1C7806B /* NIOLoLApiRequestOperationManager.h */,
+				54C189C982857F358A5B7596 /* NIOLoLApiRequestOperationManager.m */,
 			);
 			path = remote;
 			sourceTree = "<group>";
@@ -383,8 +385,8 @@
 			isa = PBXGroup;
 			children = (
 				54C180AFD6A5576F23FD3500 /* Configuration.plist */,
-				54C18FBCC5876D90DE4A00ED /* NIOApplicationAssembly.m */,
 				54C181E809DB9653B4CC5997 /* NIOApplicationAssembly.h */,
+				54C18FBCC5876D90DE4A00ED /* NIOApplicationAssembly.m */,
 			);
 			path = module;
 			sourceTree = "<group>";
@@ -392,9 +394,9 @@
 		54C189DDAF759CA211960A99 /* service */ = {
 			isa = PBXGroup;
 			children = (
+				54C18F565EAA78930B73C9B7 /* local */,
 				54C1884344EB60BA02866924 /* remote */,
 				54C186E76A31C91325193E09 /* LoLApiConstants.h */,
-				54C18F565EAA78930B73C9B7 /* local */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -402,12 +404,12 @@
 		54C18AA74FA262C0176C69AC /* content */ = {
 			isa = PBXGroup;
 			children = (
-				54C183D2723AE54B89AD2017 /* NIODataDragonContentProvider.m */,
 				54C184226D3D0F2433FB98B0 /* NIODataDragonContentProvider.h */,
-				54C18559632B3A6EE5844B6F /* NIODataDragonSqliteOpenHelper.m */,
-				54C185A34C2C5CE846592EB7 /* NIODataDragonSqliteOpenHelper.h */,
-				54C183FE48BA6ADAE6C68720 /* NIODataDragonContract.m */,
+				54C183D2723AE54B89AD2017 /* NIODataDragonContentProvider.m */,
 				54C1828E7250D2F99ECD3CBF /* NIODataDragonContract.h */,
+				54C183FE48BA6ADAE6C68720 /* NIODataDragonContract.m */,
+				54C185A34C2C5CE846592EB7 /* NIODataDragonSqliteOpenHelper.h */,
+				54C18559632B3A6EE5844B6F /* NIODataDragonSqliteOpenHelper.m */,
 			);
 			path = content;
 			sourceTree = "<group>";
@@ -432,19 +434,19 @@
 		54C18BDD1CC51D8EA3374A95 /* task */ = {
 			isa = PBXGroup;
 			children = (
-				54C18E8A49E0AAF5850F32BA /* NIOGetRealmTask.m */,
-				54C18ACABB30093827CB347C /* NIOGetRealmTask.h */,
-				54C18388D1501F9E66AA5BEF /* NIOClearLocalDataDragonDataTask.m */,
-				54C187BE7174FE78896E9F5C /* NIOClearLocalDataDragonDataTask.h */,
 				54C18BEE0F1B87BE39F67D53 /* internal */,
-				54C18148204828522103E551 /* NIOInsertDataDragonRealmTask.m */,
-				54C180AF6DA3A78327F60A3B /* NIOInsertDataDragonRealmTask.h */,
-				54C187EF8EE04413B297F3B9 /* NIOGetChampionStaticDataTask.m */,
-				54C1874772ED6901907C321F /* NIOGetChampionStaticDataTask.h */,
-				54C18A35CCB2C62773747B8D /* NIOInsertDataDragonChampionDataTask.m */,
-				54C18C1FF54F7107BCE57883 /* NIOInsertDataDragonChampionDataTask.h */,
-				54C18909EC43EB81309CB431 /* NIOCacheChampionImagesTask.m */,
 				54C18615407060235716422D /* NIOCacheChampionImagesTask.h */,
+				54C18909EC43EB81309CB431 /* NIOCacheChampionImagesTask.m */,
+				54C187BE7174FE78896E9F5C /* NIOClearLocalDataDragonDataTask.h */,
+				54C18388D1501F9E66AA5BEF /* NIOClearLocalDataDragonDataTask.m */,
+				54C1874772ED6901907C321F /* NIOGetChampionStaticDataTask.h */,
+				54C187EF8EE04413B297F3B9 /* NIOGetChampionStaticDataTask.m */,
+				54C18ACABB30093827CB347C /* NIOGetRealmTask.h */,
+				54C18E8A49E0AAF5850F32BA /* NIOGetRealmTask.m */,
+				54C18C1FF54F7107BCE57883 /* NIOInsertDataDragonChampionDataTask.h */,
+				54C18A35CCB2C62773747B8D /* NIOInsertDataDragonChampionDataTask.m */,
+				54C180AF6DA3A78327F60A3B /* NIOInsertDataDragonRealmTask.h */,
+				54C18148204828522103E551 /* NIOInsertDataDragonRealmTask.m */,
 			);
 			path = task;
 			sourceTree = "<group>";
@@ -452,24 +454,24 @@
 		54C18BEE0F1B87BE39F67D53 /* internal */ = {
 			isa = PBXGroup;
 			children = (
-				54C18CF338758A0EDC8AD223 /* NIOQueryRealmsTask.m */,
-				54C182535DD2786C52371166 /* NIODeleteRealmTask.h */,
-				54C18F87BE2CF049F655A701 /* NIOQueryRealmsTask.h */,
-				54C18179A47F2E7874C256B9 /* NIODeleteRealmTask.m */,
-				54C187D5CE4877E5FAEEA7FD /* NIOInsertRealmTask.m */,
-				54C18A84A6E54F99C9A6F004 /* NIOInsertRealmTask.h */,
-				54C18323D3846D32FE8C5C69 /* NIODeleteChampionTask.m */,
 				54C1846090DDAB28E394EC00 /* NIODeleteChampionTask.h */,
-				54C18D84E58F4675EF5D5384 /* NIODeleteChampionSkinTask.m */,
+				54C18323D3846D32FE8C5C69 /* NIODeleteChampionTask.m */,
 				54C1805DC296ECFA9227E228 /* NIODeleteChampionSkinTask.h */,
-				54C18E8180EECF315DDBFBB0 /* NIOInsertChampionTask.m */,
+				54C18D84E58F4675EF5D5384 /* NIODeleteChampionSkinTask.m */,
+				54C182535DD2786C52371166 /* NIODeleteRealmTask.h */,
+				54C18179A47F2E7874C256B9 /* NIODeleteRealmTask.m */,
 				54C1838B63EE61B049DE4C8B /* NIOInsertChampionTask.h */,
-				54C18BD7A84774B357340584 /* NIOInsertChampionSkinTask.m */,
+				54C18E8180EECF315DDBFBB0 /* NIOInsertChampionTask.m */,
 				54C18B7B2A7044C00728691B /* NIOInsertChampionSkinTask.h */,
-				54C181EE9FCDF67D2AF1D8E1 /* NIOQueryChampionsTask.m */,
+				54C18BD7A84774B357340584 /* NIOInsertChampionSkinTask.m */,
+				54C18A84A6E54F99C9A6F004 /* NIOInsertRealmTask.h */,
+				54C187D5CE4877E5FAEEA7FD /* NIOInsertRealmTask.m */,
 				54C1870B55F1485A568B97F4 /* NIOQueryChampionsTask.h */,
-				54C18179F1A7799B2795F998 /* NIOQueryChampionSkinsTask.m */,
+				54C181EE9FCDF67D2AF1D8E1 /* NIOQueryChampionsTask.m */,
 				54C18853EDD9FC8181732CD7 /* NIOQueryChampionSkinsTask.h */,
+				54C18179F1A7799B2795F998 /* NIOQueryChampionSkinsTask.m */,
+				54C18F87BE2CF049F655A701 /* NIOQueryRealmsTask.h */,
+				54C18CF338758A0EDC8AD223 /* NIOQueryRealmsTask.m */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -494,11 +496,11 @@
 			isa = PBXGroup;
 			children = (
 				54C18A4122FC879CBD125A46 /* NIOContentResolverTest.m */,
-				54C18AD81B8D0278B5899AE5 /* NIOUriMatcherTest.m */,
-				54C18EB6638768EEF02A87C3 /* NIOMockContentProvider.m */,
-				54C184237AFA45A9B449172D /* NIOMockContentProvider.h */,
-				54C18863860B3B8FB2ECD9E0 /* NIOMockContentObserver.m */,
 				54C180045F72AE7D79244A3B /* NIOMockContentObserver.h */,
+				54C18863860B3B8FB2ECD9E0 /* NIOMockContentObserver.m */,
+				54C184237AFA45A9B449172D /* NIOMockContentProvider.h */,
+				54C18EB6638768EEF02A87C3 /* NIOMockContentProvider.m */,
+				54C18AD81B8D0278B5899AE5 /* NIOUriMatcherTest.m */,
 			);
 			path = context;
 			sourceTree = "<group>";
@@ -507,14 +509,14 @@
 			isa = PBXGroup;
 			children = (
 				54C18CDC482A2F1BD75A76E4 /* xib */,
-				54C18618DF1D60BEEC0AE5CE /* NIOChampionCollectionViewController.m */,
-				54C18ACEDA81BDE845F46444 /* NIOChampionCollectionViewController.h */,
-				54C18412AD6D4077FD545010 /* NIOChampionCollectionViewCell.m */,
 				54C1835FAF659721C49945E6 /* NIOChampionCollectionViewCell.h */,
-				54C183BF8D4A5DE4484E675C /* NIOChampionSkinCollectionViewController.m */,
-				54C188A6A80598C806C26F42 /* NIOChampionSkinCollectionViewController.h */,
-				54C188454CF726594912BDE9 /* NIOChampionSkinCollectionViewCell.m */,
+				54C18412AD6D4077FD545010 /* NIOChampionCollectionViewCell.m */,
+				54C18ACEDA81BDE845F46444 /* NIOChampionCollectionViewController.h */,
+				54C18618DF1D60BEEC0AE5CE /* NIOChampionCollectionViewController.m */,
 				54C185A91C6DBB8DDC349B83 /* NIOChampionSkinCollectionViewCell.h */,
+				54C188454CF726594912BDE9 /* NIOChampionSkinCollectionViewCell.m */,
+				54C188A6A80598C806C26F42 /* NIOChampionSkinCollectionViewController.h */,
+				54C183BF8D4A5DE4484E675C /* NIOChampionSkinCollectionViewController.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -532,9 +534,9 @@
 		54C18E99F4A74DF10538B716 /* module */ = {
 			isa = PBXGroup;
 			children = (
-				54C1834F049057B47D542752 /* NIODataDragonComponents.m */,
-				54C18B6FE0C8B5FAB3DA2F60 /* NIODataDragonComponents.h */,
 				54C18733CF17CC948606FE53 /* DataDragonConfiguration.plist */,
+				54C18B6FE0C8B5FAB3DA2F60 /* NIODataDragonComponents.h */,
+				54C1834F049057B47D542752 /* NIODataDragonComponents.m */,
 			);
 			path = module;
 			sourceTree = "<group>";
@@ -542,10 +544,10 @@
 		54C18E9BE5D7098845774649 /* dataDragon */ = {
 			isa = PBXGroup;
 			children = (
+				54C18AA74FA262C0176C69AC /* content */,
 				54C18E99F4A74DF10538B716 /* module */,
 				54C189DDAF759CA211960A99 /* service */,
 				54C18BDD1CC51D8EA3374A95 /* task */,
-				54C18AA74FA262C0176C69AC /* content */,
 			);
 			path = dataDragon;
 			sourceTree = "<group>";
@@ -553,8 +555,8 @@
 		54C18F565EAA78930B73C9B7 /* local */ = {
 			isa = PBXGroup;
 			children = (
-				54C18B9F5EA016A6113F0DCA /* NIODataDragonSyncService.m */,
 				54C188BDFAD6310ECF273EF2 /* NIODataDragonSyncService.h */,
+				54C18B9F5EA016A6113F0DCA /* NIODataDragonSyncService.m */,
 			);
 			path = local;
 			sourceTree = "<group>";
@@ -570,10 +572,10 @@
 		54C18F6E082B1ADCAFBAAAFF /* sqlite */ = {
 			isa = PBXGroup;
 			children = (
-				54C18AEB1FE1F73C0D993612 /* NIOSqliteOpenHelper.m */,
-				54C183258C1F5D36E93F993B /* NIOSqliteOpenHelper.h */,
-				54C18CE5C9B22BFB834FDADF /* NIOSqliteCursor.m */,
 				54C188A32C2AE8F1F5C97CA5 /* NIOSqliteCursor.h */,
+				54C18CE5C9B22BFB834FDADF /* NIOSqliteCursor.m */,
+				54C183258C1F5D36E93F993B /* NIOSqliteOpenHelper.h */,
+				54C18AEB1FE1F73C0D993612 /* NIOSqliteOpenHelper.m */,
 			);
 			path = sqlite;
 			sourceTree = "<group>";
@@ -591,6 +593,7 @@
 		A5314E771A936593007AEEE7 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				A534988A1A6DE4AF00F01962 /* Images.xcassets */,
 				A5314E781A936593007AEEE7 /* magic.sks */,
 				A5314E791A936593007AEEE7 /* spark.png */,
 				A5314E871A93E77A007AEEE7 /* spark.sks */,
@@ -620,14 +623,11 @@
 		A534987C1A6DE4AF00F01962 /* LoLBookOfChampions */ = {
 			isa = PBXGroup;
 			children = (
-				A53498811A6DE4AF00F01962 /* AppDelegate.h */,
-				A53498821A6DE4AF00F01962 /* AppDelegate.m */,
-				A534988A1A6DE4AF00F01962 /* Images.xcassets */,
-				A534987D1A6DE4AF00F01962 /* Supporting Files */,
-				54C18E9BE5D7098845774649 /* dataDragon */,
 				54C1848D982995DA94A1E755 /* app */,
 				54C180A7119D66D0D1AAF446 /* core */,
+				54C18E9BE5D7098845774649 /* dataDragon */,
 				A5314E771A936593007AEEE7 /* resources */,
+				A534987D1A6DE4AF00F01962 /* Supporting Files */,
 			);
 			path = LoLBookOfChampions;
 			sourceTree = "<group>";
@@ -636,8 +636,8 @@
 			isa = PBXGroup;
 			children = (
 				A534987E1A6DE4AF00F01962 /* Info.plist */,
-				A534987F1A6DE4AF00F01962 /* main.m */,
 				54C18941726EDF135EFA47E9 /* LoLBookOfChampions.pch */,
+				A534987F1A6DE4AF00F01962 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -647,8 +647,8 @@
 			children = (
 				A53498971A6DE4AF00F01962 /* Supporting Files */,
 				54C18B18FF51A90AFBD3F9E2 /* app */,
-				54C181673C98B0E414370D1F /* dataDragon */,
 				54C18DB352144764F4F5BF1F /* core */,
+				54C181673C98B0E414370D1F /* dataDragon */,
 			);
 			path = LoLBookOfChampionsTests;
 			sourceTree = "<group>";
