@@ -51,3 +51,12 @@ While the application architecture may not be all the novel, it is based upon so
 The application is split into three "modules". There is a Typhoon assembly for each. Much of the core is an implementation of some concepts that should be familiar if you are an Android developer, namely [Services](http://developer.android.com/guide/components/services.html) and [Content Providers](http://developer.android.com/guide/topics/providers/content-providers.html). Additionally, I wrote a thin wrapper around the [FMDB FMResultSet class](http://ccgus.github.io/fmdb/html/Classes/FMResultSet.html) that allows for moving forward, backward or to any position within the result set.
 
 I want to give a special shoutout to [Jasper Blues](https://github.com/jasperblues) who is the Project Lead for the [Typhoon Framework](https://github.com/appsquickly/Typhoon) and spent some of his valuable weekend time helping me with Typhoon.
+
+##Screencasts
+I have created a [YouTube Channel](https://www.youtube.com/channel/UCUMAujrLQP-zB925se5YIiQ) with several playlists that use this application as an example. I'm adding videos regularly. Most of the videos are short (5-6 minutes or less) and are intended to help you learn more about iOS development. Feel free to subscribe, leave feedback and learn!
+
+* [Full list of videos (in order)](https://www.youtube.com/playlist?list=PLhU81D62nv-YjCJLbXlfE8kImsRCkea38)
+* [Typhoon Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-Yd5jCW9LRjI4_AfI5NwJhe)
+* [Concurrency Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-b04EaWHYHlFwsRLBDLvfFv)
+* [Command Pattern Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-blgQxJHy-V_081zI7LCyWl)
+* More coming soon!
