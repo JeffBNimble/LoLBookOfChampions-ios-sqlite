@@ -59,4 +59,6 @@ I have created a [YouTube Channel](https://www.youtube.com/channel/UCUMAujrLQP-z
 * [Typhoon Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-Yd5jCW9LRjI4_AfI5NwJhe)
 * [Concurrency Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-b04EaWHYHlFwsRLBDLvfFv)
 * [Command Pattern Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-blgQxJHy-V_081zI7LCyWl)
+* [Promises Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-bkRDbrBufTOd0HV34gx0ar)
+* [Bolts Framework Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-aK2N86AlOOXQnw38YAOUeq)
 * More coming soon!
