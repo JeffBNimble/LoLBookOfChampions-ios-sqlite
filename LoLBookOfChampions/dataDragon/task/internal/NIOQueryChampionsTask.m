@@ -8,11 +8,13 @@
 
 #import "NIOQueryChampionsTask.h"
 #import "NIODataDragonContract.h"
+#import "NIOSQLStatementBuilder.h"
 
 
 @implementation NIOQueryChampionsTask
--(instancetype)initWithDatabase:(FMDatabase *)database {
-	self = [super initWithDatabase:database];
+-(instancetype)initWithDatabase:(FMDatabase *)database
+		withSQLStatementBuilder:(id <NIOSQLStatementBuilder>)statementBuilder {
+	self = [super initWithDatabase:database withSQLStatementBuilder:statementBuilder];
 	if ( self ) {
 		self.table = [Champion DB_TABLE];
 	}

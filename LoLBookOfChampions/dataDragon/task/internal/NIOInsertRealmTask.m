@@ -11,8 +11,9 @@
 
 
 @implementation NIOInsertRealmTask
--(instancetype)initWithDatabase:(FMDatabase *)database {
-	self = [super initWithDatabase:database];
+-(instancetype)initWithDatabase:(FMDatabase *)database
+		withSQLStatementBuilder:(id<NIOSQLStatementBuilder>)statementBuilder {
+	self = [super initWithDatabase:database withSQLStatementBuilder:statementBuilder];
 	if ( self ) {
 		self.table = [Realm DB_TABLE];
 	}

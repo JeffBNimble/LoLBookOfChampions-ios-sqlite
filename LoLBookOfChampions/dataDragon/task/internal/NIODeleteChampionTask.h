@@ -9,5 +9,6 @@
 
 
 @interface NIODeleteChampionTask : NIOBaseSQLTask <NIOTask>
--(instancetype)initWithDatabase:(FMDatabase *)database;
+-(instancetype)initWithDatabase:(FMDatabase *)database
+		withSQLStatementBuilder:(id<NIOSQLStatementBuilder>)statementBuilder;
 @end

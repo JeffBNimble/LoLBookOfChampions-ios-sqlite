@@ -9,6 +9,8 @@
 #import <FMDB/FMDB.h>
 #import "NIOQueryRealmsTask.h"
 #import "NIOCursor.h"
+#import "NIOSQLStatementBuilder.h"
+#import "NIODefaultSQLStatementBuilder.h"
 
 SPEC_BEGIN(NIOQueryRealmsTaskSpec)
 	describe(@"With a query realms task", ^{
@@ -21,7 +23,7 @@ SPEC_BEGIN(NIOQueryRealmsTaskSpec)
 			mockDatabase = [FMDatabase nullMock];
 			mockQueryCountResultSet = [FMResultSet nullMock];
 			mockQueryResultSet = [FMResultSet nullMock];
-			queryRealmsTask = [[NIOQueryRealmsTask alloc] initWithDatabase:mockDatabase];
+			queryRealmsTask = [[NIOQueryRealmsTask alloc] initWithDatabase:mockDatabase withSQLStatementBuilder:[NIODefaultSQLStatementBuilder new]];
 
 			// Stub the count query result set so that it returns a row count
 			[mockQueryCountResultSet stub:@selector(next) andReturn:theValue(true)];

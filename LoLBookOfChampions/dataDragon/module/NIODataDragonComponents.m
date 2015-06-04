@@ -29,6 +29,8 @@
 #import "NIOCacheChampionImagesTask.h"
 #import "NIOQueryChampionsTask.h"
 #import "NIOQueryChampionSkinsTask.h"
+#import "NIOSQLStatementBuilder.h"
+#import "NIODefaultSQLStatementBuilder.h"
 #import <Typhoon/Typhoon.h>
 
 
@@ -111,8 +113,9 @@
 
 -(NIODeleteChampionTask *)deleteChampionTask {
 	return [TyphoonDefinition withClass:[NIODeleteChampionTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithDatabase:withSQLStatementBuilder:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+			[initializer injectParameterWith:self.sqlStatementBuilder];
 		}];
 
 		definition.scope = TyphoonScopePrototype;
@@ -121,8 +124,9 @@
 
 -(NIODeleteChampionSkinTask *)deleteChampionSkinTask {
 	return [TyphoonDefinition withClass:[NIODeleteChampionSkinTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithDatabase:withSQLStatementBuilder:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+			[initializer injectParameterWith:self.sqlStatementBuilder];
 		}];
 
 		definition.scope = TyphoonScopePrototype;
@@ -131,8 +135,9 @@
 
 -(NIODeleteRealmTask *)deleteRealmsTask {
 	return [TyphoonDefinition withClass:[NIODeleteRealmTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithDatabase:withSQLStatementBuilder:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+			[initializer injectParameterWith:self.sqlStatementBuilder];
 		}];
 
 		definition.scope = TyphoonScopePrototype;
@@ -161,8 +166,9 @@
 
 -(NIOInsertChampionTask *)insertChampionTask {
 	return [TyphoonDefinition withClass:[NIOInsertChampionTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithDatabase:withSQLStatementBuilder:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+			[initializer injectParameterWith:self.sqlStatementBuilder];
 		}];
 
 		definition.scope = TyphoonScopePrototype;
@@ -171,8 +177,9 @@
 
 -(NIOInsertChampionSkinTask *)insertChampionSkinTask {
 	return [TyphoonDefinition withClass:[NIOInsertChampionSkinTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithDatabase:withSQLStatementBuilder:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+			[initializer injectParameterWith:self.sqlStatementBuilder];
 		}];
 
 		definition.scope = TyphoonScopePrototype;
@@ -201,8 +208,9 @@
 
 -(NIOInsertRealmTask *)insertRealmTask {
 	return [TyphoonDefinition withClass:[NIOInsertRealmTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithDatabase:withSQLStatementBuilder:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+			[initializer injectParameterWith:self.sqlStatementBuilder];
 		}];
 
 		definition.scope = TyphoonScopePrototype;
@@ -226,8 +234,9 @@
 
 -(NIOQueryChampionsTask *)queryChampionsTask {
 	return [TyphoonDefinition withClass:[NIOQueryChampionsTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithDatabase:withSQLStatementBuilder:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+			[initializer injectParameterWith:self.sqlStatementBuilder];
 		}];
 
 		definition.scope = TyphoonScopePrototype;
@@ -236,8 +245,9 @@
 
 -(NIOQueryChampionSkinsTask *)queryChampionSkinsTask {
 	return [TyphoonDefinition withClass:[NIOQueryChampionSkinsTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithDatabase:withSQLStatementBuilder:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+			[initializer injectParameterWith:self.sqlStatementBuilder];
 		}];
 
 		definition.scope = TyphoonScopePrototype;
@@ -246,8 +256,18 @@
 
 -(NIOQueryRealmsTask *)queryRealmsTask {
 	return [TyphoonDefinition withClass:[NIOQueryRealmsTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithDatabase:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithDatabase:withSQLStatementBuilder:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.dataDragonSqliteDatabase];
+			[initializer injectParameterWith:self.sqlStatementBuilder];
+		}];
+
+		definition.scope = TyphoonScopePrototype;
+	}];
+}
+
+-(id<NIOSQLStatementBuilder>)sqlStatementBuilder {
+	return [TyphoonDefinition withClass:[NIODefaultSQLStatementBuilder class] configuration:^(TyphoonDefinition *definition) {
+		[definition useInitializer:@selector(init) parameters:^(TyphoonMethod *initializer) {
 		}];
 
 		definition.scope = TyphoonScopePrototype;

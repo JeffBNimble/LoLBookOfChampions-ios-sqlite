@@ -7,28 +7,26 @@
 #import <FMDB/FMDB.h>
 #import <Bolts/Bolts.h>
 
-#define SELECT				@"SELECT "
-#define COUNT				@"count(*)"
-#define DELETE				@"DELETE "
-#define FROM				@" FROM "
-#define GROUP_BY			@" GROUP BY "
-#define HAVING				@" HAVING "
-#define INSERT_INTO			@"INSERT INTO "
-#define ORDER_BY			@" ORDER BY "
-#define SET					@" SET "
-#define UPDATE				@"UPDATE "
-#define WHERE				@" WHERE "
+@protocol NIOSQLStatementBuilder;
 
 @interface NIOBaseSQLTask : NSObject
 @property (strong, nonatomic, readonly) FMDatabase *database;
+@property (strong, nonatomic) NSString *groupBy;
+@property (strong, nonatomic) NSString *having;
+@property (strong, nonatomic) NSArray *projection;
+@property (strong, nonatomic) NSString *sort;
 @property (strong, nonatomic) NSString *selection;
 @property (strong, nonatomic) NSArray *selectionArgs;
 @property (strong, nonatomic) NSString *table;
 @property (strong, nonatomic) NSDictionary *values;
 
--(instancetype)initWithDatabase:(FMDatabase *)database NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithDatabase:(FMDatabase *)database
+		withSQLStatementBuilder:(id<NIOSQLStatementBuilder>)statementBuilder NS_DESIGNATED_INITIALIZER;
 
+-(BFTask *)asQueryResult:(FMResultSet *)queryResultSet;
 -(BFTask *)asUpdateResult:(NSInteger)rowsUpdated;
 -(NSInteger)executeDelete;
 -(NSInteger)executeInsert;
+-(FMResultSet *)executeQuery;
+-(NSInteger)executeUpdate;
 @end

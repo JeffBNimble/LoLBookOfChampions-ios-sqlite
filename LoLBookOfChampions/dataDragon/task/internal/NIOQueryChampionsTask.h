@@ -4,10 +4,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NIOBaseSQLQueryTask.h"
+#import "NIOBaseSQLTask.h"
 #import "NIOTask.h"
 
+@protocol NIOSQLStatementBuilder;
 
-@interface NIOQueryChampionsTask : NIOBaseSQLQueryTask <NIOTask>
--(instancetype)initWithDatabase:(FMDatabase *)database;
+
+@interface NIOQueryChampionsTask : NIOBaseSQLTask <NIOTask>
+-(instancetype)initWithDatabase:(FMDatabase *)database
+		withSQLStatementBuilder:(id<NIOSQLStatementBuilder>)statementBuilder;
 @end

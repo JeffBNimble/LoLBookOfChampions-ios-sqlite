@@ -29,6 +29,7 @@
 @class NIOCacheChampionImagesTask;
 @class NIOQueryChampionsTask;
 @class NIOQueryChampionSkinsTask;
+@protocol NIOSQLStatementBuilder;
 
 @interface NIODataDragonComponents : TyphoonAssembly
 @property (nonatomic, strong, readonly) NIOCoreComponents *coreComponents;
@@ -54,4 +55,5 @@
 -(NIOQueryChampionsTask *)queryChampionsTask;
 -(NIOQueryChampionSkinsTask *)queryChampionSkinsTask;
 -(NIOQueryRealmsTask *)queryRealmsTask;
+-(id<NIOSQLStatementBuilder>)sqlStatementBuilder;
 @end

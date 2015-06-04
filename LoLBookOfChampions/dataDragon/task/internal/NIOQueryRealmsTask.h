@@ -6,8 +6,9 @@
 #import <Foundation/Foundation.h>
 #import <FMDB/FMDB.h>
 #import "NIOTask.h"
-#import "NIOBaseSQLQueryTask.h"
+#import "NIOBaseSQLTask.h"
 
-@interface NIOQueryRealmsTask : NIOBaseSQLQueryTask<NIOTask>
--(instancetype)initWithDatabase:(FMDatabase *)database NS_DESIGNATED_INITIALIZER;
+@interface NIOQueryRealmsTask : NIOBaseSQLTask<NIOTask>
+-(instancetype)initWithDatabase:(FMDatabase *)database
+		withSQLStatementBuilder:(id<NIOSQLStatementBuilder>)statementBuilder NS_DESIGNATED_INITIALIZER;
 @end
