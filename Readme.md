@@ -61,4 +61,6 @@ I have created a [YouTube Channel](https://www.youtube.com/channel/UCUMAujrLQP-z
 * [Command Pattern Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-blgQxJHy-V_081zI7LCyWl)
 * [Promises Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-bkRDbrBufTOd0HV34gx0ar)
 * [Bolts Framework Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-aK2N86AlOOXQnw38YAOUeq)
-* More coming soon!
+* [SQLite Primer](https://www.youtube.com/playlist?list=PLhU81D62nv-ZAI5hcIVg1CgQzOtqliLDj)
+* ContentProvider primer: In process NOW!
+* BDD-Style Unit Testing With Kiwi Primer: Coming soon!

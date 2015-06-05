@@ -315,9 +315,9 @@
 			children = (
 				54C18F6E082B1ADCAFBAAAFF /* sqlite */,
 				54C1896C61A1170A71753A81 /* NIOCursor.h */,
-				54C183E40640D39901166997 /* NIOSQLStatementBuilder.h */,
-				54C18863845AEFF8938856BF /* NIODefaultSQLStatementBuilder.m */,
 				54C182C824429DA6ECF13405 /* NIODefaultSQLStatementBuilder.h */,
+				54C18863845AEFF8938856BF /* NIODefaultSQLStatementBuilder.m */,
+				54C183E40640D39901166997 /* NIOSQLStatementBuilder.h */,
 			);
 			path = database;
 			sourceTree = "<group>";
