@@ -126,8 +126,8 @@
 		297BB00B66C6D1284FE3EBB3 /* NIOContentResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOContentResolver.h; sourceTree = "<group>"; };
 		297BB30A9A1639C0E4A6FC1A /* NIOContentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOContentObserver.h; sourceTree = "<group>"; };
 		297BB67D229858375B1D2080 /* NIOContentResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOContentResolver.m; sourceTree = "<group>"; };
-		297BBC41A302B026B3634096 /* NIOCoreComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOCoreComponents.h; sourceTree = "<group>"; };
-		297BBE81301E5A25BAC865BB /* NIOCoreComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOCoreComponents.m; sourceTree = "<group>"; };
+		297BBC41A302B026B3634096 /* NIOCoreComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIOCoreComponents.h; path = ../../core/module/NIOCoreComponents.h; sourceTree = "<group>"; };
+		297BBE81301E5A25BAC865BB /* NIOCoreComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIOCoreComponents.m; path = ../../core/module/NIOCoreComponents.m; sourceTree = "<group>"; };
 		54C180045F72AE7D79244A3B /* NIOMockContentObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOMockContentObserver.h; sourceTree = "<group>"; };
 		54C1805DC296ECFA9227E228 /* NIODeleteChampionSkinTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODeleteChampionSkinTask.h; sourceTree = "<group>"; };
 		54C180AF6DA3A78327F60A3B /* NIOInsertDataDragonRealmTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOInsertDataDragonRealmTask.h; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 		54C1831BF239916A2360AFDA /* NIOTyphoonContentProviderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOTyphoonContentProviderFactory.h; sourceTree = "<group>"; };
 		54C18323D3846D32FE8C5C69 /* NIODeleteChampionTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODeleteChampionTask.m; sourceTree = "<group>"; };
 		54C183258C1F5D36E93F993B /* NIOSqliteOpenHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOSqliteOpenHelper.h; sourceTree = "<group>"; };
-		54C1834F049057B47D542752 /* NIODataDragonComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonComponents.m; sourceTree = "<group>"; };
+		54C1834F049057B47D542752 /* NIODataDragonComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIODataDragonComponents.m; path = ../../dataDragon/module/NIODataDragonComponents.m; sourceTree = "<group>"; };
 		54C1835FAF659721C49945E6 /* NIOChampionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOChampionCollectionViewCell.h; sourceTree = "<group>"; };
 		54C1835FB21EDBC8EAD85F11 /* NIODataDragonCDNRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonCDNRequestOperationManager.m; sourceTree = "<group>"; };
 		54C18388D1501F9E66AA5BEF /* NIOClearLocalDataDragonDataTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOClearLocalDataDragonDataTask.m; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		54C186E76A31C91325193E09 /* LoLApiConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoLApiConstants.h; sourceTree = "<group>"; };
 		54C186FF387D9380964D8149 /* NIOTyphoonTaskFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOTyphoonTaskFactory.m; sourceTree = "<group>"; };
 		54C1870B55F1485A568B97F4 /* NIOQueryChampionsTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOQueryChampionsTask.h; sourceTree = "<group>"; };
-		54C18733CF17CC948606FE53 /* DataDragonConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = DataDragonConfiguration.plist; sourceTree = "<group>"; };
+		54C18733CF17CC948606FE53 /* DataDragonConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DataDragonConfiguration.plist; path = ../../dataDragon/module/DataDragonConfiguration.plist; sourceTree = "<group>"; };
 		54C1874772ED6901907C321F /* NIOGetChampionStaticDataTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOGetChampionStaticDataTask.h; sourceTree = "<group>"; };
 		54C187BE7174FE78896E9F5C /* NIOClearLocalDataDragonDataTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOClearLocalDataDragonDataTask.h; sourceTree = "<group>"; };
 		54C187D5CE4877E5FAEEA7FD /* NIOInsertRealmTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOInsertRealmTask.m; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 		54C18AD81B8D0278B5899AE5 /* NIOUriMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOUriMatcherTest.m; sourceTree = "<group>"; };
 		54C18AEB1FE1F73C0D993612 /* NIOSqliteOpenHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOSqliteOpenHelper.m; sourceTree = "<group>"; };
 		54C18B3D3AA1E288C3A80021 /* NIOQueryRealmsTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOQueryRealmsTaskTest.m; sourceTree = "<group>"; };
-		54C18B6FE0C8B5FAB3DA2F60 /* NIODataDragonComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIODataDragonComponents.h; sourceTree = "<group>"; };
+		54C18B6FE0C8B5FAB3DA2F60 /* NIODataDragonComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIODataDragonComponents.h; path = ../../dataDragon/module/NIODataDragonComponents.h; sourceTree = "<group>"; };
 		54C18B7B2A7044C00728691B /* NIOInsertChampionSkinTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOInsertChampionSkinTask.h; sourceTree = "<group>"; };
 		54C18B7FB2AF491E95FA18FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LoLBookOfChampions/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		54C18B9F5EA016A6113F0DCA /* NIODataDragonSyncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIODataDragonSyncService.m; sourceTree = "<group>"; };
@@ -267,8 +267,6 @@
 			children = (
 				54C18F43F63359619FCE84F6 /* NIOBaseComponentFactory.h */,
 				54C18F6A6D4200670E85069B /* NIOBaseComponentFactory.m */,
-				297BBC41A302B026B3634096 /* NIOCoreComponents.h */,
-				297BBE81301E5A25BAC865BB /* NIOCoreComponents.m */,
 				54C1831BF239916A2360AFDA /* NIOTyphoonContentProviderFactory.h */,
 				54C181479D51560FAEF1C688 /* NIOTyphoonContentProviderFactory.m */,
 			);
@@ -386,8 +384,13 @@
 			isa = PBXGroup;
 			children = (
 				54C180AFD6A5576F23FD3500 /* Configuration.plist */,
+				54C18733CF17CC948606FE53 /* DataDragonConfiguration.plist */,
 				54C181E809DB9653B4CC5997 /* NIOApplicationAssembly.h */,
 				54C18FBCC5876D90DE4A00ED /* NIOApplicationAssembly.m */,
+				297BBC41A302B026B3634096 /* NIOCoreComponents.h */,
+				297BBE81301E5A25BAC865BB /* NIOCoreComponents.m */,
+				54C18B6FE0C8B5FAB3DA2F60 /* NIODataDragonComponents.h */,
+				54C1834F049057B47D542752 /* NIODataDragonComponents.m */,
 			);
 			path = module;
 			sourceTree = "<group>";
@@ -532,21 +535,10 @@
 			path = core;
 			sourceTree = "<group>";
 		};
-		54C18E99F4A74DF10538B716 /* module */ = {
-			isa = PBXGroup;
-			children = (
-				54C18733CF17CC948606FE53 /* DataDragonConfiguration.plist */,
-				54C18B6FE0C8B5FAB3DA2F60 /* NIODataDragonComponents.h */,
-				54C1834F049057B47D542752 /* NIODataDragonComponents.m */,
-			);
-			path = module;
-			sourceTree = "<group>";
-		};
 		54C18E9BE5D7098845774649 /* dataDragon */ = {
 			isa = PBXGroup;
 			children = (
 				54C18AA74FA262C0176C69AC /* content */,
-				54C18E99F4A74DF10538B716 /* module */,
 				54C189DDAF759CA211960A99 /* service */,
 				54C18BDD1CC51D8EA3374A95 /* task */,
 			);
