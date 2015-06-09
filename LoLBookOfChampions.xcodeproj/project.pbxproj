@@ -95,6 +95,7 @@
 		54C18F84D8CD82CFCF02AA91 /* NIODeleteChampionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18323D3846D32FE8C5C69 /* NIODeleteChampionTask.m */; };
 		54C18F8DB8F17E3836FB2BF9 /* NIOQueryChampionSkinsTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C18179F1A7799B2795F998 /* NIOQueryChampionSkinsTask.m */; };
 		54C18FCA66E7675C919683F1 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C180AFD6A5576F23FD3500 /* Configuration.plist */; };
+		57C907751B25A54B0035F7AB /* NIOAsyncTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C907741B25A54B0035F7AB /* NIOAsyncTask.m */; };
 		6E4B9152F1F5047832377DDA /* libPods-LoLBookOfChampions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE552C980BB1A5681278D36 /* libPods-LoLBookOfChampions.a */; };
 		7957CB9FB1242145A3F67B36 /* libPods-LoLBookOfChampionsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3108B2E93F62B96EB37C55F /* libPods-LoLBookOfChampionsTests.a */; };
 		A5314E7A1A936593007AEEE7 /* magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5314E781A936593007AEEE7 /* magic.sks */; };
@@ -223,6 +224,8 @@
 		54C18F8983C5A3DFB75CCC89 /* NIOContentProviderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOContentProviderFactory.h; sourceTree = "<group>"; };
 		54C18FBCC5876D90DE4A00ED /* NIOApplicationAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOApplicationAssembly.m; sourceTree = "<group>"; };
 		54C18FF7F424D47242276475 /* NIOContentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOContentProvider.h; sourceTree = "<group>"; };
+		57C907731B25A54B0035F7AB /* NIOAsyncTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIOAsyncTask.h; sourceTree = "<group>"; };
+		57C907741B25A54B0035F7AB /* NIOAsyncTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIOAsyncTask.m; sourceTree = "<group>"; };
 		88441D68F2EB23984CD3264E /* Pods-LoLBookOfChampions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoLBookOfChampions.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoLBookOfChampions/Pods-LoLBookOfChampions.debug.xcconfig"; sourceTree = "<group>"; };
 		94CB013DF3EE35F6BD7FC3EB /* Pods-LoLBookOfChampionsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoLBookOfChampionsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoLBookOfChampionsTests/Pods-LoLBookOfChampionsTests.release.xcconfig"; sourceTree = "<group>"; };
 		A5314E781A936593007AEEE7 /* magic.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magic.sks; sourceTree = "<group>"; };
@@ -342,6 +345,8 @@
 		54C184B7C9F43235BAAA0B5F /* task */ = {
 			isa = PBXGroup;
 			children = (
+				57C907731B25A54B0035F7AB /* NIOAsyncTask.h */,
+				57C907741B25A54B0035F7AB /* NIOAsyncTask.m */,
 				54C185674D276E11348DF4A8 /* NIOBaseSQLTask.h */,
 				54C1864C38908E325FE97C42 /* NIOBaseSQLTask.m */,
 				54C185537F7ACC51F648AE88 /* NIOTask.h */,
@@ -712,6 +717,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = NIO;
+				LastTestingUpgradeCheck = 0630;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = io.nimblenoggin;
 				TargetAttributes = {
@@ -720,7 +726,6 @@
 					};
 					A53498921A6DE4AF00F01962 = {
 						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = A53498791A6DE4AF00F01962;
 					};
 				};
 			};
@@ -843,6 +848,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57C907751B25A54B0035F7AB /* NIOAsyncTask.m in Sources */,
 				A53498831A6DE4AF00F01962 /* AppDelegate.m in Sources */,
 				A53498801A6DE4AF00F01962 /* main.m in Sources */,
 				54C18AC1F2CDEC0841922D98 /* NIOChampionCollectionViewController.m in Sources */,
@@ -1092,7 +1098,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 219CE16B3FACF214FC3C34B6 /* Pods-LoLBookOfChampionsTests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1104,7 +1109,6 @@
 				INFOPLIST_FILE = LoLBookOfChampionsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LoLBookOfChampions.app/LoLBookOfChampions";
 			};
 			name = Debug;
 		};
@@ -1112,7 +1116,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 94CB013DF3EE35F6BD7FC3EB /* Pods-LoLBookOfChampionsTests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1127,7 +1130,6 @@
 				INFOPLIST_FILE = LoLBookOfChampionsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LoLBookOfChampions.app/LoLBookOfChampions";
 			};
 			name = Release;
 		};

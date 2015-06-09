@@ -60,7 +60,7 @@
 	queryTask.selection = [self buildSelection];
 	queryTask.selectionArgs = [self buildSelectionArgs];
 	queryTask.sort = [self buildSort];
-	[[queryTask runAsync] continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
+	[[queryTask run] continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
 
 		if ( task.error || task.exception ) {
 			DDLogError(@"An error occurred querying champion skins: %@", task.error ? task.error : task.exception);

@@ -26,7 +26,7 @@
 	return self;
 }
 
--(BFTask *)runAsync {
+-(BFTask *)run {
 	BFTaskCompletionSource *promise = [BFTaskCompletionSource taskCompletionSource];
 
 	[self.apiRequestOperationManager GET:[NSString stringWithFormat:GET_CHAMPION_PATH_FORMAT, PLACEHOLDER_REGION, PLACEHOLDER_API_VERSION]

@@ -4,13 +4,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Bolts/Bolts.h>
 #import "NIOTask.h"
+#import "NIOAsyncTask.h"
 
 @class NIOContentResolver;
 
 
-@interface NIOInsertDataDragonRealmTask : NSObject<NIOTask>
+@interface NIOInsertDataDragonRealmTask : NIOAsyncTask<NIOTask>
 @property (strong, nonatomic) NSDictionary *remoteDataDragonRealmData;
 
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver;
+-(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver
+                 withExecutionExecutor:(BFExecutor *)executionExecutor
+                withCompletionExecutor:(BFExecutor *)completionExecutor;
 @end

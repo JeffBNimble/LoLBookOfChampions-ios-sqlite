@@ -6,10 +6,11 @@
 #import <Foundation/Foundation.h>
 #import <FMDB/FMDB.h>
 #import <Bolts/Bolts.h>
+#import "NIOTask.h"
 
 @protocol NIOSQLStatementBuilder;
 
-@interface NIOBaseSQLTask : NSObject
+@interface NIOBaseSQLTask : NSObject<NIOTask>
 @property (strong, nonatomic, readonly) FMDatabase *database;
 @property (strong, nonatomic) NSString *groupBy;
 @property (strong, nonatomic) NSString *having;

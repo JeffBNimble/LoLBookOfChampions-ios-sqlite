@@ -119,5 +119,9 @@
 	return self.database.changes;
 }
 
+-(BFTask *)run {
+    // Sublcasses should override
+    return nil;
+}
 
 @end

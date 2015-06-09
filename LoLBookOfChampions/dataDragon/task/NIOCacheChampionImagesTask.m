@@ -26,8 +26,8 @@
 	return self;
 }
 
--(BFTask *)runAsync {
-	DDLogVerbose(@"Caching %d champion, loading and splash images", self.cacheableImageURLs.count);
+-(BFTask *)run {
+	DDLogVerbose(@"Caching %lu champion, loading and splash images", self.cacheableImageURLs.count);
 	BFTask *promise;
 	NSMutableArray *tasks = [[NSMutableArray alloc] initWithCapacity:IMAGES_PER_BATCH];
 	int batchCount = (int) self.cacheableImageURLs.count / IMAGES_PER_BATCH;

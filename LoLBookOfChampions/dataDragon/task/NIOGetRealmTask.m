@@ -29,7 +29,7 @@
 	return self;
 }
 
--(BFTask *)runAsync {
+-(BFTask *)run {
 
 	BFTaskCompletionSource *promise = [BFTaskCompletionSource taskCompletionSource];
 

@@ -4,11 +4,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Bolts/Bolts.h>
 #import "NIOTask.h"
+#import "NIOAsyncTask.h"
 
 @class NIOContentResolver;
 
 
-@interface NIOClearLocalDataDragonDataTask : NSObject<NIOTask>
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver withSharedURLCache:(NSURLCache *)urlCache;
+@interface NIOClearLocalDataDragonDataTask : NIOAsyncTask<NIOTask>
+-(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver
+                    withSharedURLCache:(NSURLCache *)urlCache
+                 withExecutionExecutor:(BFExecutor *)executionExecutor
+                withCompletionExecutor:(BFExecutor *)completionExecutor;
 @end

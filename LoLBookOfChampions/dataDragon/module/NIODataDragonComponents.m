@@ -53,9 +53,11 @@
 
 -(NIOClearLocalDataDragonDataTask *)clearLocalDataDragonDataTask {
 	return [TyphoonDefinition withClass:[NIOClearLocalDataDragonDataTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithContentResolver:withSharedURLCache:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithContentResolver:withSharedURLCache:withExecutionExecutor:withCompletionExecutor:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.coreComponents.contentResolver];
 			[initializer injectParameterWith:self.coreComponents.sharedURLCache];
+            [initializer injectParameterWith:self.coreComponents.databaseExecutionExecutor];
+            [initializer injectParameterWith:self.coreComponents.databaseCompletionExecutor];
 		}];
 
 		definition.scope = TyphoonScopePrototype;
@@ -188,8 +190,10 @@
 
 -(NIOInsertDataDragonChampionDataTask *)insertDataDragonChampionDataTask {
 	return [TyphoonDefinition withClass:[NIOInsertDataDragonChampionDataTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithContentResolver:withExecutionExecutor:withCompletionExecutor:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.coreComponents.contentResolver];
+            [initializer injectParameterWith:self.coreComponents.databaseExecutionExecutor];
+            [initializer injectParameterWith:self.coreComponents.databaseCompletionExecutor];
 		}];
 
 		definition.scope = TyphoonScopePrototype;
@@ -198,8 +202,10 @@
 
 -(NIOInsertDataDragonRealmTask *)insertDataDragonRealmTask {
 	return [TyphoonDefinition withClass:[NIOInsertDataDragonRealmTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithContentResolver:withExecutionExecutor:withCompletionExecutor:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.coreComponents.contentResolver];
+            [initializer injectParameterWith:self.coreComponents.databaseExecutionExecutor];
+            [initializer injectParameterWith:self.coreComponents.databaseCompletionExecutor];
 		}];
 
 		definition.scope = TyphoonScopePrototype;

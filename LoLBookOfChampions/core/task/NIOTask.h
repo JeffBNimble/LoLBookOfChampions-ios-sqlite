@@ -8,5 +8,5 @@
 
 
 @protocol NIOTask <NSObject>
--(BFTask *)runAsync;
+-(BFTask *)run;
 @end

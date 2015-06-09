@@ -25,7 +25,7 @@
 		self.resultSetRowCount = rowCount;
 		self.rowCache = [[NSMutableArray alloc] initWithCapacity:rowCount];
 		if ( rowCount > 0 ) {
-			[self ensureRowCacheUpTo:MIN(rowCount - 1, 4)]; // Cache the first chunk of rows
+			[self ensureRowCacheUpTo:MIN((uint)rowCount - 1, 4)]; // Cache the first chunk of rows
 		}
 		self.columnNames = [NSMutableArray new];
 		[self cacheColumnNames];
@@ -106,7 +106,7 @@
 
 -(void)ensureRowCacheUpTo:(uint)cachePosition {
 	if ( (self.rowCache.count) > cachePosition ) return;
-	uint lastIndex = MIN(self.resultSetRowCount - 1, cachePosition);
+	uint lastIndex = MIN((uint)self.resultSetRowCount - 1, cachePosition);
 
 	for ( uint i = 0; i <= lastIndex; i++ ) {
 		if ( ![self.resultSet next]) break;
@@ -147,7 +147,7 @@
 }
 
 -(BOOL)moveToLast {
-	return [self moveToPosition:self.resultSetRowCount - 1];
+	return [self moveToPosition:(int)self.resultSetRowCount - 1];
 }
 
 -(BOOL)moveToPosition:(int)position {

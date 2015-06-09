@@ -13,28 +13,29 @@
 @interface NIOContentResolver : NSObject
 -(instancetype)initWithContentProviderFactory:(id <NIOContentProviderFactory>)factory
 					 withContentAuthorityBase:(NSString *)contentAuthorityBase
-							withRegistrations:(NSDictionary *)registrations
-						   withExecutionQueue:(dispatch_queue_t)executionQueue
-						  withCompletionQueue:(dispatch_queue_t)completionQueue NS_DESIGNATED_INITIALIZER;
+							withRegistrations:(NSDictionary *)registrations NS_DESIGNATED_INITIALIZER;
 
--(BFTask *)deleteWithURI:(NSURL *)uri
-		   withSelection:(NSString *)selection
-	   withSelectionArgs:(NSArray *)selectionArgs;
+-(NSInteger)deleteWithURI:(NSURL *)uri
+            withSelection:(NSString *)selection
+        withSelectionArgs:(NSArray *)selectionArgs
+                withError:(NSError **)error;
 
 -(id <NIOContentProvider>)getContentProviderForContentURI:(NSURL *)contentURI;
 
--(BFTask *)insertWithURI:(NSURL *)uri
-			  withValues:(NSDictionary *)values;
+-(NSURL *)insertWithURI:(NSURL *)uri
+             withValues:(NSDictionary *)values
+              withError:(NSError **)error;
 
 -(void)notifyChange:(NSURL *)contentUri;
 
--(BFTask *)queryWithURI:(NSURL *)uri
-		 withProjection:(NSArray *)projection
-		  withSelection:(NSString *)selection
-	  withSelectionArgs:(NSArray *)selectionArgs
-			withGroupBy:(NSString *)groupBy
-			 withHaving:(NSString *)having
-			   withSort:(NSString *)sort;
+-(id<NIOCursor>)queryWithURI:(NSURL *)uri
+              withProjection:(NSArray *)projection
+               withSelection:(NSString *)selection
+           withSelectionArgs:(NSArray *)selectionArgs
+                 withGroupBy:(NSString *)groupBy
+                  withHaving:(NSString *)having
+                    withSort:(NSString *)sort
+                   withError:(NSError **)error;
 
 -(void)registerContentObserverWithContentURI:(NSURL *)contentUri
 					withNotifyForDescendents:(bool)notifyForDescendents
@@ -42,8 +43,9 @@
 
 -(void)unregisterContentObserver:(id <NIOContentObserver>)contentObserver;
 
--(BFTask *)updateWithURI:(NSURL *)uri
-              withValues:(NSDictionary *)values
-		   withSelection:(NSString *)selection
-	   withSelectionArgs:(NSArray *)selectionArgs;
+-(NSInteger)updateWithURI:(NSURL *)uri
+               withValues:(NSDictionary *)values
+            withSelection:(NSString *)selection
+        withSelectionArgs:(NSArray *)selectionArgs
+                withError:(NSError **)error;
 @end

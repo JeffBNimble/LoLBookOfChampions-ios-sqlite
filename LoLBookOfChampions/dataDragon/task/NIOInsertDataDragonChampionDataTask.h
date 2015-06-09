@@ -5,14 +5,17 @@
 
 #import <Foundation/Foundation.h>
 #import "NIOTask.h"
+#import "NIOAsyncTask.h"
 
 @class NIOContentResolver;
 
 
-@interface NIOInsertDataDragonChampionDataTask : NSObject<NIOTask>
+@interface NIOInsertDataDragonChampionDataTask : NIOAsyncTask<NIOTask>
 @property (strong, nonatomic) NSURL *dataDragonCDN;
 @property (strong, nonatomic) NSString *dataDragonRealmVersion;
 @property (strong, nonatomic) NSDictionary *remoteDataDragonChampionData;
 
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver;
+-(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver
+                 withExecutionExecutor:(BFExecutor *)executionExecutor
+                withCompletionExecutor:(BFExecutor *)completionExecutor;
 @end

@@ -49,21 +49,21 @@
 	NIODeleteChampionTask *deleteChampionTask = [self.taskFactory createTaskWithType:[NIODeleteChampionTask class]];
 	deleteChampionTask.selection = selection;
 	deleteChampionTask.selectionArgs = selectionArgs;
-	return [deleteChampionTask runAsync];
+	return [deleteChampionTask run];
 }
 
 -(BFTask *)deleteChampionSkinWithSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	NIODeleteChampionSkinTask *deleteChampionSkinTask = [self.taskFactory createTaskWithType:[NIODeleteChampionSkinTask class]];
 	deleteChampionSkinTask.selection = selection;
 	deleteChampionSkinTask.selectionArgs = selectionArgs;
-	return [deleteChampionSkinTask runAsync];
+	return [deleteChampionSkinTask run];
 }
 
 -(BFTask *)deleteRealmWithSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
 	NIODeleteRealmTask *deleteRealmsTask = [self.taskFactory createTaskWithType:[NIODeleteRealmTask class]];
 	deleteRealmsTask.selection = selection;
 	deleteRealmsTask.selectionArgs = selectionArgs;
-	return [deleteRealmsTask runAsync];
+	return [deleteRealmsTask run];
 }
 
 -(NSInteger)deleteWithURI:(NSURL *)uri
@@ -105,19 +105,19 @@
 -(BFTask *)insertChampionWithValues:(NSDictionary *)values {
 	NIOInsertChampionTask *insertChampionTask = [self.taskFactory createTaskWithType:[NIOInsertChampionTask class]];
 	insertChampionTask.values = values;
-	return [insertChampionTask runAsync];
+	return [insertChampionTask run];
 }
 
 -(BFTask *)insertChampionSkinWithValues:(NSDictionary *)values {
 	NIOInsertChampionSkinTask *insertChampionSkinTask = [self.taskFactory createTaskWithType:[NIOInsertChampionSkinTask class]];
 	insertChampionSkinTask.values = values;
-	return [insertChampionSkinTask runAsync];
+	return [insertChampionSkinTask run];
 }
 
 -(BFTask *)insertRealmWithValues:(NSDictionary *)values {
 	NIOInsertRealmTask *insertRealmTask = [self.taskFactory createTaskWithType:[NIOInsertRealmTask class]];
 	insertRealmTask.values = values;
-	return [insertRealmTask runAsync];
+	return [insertRealmTask run];
 }
 
 -(NSURL *)insertWithURI:(NSURL *)uri
@@ -234,7 +234,7 @@
 	queryTask.having = having;
 	queryTask.sort = sort;
 
-	return [queryTask runAsync];
+	return [queryTask run];
 }
 
 -(BFTask *)queryChampionSkinsWithProjection:(NSArray *)projection
@@ -251,7 +251,7 @@
 	queryTask.having = having;
 	queryTask.sort = sort;
 
-	return [queryTask runAsync];
+	return [queryTask run];
 }
 
 -(BFTask *)queryRealmWithProjection:(NSArray *)projection
@@ -268,7 +268,7 @@
 	queryTask.having = having;
 	queryTask.sort = sort;
 
-	return [queryTask runAsync];
+	return [queryTask run];
 }
 
 @end

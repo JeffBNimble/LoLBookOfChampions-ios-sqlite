@@ -19,6 +19,20 @@
                ReferencedContainer = "container:LoLBookOfChampions.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "57C907791B25AF970035F7AB"
+               BuildableName = "LoLBookOfChampions Tests.xctest"
+               BlueprintName = "LoLBookOfChampions Tests"
+               ReferencedContainer = "container:LoLBookOfChampions.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,6 +42,15 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A53498791A6DE4AF00F01962"
+            BuildableName = "LoLBookOfChampions"
+            BlueprintName = "LoLBookOfChampions"
+            ReferencedContainer = "container:LoLBookOfChampions.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -40,7 +63,7 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         FilePath = "/Users/jroberts/Library/Developer/Xcode/DerivedData/LoLBookOfChampions-axctjkrlcdpkvgeaxgpbmbzhkzvs/Build/Products/Debug-iphonesimulator/LoLBookOfChampions.app">
+         FilePath = "/Users/nimbleNoggin/Library/Developer/Xcode/DerivedData/LoLBookOfChampions-blxvirzztemlcvflgbyiucvgfnyh/Build/Products/Debug-iphonesimulator/LoLBookOfChampions.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
@@ -60,6 +83,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A53498791A6DE4AF00F01962"
+            BuildableName = "LoLBookOfChampions"
+            BlueprintName = "LoLBookOfChampions"
+            ReferencedContainer = "container:LoLBookOfChampions.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

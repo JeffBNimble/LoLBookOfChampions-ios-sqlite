@@ -21,7 +21,7 @@
 	return self;
 }
 
--(BFTask *)runAsync {
+-(BFTask *)run {
 	return [self asUpdateResult:[self executeDelete]];
 }
 

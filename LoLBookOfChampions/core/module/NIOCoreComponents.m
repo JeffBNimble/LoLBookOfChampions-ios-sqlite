@@ -38,16 +38,30 @@
 
 - (NIOContentResolver *)contentResolver {
     return [TyphoonDefinition withClass:[NIOContentResolver class] configuration:^(TyphoonDefinition *definition) {
-        [definition useInitializer:@selector(initWithContentProviderFactory:withContentAuthorityBase:withRegistrations:withExecutionQueue:withCompletionQueue:)
+        [definition useInitializer:@selector(initWithContentProviderFactory:withContentAuthorityBase:withRegistrations:)
             parameters:^(TyphoonMethod *initializer) {
                 [initializer injectParameterWith:[self.coreComponents contentProviderFactory]];
                 [initializer injectParameterWith:self.bundleIdentifier];
                 [initializer injectParameterWith:TyphoonConfig(@"content.registrations")];
-				[initializer injectParameterWith:dispatch_queue_create("io.nimblenoggin.content.execution", DISPATCH_QUEUE_SERIAL)];
-				[initializer injectParameterWith:dispatch_queue_create("io.nimblenoggin.content.completion", DISPATCH_QUEUE_SERIAL)];
             }];
 
         definition.scope = TyphoonScopeSingleton;
+    }];
+}
+
+-(BFExecutor *)databaseCompletionExecutor {
+    return [TyphoonDefinition withClass:[BFExecutor class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(executorWithDispatchQueue:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:dispatch_queue_create("io.nimblenoggin.content.completion", DISPATCH_QUEUE_SERIAL)];
+        }];
+    }];
+}
+
+-(BFExecutor *)databaseExecutionExecutor {
+    return [TyphoonDefinition withClass:[BFExecutor class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(executorWithDispatchQueue:) parameters:^(TyphoonMethod *initializer) {
+            [initializer injectParameterWith:dispatch_queue_create("io.nimblenoggin.content.execution", DISPATCH_QUEUE_SERIAL)];
+        }];
     }];
 }
 

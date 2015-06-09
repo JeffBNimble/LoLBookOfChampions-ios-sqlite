@@ -74,8 +74,10 @@
 
 - (NIOQueryTask *)queryTask {
 	return [TyphoonDefinition withClass:[NIOQueryTask class] configuration:^(TyphoonDefinition *definition) {
-		[definition useInitializer:@selector(initWithContentResolver:) parameters:^(TyphoonMethod *initializer) {
+		[definition useInitializer:@selector(initWithContentResolver:withExecutionExecutor:withCompletionExecutor:) parameters:^(TyphoonMethod *initializer) {
 			[initializer injectParameterWith:self.coreComponents.contentResolver];
+            [initializer injectParameterWith:self.coreComponents.databaseExecutionExecutor];
+            [initializer injectParameterWith:self.coreComponents.databaseCompletionExecutor];
 		}];
 
 		definition.scope = TyphoonScopePrototype;

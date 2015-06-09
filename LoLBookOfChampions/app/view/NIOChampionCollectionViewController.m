@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *championCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 
+@property (strong, nonatomic) id<NIOTask> currentTask;
 @property (strong, nonatomic) id<NIOCursor> cursor;
 @property (strong, nonatomic) SKEmitterNode *magic;
 @property (strong, nonatomic) NSArray *magicColors;
@@ -60,7 +61,7 @@
 
 	if ( [segue.identifier isEqualToString:@"showChampionSkins"] ) {
 		NSIndexPath *indexPath = [self.championCollectionView indexPathForCell:sender];
-		[self.cursor moveToPosition:indexPath.row];
+		[self.cursor moveToPosition:(int)indexPath.row];
 		NIOChampionSkinCollectionViewController *vc = (NIOChampionSkinCollectionViewController *)segue.destinationViewController;
 		vc.championId = (uint) [self.cursor intForColumn:[ChampionColumns COL_ID]];
 		vc.championName = [self.cursor stringForColumn:[ChampionColumns COL_NAME]];
@@ -89,7 +90,9 @@
 	queryTask.uri = [Champion URI];
 	queryTask.projection = [self buildProjection];
 	queryTask.sort = [ChampionColumns COL_NAME];
-	[[queryTask runAsync] continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
+    self.currentTask = queryTask;
+	[[queryTask run] continueWithExecutor:[BFExecutor mainThreadExecutor] withBlock:^id(BFTask *task) {
+        self.currentTask = nil;
 		if ( weakSelf ) {
 			[weakSelf.activityIndicatorView stopAnimating];
 			[weakSelf.loadingLabel setHidden:YES];

@@ -15,8 +15,10 @@
 @end
 
 @implementation NIOInsertDataDragonRealmTask
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver {
-	self = [super init];
+-(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver
+                 withExecutionExecutor:(BFExecutor *)executionExecutor
+                withCompletionExecutor:(BFExecutor *)completionExecutor {
+	self = [super initWithExecutionExecutor:executionExecutor withCompletionExecutor:completionExecutor];
 	if ( self ) {
 		self.contentResolver = contentResolver;
 	}
@@ -43,9 +45,16 @@
 	return values;
 }
 
--(BFTask *)runAsync {
-	return [self.contentResolver insertWithURI:[Realm URI]
-									withValues:[self convertRemoteDataDragonRealmDataToInsertValues]];
+-(BFTask *)run {
+    __block NSError *error;
+    __block __weak NIOInsertDataDragonRealmTask *weakSelf = self;
+    return [BFTask taskFromExecutor:self.executionExecutor withBlock:^id{
+        NSURL *url = [weakSelf.contentResolver insertWithURI:[Realm URI]
+                                                  withValues:[self convertRemoteDataDragonRealmDataToInsertValues]
+                                                   withError:&error];
+        
+        return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:url];
+    }];
 }
 
 @end

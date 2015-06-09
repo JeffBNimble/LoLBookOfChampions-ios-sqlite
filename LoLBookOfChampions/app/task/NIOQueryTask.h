@@ -5,11 +5,12 @@
 
 #import <Foundation/Foundation.h>
 #import "NIOTask.h"
+#import "NIOAsyncTask.h"
 
 @class NIOContentResolver;
 
 
-@interface NIOQueryTask : NSObject<NIOTask>
+@interface NIOQueryTask : NIOAsyncTask<NIOTask>
 @property (strong, nonatomic) NSString *groupBy;
 @property (strong, nonatomic) NSString *having;
 @property (strong, nonatomic) NSArray *projection;
@@ -18,5 +19,7 @@
 @property (strong, nonatomic) NSString *sort;
 @property (strong, nonatomic) NSURL *uri;
 
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver;
+-(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver
+                 withExecutionExecutor:(BFExecutor *)executionExecutor
+                withCompletionExecutor:(BFExecutor *)completionExecutor;
 @end

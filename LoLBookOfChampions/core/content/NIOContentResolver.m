@@ -48,24 +48,18 @@
 @property (strong, nonatomic) NSMutableDictionary *contentObservers;
 @property (strong, nonatomic) id <NIOContentProviderFactory> contentProviderFactory;
 @property (strong, nonatomic) NSDictionary *contentRegistrations;
-@property (strong, nonatomic) BFExecutor *executionExecutor;
-@property (strong, nonatomic) BFExecutor *completionExecutor;
 @end
 
 @implementation NIOContentResolver
 -(instancetype)initWithContentProviderFactory:(id <NIOContentProviderFactory>)factory
 					 withContentAuthorityBase:(NSString *)contentAuthorityBase
-							withRegistrations:(NSDictionary *)registrations
-						   withExecutionQueue:(dispatch_queue_t)executionQueue
-						  withCompletionQueue:(dispatch_queue_t)completionQueue {
+							withRegistrations:(NSDictionary *)registrations {
 	self = [super init];
 	if ( self ) {
 		self.contentProviderFactory = factory;
 		self.contentAuthorityBase = contentAuthorityBase;
 		self.contentRegistrations = registrations;
 		self.activeContentProviderRegistry = [NSMutableDictionary new];
-		self.executionExecutor = [BFExecutor executorWithDispatchQueue:executionQueue];
-		self.completionExecutor = [BFExecutor executorWithDispatchQueue:completionQueue];
 		self.contentObservers = [NSMutableDictionary new];
 		[self initialize];
 	}
@@ -132,21 +126,18 @@
 }
 
 -(void)notifyChange:(NSURL *)contentURI {
-	__weak NIOContentResolver *weakSelf = self;
-	[self.completionExecutor execute:^{
-		NSString *contentURIString = [contentURI absoluteString];
-		for ( NSString *key in weakSelf.contentObservers.allKeys ) {
-			NSArray *registrations = weakSelf.contentObservers[key];
+	NSString *contentURIString = [contentURI absoluteString];
+    for ( NSString *key in self.contentObservers.allKeys ) {
+        NSArray *registrations = self.contentObservers[key];
 
-			for ( ContentObserverRegistration *registration in registrations ) {
-				BOOL shouldNotify = [[registration.contentURI absoluteString] isEqual:contentURIString] ||
-						(registration.notifyForDescendents && [contentURIString hasPrefix:[registration.contentURI absoluteString]]);
-				if ( shouldNotify ) {
-					[registration.contentObserver onUpdate:contentURI];
-				}
-			}
-		}
-	}];
+        for ( ContentObserverRegistration *registration in registrations ) {
+            BOOL shouldNotify = [[registration.contentURI absoluteString] isEqual:contentURIString] ||
+                    (registration.notifyForDescendents && [contentURIString hasPrefix:[registration.contentURI absoluteString]]);
+            if ( shouldNotify ) {
+                [registration.contentObserver onUpdate:contentURI];
+            }
+        }
+    }
 }
 
 -(void)registerContentObserverWithContentURI:(NSURL *)contentUri
@@ -174,82 +165,76 @@
 	[self.contentObservers removeObjectForKey:key];
 }
 
--(BFTask *)deleteWithURI:(NSURL *)uri withSelection:(NSString *)selection withSelectionArgs:(NSArray *)selectionArgs {
-	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
-		NSError *error;
-		id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
-		if (!contentProvider) return [BFTask taskWithError:[self createNoContentProviderErrorWithUri:uri]];
-		NSInteger deleteCount = [contentProvider deleteWithURI:uri
-												 withSelection:selection
-											 withSelectionArgs:selectionArgs
-													 withError:&error];
-		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:@(deleteCount)];
-	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
-		return task;
-	}];
+-(NSInteger)deleteWithURI:(NSURL *)uri
+           withSelection:(NSString *)selection
+       withSelectionArgs:(NSArray *)selectionArgs
+               withError:(NSError **)error {
+	id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
+    if (!contentProvider) {
+        *error = [self createNoContentProviderErrorWithUri:uri];
+        return 0;
+    }
+		
+    return [contentProvider deleteWithURI:uri
+                            withSelection:selection
+                        withSelectionArgs:selectionArgs
+                                withError:error];
 }
 
--(BFTask *)insertWithURI:(NSURL *)uri withValues:(NSDictionary *)values {
-	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
-		NSError *error;
-		id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
-		if (!contentProvider) return [BFTask taskWithError:[self createNoContentProviderErrorWithUri:uri]];
-		NSURL *insertedURI = [contentProvider insertWithURI:uri
-												 withValues:values
-												  withError:&error];
-		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:insertedURI];
-	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
-		return task;
-	}];
+-(NSURL *)insertWithURI:(NSURL *)uri
+             withValues:(NSDictionary *)values
+              withError:(NSError **)error {
+    id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
+    if (!contentProvider) {
+        *error = [self createNoContentProviderErrorWithUri:uri];
+        return nil;
+    }
+    
+    return [contentProvider insertWithURI:uri
+                               withValues:values
+                                withError:error];
 }
 
--(BFTask *)queryWithURI:(NSURL *)uri
+-(id<NIOCursor>)queryWithURI:(NSURL *)uri
 		 withProjection:(NSArray *)projection
 		  withSelection:(NSString *)selection
 	  withSelectionArgs:(NSArray *)selectionArgs
 			withGroupBy:(NSString *)groupBy
 			 withHaving:(NSString *)having
-			   withSort:(NSString *)sort {
+			   withSort:(NSString *)sort
+              withError:(NSError **)error {
 
-	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
-		NSError *error;
-		id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
-		if (!contentProvider) return [BFTask taskWithError:[self createNoContentProviderErrorWithUri:uri]];
-		id <NIOCursor> cursor = [contentProvider
-				queryWithURI:uri
-			  withProjection:projection
-			   withSelection:selection
-		   withSelectionArgs:selectionArgs
-				 withGroupBy:groupBy
-				  withHaving:having
-					withSort:sort
-				   withError:&error];
-		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:cursor];
-	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
-		return task;
-	}];
+    id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
+    if (!contentProvider) {
+        *error = [self createNoContentProviderErrorWithUri:uri];
+        return nil;
+    }
+    
+    return [contentProvider queryWithURI:uri
+                          withProjection:projection
+                           withSelection:selection
+                       withSelectionArgs:selectionArgs
+                             withGroupBy:groupBy
+                              withHaving:having
+                                withSort:sort
+                               withError:error];
 }
 
--(BFTask *)updateWithURI:(NSURL *)uri
-              withValues:(NSDictionary *)values
-           withSelection:(NSString *)selection
-       withSelectionArgs:(NSArray *)selectionArgs {
-	return [[BFTask taskFromExecutor:self.executionExecutor withBlock:^id {
-		NSError *error;
-		id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
-		if (!contentProvider) return [BFTask taskWithError:[self createNoContentProviderErrorWithUri:uri]];
-        NSInteger updateCount = [contentProvider
-                updateWithURI:uri
-                   withValues:values
-                withSelection:selection
-            withSelectionArgs:selectionArgs
-                    withError:&error];
-		return error ? [BFTask taskWithError:error] : [BFTask taskWithResult:@(updateCount)];
-
-	}] continueWithExecutor:self.completionExecutor withBlock:^id(BFTask *task) {
-		return task;
-	}];
+-(NSInteger)updateWithURI:(NSURL *)uri
+               withValues:(NSDictionary *)values
+            withSelection:(NSString *)selection
+        withSelectionArgs:(NSArray *)selectionArgs
+                withError:(NSError **)error {
+    id<NIOContentProvider> contentProvider = [self getContentProviderForContentURI:uri];
+    if (!contentProvider) {
+        *error = [self createNoContentProviderErrorWithUri:uri];
+        return 0;
+    }
+        return [contentProvider updateWithURI:uri
+                                   withValues:values
+                                withSelection:selection
+                            withSelectionArgs:selectionArgs
+                                    withError:error];
 }
-
 
 @end

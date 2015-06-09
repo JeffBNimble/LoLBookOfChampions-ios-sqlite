@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Typhoon/TyphoonAssembly.h>
+#import <Bolts/Bolts.h>
 
 @class NIOContentResolver;
 @protocol NIOContentProvider;
@@ -20,6 +21,8 @@
 -(DDAbstractLogger *)consoleLogger;
 -(id<NIOContentProviderFactory>)contentProviderFactory;
 -(NIOContentResolver *)contentResolver;
+-(BFExecutor *)databaseCompletionExecutor;
+-(BFExecutor *)databaseExecutionExecutor;
 -(NSFileManager *)fileManager;
 -(NSBundle *)mainBundle;
 -(NSNotificationCenter *)notificationCenter;

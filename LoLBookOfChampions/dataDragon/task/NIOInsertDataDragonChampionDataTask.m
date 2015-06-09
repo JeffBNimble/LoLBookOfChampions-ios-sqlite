@@ -18,8 +18,10 @@
 @end
 
 @implementation NIOInsertDataDragonChampionDataTask
--(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver {
-	self = [super init];
+-(instancetype)initWithContentResolver:(NIOContentResolver *)contentResolver
+                 withExecutionExecutor:(BFExecutor *)executionExecutor
+                withCompletionExecutor:(BFExecutor *)completionExecutor {
+	self = [super initWithExecutionExecutor:executionExecutor withCompletionExecutor:completionExecutor];
 	if ( self ) {
 		self.contentResolver = contentResolver;
 	}
@@ -66,39 +68,51 @@
 	return values;
 }
 
--(BFTask *)runAsync {
-	NSDictionary *allChampionData = self.remoteDataDragonChampionData[@"data"];
-	self.squareChampImageURLs = [[NSMutableArray alloc] initWithCapacity:allChampionData.count];
-	self.loadingImageURLs = [[NSMutableArray alloc] initWithCapacity:allChampionData.count * 5]; // Assume an average of 5 skins per champ
-	self.splashImageURLs = [[NSMutableArray alloc] initWithCapacity:allChampionData.count * 5]; // Assume an average of 5 skins per champ
-
-	for ( NSString *key in [allChampionData allKeys] ) {
-		NSDictionary *championData = allChampionData[key];
-		NSNumber *championId = championData[@"id"];
-		NSString *championKey = championData[@"key"];
-		NSDictionary *championSkinsData = championData[@"skins"];
-
-		DDLogVerbose(@"Inserting champion info for %@", championKey);
-		[[self.contentResolver insertWithURI:[Champion URI]
-								  withValues:[self championInsertValuesFrom:championData]]
-				waitUntilFinished];
-
-		for ( NSDictionary *championSkinData in championSkinsData ) {
-			DDLogVerbose(@"Inserting champion skin %@ for %@", championSkinData[@"name"], championKey);
-			[[self.contentResolver insertWithURI:[ChampionSkin URI]
-									  withValues:[self championSkinInsertValuesFrom:championSkinData
-																	 withChampionId:championId
-																   withChampionName:championKey]]
-					waitUntilFinished];
-		}
-	}
-
-	NSUInteger imageCount = self.squareChampImageURLs.count + self.loadingImageURLs.count + self.splashImageURLs.count;
-	NSMutableArray *allImageURLs = [[NSMutableArray alloc] initWithCapacity:imageCount];
-	[allImageURLs addObjectsFromArray:self.squareChampImageURLs]; // Cache the square images first
-	[allImageURLs addObjectsFromArray:self.loadingImageURLs]; // Cache the loading images next
-	[allImageURLs addObjectsFromArray:self.splashImageURLs]; // Cache the splash images last
-	return [BFTask taskWithResult:allImageURLs];
+-(BFTask *)run {
+    __block __weak NIOInsertDataDragonChampionDataTask *weakSelf = self;
+    return [BFTask taskFromExecutor:self.executionExecutor withBlock:^id{
+        NSError *error;
+        NSDictionary *allChampionData = weakSelf.remoteDataDragonChampionData[@"data"];
+        weakSelf.squareChampImageURLs = [[NSMutableArray alloc] initWithCapacity:allChampionData.count];
+        weakSelf.loadingImageURLs = [[NSMutableArray alloc] initWithCapacity:allChampionData.count * 5]; // Assume an average of 5 skins per champ
+        weakSelf.splashImageURLs = [[NSMutableArray alloc] initWithCapacity:allChampionData.count * 5]; // Assume an average of 5 skins per champ
+        
+        for ( NSString *key in [allChampionData allKeys] ) {
+            NSDictionary *championData = allChampionData[key];
+            NSNumber *championId = championData[@"id"];
+            NSString *championKey = championData[@"key"];
+            NSDictionary *championSkinsData = championData[@"skins"];
+            
+            // Insert the champion row
+            DDLogVerbose(@"Inserting champion info for %@", championKey);
+            [weakSelf.contentResolver insertWithURI:[Champion URI]
+                                      withValues:[weakSelf championInsertValuesFrom:championData]
+                                       withError:&error];
+            
+            if (error) return [BFTask taskWithError:error];
+            
+            // Insert the skins for this champion
+            for ( NSDictionary *championSkinData in championSkinsData ) {
+                DDLogVerbose(@"Inserting champion skin %@ for %@", championSkinData[@"name"], championKey);
+                [weakSelf.contentResolver insertWithURI:[ChampionSkin URI]
+                                             withValues:[weakSelf championSkinInsertValuesFrom:championSkinData
+                                                                                withChampionId:championId
+                                                                              withChampionName:championKey]
+                                              withError:&error];
+                
+            }
+        }
+        
+        
+        NSUInteger imageCount = weakSelf.squareChampImageURLs.count + weakSelf.loadingImageURLs.count + weakSelf.splashImageURLs.count;
+        __block NSMutableArray *allImageURLs = [[NSMutableArray alloc] initWithCapacity:imageCount];
+        [allImageURLs addObjectsFromArray:weakSelf.squareChampImageURLs]; // Cache the square images first
+        [allImageURLs addObjectsFromArray:weakSelf.loadingImageURLs]; // Cache the loading images next
+        [allImageURLs addObjectsFromArray:weakSelf.splashImageURLs]; // Cache the splash images last
+        return [BFTask taskFromExecutor:weakSelf.completionExecutor withBlock:^id{
+            return allImageURLs;
+        }];
+    }];
 }
 
 @end

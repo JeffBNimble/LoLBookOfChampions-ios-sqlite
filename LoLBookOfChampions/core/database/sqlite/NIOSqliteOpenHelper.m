@@ -91,7 +91,7 @@
 }
 
 -(void)onDowngrade:(FMDatabase *)database fromOldVersion:(NSInteger)oldVersion toNewVersion:(NSInteger)newVersion {
-	DDLogVerbose(@"Downgrading %@ from v%d to v%d", [database databasePath], oldVersion, newVersion);
+	DDLogVerbose(@"Downgrading %@ from v%ld to v%ld", [database databasePath], oldVersion, newVersion);
 }
 
 -(void)onOpen:(FMDatabase *)database {
@@ -99,11 +99,11 @@
 }
 
 -(void)onUpgrade:(FMDatabase *)database fromOldVersion:(NSInteger)oldVersion toNewVersion:(NSInteger)newVersion {
-	DDLogVerbose(@"Upgrading %@ from v%d to v%d", [database databasePath], oldVersion, newVersion);
+	DDLogVerbose(@"Upgrading %@ from v%ld to v%ld", [database databasePath], oldVersion, newVersion);
 }
 
 -(void)setCurrentDatabaseVersion:(FMDatabase *)db withVersion:(NSInteger)dbVersion {
-	[db executeUpdate:[NSString stringWithFormat:@"PRAGMA user_version = %d", dbVersion]];
+	[db executeUpdate:[NSString stringWithFormat:@"PRAGMA user_version = %ld", dbVersion]];
 }
 
 @end

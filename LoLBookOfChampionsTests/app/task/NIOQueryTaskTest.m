@@ -22,7 +22,9 @@ SPEC_BEGIN(NIOQueryTaskSpec)
 
 			beforeEach(^{
 				mockContentResolver = [NIOContentResolver mock];
-				queryTask = [[NIOQueryTask alloc] initWithContentResolver:mockContentResolver];
+				queryTask = [[NIOQueryTask alloc] initWithContentResolver:mockContentResolver
+                                                    withExecutionExecutor:[BFExecutor mainThreadExecutor]
+                                                   withCompletionExecutor:[BFExecutor mainThreadExecutor]];
 				promise = [BFTask taskWithResult:nil];
 			});
 
@@ -52,17 +54,17 @@ SPEC_BEGIN(NIOQueryTaskSpec)
 				queryTask.sort = sort;
 
 				[[mockContentResolver should]
-						receive:@selector(queryWithURI:withProjection:withSelection:withSelectionArgs:withGroupBy:withHaving:withSort:)
+						receive:@selector(queryWithURI:withProjection:withSelection:withSelectionArgs:withGroupBy:withHaving:withSort:withError:)
 					  andReturn:promise
-				  withArguments:uri, projection, selection, selectionArgs, groupBy, having, sort];
+				  withArguments:uri, projection, selection, selectionArgs, groupBy, having, sort, any()];
 				[queryTask runAsync];
 			});
 
 			it(@"it should return a promise when invoked", ^{
 				[[mockContentResolver should]
-						receive:@selector(queryWithURI:withProjection:withSelection:withSelectionArgs:withGroupBy:withHaving:withSort:)
+                 receive:@selector(queryWithURI:withProjection:withSelection:withSelectionArgs:withGroupBy:withHaving:withSort:withError:)
 					  andReturn:promise
-				  withArguments:any(), any(), any(), any(), any(), any(), any()];
+				  withArguments:any(), any(), any(), any(), any(), any(), any(), any()];
 				BFTask *promiseResult = [queryTask runAsync];
 				[[promiseResult shouldNot] beNil];
 			});

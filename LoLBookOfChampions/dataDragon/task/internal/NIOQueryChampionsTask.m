@@ -22,7 +22,7 @@
 	return self;
 }
 
--(BFTask *)runAsync {
+-(BFTask *)run {
 	return [self asQueryResult:[self executeQuery]];
 }
 
