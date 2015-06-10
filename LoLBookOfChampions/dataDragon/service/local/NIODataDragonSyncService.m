@@ -154,10 +154,12 @@
             return nil;
         }
         
-        NSString *localDataDragonVersion = [weakSelf getLocalDataDragonVersion:cursor];
+        __block NSString *localDataDragonVersion = [weakSelf getLocalDataDragonVersion:cursor];
+        DDLogInfo(@"Found local data dragon version %@", localDataDragonVersion);
+        
         if ( [[@(NSNotFound) stringValue] isEqualToString:localDataDragonVersion] ) {
             [weakSelf resync];
-            DDLogInfo(@"Found local data dragon version %@", localDataDragonVersion);
+            
             weakSelf.localDataDragonVersion = localDataDragonVersion;
         } else {
             [[[weakSelf.taskFactory createTaskWithType:[NIOGetRealmTask class]] run]
@@ -166,7 +168,7 @@
 					NSString *remoteDataDragonVersion = remoteDataDragonRealmData[@"v"];
 					DDLogInfo(@"Found remote data dragon version %@", remoteDataDragonVersion);
 
-					if ( [weakSelf.localDataDragonVersion isEqualToString:remoteDataDragonVersion] ) {
+					if ( [localDataDragonVersion isEqualToString:remoteDataDragonVersion] ) {
 						DDLogInfo(@"Local data dragon version is the latest available");
 					} else {
 						[weakSelf resync];
